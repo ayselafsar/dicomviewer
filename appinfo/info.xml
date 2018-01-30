@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<info xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+    <id>dicomviewer</id>
+    <name>DICOM Viewer</name>
+    <summary>A simple DICOM viewer</summary>
+    <description><![CDATA[A simple DICOM viewer]]></description>
+    <version>0.0.1</version>
+    <licence>agpl</licence>
+    <author mail="aysel.afsar@gmail.com" >Aysel Afsar</author>
+    <namespace>DICOMViewer</namespace>
+    <category>multimedia</category>
+    <bugs>https://github.com/ayselafsar</bugs>
+    <dependencies>
+        <nextcloud min-version="12" max-version="12"/>
+    </dependencies>
+</info>

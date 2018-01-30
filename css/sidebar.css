@@ -1,0 +1,48 @@
+.unknown-attribute {
+    color: #C8C8C8;
+}
+
+.tag-name {
+    margin-bottom: 5px;
+}
+
+.tag-value {
+    margin-bottom: 0;
+}
+
+.file-meta-information {
+    font-style: italic;
+}
+
+.dicom-attributes-search {
+    margin-top: 5px;
+}
+
+.sidebar-content-loading {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.sidebar-content-loading > span {
+    margin-left: 5px;
+}
+
+.sidebar-table-container {
+    display: none;
+    position: absolute;
+    top: 85px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: auto;
+}
+
+.dicom-elements-table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 12px;
+}
+
+.dicom-elements-table > tbody > tr > td {
+    word-wrap: break-word;
+}

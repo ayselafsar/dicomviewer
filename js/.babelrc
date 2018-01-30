@@ -1,0 +1,14 @@
+{
+  "presets": [
+    [
+      "es2015",
+      {
+        "modules": false
+      }
+    ]
+  ],
+  "ignore": [
+    "external/cornerstoneWADO/cornerstoneWADOImageLoaderCodecs.js",
+    "external/cornerstoneWADO/cornerstoneWADOImageLoaderWebWorker.js"
+  ]
+}

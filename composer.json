@@ -1,0 +1,15 @@
+{
+    "name": "DICOM Viewer",
+    "description": "A DICOM viewer for Nextcloud",
+    "type": "project",
+    "license": "AGPL",
+    "authors": [
+        {
+            "name": "Aysel Afsar"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^5.4"
+    }
+}

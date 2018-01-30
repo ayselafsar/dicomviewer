@@ -1,0 +1,136 @@
+body {
+    height: 100%;
+    width: 100%;
+    max-height: 100%;
+    background-color: #000;
+}
+
+.container {
+    height: 100%;
+    width: 100%;
+}
+
+.button-close {
+    margin-top: 9px;
+    color: #dcdcdc;
+    background-color: #000;
+    border: none;
+}
+
+.button-close:hover {
+    color: #fff;
+}
+
+/** Toolbar **/
+.toolbar {
+    height: 50px;
+    border-bottom: 1px solid #dcdc;
+}
+
+.tool-button-container {
+    height: 40px;
+    margin: 5px;
+    display: inline-block;
+    color: #91b9cd;
+    cursor: pointer;
+}
+
+.tool-button-container:hover, .active {
+    color: #20a5d6;
+}
+
+.tool-button {
+    height: 16px;
+    width: 16px;
+    margin: 3px auto 0;
+    pointer-events: none;
+}
+
+.tool-label {
+    height: 16px;
+    font-size: 12px;
+    margin-top: 5px;
+    width: 100%;
+    text-align: center;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+/* Image Viewer */
+.dicom-image-wrap {
+    position: absolute;
+    top: 50px;
+    bottom: 5px;
+    left: 0;
+    right: 0;
+}
+
+.dicom-image-container {
+    width: 100%;
+    height: 100%;
+    color: #91b9cd;
+    display: inline-block;
+}
+
+#dicomImage {
+    width: 100%;
+    height: 100%;
+}
+
+.load-progress-content {
+    font-size: 16px;
+    position: absolute;
+    top: 40%;
+    bottom: 60%;
+    display: inline-block;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: #91b9cd;
+}
+
+.patient-information {
+    position: absolute;
+    top:15px;
+    left:15px;
+}
+
+.study-information {
+    position: absolute;
+    top:15px;
+    right:15px;
+    text-align: right;
+}
+
+.bottom-right {
+    position: absolute;
+    bottom:15px;
+    right:15px;
+    text-align: right;
+}
+
+.bottom-left {
+    position: absolute;
+    bottom:15px;
+    left:15px;
+}
+
+@media (max-width: 600px) {
+    .toolbar {
+        height: 100px;
+    }
+
+    .close-viewer {
+        padding-left: 0;
+        padding-right: 0;
+        text-align: center;
+    }
+
+    .button-close {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .dicom-image-wrap {
+        top: 100px;
+    }
+}
