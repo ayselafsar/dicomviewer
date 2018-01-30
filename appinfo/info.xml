@@ -3,15 +3,37 @@
       xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
     <id>dicomviewer</id>
     <name>DICOM Viewer</name>
-    <summary>A simple DICOM viewer</summary>
-    <description><![CDATA[A simple DICOM viewer]]></description>
+    <summary>A DICOM viewer</summary>
+    <description><![CDATA[A DICOM Viewer which displays DICOM files with basic tools.
+
+See [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap.]]></description>
+    <licence>AGPL</licence>
     <version>0.0.1</version>
-    <licence>agpl</licence>
     <author mail="aysel.afsar@gmail.com" >Aysel Afsar</author>
     <namespace>DICOMViewer</namespace>
     <category>multimedia</category>
-    <bugs>https://github.com/ayselafsar</bugs>
+    <website>https://github.com/ayselafsar/dicomviewer</website>
+    <bugs>https://github.com/ayselafsar/dicomviewer/issues</bugs>
     <dependencies>
-        <nextcloud min-version="12" max-version="12"/>
+        <nextcloud min-version="12" max-version="13"/>
     </dependencies>
+    <repository type="git">https://github.com/ayselafsar/dicomviewer.git</repository>
+    <screenshot>
+        https://raw.githubusercontent.com/ayselafsar/dicomviewer/master/screenshots/viewer1.png
+    </screenshot>
+    <screenshot>
+        https://raw.githubusercontent.com/ayselafsar/dicomviewer/master/screenshots/viewer2.png
+    </screenshot>
+    <screenshot>
+        https://raw.githubusercontent.com/ayselafsar/dicomviewer/master/screenshots/viewer3.png
+    </screenshot>
+    <screenshot>
+        https://raw.githubusercontent.com/ayselafsar/dicomviewer/master/screenshots/viewer4.png
+    </screenshot>
+    <screenshot>
+        https://raw.githubusercontent.com/ayselafsar/dicomviewer/master/screenshots/dump1.png
+    </screenshot>
+    <screenshot>
+        https://raw.githubusercontent.com/ayselafsar/dicomviewer/master/screenshots/dump2.png
+    </screenshot>
 </info>
