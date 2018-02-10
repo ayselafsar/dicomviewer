@@ -1,6 +1,6 @@
-# DICOM Viewer   
+# DICOM Viewer
 
-It is a DICOM viewer which uses [cornerstonejs](https://github.com/cornerstonejs) library to display DICOM files on Nextcloud.   
+It is a DICOM viewer which uses [cornerstonejs](https://github.com/cornerstonejs) library to display DICOM files on Nextcloud.
 
 <kbd>![Viewer 1](https://github.com/ayselafsar/dicomviewer/blob/master/screenshots/viewer1.png)  </kbd>
 <kbd>![Viewer 2](https://github.com/ayselafsar/dicomviewer/blob/master/screenshots/viewer2.png)  </kbd>
@@ -12,19 +12,24 @@ It is a DICOM viewer which uses [cornerstonejs](https://github.com/cornerstonejs
 
 ### Features
 
-* **Viewer:** A DICOM viewer with basic image tools   
-* **DICOM Dump:** A list of DICOM attributes displayed on the sidebar   
+* **Viewer:** A DICOM viewer with basic imaging tools
+* **DICOM Dump:** A list of DICOM attributes displayed on the sidebar
 
 
 ### Installation
 
-1. Build the project by running `make` command or get the latest release.
-2. Copy the content of the built version or the latest release to `$nextcloud/apps/dicomviewer`
-3. Enable the app.
+On your Nextcloud, simply navigate to Apps > Multimedia > DICOM Viewer, and enable it.
+
+
+### Build
+
+Firstly, install NodeJS for JavaScript dependencies, then follow these steps:
+1. Run `make && make source` command to build source code
+2. Copy `build/artifacts/source/dicomviewer` into `path-to-nextcloud/apps`
+3. Enable the DICOM Viewer app
 
 
 ### Roadmap
 
 - Multiframe Support
 - DICOM Worklist
-- Touch Support

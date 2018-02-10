@@ -1,80 +1,197 @@
-body {
+#viewer {
     height: 100%;
     width: 100%;
-    max-height: 100%;
-    background-color: #000;
+    margin: 0 auto;
+    font-family: 'Roboto', 'OpenSans', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
 }
 
-.container {
-    height: 100%;
+/* Toolbar */
+
+
+.toolbarSection {
+    background-color: #000;
+    border-bottom: 1px solid #44626f;
+    flex: 0 0 auto;
+    height: 50px;
+    padding-top: 6px;
+    position: relative;
     width: 100%;
+    text-align: center;
+}
+
+.toolbarSectionButton {
+    color: #91b9cd;
+    cursor: pointer;
+    display: inline-block;
+    min-width: 30px;
+    outline: none;
+    position: relative;
+    text-align: center;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.toolbarSectionButton > .buttonLabel {
+    color: #91b9cd;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 17px;
+}
+
+.toolbarSectionButton > .buttonLabel > span {
+    cursor: pointer;
+}
+
+.toolbarSectionButton > .svgContainer {
+    margin: 0 auto;
+    text-align: center;
+    cursor: pointer;
+    color: #91b9cd;
+}
+
+.toolbarSectionButton > .svgContainer > i {
+    font-size: 18px;
+    line-height: 30px;
+}
+
+.svgContent {
+    background-color: #91b9cd;
+    cursor: pointer;
+    margin: 2px auto;
+    width: 21px;
+    height: 21px;
+}
+
+.rotate-right {
+    -webkit-mask-image: url('../img/rotate-right.svg');
+    mask-image: url('../img/rotate-right.svg');
+}
+
+.rotate-left {
+    -webkit-mask-image: url('../img/rotate-right.svg');
+    mask-image: url('../img/rotate-right.svg');
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+}
+
+.toolbarSectionButton:not(.active):hover .buttonLabel, .toolbarSectionButton:not(.active):hover .svgContainer {
+    color: #ffffff;
+}
+
+.toolbarSectionButton:not(.active):hover .svgContent {
+    background-color: #ffffff;
+}
+
+.active > .buttonLabel, .active > .svgContainer{
+    color: #20a5d6;
+}
+
+.active .svgContent {
+    background-color: #20a5d6;
 }
 
 .button-close {
-    margin-top: 9px;
-    color: #dcdcdc;
     background-color: #000;
     border: none;
+    color: #dcdcdc;
+    display: inline-block;
+    font-size: 14px;
+    line-height: 14px;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 6px 12px;
+    white-space: nowrap;
+    vertical-align: middle;
 }
 
 .button-close:hover {
     color: #fff;
 }
 
-/** Toolbar **/
-.toolbar {
-    height: 50px;
-    border-bottom: 1px solid #dcdc;
-}
 
-.tool-button-container {
-    height: 40px;
-    margin: 5px;
-    display: inline-block;
-    color: #91b9cd;
-    cursor: pointer;
-}
 
-.tool-button-container:hover, .active {
-    color: #20a5d6;
-}
 
-.tool-button {
-    height: 16px;
-    width: 16px;
-    margin: 3px auto 0;
-    pointer-events: none;
-}
+/* Viewer */
 
-.tool-label {
-    height: 16px;
-    font-size: 12px;
-    margin-top: 5px;
+
+.viewerSection {
     width: 100%;
-    text-align: center;
-    pointer-events: none;
+    height: calc(100% - 57px);
+    margin: 0 auto;
+}
+
+.viewerMain {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.imageViewerViewport {
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    outline: 0 !important;
     overflow: hidden;
 }
 
-/* Image Viewer */
-.dicom-image-wrap {
-    position: absolute;
-    top: 50px;
-    bottom: 5px;
-    left: 0;
-    right: 0;
-}
-
-.dicom-image-container {
-    width: 100%;
-    height: 100%;
+.imageViewerViewportOverlay {
     color: #91b9cd;
-    display: inline-block;
 }
 
-#dicomImage {
-    width: 100%;
-    height: 100%;
+.dicomTag {
+    position: absolute;
+    font-size: 14px;
+    font-weight: 600;
+    text-shadow: 1px 1px black;
+    pointer-events: none;
+}
+
+.topleft {
+    top: 15px;
+    left: 15px;
+}
+
+.topright {
+    top: 15px;
+    right: 15px;
+    text-align: right;
+}
+
+.bottomleft {
+    bottom: 15px;
+    left: 15px;
+}
+
+.bottomright {
+    bottom: 15px;
+    right: 15px;
+    text-align: right;
+}
+
+.viewportOrientationMarkers {
+    pointer-events: none;
+    font-size: 15px;
+    color: rgb(204, 204, 204);
+    line-height: 18px
+}
+
+.orientationMarker {
+   position: absolute;
+}
+
+.topMid {
+   top: 5px;
+   left: 50%;
+}
+
+.leftMid {
+    top: 47%;
+    left: 5px;
 }
 
 .load-progress-content {
@@ -89,38 +206,17 @@ body {
     color: #91b9cd;
 }
 
-.patient-information {
-    position: absolute;
-    top:15px;
-    left:15px;
-}
-
-.study-information {
-    position: absolute;
-    top:15px;
-    right:15px;
-    text-align: right;
-}
-
-.bottom-right {
-    position: absolute;
-    bottom:15px;
-    right:15px;
-    text-align: right;
-}
-
-.bottom-left {
-    position: absolute;
-    bottom:15px;
-    left:15px;
-}
-
 @media (max-width: 600px) {
-    .toolbar {
-        height: 100px;
+    .toolbarSection {
+        height: 171px;
+    }
+
+    .viewerSection {
+        height: calc(100% - 171px);
     }
 
     .close-viewer {
+        margin-left: 30px;
         padding-left: 0;
         padding-right: 0;
         text-align: center;
@@ -130,7 +226,18 @@ body {
         padding-left: 0;
         padding-right: 0;
     }
-    .dicom-image-wrap {
-        top: 100px;
+}
+
+@media (min-width: 600px) and (max-width: 900px) {
+    .toolbarSection {
+        height: 104px;
+    }
+
+    .viewerSection {
+        height: calc(100% - 104px);
+    }
+
+    .close-viewer {
+        margin-left: 30px;
     }
 }

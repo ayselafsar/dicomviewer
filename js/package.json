@@ -4,20 +4,32 @@
   "description": "Place this app in **nextcloud/apps/**",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prebuild": "npm install && npm update",
-    "build": "node node_modules/gulp-cli/bin/gulp.js"
+    "prebuild": "npm install",
+    "build": "webpack",
+    "lint": "eslint ."
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Aysel Afsar",
+  "license": "AGPL-3.0-only",
   "devDependencies": {
     "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
     "babel-preset-es2015": "^6.24.1",
-    "del": "^3.0.0",
+    "clean-webpack-plugin": "^0.1.18",
+    "copy-webpack-plugin": "^4.3.1",
     "eslint": "^4.16.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
-    "gulp": "^3.9.1",
-    "gulp-babel": "^7.0.1",
-    "gulp-cli": "^2.0.1"
+    "webpack": "^3.10.0"
+  },
+  "dependencies": {
+    "cornerstone-core": "1.1.2",
+    "cornerstone-math": "0.1.6",
+    "cornerstone-tools": "1.0.3",
+    "cornerstone-wado-image-loader": "1.0.1",
+    "dicom-parser": "1.7.6",
+    "hammerjs": "2.0.8",
+    "jquery": "^3.3.1",
+    "jquery-hammerjs": "2.0.0",
+    "moment": "^2.20.1"
   }
 }

@@ -4,9 +4,10 @@ namespace OCA\DICOMViewer\AppInfo;
 
 use OCP\Util;
 
-Util::addStyle('dicomviewer', 'style');
-Util::addscript('dicomviewer', 'viewer/dicomViewerPlugin');
-Util::addscript('dicomviewer', 'sidebar/sidebarPreview');
+Util::addStyle('dicomviewer', 'viewer');
+Util::addStyle('dicomviewer', 'sidebar');
+Util::addStyle('dicomviewer', 'external/font-awesome/font-awesome.min');
+Util::addscript('dicomviewer', 'app.bundle');
 
 // Register Mime Type: dicom
 $mimeTypeLoader = \OC::$server->getMimeTypeLoader();
