@@ -41,6 +41,8 @@ export default function (baseUrl, downloadUrl, callback) {
         const { image } = e.detail;
         updateImageOverlays(imageId, image);
 
+        cornerstone.resize(element, true);
+
         // Hide load progress
         $loadProgress.css({
             display: 'none',
