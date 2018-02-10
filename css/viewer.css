@@ -3,6 +3,7 @@
     width: 100%;
     margin: 0 auto;
     font-family: 'Roboto', 'OpenSans', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+    overflow-y: hidden;
 }
 
 /* Toolbar */
@@ -92,6 +93,10 @@
 
 .active .svgContent {
     background-color: #20a5d6;
+}
+
+.button-close {
+    display: block;
 }
 
 .button-close {
@@ -215,16 +220,8 @@
         height: calc(100% - 171px);
     }
 
-    .close-viewer {
-        margin-left: 30px;
-        padding-left: 0;
-        padding-right: 0;
-        text-align: center;
-    }
-
     .button-close {
-        padding-left: 0;
-        padding-right: 0;
+        display: none;
     }
 }
 
@@ -237,7 +234,7 @@
         height: calc(100% - 104px);
     }
 
-    .close-viewer {
-        margin-left: 30px;
+    .button-close {
+        display: none;
     }
 }
