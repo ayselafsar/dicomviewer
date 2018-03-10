@@ -64,6 +64,10 @@ export default function () {
         id: 'clearTools',
         name: 'Clear',
         action: viewportUtils.clearTools,
+    }, {
+        id: 'toggleCaptureImageDialog',
+        name: 'Download',
+        action: viewportUtils.toggleCaptureImageDialog,
     }];
 
     const commandsManager = new CommandsManager();

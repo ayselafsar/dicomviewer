@@ -58,7 +58,9 @@ class DicomViewer {
 
             // Go back on ESC
             $(document).keyup((e) => {
-                if (self.shown && e.keyCode === 27) {
+                // Stop if there is an open dialog
+                const isModalShown = $('.modal-backdrop').hasClass('show');
+                if (self.shown && e.keyCode === 27 && !isModalShown) {
                     self.hide();
                 }
             });

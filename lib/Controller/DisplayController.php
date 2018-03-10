@@ -49,4 +49,18 @@ class DisplayController extends Controller {
 
         return new TemplateResponse('dicomviewer', 'sidebar', $params, 'blank');
     }
+
+    /**
+         * @PublicPage
+         * @NoCSRFRequired
+         *
+         * @return TemplateResponse
+         */
+        public function captureImageDialog() {
+            $params = [
+                'urlGenerator' => $this->urlGenerator,
+            ];
+
+            return new TemplateResponse('dicomviewer', 'captureImageDialog', $params, 'blank');
+        }
 }

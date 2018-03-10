@@ -1,0 +1,132 @@
+.captureImageDialog .modal-dialog {
+    margin-top: 50px !important;
+}
+
+.captureImageDialog .modal-content {
+    background-color: #000;
+    color: #91b9cd;
+}
+
+.captureImageDialog .modal-title {
+    font-weight: bold;
+    margin-top: 0;
+}
+
+.captureImageDialog .btn-close {
+    background-color: #000 !important;
+    text-shadow: none;
+}
+
+.captureImageDialog .btn-close:hover, .captureImageDialog .btn-close:focus {
+    color: #fff;
+    background-color: #000 !important;
+}
+
+.captureImageDialog .btn-close > span {
+    color: #91b9cd;
+}
+
+.captureImageDialog .btn-close:hover > span {
+    color: #fff;
+    cursor: pointer;
+}
+
+.captureImageDialog .card-round {
+    background-color: #16202b;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.captureImageDialog .card-round>h4 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.1;
+    margin-bottom: 10px;
+}
+
+.captureImageDialog .viewport-element-hidden {
+    display: none;
+}
+
+.captureImageDialog .viewport-preview-wrap {
+    width: 100%;
+    margin: 20px auto 0;
+    text-align: center;
+}
+
+.captureImageDialog .viewport-preview-wrap > .card-round {
+    display: inline-block;
+}
+
+.captureImageDialog .viewport-preview {
+    width: 512px;
+    height: 512px;
+}
+
+.captureImageDialog .form-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.captureImageDialog .full-width {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.captureImageDialog .form-row {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    align-items: center;
+}
+
+.captureImageDialog .form-column {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+}
+
+.captureImageDialog .form-label {
+    flex: 1 1 40%;
+    font-size: 14px;
+    font-weight: 400;
+    padding-right: 10px;
+    text-align: right;
+}
+
+.captureImageDialog .form-control {
+    flex: 1 1 60%;
+    padding-right: 10px;
+    text-align: left;
+}
+
+.captureImageDialog .form-control, .captureImageDialog .form-control:hover,
+.captureImageDialog .form-control:focus {
+    background-color: #16202b !important;
+    border-color: #91b9cd;
+    color: #fff;
+}
+
+.captureImageDialog .form-control-fixed {
+    flex: 0 0 50px;
+}
+
+.captureImageDialog #keepAspectRatio {
+    color: #91b9cd;
+    margin-left: 10px;
+}
+
+.captureImageDialog .show-annotations-container {
+    font-size: 14px;
+    justify-content: flex-end;
+    height: 40px;
+}
+
+.captureImageDialog #show-annotations {
+    padding: 5px 10px;
+    margin-bottom: 10px;
+}

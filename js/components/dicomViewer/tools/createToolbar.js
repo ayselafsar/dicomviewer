@@ -81,6 +81,11 @@ const tools = [{
     title: 'Clear',
     classes: 'imageViewerCommand',
     iconClasses: 'fa fa-trash fa-lg',
+}, {
+    id: 'toggleCaptureImageDialog',
+    title: 'Capture',
+    classes: 'imageViewerCommand',
+    iconClasses: 'fa fa-camera fa-lg',
 }];
 
 // Create tool button
@@ -93,7 +98,7 @@ function createToolButton(tool) {
         const $icon = $(`<i class="${tool.iconClasses}"></i>`);
         $svgContainer.append($icon);
     } else if (tool.svgClasses) {
-        const $svgContent = $(`<div class="${tool.svgClasses}" style="border: 1px solid red;"></div>`);
+        const $svgContent = $(`<div class="${tool.svgClasses}"></div>`);
         $svgContainer.append($svgContent);
     }
 

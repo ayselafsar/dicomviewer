@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import { cornerstone, cornerstoneTools } from '../../../lib/cornerstonejs';
 import updateOrientationMarkers from './updateOrientationMarkers';
+import { captureImageDialog } from './captureImageDialog';
 
 const getEnabledElement = (element) => {
     let enabledElement;
@@ -15,6 +16,14 @@ const getEnabledElement = (element) => {
 };
 
 const getActiveViewportElement = () => $('.imageViewerViewport').get(0);
+
+const getAnnotationTools = () => ['length', 'probe', 'simpleAngle', 'arrowAnnotate', 'ellipticalRoi', 'rectangleRoi'];
+
+const toggleAnnotations = (viewportElement, toggle) => {
+    const action = toggle ? 'enable' : 'disable';
+    const annotationTools = getAnnotationTools();
+    annotationTools.forEach(tool => cornerstoneTools[tool][action](viewportElement));
+};
 
 const rotateL = () => {
     const element = getActiveViewportElement();
@@ -126,12 +135,17 @@ const clearTools = () => {
     cornerstone.updateImage(element);
 };
 
+const toggleCaptureImageDialog = () => {
+    captureImageDialog.show();
+};
+
 /**
  * Export functions inside viewportUtils namespace.
  */
 
 const viewportUtils = {
     getEnabledElement,
+    getActiveViewportElement,
     rotateL,
     rotateR,
     invert,
@@ -139,6 +153,8 @@ const viewportUtils = {
     flipH,
     resetViewport,
     clearTools,
+    toggleAnnotations,
+    toggleCaptureImageDialog,
 };
 
 export { viewportUtils };

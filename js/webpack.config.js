@@ -42,10 +42,5 @@ module.exports = {
             __DEVELOPMENT__: false,
             __DEVTOOLS__: false
         })
-    ],
-    resolve: {
-        alias: {
-            vue: 'vue/dist/vue.js'
-        }
-    }
+    ]
 };

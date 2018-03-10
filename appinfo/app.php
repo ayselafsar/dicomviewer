@@ -6,8 +6,10 @@ use OCP\Util;
 
 Util::addStyle('dicomviewer', 'viewer');
 Util::addStyle('dicomviewer', 'sidebar');
+Util::addStyle('dicomviewer', 'viewerDialog');
+Util::addStyle('dicomviewer', 'captureImageDialog');
 Util::addStyle('dicomviewer', 'external/font-awesome/font-awesome.min');
-Util::addscript('dicomviewer', 'app.bundle');
+Util::addScript('dicomviewer', 'app.bundle');
 
 // Register Mime Type: dicom
 $mimeTypeLoader = \OC::$server->getMimeTypeLoader();

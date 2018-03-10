@@ -3,8 +3,9 @@
     width: 100%;
     margin: 0 auto;
     font-family: 'Roboto', 'OpenSans', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
-    overflow-y: hidden;
+    overflow-y: auto;
 }
+
 
 /* Toolbar */
 
@@ -210,6 +211,7 @@
     text-align: center;
     color: #91b9cd;
 }
+
 
 @media (max-width: 600px) {
     .toolbarSection {
