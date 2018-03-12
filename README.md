@@ -4,34 +4,13 @@ It is a DICOM viewer which uses [cornerstonejs](https://github.com/cornerstonejs
 
 For more information, see the blog post [Nextcloud in Digital Imaging](https://nextcloud.com/blog/digital-imaging-for-medicine-in-nextcloud/)
 
-<table>
-    <tr>
-        <td>
-            <img alt="Viewer 1" src="https://github.com/ayselafsar/dicomviewer/blob/master/screenshots/viewer1.png" />
-        </td>
-        <td>
-            <img alt="Viewer 2" src="https://github.com/ayselafsar/dicomviewer/blob/master/screenshots/viewer2.png" />
-        </td>
-    </tr>
-    
-    <tr>
-        <td>
-            <img alt="Viewer 3" src="https://github.com/ayselafsar/dicomviewer/blob/master/screenshots/viewer3.png" />
-        </td>
-        <td>
-            <img alt="Viewer 4" src="https://github.com/ayselafsar/dicomviewer/blob/master/screenshots/viewer4.png" />
-        </td>
-    </tr>
-        
-    <tr>
-        <td>
-            <img alt="Dump 1" src="https://github.com/ayselafsar/dicomviewer/blob/master/screenshots/dump1.png" />
-        </td>
-        <td>
-            <img alt="Dump 2" src="https://github.com/ayselafsar/dicomviewer/blob/master/screenshots/dump2.png" />
-        </td>
-    </tr>
-</table>
+
+<kbd>![Viewer 1](https://github.com/ayselafsar/dicomviewer/blob/master/screenshots/viewer1.png)  </kbd>
+<kbd>![Viewer 2](https://github.com/ayselafsar/dicomviewer/blob/master/screenshots/viewer2.png)  </kbd>
+<kbd>![Viewer 3](https://github.com/ayselafsar/dicomviewer/blob/master/screenshots/viewer3.png)  </kbd>
+<kbd>![Viewer 4](https://github.com/ayselafsar/dicomviewer/blob/master/screenshots/viewer4.png)  </kbd>
+<kbd>![Dump 1](https://github.com/ayselafsar/dicomviewer/blob/master/screenshots/dump1.png)  </kbd>
+<kbd>![Dump 2](https://github.com/ayselafsar/dicomviewer/blob/master/screenshots/dump2.png)  </kbd>
 
 
 ### Features
