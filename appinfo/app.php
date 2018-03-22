@@ -16,9 +16,13 @@ $mimeTypeLoader = \OC::$server->getMimeTypeLoader();
 $mimeId = $mimeTypeLoader->getId('application/dicom');
 $mimeTypeLoader->updateFilecache('dcm', $mimeId);
 
-// Add security policy
-$server_name = $_SERVER['SERVER_NAME'];
+// Get the server name
+$server_name = '';
+if (isset($_SERVER['SERVER_NAME'])) {
+    $server_name = $_SERVER['SERVER_NAME'];
+}
 
+// Add security policy
 $cspManager = \OC::$server->getContentSecurityPolicyManager();
 $csp = new \OCP\AppFramework\Http\ContentSecurityPolicy();
 $csp->addAllowedChildSrcDomain("'self' ".$server_name);
