@@ -36,4 +36,9 @@ See [README](https://github.com/ayselafsar/dicomviewer) for a list of full featu
     <screenshot small-thumbnail="https://raw.githubusercontent.com/ayselafsar/dicomviewer/master/screenshots/dump2-small.png">
         https://raw.githubusercontent.com/ayselafsar/dicomviewer/master/screenshots/dump2.png
     </screenshot>
+    <repair-steps>
+        <install>
+            <step>OCA\DICOMViewer\Migration\RegisterMimeType</step>
+        </install>
+    </repair-steps>
 </info>

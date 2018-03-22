@@ -11,11 +11,6 @@ Util::addStyle('dicomviewer', 'captureImageDialog');
 Util::addStyle('dicomviewer', 'external/font-awesome/font-awesome.min');
 Util::addScript('dicomviewer', 'app.bundle');
 
-// Register Mime Type: dicom
-$mimeTypeLoader = \OC::$server->getMimeTypeLoader();
-$mimeId = $mimeTypeLoader->getId('application/dicom');
-$mimeTypeLoader->updateFilecache('dcm', $mimeId);
-
 // Get the server name
 $server_name = '';
 if (isset($_SERVER['SERVER_NAME'])) {
