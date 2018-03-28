@@ -37,7 +37,7 @@
     padding: 10px;
 }
 
-.captureImageDialog .card-round>h4 {
+.captureImageDialog .card-round > h4 {
     font-size: 18px;
     font-weight: 500;
     line-height: 1.1;
@@ -77,17 +77,11 @@
     width: 100%;
 }
 
-.captureImageDialog .form-row {
+.captureImageDialog .form-column {
     display: flex;
     flex-direction: row;
     flex: 1;
     align-items: center;
-}
-
-.captureImageDialog .form-column {
-    display: flex;
-    flex-direction: column;
-    flex: 1 1 auto;
 }
 
 .captureImageDialog .form-label {
@@ -129,4 +123,17 @@
 .captureImageDialog #show-annotations {
     padding: 5px 10px;
     margin-bottom: 10px;
+}
+
+table.capture-settings  tr, table.capture-settings  td {
+    border-bottom: none !important;
+}
+
+table.capture-settings  tr:hover, table.capture-settings > td:hover {
+    background-color: transparent;
+}
+
+#viewport-preview-width, #viewport-preview-height,
+#viewport-preview-quality {
+    width: 80px;
 }

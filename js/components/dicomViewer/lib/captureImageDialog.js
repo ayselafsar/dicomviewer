@@ -50,7 +50,7 @@ const updateViewportPreview = ($imageViewerViewport, imageType = 'png') => {
     });
 };
 
-const updateViewportElement = (viewportWidth, viewportHeight, annotations=true) => {
+const updateViewportElement = (viewportWidth, viewportHeight, annotations = true) => {
     const activeViewport = viewportUtils.getActiveViewportElement();
     const enabledElement = cornerstone.getEnabledElement(activeViewport);
     const $viewportElement = $('.viewport-element-hidden');
@@ -157,10 +157,23 @@ const registerDownloadImage = () => {
         const downloadCanvas = formData.$imageViewerViewport.find('canvas')[0];
         const fullFileName = `${formData.fileName}.${formData.imageType}`;
         const quality = formData.imageType === 'png' ? 1 : formData.quality / 100;
+        const href = downloadCanvas.toDataURL(`image/${formData.imageType}`, quality);
+        const $downloadImage = $(document).find('a.downloadImage');
 
+        if ($downloadImage.length) {
+            $downloadImage.attr('download', fullFileName);
+            $downloadImage.attr('href', href);
+            $($downloadImage)[0].click();
+
+            return;
+        }
+
+        // Create a new hyperlink element
         const link = document.createElement('a');
+        link.classList.add('downloadImage');
         link.download = fullFileName;
-        link.href = downloadCanvas.toDataURL(`image/${formData.imageType}`, quality);
+        link.href = href;
+        document.body.appendChild(link);
         $(link)[0].click();
     });
 };

@@ -10,53 +10,67 @@
                 <h3>Please specify the dimensions, and desired type for the output image.</h3>
             </div>
             <div class="form-content card-round">
-                <div class="form-row">
-                    <div class="size">
-                        <div class="form-column">
-                            <div class="full-width">
-                                <label class="form-label">Width (px)</label>
+                <div class="form-column">
+                    <table class="capture-settings">
+                        <tr>
+                            <td>
+                                Width (px)
+                            </td>
+                            <td>
                                 <input type="number" id="viewport-preview-width" class="form-control form-control-fixed js-preview-size" data-size="width" value="512" min="1" max="16384">
-                            </div>
-                            <div class="full-width">
-                                <label class="form-label">Height (px)</label>
+                            </td>
+                            <td rowspan="2">
+                                <button id="keepAspectRatio" data-keep-ratio="true">
+                                    <i class="fa fa-link"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Height (px)</td>
+                            <td>
                                 <input type="number" id="viewport-preview-height" class="form-control form-control-fixed js-preview-size" data-size="height" value="512" min="1" max="16384">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="keep-ratio">
-                        <button id="keepAspectRatio" data-keep-ratio="true">
-                            <i class="fa fa-link"></i>
-                        </button>
-                    </div>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
 
-                <div class="form-row">
-                    <div class="form-column">
-                        <div class="full-width">
-                            <label class="form-label">File Name</label>
-                            <input type="text" id="viewport-preview-name" class="form-control" value="image">
-                        </div>
-                        <div class="full-width">
-                             <label class="form-label">File Type</label>
-                            <select id="viewport-image-type" class="form-control">
-                                <option value="png" selected="selected">PNG</option>
-                                <option value="jpeg">JPEG</option>
-                            </select>
-                        </div>
-                    </div>
+                <div class="form-column">
+                    <table class="capture-settings">
+                        <tr>
+                            <td>File Name</td>
+                            <td>
+                                <input type="text" id="viewport-preview-name" class="form-control" value="image">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>File Type</td>
+                            <td>
+                                <select id="viewport-image-type" class="form-control">
+                                    <option value="png" selected="selected">PNG</option>
+                                    <option value="jpeg">JPEG</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
 
-                <div class="form-row">
-                    <div class="form-column">
-                        <div class="full-width show-annotations-container">
-                            <input type="checkbox" id="showAnnotations" class="form-control-checkbox" name="showAnnotations" checked value="show">
-                            <label class="form-label-checkbox">Show Annotations</label>
-                        </div>
-                        <div class="full-width">
-                            <label class="form-label">Image Quality (%)</label>
-                            <input type="number" id="viewport-preview-quality" class="form-control form-control-fixed" data-size="height" value="100" min="1" max="100">
-                        </div>
-                    </div>
+                <div class="form-column">
+                    <table class="capture-settings">
+                        <tr>
+                            <td colspan="2">
+                                <div class="full-width show-annotations-container">
+                                    <input type="checkbox" id="showAnnotations" class="form-control-checkbox" name="showAnnotations" checked value="show">
+                                    <label class="form-label-checkbox">Show Annotations</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Image Quality (%)</td>
+                            <td>
+                                <input type="number" id="viewport-preview-quality" class="form-control form-control-fixed" data-size="height" value="100" min="1" max="100">
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
 
