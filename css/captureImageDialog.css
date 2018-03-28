@@ -125,6 +125,14 @@
     margin-bottom: 10px;
 }
 
+.captureImageDialog .aspect-ratio-cell {
+    padding-left: 0;
+}
+
+.captureImageDialog #keepAspectRatio {
+    margin-left: 0;
+}
+
 table.capture-settings  tr, table.capture-settings  td {
     border-bottom: none !important;
 }

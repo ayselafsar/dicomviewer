@@ -19,7 +19,7 @@
                             <td>
                                 <input type="number" id="viewport-preview-width" class="form-control form-control-fixed js-preview-size" data-size="width" value="512" min="1" max="16384">
                             </td>
-                            <td rowspan="2">
+                            <td rowspan="2" class='aspect-ratio-cell'>
                                 <button id="keepAspectRatio" data-keep-ratio="true">
                                     <i class="fa fa-link"></i>
                                 </button>
