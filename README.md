@@ -1,4 +1,4 @@
-[![Donate][donate-image]][donate-url]
+[![Support][support-image]][support-url]
 
 # DICOM Viewer
 
@@ -40,5 +40,5 @@ Firstly, install NodeJS for JavaScript dependencies, then follow these steps:
 - DICOM Worklist
 
 
-[donate-image]: https://img.shields.io/badge/Donate-Patreon-blue.svg
-[donate-url]: https://www.patreon.com/ayselafsar
+[support-image]: https://img.shields.io/badge/Support-Patreon-blue.svg
+[support-url]: https://www.patreon.com/ayselafsar
