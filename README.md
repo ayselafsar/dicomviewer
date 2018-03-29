@@ -1,3 +1,5 @@
+[![Donate][donate-image]][donate-url]
+
 # DICOM Viewer
 
 It is a DICOM viewer which uses [cornerstonejs](https://github.com/cornerstonejs) library to display DICOM files on Nextcloud.
@@ -36,3 +38,7 @@ Firstly, install NodeJS for JavaScript dependencies, then follow these steps:
 
 - Multiframe Support
 - DICOM Worklist
+
+
+[donate-image]: https://img.shields.io/badge/Donate-Patreon-blue.svg
+[donate-url]: https://www.patreon.com/ayselafsar
