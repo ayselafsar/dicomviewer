@@ -1,9 +1,10 @@
 import { cornerstone, cornerstoneTools } from '../../../lib/cornerstonejs';
 import { MetadataProvider } from '../classes/MetadataProvider';
 import { toolManager } from '../tools/toolManager';
+import updateOrientationMarkers from './updateOrientationMarkers';
 
 /**
- *
+ * Load and view image
  * @param element
  * @param imageId
  */
@@ -19,6 +20,9 @@ export default function (element, imageId) {
 
             const viewport = cornerstone.getDefaultViewportForImage(element, image);
             cornerstone.displayImage(element, image, viewport);
+
+            // Display orientation markers
+            updateOrientationMarkers(element, viewport);
 
             // Enable mouse, mouseWheel, touch, and keyboard input on the element
             cornerstoneTools.mouseInput.enable(element);
