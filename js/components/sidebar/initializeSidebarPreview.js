@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import { dicomParser } from '../../lib/cornerstonejs';
 import getDICOMAttributes from '../../lib/dicom/getDICOMAttributes';
+import generateFullUrl from '../../lib/generateFullUrl';
 
 function addRow(attribute) {
     let { tagName } = attribute;
@@ -91,30 +92,25 @@ function dumpByteArray(byteArray) {
 }
 
 /**
- *
- * @param $iframeElement
- * @param baseUrl
- * @param downloadUrl
- * @returns {boolean}
+ * Initialize sidebar component
+ * @param fileDownloadUrl
  */
-export default function (baseUrl, downloadUrl) {
-    const fileUrl = baseUrl + downloadUrl;
+export default function (fileDownloadUrl) {
     const oReq = new XMLHttpRequest();
+
     try {
-        oReq.open('get', fileUrl, true);
+        oReq.open('GET', generateFullUrl(fileDownloadUrl), true);
+        oReq.responseType = 'arraybuffer';
+
+        oReq.onreadystatechange = () => {
+            if (oReq.readyState === 4 && oReq.status === 200) {
+                const byteArray = new Uint8Array(oReq.response);
+                dumpByteArray(byteArray);
+            }
+        };
+
+        oReq.send();
     } catch (err) {
         console.error(err);
-        return false;
     }
-
-    oReq.responseType = 'arraybuffer';
-    oReq.onreadystatechange = () => {
-        if (oReq.readyState === 4 && oReq.status === 200) {
-            const byteArray = new Uint8Array(oReq.response);
-            dumpByteArray(byteArray);
-        }
-    };
-    oReq.send();
-
-    return false;
 }

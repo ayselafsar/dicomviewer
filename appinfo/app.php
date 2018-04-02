@@ -23,6 +23,6 @@ $csp = new \OCP\AppFramework\Http\ContentSecurityPolicy();
 $csp->addAllowedChildSrcDomain("'self' ".$server_name);
 $csp->addAllowedScriptDomain("'self' ".$server_name);
 $csp->addAllowedImageDomain('*');
-$csp->addAllowedFontDomain('self');
+$csp->addAllowedFontDomain("'self'");
 $csp->allowEvalScript(false);
 $cspManager->addDefaultPolicy($csp);

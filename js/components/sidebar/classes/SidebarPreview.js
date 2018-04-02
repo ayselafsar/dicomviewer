@@ -13,20 +13,18 @@ class SidebarPreview {
     }
 
     handlePreview(model, $thumbnailDiv, $thumbnailContainer) {
-        const baseUrl = `${OC.getProtocol()}://${OC.getHost()}`;
-        const downloadUrl = Files.getDownloadUrl(model.get('name'), model.get('path'));
+        const fileDownloadUrl = Files.getDownloadUrl(model.get('name'), model.get('path'));
 
-        const sidebar = OC.generateUrl('/apps/dicomviewer/dicomSidebar?file={file}', {
-            file: downloadUrl,
+        const sidebarUrl = OC.generateUrl('/apps/dicomviewer/dicomSidebar?file={file}', {
+            file: fileDownloadUrl,
         });
 
-        // Create an iframe to import sidebar content
         const $appSidebar = $('#app-sidebar');
         const appSidebarHeight = $appSidebar.height();
         const previewHeight = parseInt(appSidebarHeight, 10) / 2;
 
         $.ajax({
-            url: sidebar,
+            url: sidebarUrl,
             type: 'GET',
             contentType: 'text/html',
         }).done((response) => {
@@ -42,7 +40,8 @@ class SidebarPreview {
                 $thumbnailContainer.css('height', frameHeight);
             });
 
-            initializeSidebarPreview(baseUrl, downloadUrl);
+            // Initialize sidebar
+            initializeSidebarPreview(fileDownloadUrl);
         }).fail((response, code) => {
             console.error(response, code);
         });

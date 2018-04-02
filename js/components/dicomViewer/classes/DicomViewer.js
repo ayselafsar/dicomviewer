@@ -5,10 +5,9 @@ import configureCodecs from '../configureCodecs';
 class DicomViewer {
     constructor() {
         this.mimeType = 'application/dicom';
-        this.baseUrl = `${OC.getProtocol()}://${OC.getHost()}`;
         this.shown = false;
 
-        configureCodecs(this.baseUrl);
+        configureCodecs();
     }
 
     /**
@@ -33,24 +32,24 @@ class DicomViewer {
 
     /**
      * Display viewer dialog
-     * @param downloadUrl
+     * @param fileDownloadUrl
      */
-    show(downloadUrl) {
+    show(fileDownloadUrl) {
         const self = this;
         self.shown = true;
 
-        const viewer = OC.generateUrl('/apps/dicomviewer/?file={file}', {
-            file: downloadUrl
+        const viewerUrl = OC.generateUrl('/apps/dicomviewer/?file={file}', {
+            file: fileDownloadUrl
         });
 
         $.ajax({
-            url: viewer,
+            url: viewerUrl,
             type: 'GET',
             contentType: 'text/html',
         }).done((response) => {
             const $appContent = $('#app-content');
 
-            const callback = () => {
+            const doneCallback = () => {
                 $('.js-close-viewer').click(() => {
                     self.hide();
                 });
@@ -66,10 +65,11 @@ class DicomViewer {
             });
 
             $('#app-content-files').css({ display: 'none' });
+
             $appContent.append(response);
 
             // Initialize viewer
-            initalizeDicomViewer(self.baseUrl, downloadUrl, callback);
+            initalizeDicomViewer(fileDownloadUrl, doneCallback);
         }).fail((response, code) => {
             console.error(response, code);
         });
@@ -102,9 +102,9 @@ class DicomViewer {
             permissions: OC.PERMISSION_READ,
             templateName: 'viewer',
             actionHandler: (fileName, context) => {
-                const downloadUrl = context.fileList.getDownloadUrl(fileName, context.dir);
-                if (downloadUrl && downloadUrl !== '#') {
-                    self.show(downloadUrl, true);
+                const fileDownloadUrl = context.fileList.getDownloadUrl(fileName, context.dir);
+                if (fileDownloadUrl && fileDownloadUrl !== '#') {
+                    self.show(fileDownloadUrl, true);
                 }
             },
         });

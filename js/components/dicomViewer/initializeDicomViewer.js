@@ -4,9 +4,15 @@ import loadAndViewImage from './lib/loadAndViewImage';
 import updateImageOverlays from './lib/updateImageOverlays';
 import registerTools from './tools/registerTools';
 import createToolbar from './tools/createToolbar';
+import generateFullUrl from '../../lib/generateFullUrl';
 
-export default function (baseUrl, downloadUrl, callback) {
-    const imageId = `wadouri:${baseUrl}${downloadUrl}`;
+/**
+ * Initialize viewer component
+ * @param fileDownloadUrl
+ * @param doneCallback
+ */
+export default function (fileDownloadUrl, doneCallback) {
+    const imageId = `wadouri:${generateFullUrl(fileDownloadUrl)}`;
     const $imageViewerViewport = $('.imageViewerViewport');
     const $loadProgress = $('.load-progress-content');
     const element = $imageViewerViewport.get(0);
@@ -60,5 +66,7 @@ export default function (baseUrl, downloadUrl, callback) {
     // Display image
     loadAndViewImage(element, imageId);
 
-    callback();
+    if (typeof doneCallback === 'function') {
+        doneCallback();
+    }
 }

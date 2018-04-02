@@ -96,15 +96,16 @@ const registerShowAnnotations = () => {
 };
 
 const registerKeepAspectRatio = () => {
-    $('#keepAspectRatio').click(function () {
-        const keepRatio = $(this).data('keep-ratio').toString() === 'true';
+    $('#keepAspectRatio').click((e) => {
+        const $this = $(e.currentTarget);
+        const keepRatio = $this.data('keep-ratio').toString() === 'true';
 
         if (keepRatio) {
-            $(this).data('keep-ratio', 'false');
-            $(this).find('i').removeClass('fa-link').addClass('fa-unlink');
+            $this.data('keep-ratio', 'false');
+            $this.find('i').removeClass('fa-link').addClass('fa-unlink');
         } else {
-            $(this).data('keep-ratio', 'true');
-            $(this).find('i').removeClass('fa-unlink').addClass('fa-link');
+            $this.data('keep-ratio', 'true');
+            $this.find('i').removeClass('fa-unlink').addClass('fa-link');
         }
 
         $('#viewport-preview-width').trigger('change');
@@ -112,14 +113,15 @@ const registerKeepAspectRatio = () => {
 };
 
 const registerSize = () => {
-    $('.js-preview-size').change(function () {
+    $('.js-preview-size').change((e) => {
+        const $this = $(e.currentTarget);
         const formData = getFormData();
-        const size = $(this).data('size');
+        const size = $this.data('size');
         const value = size === 'width' ? formData.width : formData.height;
-        const maxValue = $(this).attr('max');
+        const maxValue = $this.attr('max');
 
         if (parseInt(value, 10) > parseInt(maxValue, 10)) {
-            $(this).val(maxValue);
+            $this.val(maxValue);
             formData[size] = maxValue;
         }
 
@@ -205,8 +207,6 @@ const initializeViewport = () => {
 };
 
 const show = () => {
-    const baseUrl = `${OC.getProtocol()}://${OC.getHost()}`;
-    const fileUrl = OC.generateUrl('/apps/dicomviewer/captureImage');
     const $viewer = $('#viewer');
 
     if ($viewer.find('.modal').length) {
@@ -216,7 +216,7 @@ const show = () => {
 
     // Get modal dialog content
     $.ajax({
-        url: `${baseUrl}${fileUrl}`,
+        url: OC.generateUrl('/apps/dicomviewer/captureImage'),
         type: 'GET',
         contentType: 'text/html',
     }).done((response) => {

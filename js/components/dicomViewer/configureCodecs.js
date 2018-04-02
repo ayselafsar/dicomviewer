@@ -1,20 +1,20 @@
 import { cornerstone, cornerstoneWADOImageLoader } from '../../lib/cornerstonejs';
+import generateFullUrl from '../../lib/generateFullUrl';
 
 /**
- *
- * @param origin
+ * Configure cornerstone codecs and web workers
  */
-export default function (origin) {
+export default function () {
     const maxWebWorkers = Math.max(navigator.hardwareConcurrency - 1, 1);
     const config = {
         maxWebWorkers,
         startWebWorkersOnDemand: true,
-        webWorkerPath: `${origin}/apps/dicomviewer/js/public/cornerstoneWADOImageLoaderWebWorker.js`,
+        webWorkerPath: `${generateFullUrl(OC.generateUrl('/apps/dicomviewer/js/public/cornerstoneWADOImageLoaderWebWorker.js'))}`,
         taskConfiguration: {
             decodeTask: {
                 loadCodecsOnStartup: true,
                 initializeCodecsOnStartup: false,
-                codecsPath: `${origin}/apps/dicomviewer/js/public/cornerstoneWADOImageLoaderCodecs.js`,
+                codecsPath: `${generateFullUrl(OC.generateUrl('/apps/dicomviewer/js/public/cornerstoneWADOImageLoaderCodecs.js'))}`,
                 usePDFJS: false
             },
         },
