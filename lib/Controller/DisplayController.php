@@ -61,6 +61,6 @@ class DisplayController extends Controller {
                 'urlGenerator' => $this->urlGenerator,
             ];
 
-            return new TemplateResponse('dicomviewer', 'captureImageDialog', $params);
+            return new TemplateResponse('dicomviewer', 'captureImageDialog', $params, 'blank');
         }
 }
