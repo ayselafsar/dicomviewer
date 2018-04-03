@@ -9,12 +9,12 @@ export default function () {
     const config = {
         maxWebWorkers,
         startWebWorkersOnDemand: true,
-        webWorkerPath: `${generateFullUrl(OC.generateUrl('/apps/dicomviewer/js/public/cornerstoneWADOImageLoaderWebWorker.js'))}`,
+        webWorkerPath: `${generateFullUrl(OC.filePath('dicomviewer', 'js', 'public/cornerstoneWADOImageLoaderWebWorker.js'))}`,
         taskConfiguration: {
             decodeTask: {
                 loadCodecsOnStartup: true,
                 initializeCodecsOnStartup: false,
-                codecsPath: `${generateFullUrl(OC.generateUrl('/apps/dicomviewer/js/public/cornerstoneWADOImageLoaderCodecs.js'))}`,
+                codecsPath: `${generateFullUrl(OC.filePath('dicomviewer', 'js', 'public/cornerstoneWADOImageLoaderCodecs.js'))}`,
                 usePDFJS: false
             },
         },
