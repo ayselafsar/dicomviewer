@@ -190,10 +190,9 @@
     border-radius: 6px;
     color: #91b9cd;
     outline: 0;
-
 }
 
-.modal-backdrop {
+#viewer .modal-backdrop {
     position: fixed;
     top: 0;
     right: 0;
@@ -203,7 +202,7 @@
     background-color: #000;
 }
 
-.modal-backdrop.fade {
+#viewer .modal-backdrop.fade {
     opacity: 0;
 }
 
