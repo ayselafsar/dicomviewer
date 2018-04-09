@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [0.0.6] - 2018-04-08
+
+### Fixed
+- Fix the conflicting style issue by using modal dialog style under viewer element
+
+
 ## [0.0.5] - 2018-04-03
 
 ### Fixed
@@ -46,4 +52,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [0.0.1] - 2018-01-30
 ### Added
-Initial release for Nextcloud 12 & 13
+- Initial release for Nextcloud 12 & 13
