@@ -3,7 +3,6 @@
 namespace OCA\DICOMViewer\Controller;
 
 use OCP\AppFramework\Controller;
-use OCP\AppFramework\Http\ContentSecurityPolicy;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\IRequest;
 use OCP\IURLGenerator;
