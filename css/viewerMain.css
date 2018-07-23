@@ -1,0 +1,34 @@
+#viewerMain {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #000000;
+    z-index: 9999;
+}
+
+#viewerMain .toolbar {
+    width: 100%;
+    height: 50px;
+}
+
+#viewerMain .content {
+    display: flex;
+    width: 100%;
+    height: calc(100% - 50px);
+    border: 1px solid #44626f;
+}
+
+#viewerMain .sidebarMenu {
+    flex: 1 1 20%;
+    border-right: 1px solid #44626f;
+}
+
+#viewerMain .mainContent {
+    flex: 1 1 80%;
+}
+
+#viewerMain .viewerMainLoading {
+    color: #44626f;
+}

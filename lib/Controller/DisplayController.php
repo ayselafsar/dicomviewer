@@ -40,6 +40,22 @@ class DisplayController extends Controller {
      * @param bool $minmode
      * @return TemplateResponse
      */
+    public function viewerMain($minmode = false) {
+        $params = [
+            'urlGenerator' => $this->urlGenerator,
+            'minmode' => $minmode,
+        ];
+
+        return new TemplateResponse('dicomviewer', 'viewerMain', $params, 'blank');
+    }
+
+    /**
+     * @PublicPage
+     * @NoCSRFRequired
+     *
+     * @param bool $minmode
+     * @return TemplateResponse
+     */
     public function sidebar($minmode = false) {
         $params = [
             'urlGenerator' => $this->urlGenerator,

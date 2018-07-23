@@ -8,6 +8,7 @@ Util::addStyle('dicomviewer', 'viewer');
 Util::addStyle('dicomviewer', 'sidebar');
 Util::addStyle('dicomviewer', 'viewerDialog');
 Util::addStyle('dicomviewer', 'captureImageDialog');
+Util::addStyle('dicomviewer', 'viewerMain');
 Util::addStyle('dicomviewer', 'external/font-awesome/font-awesome.min');
 Util::addScript('dicomviewer', 'app.bundle');
 

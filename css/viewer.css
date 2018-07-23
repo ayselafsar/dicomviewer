@@ -6,6 +6,9 @@
     overflow-y: auto;
 }
 
+.icon-dicomviewer-dark {
+    background-image: url('../img/app-dark.svg');
+}
 
 /* Toolbar */
 
