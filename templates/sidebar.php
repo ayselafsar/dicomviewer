@@ -1,4 +1,11 @@
 <div class="sidebar-container">
+    <div class="sidebar-thumbnail-container">
+        <div class="sidebar-thumbnail">
+            <div class="sidebar-thumbnail-loading">
+                <i class="fa fa-spin fa-spinner fa-lg"></i>
+            </div>
+        </div>
+    </div>
     <h5><strong>DICOM Attributes</strong></h5>
     <div class="attributes-search-container">
         <input type="text" class="form-control dicom-attributes-search" placeholder="Search for attributes.." title="Type in an attribute">

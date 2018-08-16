@@ -1,7 +1,22 @@
 import $ from 'jquery';
-import { dicomParser } from '../../lib/cornerstonejs';
+import {cornerstone, dicomParser} from '../../lib/cornerstonejs';
 import getDICOMAttributes from '../../lib/dicom/getDICOMAttributes';
 import generateFullUrl from '../../lib/generateFullUrl';
+
+function displaySidebarThumbnail(fileDownloadUrl) {
+    const $element = $('.sidebar-thumbnail');
+    const element = $element.get(0);
+    const imageId = `wadouri:${generateFullUrl(fileDownloadUrl)}`;
+
+    cornerstone.enable(element);
+    cornerstone.loadAndCacheImage(imageId).then(function(image) {
+        $('.sidebar-thumbnail-loading').css({
+            display: 'none'
+        });
+
+        cornerstone.displayImage(element, image);
+    });
+}
 
 function addRow(attribute) {
     let { tagName } = attribute;
@@ -96,6 +111,9 @@ function dumpByteArray(byteArray) {
  * @param fileDownloadUrl
  */
 export default function (fileDownloadUrl) {
+    // Display sidebar thumbnail
+    displaySidebarThumbnail(fileDownloadUrl);
+
     const oReq = new XMLHttpRequest();
 
     try {

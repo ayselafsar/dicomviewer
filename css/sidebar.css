@@ -13,6 +13,25 @@
     padding: 10px;
 }
 
+.sidebar-thumbnail-container {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.sidebar-thumbnail {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    background-color: #000000;
+}
+
+.sidebar-thumbnail-loading {
+    color: #ddd;
+    padding-top: 40px;
+    text-align: center;
+}
+
 .attributes-search-container {
     margin-top: 5px;
     width: 100%;
@@ -41,7 +60,7 @@
 
 .sidebar-table-container {
     display: none;
-    height: calc(100% - 85px);
+    height: calc(100% - 185px);
     overflow-x: hidden;
     margin-top: 10px;
 }
