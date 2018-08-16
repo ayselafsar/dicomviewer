@@ -151,13 +151,13 @@ class DICOMFileLoadingListener extends BaseLoadingListener {
         const progressSessionId = this._getProgressSessionId();
         eventData = eventData || {};
 
-        Session.set(progressSessionId, {
+        DCMViewerManager.sessions[progressSessionId] = {
             multiFrame: false,
             percentComplete: eventData.percentComplete,
             bytesLoaded: eventData.loaded,
             bytesTotal: eventData.total,
             bytesPerSecond: this.stats.speed
-        });
+        };
     }
 
     _convertImageIdToDataSetUrl(imageId) {

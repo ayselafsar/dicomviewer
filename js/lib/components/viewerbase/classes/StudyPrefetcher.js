@@ -86,7 +86,7 @@ export class StudyPrefetcher {
         // Make sure there is a stack to fetch
         if (this.hasStack(element)) {
             // Check if this is a clip or not
-            const activeViewportIndex = Session.get('activeViewport');
+            const activeViewportIndex = DCMViewerManager.sessions.activeViewport;
             const displaySetInstanceUid = DCMViewer.viewerbase.data.loadedSeriesData[activeViewportIndex].displaySetInstanceUid;
 
             const stack = StackManager.findStack(displaySetInstanceUid);
@@ -168,7 +168,6 @@ export class StudyPrefetcher {
     getStudy(image) {
         const studyMetadata = cornerstone.metaData.get('study', image.imageId);
         const Studies = DCMViewer.viewerbase.data.studies;
-        debugger
 
         if (!Studies) {
             return;

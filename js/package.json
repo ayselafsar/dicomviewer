@@ -16,24 +16,27 @@
     "babel-preset-es2015": "^6.24.1",
     "clean-webpack-plugin": "^0.1.18",
     "copy-webpack-plugin": "^4.3.1",
+    "css-loader": "^1.0.0",
     "eslint": "^4.16.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
     "webpack": "^3.10.0"
   },
   "dependencies": {
-    "bootstrap": "^4.0.0",
+    "bootstrap": "^4.1.3",
     "cornerstone-core": "1.1.2",
     "cornerstone-math": "0.1.6",
     "cornerstone-tools": "1.0.3",
     "cornerstone-wado-image-loader": "1.0.1",
     "dicom-parser": "1.7.6",
     "hammerjs": "2.0.8",
+    "handlebars": "^4.0.11",
     "jquery": "^3.3.1",
     "jquery-hammerjs": "2.0.0",
     "moment": "^2.20.1",
     "popper.js": "^1.12.9",
     "random-id": "0.0.2",
+    "style-loader": "^0.22.1",
     "underscore": "^1.9.1"
   }
 }

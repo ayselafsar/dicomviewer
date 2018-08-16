@@ -8,10 +8,14 @@ const viewerbase = {
         },
     instance: {},
     loadedSeriesData: {},
+    getStackDataIfNotEmpty: Viewerbase.getStackDataIfNotEmpty,
     setDisplaySets,
+    viewportOverlayUtils: Viewerbase.viewportOverlayUtils,
+    sortingManager: Viewerbase.sortingManager,
     StudyPrefetcher: Viewerbase.StudyPrefetcher,
     StudyLoadingListener: Viewerbase.StudyLoadingListener,
-    LayoutManager: Viewerbase.LayoutManager
+    LayoutManager: Viewerbase.LayoutManager,
+    ResizeViewportManager: Viewerbase.ResizeViewportManager
 };
 
 export default viewerbase;

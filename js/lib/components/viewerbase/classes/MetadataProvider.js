@@ -336,7 +336,8 @@ export class MetadataProvider {
      * @returns {Object} Relevant metadata of the specified type
      */
     provider(type, imageId) {
-        // TODO: Cornerstone Tools use 'imagePlaneModule', but OHIF use 'imagePlane'. It must be consistent.
+        // TODO: Cornerstone Tools use 'imagePlaneModule', but application Metadata Provider uses 'imagePlane'.
+        // It must be consistent.
         if (type === 'imagePlaneModule') {
             type = 'imagePlane';
         }

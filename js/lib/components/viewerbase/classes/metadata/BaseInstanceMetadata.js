@@ -145,7 +145,7 @@ export class BaseInstanceMetadata extends Metadata {
         /**
          * Please override this method on a specialized class.
          */
-        throw new DCMViewerError('InstanceMetadata::getTagValue is not overriden. Please, override it in a specialized class. See OHIFInstanceMetadata for example');
+        throw new DCMViewerError('InstanceMetadata::getTagValue is not overriden. Please, override it in a specialized class. See InstanceMetadata for example');
     }
 
     /**
@@ -173,7 +173,7 @@ export class BaseInstanceMetadata extends Metadata {
         /**
          * Please override this method
          */
-        throw new DCMViewerError('InstanceMetadata::tagExists is not overriden. Please, override it in a specialized class. See OHIFInstanceMetadata for example');
+        throw new DCMViewerError('InstanceMetadata::tagExists is not overriden. Please, override it in a specialized class. See InstanceMetadata for example');
     }
 
     /**
@@ -184,7 +184,7 @@ export class BaseInstanceMetadata extends Metadata {
         /**
          * Please override this method
          */
-        throw new DCMViewerError('InstanceMetadata::getImageId is not overriden. Please, override it in a specialized class. See OHIFInstanceMetadata for example');
+        throw new DCMViewerError('InstanceMetadata::getImageId is not overriden. Please, override it in a specialized class. See InstanceMetadata for example');
     }
 
     /**

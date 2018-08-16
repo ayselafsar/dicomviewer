@@ -268,10 +268,6 @@ export const toolManager = {
     },
 
     configureLoadProcess() {
-        // Whenever CornerstoneImageLoadProgress is fired, identify which viewports
-        // the "in-progress" image is to be displayed in. Then pass the percent complete
-        // via the Meteor Session to the other templates to be displayed in the relevant viewports.
-
         function handleLoadProgress (e) {
             const eventData = e.detail;
             const viewportIndices = toolManager.getKeysByValue(window.ViewportLoading, eventData.imageId);
@@ -550,9 +546,6 @@ export const toolManager = {
 
         const activeToolId = activeTool[button];
 
-        /**
-         * TODO: Add textMarkerDialogs template to OHIF's
-         */
         const dialog = document.getElementById('textMarkerOptionsDialog');
         if (dialog) {
             if (toolId === 'spine' && activeToolId !== 'spine' && dialog.getAttribute('open') !== 'open') {

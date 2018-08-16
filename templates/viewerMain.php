@@ -1,13 +1,32 @@
 <div id="viewerMain">
     <div class="toolbar">
-        <a class="button-close js-close-viewer" title="Close Viewer"><i class="fa fa-times fa-lg"></i></a>
+        <?php print_unescaped($this->inc('toolbarTemplate')); ?>
     </div>
     <div class="content">
-        <div class="sidebarMenu">
+        <div class="sidebarMenu sidebar-open">
+            <div class="studyBrowser">
+                <?php print_unescaped($this->inc('studyBrowserTemplate')); ?>
+            </div>
         </div>
         <div class="mainContent">
-            <h3 class="viewerMainLoading">Loading...</h3>
-            <div id='layoutManagerTarget'></div>
+            <div id="layoutManagerTarget">
+                <div class="viewportContainer">
+                    <div class="removable">
+                        <div class="imageViewerViewport"
+                             oncontextmenu="return false;"
+                             unselectable="on"
+                             onselectstart="return false;"
+                             tabindex="0">
+                        </div>
+                        <?php print_unescaped($this->inc('viewportOverlayTemplate')); ?>
+                        <?php print_unescaped($this->inc('imageControlsTemplate')); ?>
+                        <?php print_unescaped($this->inc('viewportOrientationMarkersTemplate')); ?>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
+    <div class="loadingViewerMain">
+        Loading... <span id="loadingPercentage">0</span>%
     </div>
 </div>

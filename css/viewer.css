@@ -112,8 +112,7 @@
     line-height: 14px;
     position: absolute;
     top: 15px;
-    right: 15px;
-    padding: 6px 12px;
+    right: 6px;
     white-space: nowrap;
     vertical-align: middle;
 }
@@ -167,7 +166,7 @@
 
 .topright {
     top: 15px;
-    right: 15px;
+    right: 30px;
     text-align: right;
 }
 
@@ -178,7 +177,7 @@
 
 .bottomright {
     bottom: 15px;
-    right: 15px;
+    right: 30px;
     text-align: right;
 }
 
@@ -225,9 +224,9 @@
         height: calc(100% - 171px);
     }
 
-    .button-close {
-        display: none;
-    }
+    /*.button-close {*/
+        /*display: none;*/
+    /*}*/
 }
 
 @media (min-width: 600px) and (max-width: 900px) {
@@ -239,7 +238,7 @@
         height: calc(100% - 104px);
     }
 
-    .button-close {
-        display: none;
-    }
+    /*.button-close {*/
+        /*display: none;*/
+    /*}*/
 }

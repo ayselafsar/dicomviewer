@@ -12,6 +12,12 @@
     margin-top: 0;
 }
 
+.captureImageDialog .btn-image-download {
+    background-color: #16202b !important;
+    color: #ffffff !important;
+    border-color: #92b9cc !important;
+}
+
 .captureImageDialog .btn-close {
     background-color: #000 !important;
     text-shadow: none;

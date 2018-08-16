@@ -3,6 +3,7 @@ import { DCMViewerManager } from '../DCMViewerManager';
 import { DCMViewerLog } from '../DCMViewerLog';
 import { updateOrientationMarkers } from './updateOrientationMarkers';
 import { getInstanceClassDefaultViewport } from './instanceClassSpecificViewport';
+import {DCMViewer} from "../viewerMain";
 
 /**
  * Get a cornerstone enabledElement for a DOM Element
@@ -212,7 +213,7 @@ const toggleCinePlay = () => {
     }
 
     // Update the UpdateCINE session property
-    Session.set('UpdateCINE', Math.random());
+    DCMViewerManager.sessions['UpdateCINE'] = Math.random();
 };
 
 // Show/hide the CINE dialog
@@ -220,7 +221,7 @@ const toggleCineDialog = () => {
     const dialog = document.getElementById('cineDialog');
 
     toggleDialog(dialog, stopAllClips);
-    Session.set('UpdateCINE', Random.id());
+    DCMViewerManager.sessions['UpdateCINE'] = Random.id();
 };
 
 const toggleDownloadDialog = () => {
@@ -229,8 +230,7 @@ const toggleDownloadDialog = () => {
     if ($dialog.length) {
         $dialog.find('.close:first').click();
     } else {
-        // TODO: Fix OHIF
-        // OHIF.ui.showDialog('imageDownloadDialog');
+        DCMViewer.ui.showDialog('imageDownloadDialog');
     }
 };
 
@@ -243,8 +243,8 @@ const isDownloadEnabled = () => {
 // Check if the clip is playing on the active viewport
 const isPlaying = () => {
     // Create a dependency on LayoutManagerUpdated and UpdateCINE session
-    Session.get('UpdateCINE');
-    Session.get('LayoutManagerUpdated');
+    DCMViewerManager.sessions['UpdateCINE'];
+    DCMViewerManager.sessions['LayoutManagerUpdated'];
 
     // Get the viewport element and its current playClip tool state
     const element = getActiveViewportElement();
@@ -274,8 +274,8 @@ const isPlaying = () => {
 // Check if a study has multiple frames
 const hasMultipleFrames = () => {
     // Its called everytime active viewport and/or layout change
-    Session.get('activeViewport');
-    Session.get('LayoutManagerUpdated');
+    DCMViewerManager.sessions['activeViewport'];
+    DCMViewerManager.sessions['LayoutManagerUpdated'];
 
     const activeViewport = getActiveViewportElement();
 
@@ -326,9 +326,8 @@ const isStackScrollLinkingDisabled = () => {
     let linkableViewportsCount = 0;
 
     // Its called everytime active viewport and/or layout change
-    // TODO: Fix session
-    // Session.get('viewportActivated');
-    // Session.get('LayoutManagerUpdated');
+    // DCMViewerManager.sessions.viewportActivated;
+    // DCMViewerManager.sessions.LayoutManagerUpdated;
 
     const synchronizer = DCMViewerManager.stackImagePositionOffsetSynchronizer;
     if (synchronizer) {
@@ -343,8 +342,7 @@ const isStackScrollLinkingActive = () => {
     let isActive = true;
 
     // Its called everytime active viewport layout changes
-    // TODO: Fix session
-    // Session.get('LayoutManagerUpdated');
+    // DCMViewerManager.sessions.LayoutManagerUpdated;
 
     const synchronizer = DCMViewerManager.stackImagePositionOffsetSynchronizer;
     const syncedElements = _.pluck(synchronizer.syncedViewports, 'element');
@@ -360,8 +358,8 @@ const isStackScrollLinkingActive = () => {
 
 // Create an event listener to update playing state when a clip stops playing
 window.addEventListener('cornerstonetoolsclipstopped', () => {
-    // TODO: Fix session
-    // Session.set('UpdateCINE', Math.random());
+    // TODO: Add handler for session
+    // DCMViewerManager.sessions.UpdateCINE = Math.random();
 });
 
 /**

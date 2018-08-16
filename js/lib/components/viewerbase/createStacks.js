@@ -27,14 +27,10 @@ const makeDisplaySet = (series, instances) => {
     });
 
     // Sort the images in this series if needed
-    // TODO: Find a way to keep global configurations
-    // const shallSort = !OHIF.utils.ObjectPath.get(Meteor, 'settings.public.ui.sortSeriesByIncomingOrder');
-    // if (shallSort) {
-    //     imageSet.sortBy((a, b) => {
-    //         // Sort by InstanceNumber (0020,0013)
-    //         return (parseInt(a.getRawValue('x00200013', 0)) || 0) - (parseInt(b.getRawValue('x00200013', 0)) || 0);
-    //     });
-    // }
+    imageSet.sortBy((a, b) => {
+        // Sort by InstanceNumber (0020,0013)
+        return (parseInt(a.getRawValue('x00200013', 0)) || 0) - (parseInt(b.getRawValue('x00200013', 0)) || 0);
+    });
 
     // Include the first image instance number (after sorted)
     imageSet.setAttribute('instanceNumber', imageSet.getImage(0).getRawValue('x00200013'));

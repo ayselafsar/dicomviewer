@@ -21,8 +21,16 @@ module.exports = {
             }, {
                 test: /public\/.\.js$/,
                 loader: 'file'
+            }, {
+                test: /\.css$/,
+                loader: ['style-loader', 'css-loader']
             }
         ]
+    },
+    resolve: {
+      alias: {
+          handlebars: 'handlebars/dist/handlebars.min.js',
+      }
     },
     stats: {
         colors: true

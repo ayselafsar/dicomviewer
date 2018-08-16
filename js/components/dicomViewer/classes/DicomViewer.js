@@ -1,10 +1,11 @@
 import $ from 'jquery';
-import { cornerstoneWADOImageLoader } from '../../../lib/cornerstonejs';
+import {cornerstone, cornerstoneWADOImageLoader} from '../../../lib/cornerstonejs';
+import { DCMViewer } from '../../../lib/components/viewerMain';
 import generateFullUrl from '../../../lib/generateFullUrl';
 import initalizeDicomViewer from '../initializeDicomViewer';
 import initializeViewerMain from '../initializeViewerMain';
 import configureCodecs from '../configureCodecs';
-import createMetadataJSON from '../lib/createMetadataJSON';
+import updateMetadata from '../lib/updateMetadata';
 
 class DicomViewer {
     constructor() {
@@ -92,13 +93,15 @@ class DicomViewer {
         }
     }
 
-    openViewerMain(getMetadataCallback) {
+    openViewerMain(viewerMainMetadataPromise) {
         const self = this;
         const url = OC.generateUrl("/apps/dicomviewer/viewerMain");
         const hide = () => {
             $('#viewerMain').remove();
             $('#app-content-files').css({ display: 'block' });
             self.isViewerMainShown = false;
+
+            cornerstone.events.removeEventListener('cornerstoneimageloadprogress', self.imageLoadProgressHandler);
         };
 
         $.ajax({
@@ -107,12 +110,6 @@ class DicomViewer {
             contentType: 'text/html',
         }).done((response) => {
             const $appContent = $('#content');
-
-            const doneCallback = () => {
-                $('.js-close-viewer').click(() => {
-                    hide();
-                });
-            };
 
             // Go back on ESC
             $(document).keyup((e) => {
@@ -127,9 +124,18 @@ class DicomViewer {
 
             self.isViewerMainShown = true;
 
-            initializeViewerMain(getMetadataCallback, doneCallback);
-        });
+            // Close viewer
+            DCMViewer.ui.closeViewer = hide;
 
+            initializeViewerMain(viewerMainMetadataPromise);
+        });
+    }
+
+    imageLoadProgressHandler(event) {
+        // Update load progress
+        const eventData = event.detail;
+        const $loadingPercentage = $('#loadingPercentage');
+        $loadingPercentage.text(eventData.percentComplete);
     }
 
     /**
@@ -153,66 +159,150 @@ class DicomViewer {
                 if (isDCMFile) {
                     const fileDownloadUrl = context.fileList.getDownloadUrl(fileName, context.dir);
                     if (fileDownloadUrl && fileDownloadUrl !== '#') {
-                        self.show(fileDownloadUrl, true);
-                    }
-                } else {
-                    const getMetadata = (metadataCompleted) => {
-                        const promise = context.fileList.filesClient.getFolderContents(fileName);
-                        promise.then((status, files) => {
-                            const dicomFiles = files.filter(file => file.mimetype === 'application/dicom');
+                        cornerstone.events.addEventListener('cornerstoneimageloadprogress', self.imageLoadProgressHandler);
 
-                            if (!dicomFiles || !dicomFiles.length) {
-                                return;
-                            }
-
+                        const promise = new Promise((resolve) => {
                             const viewerData = {
                                 studies: []
                             };
 
-                            console.time('performance');
+                            const fullUrl = generateFullUrl(fileDownloadUrl);
+                            const wadouri = `wadouri:${fullUrl}`;
 
-                            // Create study metadata in json
-                            const promises = [];
-                            const imagesData = [];
+                            const isLoaded = cornerstoneWADOImageLoader.wadouri.dataSetCacheManager.isLoaded(fullUrl);
 
-                            dicomFiles.forEach((file) => {
-                                const fileUrl = context.fileList.getDownloadUrl(file.name, file.path);
-                                const fullUrl = generateFullUrl(fileUrl);
-                                const wadouri = `wadouri:${fullUrl}`;
-                                const isLoaded = cornerstoneWADOImageLoader.wadouri.dataSetCacheManager.isLoaded(fullUrl);
-                                if (isLoaded) {
-                                    const dataSet = cornerstoneWADOImageLoader.wadouri.dataSetCacheManager.get(fullUrl);
-                                    imagesData.push({
-                                        dataSet,
-                                        wadouri
-                                    });
-                                    promises.push(Promise.resolve());
-                                } else {
-                                    promises.push(new Promise((resolve) => {
-                                        const dataSetPromise = cornerstoneWADOImageLoader.wadouri.dataSetCacheManager.load(fullUrl);
-                                        dataSetPromise.then((dataSet) => {
-                                            imagesData.push({
-                                                dataSet,
-                                                wadouri
-                                            });
-                                            resolve();
-                                        });
-                                    }));
-                                }
-                            });
+                            if (isLoaded) {
+                                const dataSet = cornerstoneWADOImageLoader.wadouri.dataSetCacheManager.get(fullUrl);
+                                updateMetadata(wadouri, dataSet, viewerData.studies);
 
-                            Promise.all(promises).then(() => {
-                                imagesData.forEach((imageData) => {
-                                    createMetadataJSON(imageData.wadouri, imageData.dataSet, viewerData.studies);
+                                resolve(viewerData);
+                            } else {
+                                const dataSetPromise = cornerstoneWADOImageLoader.wadouri.dataSetCacheManager.load(fullUrl);
+                                dataSetPromise.then((dataSet) => {
+                                    updateMetadata(wadouri, dataSet, viewerData.studies);
+
+                                    resolve(viewerData);
+                                });
+                            }
+                        });
+
+                        self.openViewerMain(promise);
+                    }
+                } else {
+                    let allDicomFiles = [];
+                    const allDicomPromises = [];
+
+                    const getDicomFiles = (files) => {
+                        const folderMimeType = 'httpd/unix-directory';
+                        const dicomFiles = files.filter(file => file.mimetype === self.mimeType);
+                        const folders = files.filter(file => file.mimetype === folderMimeType);
+
+                        allDicomFiles = allDicomFiles.concat(dicomFiles);
+
+                        folders.forEach(folder => {
+                            const folderPath = `${folder.path}/${folder.name}`;
+                            const promise = new Promise((resolve) => {
+                                const filePromise = context.fileList.filesClient.getFolderContents(folderPath);
+
+                                filePromise.then((status, files) => {
+                                    getDicomFiles(files);
+
+                                    resolve();
                                 });
 
-                                console.timeEnd('performance');
-
-                                metadataCompleted(viewerData);
                             });
+
+                            allDicomPromises.push(promise);
                         });
                     };
-                    self.openViewerMain(getMetadata);
+
+                    const viewerMainMetadataPromise = new Promise((viewerMainMetadataResolve) => {
+                        const folderPath = `${context.dir}/${fileName}`;
+                        const promise = context.fileList.filesClient.getFolderContents(folderPath);
+                        promise.then((status, files) => {
+                            getDicomFiles(files);
+
+                            Promise.all(allDicomPromises).then(() => {
+                                if (!allDicomFiles || !allDicomFiles.length) {
+                                    setTimeout(() => {
+                                        $('.loadingViewerMain').text('No DICOM File Found');
+                                    }, 500);
+                                    return;
+                                }
+
+                                let loadedFileCount = 0;
+                                const updateLoadingPercentage = () => {
+                                    loadedFileCount += 1;
+                                    const percentage = Math.floor(loadedFileCount / allDicomFiles.length * 100);
+                                    const $loadingPercentage = $('#loadingPercentage');
+                                    $loadingPercentage.text(percentage);
+                                };
+
+                                console.time('performance');
+
+                                // Create study metadata in json
+                                const promises = [];
+                                const imagesData = [];
+
+                                allDicomFiles.forEach((file) => {
+                                    const fileUrl = context.fileList.getDownloadUrl(file.name, file.path);
+                                    const fullUrl = generateFullUrl(fileUrl);
+                                    const wadouri = `wadouri:${fullUrl}`;
+                                    const isLoaded = cornerstoneWADOImageLoader.wadouri.dataSetCacheManager.isLoaded(fullUrl);
+                                    if (isLoaded) {
+                                        const dataSet = cornerstoneWADOImageLoader.wadouri.dataSetCacheManager.get(fullUrl);
+                                        imagesData.push({
+                                            dataSet,
+                                            wadouri
+                                        });
+
+                                        // Update loading percentage
+                                        updateLoadingPercentage();
+
+                                        promises.push(Promise.resolve());
+                                    } else {
+                                        promises.push(new Promise((resolve) => {
+                                            const dataSetPromise = cornerstoneWADOImageLoader.wadouri.dataSetCacheManager.load(fullUrl);
+                                            dataSetPromise.then((dataSet) => {
+                                                imagesData.push({
+                                                    dataSet,
+                                                    wadouri
+                                                });
+
+                                                // Update loading percentage
+                                                updateLoadingPercentage();
+
+                                                resolve();
+                                            });
+                                        }));
+                                    }
+                                });
+
+                                Promise.all(promises).then(() => {
+                                    const viewerData = {
+                                        studies: []
+                                    };
+
+                                    imagesData.forEach((imageData) => {
+                                        updateMetadata(imageData.wadouri, imageData.dataSet, viewerData.studies);
+                                    });
+
+                                    // Sort series
+                                    viewerData.studies.forEach(study => {
+                                        study.seriesList.sort((a, b) => {
+                                            return parseInt(a.seriesNumber) - parseInt(b.seriesNumber);
+                                        });
+                                    });
+
+                                    console.timeEnd('performance');
+
+                                    viewerMainMetadataResolve(viewerData);
+                                });
+                            });
+                        });
+                    });
+
+                    self.openViewerMain(viewerMainMetadataPromise);
 
                 }
             }

@@ -1,14 +1,13 @@
+import { cornerstone, cornerstoneTools } from '../../../lib/cornerstonejs';
+
 /**
- * Updates the orientation labels on a Cornerstone-enabled Viewport element
- * when the viewport settings change (e.g. when a horizontal flip or a rotation occurs)
- *
- * @param element The DOM element of the Cornerstone viewport
- * optional
- * @param viewport The current viewport
+ * Update orientation markers text when image is rotated
+ * @param element
+ * @param viewport
  */
-export function updateOrientationMarkers(element, viewport) {
+export default function (element, viewport) {
     // Get the current viewport settings
-    if(!viewport) {
+    if (!viewport) {
         viewport = cornerstone.getViewport(element);
     }
 
@@ -20,10 +19,11 @@ export function updateOrientationMarkers(element, viewport) {
         return;
     }
 
-    const rowString = cornerstoneTools.orientation.getOrientationString(imagePlane.rowCosines);
-    const columnString = cornerstoneTools.orientation.getOrientationString(imagePlane.columnCosines);
-    const oppositeRowString = cornerstoneTools.orientation.invertOrientationString(rowString);
-    const oppositeColumnString = cornerstoneTools.orientation.invertOrientationString(columnString);
+    const { orientation } = cornerstoneTools;
+    const rowString = orientation.getOrientationString(imagePlane.rowCosines);
+    const columnString = orientation.getOrientationString(imagePlane.columnCosines);
+    const oppositeRowString = orientation.invertOrientationString(rowString);
+    const oppositeColumnString = orientation.invertOrientationString(columnString);
 
     const markers = {
         top: oppositeColumnString,

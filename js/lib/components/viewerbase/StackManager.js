@@ -1,4 +1,4 @@
-import { MetadataProvider } from './classes/MetadataProvider';
+import { DCMViewer } from '../viewerMain';
 import { getImageId } from './getImageId';
 import { DCMViewerError } from '../DCMViewerError';
 import { DCMViewerLog } from '../DCMViewerLog';
@@ -17,7 +17,7 @@ const stackUpdatedCallbacks = [];
  * @return {Array}                        Array with image IDs
  */
 function createAndAddStack(stackMap, study, displaySet) {
-    const metadataProvider = new MetadataProvider();
+    const metadataProvider = DCMViewer.viewer.metadataProvider;
     const numImages = displaySet.images.length;
     const imageIds = [];
     let imageId;
