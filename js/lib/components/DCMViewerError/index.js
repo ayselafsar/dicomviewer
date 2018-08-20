@@ -1,9 +1,7 @@
-// @TODO: improve this object
 /**
  * Objects to be used to throw errors.
- **/
+ */
 export class DCMViewerError extends Error {
-
     constructor(message) {
         super();
         this.message = message;

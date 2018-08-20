@@ -41,18 +41,18 @@ export default function updateMetadata(wadouri, dataSet, studies) {
         seriesList: [targetSeries],
     };
 
-    const study = studies.find(study => study.patientId === patientId);
+    const study = studies.find(entry => entry.patientId === patientId);
     if (study) {
         study.seriesList = study.seriesList || [];
-        const series = study.seriesList.find(series => series.seriesInstanceUid === seriesInstanceUid);
+        const series = study.seriesList.find(entry => entry.seriesInstanceUid === seriesInstanceUid);
         if (series) {
             series.instances = series.instances || [];
-            const instance = series.instances.find(instance => instance.sopInstanceUid === sopInstanceUid);
+            const instance = series.instances.find(entry => entry.sopInstanceUid === sopInstanceUid);
             if (!instance) {
-                series.instances.push(targetInstance)
+                series.instances.push(targetInstance);
             }
         } else {
-            study.seriesList.push(targetSeries)
+            study.seriesList.push(targetSeries);
         }
     } else {
         studies.push(targetStudy);

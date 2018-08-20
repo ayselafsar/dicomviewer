@@ -1,12 +1,13 @@
+import $ from 'jquery';
 import Handlebars from 'handlebars';
 import { _ } from 'underscore';
 import { cornerstone } from '../../lib/cornerstonejs';
-import { DCMViewer} from '../../lib/components/viewerMain';
+import { DCMViewer } from '../../lib/components/viewerMain';
 
 /**
  * Create data for thumbnail
  */
-Handlebars.registerHelper('studyThumbnails', study => {
+Handlebars.registerHelper('studyThumbnails', (study) => {
     if (!study) {
         return;
     }
@@ -64,7 +65,7 @@ Handlebars.registerHelper('renderThumbnail', function () {
         // Enable element
         cornerstone.enable(element);
 
-        cornerstone.loadAndCacheImage(imageId).then(function(image) {
+        cornerstone.loadAndCacheImage(imageId).then(function (image) {
             cornerstone.displayImage(element, image);
         });
 
@@ -74,12 +75,12 @@ Handlebars.registerHelper('renderThumbnail', function () {
 
             // Highlight active series
             $('.imageThumbnail').removeClass('active');
-            $element.parent('.imageThumbnail').addClass('active')
+            $element.parent('.imageThumbnail').addClass('active');
         });
     }, 300);
 });
 
-Handlebars.registerHelper('modalitiesList', study => {
+Handlebars.registerHelper('modalitiesList', (study) => {
     if (!study) {
         return;
     }

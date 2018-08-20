@@ -98,7 +98,7 @@ Handlebars.registerHelper('toolbarButtons', () => {
     const activeTool = DCMViewer.tools.toolManager.getActiveTool();
 
     // Highlight active tool
-    tools.forEach(tool => {
+    tools.forEach((tool) => {
         tool.toolActive = (tool.id === activeTool);
     });
 

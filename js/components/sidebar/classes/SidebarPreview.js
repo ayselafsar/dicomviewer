@@ -1,7 +1,5 @@
 import $ from 'jquery';
-import { cornerstone } from '../../../lib/cornerstonejs';
 import initializeSidebarPreview from '../initializeSidebarPreview';
-import generateFullUrl from '../../../lib/generateFullUrl';
 
 class SidebarPreview {
     constructor() {

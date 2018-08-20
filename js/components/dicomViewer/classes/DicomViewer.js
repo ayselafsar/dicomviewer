@@ -14,7 +14,6 @@ class DicomViewer {
         this.allDicomFiles = [];
         this.allDicomFilesPromises = [];
         this.allDicomPromises = [];
-        this.cancelAllPromises = false;
 
         configureCodecs();
     }
@@ -27,6 +26,9 @@ class DicomViewer {
         this._registerFileActions(fileList.fileActions);
     }
 
+    /**
+     * Hide viewer
+     */
     hide() {
         $('#viewerMain').remove();
         $('#app-content-files').css({ display: 'block' });
@@ -127,6 +129,9 @@ class DicomViewer {
         $loadingPercentage.text(eventData.percentComplete);
     }
 
+    /**
+     * Load single DICOM instance
+     */
     loadSingleDICOMInstance() {
         const self = this;
         const { context } = self;
@@ -166,6 +171,9 @@ class DicomViewer {
         }
     }
 
+    /**
+     * Load multiple instances
+     */
     loadMultipleDICOMInstances() {
         const self = this;
         const { context } = self;
@@ -229,10 +237,6 @@ class DicomViewer {
                             self.allDicomPromises.push(new Promise((resolve) => {
                                 const dataSetPromise = dataSetCacheManager.load(fullUrl);
                                 dataSetPromise.then((dataSet) => {
-                                    if (self.cancelAllPromises) {
-                                        throw Error('Loading canceled');
-                                    }
-
                                     // Add instance inxformation
                                     imagesData.push({
                                         dataSet,
@@ -243,8 +247,6 @@ class DicomViewer {
                                     updateLoadingPercentage();
 
                                     resolve();
-                                }).catch((err) => {
-                                    console.log('ERROR ', err);
                                 });
                             }));
                         }
@@ -294,7 +296,6 @@ class DicomViewer {
             actionHandler: (fileName, context) => {
                 self.context = context;
                 self.fileName = fileName;
-                self.cancelAllPromises = false;
 
                 const isDCMFile = (/\.(dcm)$/i).test(fileName);
                 if (isDCMFile) {

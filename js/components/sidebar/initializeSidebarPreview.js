@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import {cornerstone, dicomParser} from '../../lib/cornerstonejs';
+import { cornerstone, dicomParser } from '../../lib/cornerstonejs';
 import getDICOMAttributes from '../../lib/dicom/getDICOMAttributes';
 import generateFullUrl from '../../lib/generateFullUrl';
 
@@ -9,7 +9,7 @@ function displaySidebarThumbnail(fileDownloadUrl) {
     const imageId = `wadouri:${generateFullUrl(fileDownloadUrl)}`;
 
     cornerstone.enable(element);
-    cornerstone.loadAndCacheImage(imageId).then(function(image) {
+    cornerstone.loadAndCacheImage(imageId).then((image) => {
         $('.sidebar-thumbnail-loading').css({
             display: 'none'
         });

@@ -1,8 +1,7 @@
 import Handlebars from 'handlebars';
-import { _ } from 'underscore';
 import moment from 'moment';
 
-Handlebars.registerHelper('formatPN', context => {
+Handlebars.registerHelper('formatPN', (context) => {
     if (!context) {
         return;
     }
@@ -14,8 +13,8 @@ Handlebars.registerHelper('formatDA', (context, format, options) => {
     if (!context) {
         return undefined;
     }
-    var dateAsMoment = moment(context, "YYYYMMDD");
-    var strFormat = "MMM D, YYYY";
+    const dateAsMoment = moment(context, 'YYYYMMDD');
+    let strFormat = 'MMM D, YYYY';
     if (options) {
         strFormat = format;
     }
@@ -34,9 +33,9 @@ Handlebars.registerHelper('formatTM', (context, options) => {
     //      S SS SSS    0..999  Fractional seconds
     //
     // See MomentJS: http://momentjs.com/docs/#/parsing/string-format/
-    var dateTime = moment(context, 'HHmmss.SSS');
+    const dateTime = moment(context, 'HHmmss.SSS');
 
-    var format = "HH:mm:ss";
+    let format = 'HH:mm:ss';
     if (options && options.format) {
         format = options.format;
     }

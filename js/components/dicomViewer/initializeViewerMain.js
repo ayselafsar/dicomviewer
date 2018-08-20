@@ -1,6 +1,5 @@
 import $ from 'jquery';
-import { _ } from 'underscore';
-import { cornerstone, cornerstoneTools } from '../../lib/cornerstonejs';
+import { cornerstone } from '../../lib/cornerstonejs';
 import { DCMViewer } from '../../lib/components/viewerMain/index';
 import { DCMViewerError } from '../../lib/components/DCMViewerError';
 import { DCMViewerLog } from '../../lib/components/DCMViewerLog';
@@ -38,11 +37,11 @@ export default function initializeViewerMain(viewerMainMetadataPromise) {
         DCMViewer.viewer.StudyMetadataList = [];
 
         DCMViewer.viewer.data.studyInstanceUids = [];
-        viewerData.studies.forEach(study => {
+        viewerData.studies.forEach((study) => {
             const studyMetadata = new DCMViewer.metadata.StudyMetadata(study, study.studyInstanceUid);
-            let displaySets = study.displaySets;
+            let { displaySets } = study;
 
-            if(!study.displaySets) {
+            if (!study.displaySets) {
                 displaySets = DCMViewer.viewerbase.sortingManager.getDisplaySets(studyMetadata);
                 study.displaySets = displaySets;
             }
