@@ -1,15 +1,13 @@
 import $ from 'jquery';
-import Handlebars from 'handlebars';
 import { _ } from 'underscore';
 import { cornerstone, cornerstoneTools } from '../../lib/cornerstonejs';
 import { DCMViewer } from '../../lib/components/viewerMain/index';
 import { DCMViewerError } from '../../lib/components/DCMViewerError';
 import { DCMViewerLog } from '../../lib/components/DCMViewerLog';
-import { Viewerbase } from '../../lib/components/viewerbase';
 
 export default function initializeViewerMain(viewerMainMetadataPromise) {
     viewerMainMetadataPromise.then((viewerData) => {
-        // Hide loading icon
+        // Hide loading view
         $('.loadingViewerMain').css({ display: 'none' });
 
         DCMViewer.ui.hasMultipleInstances = false;
@@ -71,6 +69,7 @@ export default function initializeViewerMain(viewerMainMetadataPromise) {
         const metaDataProvider = DCMViewer.viewer.metadataProvider;
         cornerstone.metaData.addProvider(metaDataProvider.provider.bind(metaDataProvider));
 
+        // Render all content
         DCMViewer.ui.renderStudyBrowser();
         DCMViewer.ui.renderToolbar();
         DCMViewer.ui.renderViewerMain();
