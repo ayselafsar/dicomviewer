@@ -80,7 +80,6 @@ Handlebars.registerHelper('renderThumbnail', function () {
 });
 
 Handlebars.registerHelper('modalitiesList', study => {
-    console.log('STUDY ', study)
     if (!study) {
         return;
     }

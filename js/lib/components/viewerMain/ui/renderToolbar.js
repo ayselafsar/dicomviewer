@@ -35,7 +35,7 @@ export default function renderToolbar() {
     const source = $('#toolbarTemplate').html();
     const template = Handlebars.compile(source);
     $('#toolbar').html(template({
-        isSeriesPanelOpen: DCMViewer.ui.hasMultipleInstances
+        hasMultipleInstances: DCMViewer.ui.hasMultipleInstances
     }));
 
     // Wait until all DOM is rendered

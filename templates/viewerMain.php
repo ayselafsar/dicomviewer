@@ -1,14 +1,22 @@
+<?php
+    // Check if a single DICOM file is opened
+    $isSingleDICOMFile = $_['isSingleDICOMFile'];
+?>
+
 <div id="viewerMain">
+    <!-- Toolbar -->
     <div class="toolbar">
         <?php print_unescaped($this->inc('toolbarTemplate')); ?>
     </div>
+
+    <!-- Viewport Content -->
     <div class="content">
-        <div class="sidebarMenu sidebar-open">
+        <div class="sidebarMenu <?php if(!$isSingleDICOMFile) { echo 'sidebar-open'; } ?>">
             <div class="studyBrowser">
                 <?php print_unescaped($this->inc('studyBrowserTemplate')); ?>
             </div>
         </div>
-        <div class="mainContent">
+        <div class="mainContent <?php if($isSingleDICOMFile) { echo 'content-full'; } ?>">
             <div id="layoutManagerTarget">
                 <div class="viewportContainer">
                     <div class="removable">
@@ -26,6 +34,8 @@
             </div>
         </div>
     </div>
+
+    <!-- Loading View which shows the percentage of the loaded files -->
     <div class="loadingViewerMain">
         Loading... <span id="loadingPercentage">0</span>%
     </div>

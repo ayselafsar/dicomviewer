@@ -21,9 +21,10 @@ const DCMViewer = {
     ui: {
         imageViewerViewport: {},
         imageSlider: {},
-        renderViewport: () => {},
-        renderViewportOverlay: () => {},
         renderToolbar: ui.renderToolbar,
+        renderStudyBrowser: ui.renderStudyBrowser,
+        renderViewerMain: ui.renderViewerMain,
+        renderViewportOverlay: () => {},
         renderImageControls: () => {}
     },
 

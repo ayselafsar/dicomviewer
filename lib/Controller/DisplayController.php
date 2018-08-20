@@ -41,12 +41,10 @@ class DisplayController extends Controller {
      * @return TemplateResponse
      */
     public function viewerMain($minmode = false) {
-        $seriesList = array('10', '9', '8');
-
         $params = [
             'urlGenerator' => $this->urlGenerator,
             'minmode' => $minmode,
-            'seriesList' => $seriesList
+            'isSingleDICOMFile' => $_GET['isSingleDICOMFile']
         ];
 
         return new TemplateResponse('dicomviewer', 'viewerMain', $params, 'blank');

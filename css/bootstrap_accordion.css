@@ -1,22 +1,22 @@
-.fade {
+#viewerMain .fade {
     transition: opacity 0.15s linear;
 }
 
 @media screen and (prefers-reduced-motion: reduce) {
-    .fade {
+    #viewerMain .fade {
         transition: none;
     }
 }
 
-.fade:not(.show) {
+#viewerMain .fade:not(.show) {
     opacity: 0;
 }
 
-.collapse:not(.show) {
+#viewerMain .collapse:not(.show) {
     display: none;
 }
 
-.collapsing {
+#viewerMain .collapsing {
     position: relative;
     height: 0;
     overflow: hidden;
@@ -24,12 +24,12 @@
 }
 
 @media screen and (prefers-reduced-motion: reduce) {
-    .collapsing {
+    #viewerMain .collapsing {
         transition: none;
     }
 }
 
-.card {
+#viewerMain .card {
     position: relative;
     display: -ms-flexbox;
     display: flex;
@@ -43,86 +43,85 @@
     border-radius: 0.25rem;
 }
 
-.card > hr {
+#viewerMain .card > hr {
     margin-right: 0;
     margin-left: 0;
 }
 
-.card > .list-group:first-child .list-group-item:first-child {
+#viewerMain .card > .list-group:first-child .list-group-item:first-child {
     border-top-left-radius: 0.25rem;
     border-top-right-radius: 0.25rem;
 }
 
-.card > .list-group:last-child .list-group-item:last-child {
+#viewerMain .card > .list-group:last-child .list-group-item:last-child {
     border-bottom-right-radius: 0.25rem;
     border-bottom-left-radius: 0.25rem;
 }
 
-.card-body {
+#viewerMain .card-body {
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
-    padding: 1.25rem;
 }
 
-.card-title {
+#viewerMain .card-title {
     margin-bottom: 0.75rem;
 }
 
-.card-subtitle {
+#viewerMain .card-subtitle {
     margin-top: -0.375rem;
     margin-bottom: 0;
 }
 
-.card-text:last-child {
+#viewerMain .card-text:last-child {
     margin-bottom: 0;
 }
 
-.card-link:hover {
+#viewerMain .card-link:hover {
     text-decoration: none;
 }
 
-.card-link + .card-link {
+#viewerMain .card-link + .card-link {
     margin-left: 1.25rem;
 }
 
-.card-header {
+#viewerMain .card-header {
     padding: 0.75rem 1.25rem;
     margin-bottom: 0;
     background-color: rgba(0, 0, 0, 0.03);
     border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
 
-.card-header:first-child {
+#viewerMain .card-header:first-child {
     border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
 }
 
-.card-header + .list-group .list-group-item:first-child {
+#viewerMain .card-header + .list-group .list-group-item:first-child {
     border-top: 0;
 }
 
-.card-footer {
+#viewerMain .card-footer {
     padding: 0.75rem 1.25rem;
     background-color: rgba(0, 0, 0, 0.03);
     border-top: 1px solid rgba(0, 0, 0, 0.125);
 }
 
-.card-footer:last-child {
+#viewerMain .card-footer:last-child {
     border-radius: 0 0 calc(0.25rem - 1px) calc(0.25rem - 1px);
 }
 
-.card-header-tabs {
+#viewerMain .card-header-tabs {
     margin-right: -0.625rem;
     margin-bottom: -0.75rem;
     margin-left: -0.625rem;
     border-bottom: 0;
 }
 
-.card-header-pills {
+#viewerMain .card-header-pills {
     margin-right: -0.625rem;
     margin-left: -0.625rem;
 }
 
-.card-img-overlay {
+#viewerMain .card-img-overlay {
     position: absolute;
     top: 0;
     right: 0;
@@ -131,42 +130,42 @@
     padding: 1.25rem;
 }
 
-.card-img {
+#viewerMain .card-img {
     width: 100%;
     border-radius: calc(0.25rem - 1px);
 }
 
-.card-img-top {
+#viewerMain .card-img-top {
     width: 100%;
     border-top-left-radius: calc(0.25rem - 1px);
     border-top-right-radius: calc(0.25rem - 1px);
 }
 
-.card-img-bottom {
+#viewerMain .card-img-bottom {
     width: 100%;
     border-bottom-right-radius: calc(0.25rem - 1px);
     border-bottom-left-radius: calc(0.25rem - 1px);
 }
 
-.card-deck {
+#viewerMain .card-deck {
     display: -ms-flexbox;
     display: flex;
     -ms-flex-direction: column;
     flex-direction: column;
 }
 
-.card-deck .card {
+#viewerMain .card-deck .card {
     margin-bottom: 15px;
 }
 
 @media (min-width: 576px) {
-    .card-deck {
+    #viewerMain .card-deck {
         -ms-flex-flow: row wrap;
         flex-flow: row wrap;
         margin-right: -15px;
         margin-left: -15px;
     }
-    .card-deck .card {
+    #viewerMain .card-deck .card {
         display: -ms-flexbox;
         display: flex;
         -ms-flex: 1 0 0%;
@@ -179,85 +178,85 @@
     }
 }
 
-.card-group {
+#viewerMain .card-group {
     display: -ms-flexbox;
     display: flex;
     -ms-flex-direction: column;
     flex-direction: column;
 }
 
-.card-group > .card {
+#viewerMain .card-group > .card {
     margin-bottom: 15px;
 }
 
 @media (min-width: 576px) {
-    .card-group {
+    #viewerMain .card-group {
         -ms-flex-flow: row wrap;
         flex-flow: row wrap;
     }
-    .card-group > .card {
+    #viewerMain .card-group > .card {
         -ms-flex: 1 0 0%;
         flex: 1 0 0%;
         margin-bottom: 0;
     }
-    .card-group > .card + .card {
+    #viewerMain .card-group > .card + .card {
         margin-left: 0;
         border-left: 0;
     }
-    .card-group > .card:first-child {
+    #viewerMain .card-group > .card:first-child {
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
     }
-    .card-group > .card:first-child .card-img-top,
-    .card-group > .card:first-child .card-header {
+    #viewerMain .card-group > .card:first-child .card-img-top,
+    #viewerMain .card-group > .card:first-child .card-header {
         border-top-right-radius: 0;
     }
-    .card-group > .card:first-child .card-img-bottom,
-    .card-group > .card:first-child .card-footer {
+    #viewerMain .card-group > .card:first-child .card-img-bottom,
+    #viewerMain .card-group > .card:first-child .card-footer {
         border-bottom-right-radius: 0;
     }
-    .card-group > .card:last-child {
+    #viewerMain .card-group > .card:last-child {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
     }
-    .card-group > .card:last-child .card-img-top,
-    .card-group > .card:last-child .card-header {
+    #viewerMain .card-group > .card:last-child .card-img-top,
+    #viewerMain .card-group > .card:last-child .card-header {
         border-top-left-radius: 0;
     }
-    .card-group > .card:last-child .card-img-bottom,
-    .card-group > .card:last-child .card-footer {
+    #viewerMain .card-group > .card:last-child .card-img-bottom,
+    #viewerMain .card-group > .card:last-child .card-footer {
         border-bottom-left-radius: 0;
     }
-    .card-group > .card:only-child {
+    #viewerMain .card-group > .card:only-child {
         border-radius: 0.25rem;
     }
-    .card-group > .card:only-child .card-img-top,
-    .card-group > .card:only-child .card-header {
+    #viewerMain .card-group > .card:only-child .card-img-top,
+    #viewerMain .card-group > .card:only-child .card-header {
         border-top-left-radius: 0.25rem;
         border-top-right-radius: 0.25rem;
     }
-    .card-group > .card:only-child .card-img-bottom,
-    .card-group > .card:only-child .card-footer {
+    #viewerMain .card-group > .card:only-child .card-img-bottom,
+    #viewerMain .card-group > .card:only-child .card-footer {
         border-bottom-right-radius: 0.25rem;
         border-bottom-left-radius: 0.25rem;
     }
-    .card-group > .card:not(:first-child):not(:last-child):not(:only-child) {
+    #viewerMain .card-group > .card:not(:first-child):not(:last-child):not(:only-child) {
         border-radius: 0;
     }
-    .card-group > .card:not(:first-child):not(:last-child):not(:only-child) .card-img-top,
-    .card-group > .card:not(:first-child):not(:last-child):not(:only-child) .card-img-bottom,
-    .card-group > .card:not(:first-child):not(:last-child):not(:only-child) .card-header,
-    .card-group > .card:not(:first-child):not(:last-child):not(:only-child) .card-footer {
+    #viewerMain .card-group > .card:not(:first-child):not(:last-child):not(:only-child) .card-img-top,
+    #viewerMain .card-group > .card:not(:first-child):not(:last-child):not(:only-child) .card-img-bottom,
+    #viewerMain .card-group > .card:not(:first-child):not(:last-child):not(:only-child) .card-header,
+    #viewerMain .card-group > .card:not(:first-child):not(:last-child):not(:only-child) .card-footer {
         border-radius: 0;
     }
 }
 
-.card-columns .card {
+#viewerMain .card-columns .card {
     margin-bottom: 0.75rem;
 }
 
 @media (min-width: 576px) {
-    .card-columns {
+    #viewerMain .card-columns {
         -webkit-column-count: 3;
         -moz-column-count: 3;
         column-count: 3;
@@ -267,28 +266,28 @@
         orphans: 1;
         widows: 1;
     }
-    .card-columns .card {
+    #viewerMain .card-columns .card {
         display: inline-block;
         width: 100%;
     }
 }
 
-.accordion .card:not(:first-of-type):not(:last-of-type) {
+#viewerMain .accordion .card:not(:first-of-type):not(:last-of-type) {
     border-bottom: 0;
     border-radius: 0;
 }
 
-.accordion .card:not(:first-of-type) .card-header:first-child {
+#viewerMain .accordion .card:not(:first-of-type) .card-header:first-child {
     border-radius: 0;
 }
 
-.accordion .card:first-of-type {
+#viewerMain .accordion .card:first-of-type {
     border-bottom: 0;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
 }
 
-.accordion .card:last-of-type {
+#viewerMain .accordion .card:last-of-type {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }

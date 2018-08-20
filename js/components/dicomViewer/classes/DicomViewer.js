@@ -93,7 +93,7 @@ class DicomViewer {
         }
     }
 
-    openViewerMain(viewerMainMetadataPromise) {
+    openViewerMain(viewerMainMetadataPromise, isSingleDICOMFile) {
         const self = this;
         const url = OC.generateUrl("/apps/dicomviewer/viewerMain");
         const hide = () => {
@@ -108,6 +108,9 @@ class DicomViewer {
             url: url,
             type: 'GET',
             contentType: 'text/html',
+            data: {
+                isSingleDICOMFile
+            }
         }).done((response) => {
             const $appContent = $('#content');
 
@@ -186,7 +189,7 @@ class DicomViewer {
                             }
                         });
 
-                        self.openViewerMain(promise);
+                        self.openViewerMain(promise, true);
                     }
                 } else {
                     let allDicomFiles = [];
