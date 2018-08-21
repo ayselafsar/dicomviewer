@@ -19,8 +19,6 @@ const DCMViewer = {
     },
     tools,
     ui: {
-        imageViewerViewport: {},
-        imageSlider: {},
         renderViewer: ui.renderViewer,
     },
 

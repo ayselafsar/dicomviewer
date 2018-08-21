@@ -1,12 +1,77 @@
-import Handlebars from "handlebars";
-import {DCMViewer} from "../index";
-import { Viewerbase } from "../../viewerbase";
-import {DCMViewerError} from "../../DCMViewerError";
-import {cornerstone, cornerstoneTools} from "../../../cornerstonejs";
-import {DCMViewerLog} from "../../DCMViewerLog";
+import $ from 'jquery';
+import Handlebars from 'handlebars';
+import { _ } from 'underscore';
+import { cornerstone, cornerstoneTools } from '../../../cornerstonejs';
+import { DCMViewer } from '../index';
+import { Viewerbase } from '../../viewerbase';
+import { DCMViewerError } from '../../DCMViewerError';
+import { DCMViewerLog } from '../../DCMViewerLog';
 
-function loadDisplaySetIntoViewport(data) {
+// Get compression information of image
+function getCompression() {
+    const { element } = DCMViewer.instance.viewportData;
+    const viewportIndex = DCMViewer.ui.$imageViewerViewport.index(element);
+    const viewportData = DCMViewer.layoutManager.viewportData[viewportIndex];
+
+    if (!viewportData.imageId) {
+        return false;
+    }
+
+    const instance = cornerstone.metaData.get('instance', viewportData.imageId);
+    if (!instance) {
+        return '';
+    }
+
+    if (instance.lossyImageCompression === '01' &&
+        instance.lossyImageCompressionRatio !== '') {
+        const compressionMethod = instance.lossyImageCompressionMethod || 'Lossy: ';
+        const compressionRatio = parseFloat(instance.lossyImageCompressionRatio).toFixed(2);
+        return `${compressionMethod}${compressionRatio} : 1`;
+    }
+
+    return 'Lossless / Uncompressed';
+}
+
+// Update overlay information which shows study and series information briefly on viewport
+function updateOverlay() {
+    const { element } = DCMViewer.instance.viewportData;
+    const viewportIndex = DCMViewer.ui.$imageViewerViewport.index(element);
+    const { viewportOverlayUtils } = DCMViewer.viewerbase;
+    const viewportData = DCMViewer.layoutManager.viewportData[viewportIndex];
+    const image = viewportOverlayUtils.getImage(viewportData.viewportIndex);
+    const dimensions = image ? `${image.width} x ${image.height}` : '';
+    const stack = DCMViewer.viewerbase.getStackDataIfNotEmpty(viewportIndex);
+    const numImages = stack && stack.imageIds ? stack.imageIds.length : '';
+
+    const $slider = $('.imageSlider');
+    $slider.val(stack.currentImageIdIndex + 1);
+
+    // Update overlay data
+    const source = $('#viewportOverlayTemplate').html();
+    const template = Handlebars.compile(source);
+
+    const content = template({
+        patientName: viewportOverlayUtils.getPatient.call(viewportData, 'name'),
+        patientId: viewportOverlayUtils.getPatient.call(viewportData, 'id'),
+        studyDescription: viewportOverlayUtils.getStudy.call(viewportData, 'studyDescription'),
+        studyDate: viewportOverlayUtils.getStudy.call(viewportData, 'studyDate'),
+        studyTime: viewportOverlayUtils.getStudy.call(viewportData, 'studyTime'),
+        seriesNumber: viewportOverlayUtils.getSeries.call(viewportData, 'seriesNumber'),
+        instanceNumber: viewportOverlayUtils.getInstance.call(image, 'instanceNumber'),
+        imageIndex: stack.currentImageIdIndex + 1,
+        numImages,
+        seriesDescription: viewportOverlayUtils.getSeries.call(viewportData, 'seriesDescription'),
+        dimensions,
+        compression: getCompression(),
+    });
+
+    $('#viewportOverlay').html(content);
+}
+
+function loadDisplaySetIntoViewport() {
     DCMViewerLog.info('imageViewerViewport loadDisplaySetIntoViewport');
+
+    const data = DCMViewer.instance.viewportData;
 
     // Make sure we have all the data required to render the series
     if (!data.study || !data.displaySet || !data.element) {
@@ -16,27 +81,28 @@ function loadDisplaySetIntoViewport(data) {
 
     // Get the current element and it's index in the list of all viewports
     // The viewport index is often used to store information about a viewport element
-    const element = data.element;
-    const viewportIndex = $('.imageViewerViewport').index(element);
+    const { element } = data;
+    const viewportIndex = DCMViewer.ui.$imageViewerViewport.index(element);
 
-    const layoutManager =  DCMViewer.layoutManager;
+    const { layoutManager } = DCMViewer;
     layoutManager.viewportData = layoutManager.viewportData || {};
     layoutManager.viewportData[viewportIndex] = layoutManager.viewportData[viewportIndex] || {};
     layoutManager.viewportData[viewportIndex].viewportIndex = viewportIndex;
 
     // Create shortcut to displaySet
-    const displaySet = data.displaySet;
+    const { displaySet } = data;
 
     // Get stack from Stack Manager
     let stack = Viewerbase.StackManager.findOrCreateStack(data.study, displaySet);
 
     // Shortcut for array with image IDs
-    const imageIds = stack.imageIds;
+    const { imageIds } = stack;
+    const imageIdIndex = data.currentImageIdIndex;
 
     // Define the current image stack using the newly created image IDs
     stack = {
-        currentImageIdIndex: data.currentImageIdIndex > 0 && data.currentImageIdIndex < imageIds.length ? data.currentImageIdIndex : 0,
-        imageIds: imageIds,
+        currentImageIdIndex: imageIdIndex > 0 && imageIdIndex < imageIds.length ? imageIdIndex : 0,
+        imageIds,
         displaySetInstanceUid: data.displaySetInstanceUid
     };
 
@@ -44,20 +110,17 @@ function loadDisplaySetIntoViewport(data) {
     const imageId = imageIds[stack.currentImageIdIndex];
 
     cornerstone.enable(data.element);
-    cornerstoneTools.mouseInput.enable(element);
-    cornerstoneTools.touchInput.enable(element);
-    cornerstoneTools.mouseWheelInput.enable(element);
-    cornerstoneTools.keyboardInput.enable(element);
 
     // Get the handler functions that will run when loading has finished or thrown
     // an error. These are used to show/hide loading / error text boxes on each viewport.
-    const endLoadingHandler = cornerstoneTools.loadHandlerManager.getEndLoadHandler();
     const errorLoadingHandler = cornerstoneTools.loadHandlerManager.getErrorLoadingHandler();
 
     // Get the current viewport settings
     const viewport = cornerstone.getViewport(element);
 
-    const { studyInstanceUid, seriesInstanceUid, displaySetInstanceUid, currentImageIdIndex } = data;
+    const {
+        studyInstanceUid, seriesInstanceUid, displaySetInstanceUid, currentImageIdIndex
+    } = data;
 
     // Store the current series data inside the Layout Manager
     layoutManager.viewportData[viewportIndex] = {
@@ -69,6 +132,10 @@ function loadDisplaySetIntoViewport(data) {
         viewport: viewport || data.viewport,
         viewportIndex
     };
+
+    // TODO
+    // Update layoutManager of viewer
+    // DCMViewer.instance.layoutManager = layoutManager;
 
     let imagePromise;
     try {
@@ -82,12 +149,11 @@ function loadDisplaySetIntoViewport(data) {
     }
 
     // Start loading the image.
-    imagePromise.then(image => {
+    imagePromise.then((image) => {
         let enabledElement;
         try {
             enabledElement = cornerstone.getEnabledElement(element);
-        }
-        catch (error) {
+        } catch (error) {
             DCMViewerLog.warn('Viewport destroyed before loaded image could be displayed');
             return;
         }
@@ -95,16 +161,23 @@ function loadDisplaySetIntoViewport(data) {
         // Update metadata from image dataset
         DCMViewer.viewer.metadataProvider.updateMetadata(image);
 
+        // Enable mouse interactions
+        cornerstoneTools.mouseInput.enable(element);
+        cornerstoneTools.touchInput.enable(element);
+        cornerstoneTools.mouseWheelInput.enable(element);
+        cornerstoneTools.keyboardInput.enable(element);
+
         // Update the enabled element with the image and viewport data
         // This is not usually necessary, but we need them stored in case
         // a sopClassUid-specific viewport setting is present.
         enabledElement.image = image;
         enabledElement.viewport = cornerstone.getDefaultViewport(enabledElement.canvas, image);
 
+        // Display image on viewport
         cornerstone.displayImage(element, image, enabledElement.viewport);
 
         // Display orientation markers
-        DCMViewer.viewerbase.updateOrientationMarkers(element, viewport);
+        DCMViewer.viewerbase.updateOrientationMarkers(element, enabledElement.viewport);
 
         // Resize the canvas to fit the current viewport element size. Fit the displayed
         // image to the canvas dimensions.
@@ -118,88 +191,35 @@ function loadDisplaySetIntoViewport(data) {
         // Set the stack as tool state
         cornerstoneTools.addStackStateManager(element, ['stack', 'playClip']);
         cornerstoneTools.addToolState(element, 'stack', stack);
+
         // Enable all tools we want to use with this element
-        //cornerstoneTools.stackScroll.activate(element, 1);
         cornerstoneTools.stackScrollWheel.activate(element);
 
+        // Update overlay information
         updateOverlay();
 
-        function getCompression() {
-            const viewportData = layoutManager.viewportData[viewportIndex];
-
-            if (!viewportData.imageId) {
-                return false;
-            }
-
-            const instance = cornerstone.metaData.get('instance', viewportData.imageId);
-            if (!instance) {
-                return '';
-            }
-
-            if (instance.lossyImageCompression === '01' &&
-                instance.lossyImageCompressionRatio !== '') {
-                const compressionMethod = instance.lossyImageCompressionMethod || 'Lossy: ';
-                const compressionRatio = parseFloat(instance.lossyImageCompressionRatio).toFixed(2);
-                return compressionMethod + compressionRatio + ' : 1';
-            }
-
-            return 'Lossless / Uncompressed';
-        }
-
-        function updateOverlay() {
-            const viewportOverlayUtils = DCMViewer.viewerbase.viewportOverlayUtils;
-            const viewportData = layoutManager.viewportData[viewportIndex];
-            const image = viewportOverlayUtils.getImage(viewportData.viewportIndex);
-            const dimensions = image ? `${image.width} x ${image.height}` : '';
-            const stack = DCMViewer.viewerbase.getStackDataIfNotEmpty(viewportIndex);
-            const numImages = stack && stack.imageIds ? stack.imageIds.length : '';
-
-            // TODO: Keep $imageSLider in global object
-            const $slider = $('.imageSlider');
-            $slider.val(stack.currentImageIdIndex + 1);
-
-            // Update overlay data
-            const source = $('#viewportOverlayTemplate').html();
-            const template = Handlebars.compile(source);
-
-            const content = template({
-                patientName: viewportOverlayUtils.getPatient.call(viewportData, 'name'),
-                patientId: viewportOverlayUtils.getPatient.call(viewportData, 'id'),
-                studyDescription: viewportOverlayUtils.getStudy.call(viewportData, 'studyDescription'),
-                studyDate: viewportOverlayUtils.getStudy.call(viewportData, 'studyDate'),
-                studyTime: viewportOverlayUtils.getStudy.call(viewportData, 'studyTime'),
-                seriesNumber: viewportOverlayUtils.getSeries.call(viewportData, 'seriesNumber'),
-                instanceNumber: viewportOverlayUtils.getInstance.call(image, 'instanceNumber'),
-                imageIndex: stack.currentImageIdIndex + 1,
-                numImages,
-                seriesDescription: viewportOverlayUtils.getSeries.call(viewportData, 'seriesDescription'),
-                dimensions,
-                compression: getCompression(),
-            });
-
-            $('#viewportOverlay').html(content);
-        }
-
-        element.addEventListener('cornerstonenewimage', function () {
+        // Handle changes if a new image is displayed
+        element.addEventListener('cornerstonenewimage', () => {
             updateOverlay();
         });
 
+        // Handle changes on each image rendering
         element.addEventListener('cornerstoneimagerendered', (e) => {
+            // Update overlay information
             updateOverlay();
 
-            const viewport = cornerstone.getViewport(e.target);
-
+            const viewportVal = cornerstone.getViewport(e.target);
             const $zoomLevel = $('#zoomLevel');
             const $windowLevel = $('#windowLevel');
 
-
-            $zoomLevel.text(`Zoom: ${viewport.scale.toFixed(2)}`);
-            $windowLevel.text(`WW/WC: ${Math.round(viewport.voi.windowWidth)} / ${Math.round(viewport.voi.windowCenter)}`);
+            $zoomLevel.text(`Zoom: ${viewportVal.scale.toFixed(2)}`);
+            $windowLevel.text(`WW/WC: ${Math.round(viewportVal.voi.windowWidth)} / ${Math.round(viewportVal.voi.windowCenter)}`);
         });
     });
 }
 
-function renderViewportOverlays(data) {
+function renderImageControls() {
+    const data = DCMViewer.instance.viewportData;
     const numImages = data.displaySet.images.length;
     const imageIndex = 1;
 
@@ -210,7 +230,7 @@ function renderViewportOverlays(data) {
     // Set size of scrollbar
     setTimeout(() => {
         const $slider = $('.imageSlider');
-        const $element = $('.imageViewerViewport');
+        const $element = DCMViewer.ui.$imageViewerViewport;
         const element = $element.get(0);
 
         // Change the instance when scrollbar is changed
@@ -230,11 +250,16 @@ function renderViewportOverlays(data) {
     }, 300);
 }
 
+/**
+ * Render layout
+ * @param viewportData
+ */
 const renderLayout = (viewportData) => {
-    const study = DCMViewer.viewerbase.data.studies.find(study => study.studyInstanceUid === viewportData.studyInstanceUid);
+    const { studies } = DCMViewer.viewerbase.data;
+    const study = studies.find(entry => entry.studyInstanceUid === viewportData.studyInstanceUid);
 
     if (!study) {
-        DCMViewerError('Study does not exist')
+        DCMViewerError('Study does not exist');
     }
 
     viewportData.study = study;
@@ -243,7 +268,7 @@ const renderLayout = (viewportData) => {
         DCMViewerError('Study has no display sets');
     }
 
-    study.displaySets.every(displaySet => {
+    study.displaySets.every((displaySet) => {
         if (displaySet.displaySetInstanceUid === viewportData.displaySetInstanceUid) {
             viewportData.displaySet = displaySet;
             return false;
@@ -253,8 +278,9 @@ const renderLayout = (viewportData) => {
     });
 
     const $imageViewerViewport = $('.imageViewerViewport');
-
     viewportData.element = $imageViewerViewport.get(0);
+    DCMViewer.ui.$imageViewerViewport = $imageViewerViewport;
+    DCMViewer.instance.viewportData = viewportData;
 
     // Update dicom image container attributes to disallow manipulating viewer
     $imageViewerViewport.on('contextmenu', () => false);
@@ -262,24 +288,27 @@ const renderLayout = (viewportData) => {
     $imageViewerViewport.on('selectstart', () => false);
     $imageViewerViewport.on('contextmenu', () => false);
 
+    // Render orientation markers template before displaying image
     const orientationMarkersSource = $('#viewportOrientationMarkersTemplate').html();
     const orientationMarkersTemplate = Handlebars.compile(orientationMarkersSource);
     $('#viewportOrientationMarkers').html(orientationMarkersTemplate());
 
-    loadDisplaySetIntoViewport(viewportData);
+    // Load and display image
+    loadDisplaySetIntoViewport();
 
-    renderViewportOverlays(viewportData);
+    // Render image controls
+    renderImageControls();
 };
 
 /**
- * Renders viewport
+ * Render viewport
  */
 export default function renderViewport() {
     if (!DCMViewer.instance) {
         DCMViewer.instance = {};
     }
 
-    const studies = DCMViewer.viewerbase.data.studies;
+    const { studies } = DCMViewer.viewerbase.data;
     DCMViewer.instance.parentElement = $('#layoutManagerTarget');
 
     const studyPrefetcher = DCMViewer.viewerbase.StudyPrefetcher.getInstance();
@@ -293,4 +322,4 @@ export default function renderViewport() {
     DCMViewer.layoutManager.updateViewports();
 
     studyPrefetcher.setStudies(studies);
-};
+}

@@ -9,4 +9,4 @@ export default function renderViewer() {
     renderStudyBrowser();
     renderToolbar();
     renderViewport();
-};
+}

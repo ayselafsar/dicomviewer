@@ -25,9 +25,9 @@ module.exports = {
         ]
     },
     resolve: {
-      alias: {
-          handlebars: 'handlebars/dist/handlebars.min.js',
-      }
+        alias: {
+            handlebars: 'handlebars/dist/handlebars.min.js',
+        }
     },
     stats: {
         colors: true

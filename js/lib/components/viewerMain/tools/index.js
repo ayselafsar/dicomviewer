@@ -8,4 +8,4 @@ const tools = {
     toolManager,
 };
 
-export { tools }
+export { tools };

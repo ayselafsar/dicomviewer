@@ -1,12 +1,13 @@
-import {DCMViewer} from "../index";
-import Handlebars from "handlebars";
+import $ from 'jquery';
+import Handlebars from 'handlebars';
+import { DCMViewer } from '../index';
 
 /**
  * Renders study browser
  */
 export default function renderStudyBrowser() {
     const imageThumbnailSource = $('#imageThumbnailTemplate').html();
-    Handlebars.registerPartial("imageThumbnail", imageThumbnailSource);
+    Handlebars.registerPartial('imageThumbnail', imageThumbnailSource);
 
     const source = $('#studyBrowserTemplate').html();
     const { studies } = DCMViewer.viewerbase.data;
@@ -18,4 +19,4 @@ export default function renderStudyBrowser() {
     });
 
     $('#studyBrowser').html(html);
-};
+}

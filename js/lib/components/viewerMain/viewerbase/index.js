@@ -4,8 +4,8 @@ import setDisplaySets from './setDisplaySets';
 
 const viewerbase = {
     data: {
-            loadedSeriesData: {}
-        },
+        loadedSeriesData: {}
+    },
     instance: {},
     loadedSeriesData: {},
     getStackDataIfNotEmpty: Viewerbase.getStackDataIfNotEmpty,

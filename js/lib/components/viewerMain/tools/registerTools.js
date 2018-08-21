@@ -1,7 +1,8 @@
 import CommandsManager from './classes/CommandsManager';
 import { toolManager } from './toolManager';
 import viewerbase from '../viewerbase';
-const viewportUtils = viewerbase.viewportUtils;
+
+const { viewportUtils } = viewerbase;
 
 export default function () {
     const tools = [{

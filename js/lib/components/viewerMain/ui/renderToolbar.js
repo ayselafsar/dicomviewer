@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import Handlebars from 'handlebars';
 import { DCMViewer } from '../index';
 import { tools } from '../tools/';
@@ -52,4 +53,4 @@ export default function renderToolbar() {
             DCMViewer.ui.closeViewer();
         });
     }, 300);
-};
+}
