@@ -6,7 +6,6 @@ use OCP\Util;
 
 Util::addStyle('dicomviewer', 'viewer');
 Util::addStyle('dicomviewer', 'sidebar');
-Util::addStyle('dicomviewer', 'viewerDialog');
 Util::addStyle('dicomviewer', 'bootstrap_accordion');
 Util::addStyle('dicomviewer', 'viewerMain');
 Util::addStyle('dicomviewer', 'viewerMainDialog');
