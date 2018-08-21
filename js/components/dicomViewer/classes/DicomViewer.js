@@ -4,16 +4,13 @@ import { DCMViewer } from '../../../lib/components/viewerMain';
 import generateFullUrl from '../../../lib/generateFullUrl';
 import initializeViewerMain from '../initializeViewerMain';
 import configureCodecs from '../configureCodecs';
-import updateMetadata from '../lib/updateMetadata';
+import createMetadata from '../lib/createMetadata';
 
 class DicomViewer {
     constructor() {
         this.mimeType = 'application/dicom';
         this.context = undefined;
         this.isViewerMainShown = false;
-        this.allDicomFiles = [];
-        this.allDicomFilesPromises = [];
-        this.allDicomPromises = [];
 
         configureCodecs();
     }
@@ -34,7 +31,7 @@ class DicomViewer {
         $('#app-content-files').css({ display: 'block' });
 
         this.isViewerMainShown = false;
-        this.cancelAllPromises = true;
+        this.cancelled = true;
 
         FileList.setViewerMode(false);
 
@@ -91,34 +88,6 @@ class DicomViewer {
     }
 
     /**
-     * Get all DICOM files in all levels of the folder
-     * @param files
-     */
-    getDicomFiles(availableFiles) {
-        const self = this;
-        const folderMimeType = 'httpd/unix-directory';
-        const dicomFiles = availableFiles.filter(file => file.mimetype === self.mimeType);
-        const folders = availableFiles.filter(file => file.mimetype === folderMimeType);
-
-        this.allDicomFiles = this.allDicomFiles.concat(dicomFiles);
-
-        folders.forEach((folder) => {
-            const folderPath = `${folder.path}/${folder.name}`;
-            const promise = new Promise((resolve) => {
-                const filePromise = self.context.fileList.filesClient.getFolderContents(folderPath);
-
-                filePromise.then((status, files) => {
-                    self.getDicomFiles(files);
-
-                    resolve();
-                });
-            });
-
-            self.allDicomFilesPromises.push(promise);
-        });
-    }
-
-    /**
      * Update loading percentage of single DICOM instance
      * @param event
      */
@@ -132,149 +101,196 @@ class DicomViewer {
     /**
      * Load single DICOM instance
      */
-    loadSingleDICOMInstance() {
-        const self = this;
-        const { context } = self;
-        const { fileName } = self;
-
+    async loadSingleDICOMInstance() {
+        const { context, fileName } = this;
         const fileDownloadUrl = context.fileList.getDownloadUrl(fileName, context.dir);
-        if (fileDownloadUrl && fileDownloadUrl !== '#') {
-            cornerstone.events.addEventListener('cornerstoneimageloadprogress', self.imageLoadProgressHandler);
-
-            const promise = new Promise((resolve) => {
-                const { dataSetCacheManager } = cornerstoneWADOImageLoader.wadouri;
-                const viewerData = {
-                    studies: []
-                };
-
-                const fullUrl = generateFullUrl(fileDownloadUrl);
-                const wadouri = `wadouri:${fullUrl}`;
-
-                const isLoaded = dataSetCacheManager.isLoaded(fullUrl);
-
-                if (isLoaded) {
-                    const dataSet = dataSetCacheManager.get(fullUrl);
-                    updateMetadata(wadouri, dataSet, viewerData.studies);
-
-                    resolve(viewerData);
-                } else {
-                    const dataSetPromise = dataSetCacheManager.load(fullUrl);
-                    dataSetPromise.then((dataSet) => {
-                        updateMetadata(wadouri, dataSet, viewerData.studies);
-
-                        resolve(viewerData);
-                    });
-                }
-            });
-
-            self.show(promise, true);
+        if (!fileDownloadUrl || fileDownloadUrl === '#') {
+            return;
         }
+
+        // Listen to update loading progress
+        cornerstone.events.addEventListener('cornerstoneimageloadprogress', this.imageLoadProgressHandler);
+
+        return new Promise((resolve) => {
+            const { dataSetCacheManager } = cornerstoneWADOImageLoader.wadouri;
+            const viewerData = {
+                studies: []
+            };
+
+            const fullUrl = generateFullUrl(fileDownloadUrl);
+            const wadouri = `wadouri:${fullUrl}`;
+
+            const isLoaded = dataSetCacheManager.isLoaded(fullUrl);
+            if (isLoaded) {
+                const dataSet = dataSetCacheManager.get(fullUrl);
+                createMetadata(wadouri, dataSet, viewerData.studies);
+                resolve(viewerData);
+            } else {
+                const dataSetPromise = dataSetCacheManager.load(fullUrl);
+                dataSetPromise.then((dataSet) => {
+                    createMetadata(wadouri, dataSet, viewerData.studies);
+                    resolve(viewerData);
+                });
+            }
+        });
+    }
+
+    /**
+     * Get all files and folders in the given folder path
+     * @param folderPath
+     */
+    async getFolderContents(folderPath) {
+        const { context } = this;
+
+        return new Promise((resolve) => {
+            const filePromise = context.fileList.filesClient.getFolderContents(folderPath);
+            filePromise.then((status, files) => {
+                resolve(files);
+            });
+        });
+    }
+
+    /**
+     * Get all DICOM files in all levels of the folder in parallel
+     * @param files
+     */
+    getAllDicomFiles(files) {
+        const self = this;
+
+        return new Promise((resolve) => {
+            let allDicomFiles = files.filter(file => file.mimetype === this.mimeType);
+
+            const folderMimeType = 'httpd/unix-directory';
+            const folders = files.filter(file => file.mimetype === folderMimeType);
+
+            const filePromises = [];
+
+            for (let i = 0; i < folders.length; i++) {
+                const folder = folders[i];
+                const folderPath = `${folder.path}/${folder.name}`;
+
+                const filePromise = new Promise((fileResolve) => {
+                    const folderPromise = self.getFolderContents(folderPath);
+                    folderPromise.then((subFiles) => {
+                        const subDicomFilesPromise = self.getAllDicomFiles(subFiles);
+                        subDicomFilesPromise.then((subDicomFiles) => {
+                            fileResolve(subDicomFiles);
+                        });
+                    });
+                });
+                filePromises.push(filePromise);
+            }
+
+            if (filePromises.length < 1) {
+                resolve(allDicomFiles);
+            } else {
+                // Wait for all files to read in parallel
+                Promise.all(filePromises).then((subDicomFiles) => {
+                    allDicomFiles = allDicomFiles.concat(...subDicomFiles);
+                    resolve(allDicomFiles);
+                });
+            }
+        });
+    }
+
+    /**
+     * Read all DICOM files and wait for all to be read
+     */
+    async readAllDicomFiles() {
+        const folderPath = `${this.context.dir}/${this.fileName}`;
+        const files = await this.getFolderContents(folderPath);
+        const allDicomFiles = await this.getAllDicomFiles(files);
+        return allDicomFiles;
     }
 
     /**
      * Load multiple instances
      */
     loadMultipleDICOMInstances() {
-        const self = this;
-        const { context } = self;
-        const { fileName } = self;
-        self.allDicomFiles = [];
-        self.allDicomFilesPromises = [];
+        const { context } = this;
 
-        const viewerMainMetadataPromise = new Promise((viewerMainMetadataResolve) => {
-            const folderPath = `${context.dir}/${fileName}`;
-            const promise = context.fileList.filesClient.getFolderContents(folderPath);
+        return new Promise((resolve) => {
+            this.readAllDicomFiles().then((allDicomFiles) => {
+                // Warn if no DICOM file is available
+                if (!allDicomFiles || !allDicomFiles.length) {
+                    setTimeout(() => {
+                        $('.loadingViewerMain').text('No DICOM File Found');
+                    }, 500);
+                    return;
+                }
 
-            promise.then((status, files) => {
-                // Get all ficom files
-                self.getDicomFiles(files);
+                const allImagePromises = [];
+                const imagesData = [];
+                let loadedImageCount = 0;
 
-                Promise.all(self.allDicomFilesPromises).then(() => {
-                    // If no DICOM file is available
-                    if (!self.allDicomFiles || !self.allDicomFiles.length) {
-                        setTimeout(() => {
-                            $('.loadingViewerMain').text('No DICOM File Found');
-                        }, 500);
-                        return;
+                const updateLoadingPercentage = () => {
+                    loadedImageCount += 1;
+                    const percentage = Math.floor((loadedImageCount / allDicomFiles.length) * 100);
+                    const $loadingPercentage = $('#loadingPercentage');
+                    $loadingPercentage.text(percentage);
+                };
+
+                for (let i = 0; i < allDicomFiles.length; i++) {
+                    const file = allDicomFiles[i];
+                    const fileUrl = context.fileList.getDownloadUrl(file.name, file.path);
+                    const fullUrl = generateFullUrl(fileUrl);
+                    const wadouri = `wadouri:${fullUrl}`;
+
+                    const { dataSetCacheManager } = cornerstoneWADOImageLoader.wadouri;
+                    const isLoaded = dataSetCacheManager.isLoaded(fullUrl);
+
+                    if (isLoaded) {
+                        const dataSet = dataSetCacheManager.get(fullUrl);
+                        imagesData.push({
+                            dataSet,
+                            wadouri
+                        });
+
+                        updateLoadingPercentage();
+
+                        // Resolve immediately because it is in cache
+                        allImagePromises.push(Promise.resolve());
+                    } else {
+                        const imagePromise = new Promise((imageResolve) => {
+                            const dataSetPromise = dataSetCacheManager.load(fullUrl);
+                            dataSetPromise.then((dataSet) => {
+                                imagesData.push({
+                                    dataSet,
+                                    wadouri
+                                });
+
+                                updateLoadingPercentage();
+
+                                imageResolve();
+                            });
+                        });
+
+                        // Resolve when image is loaded
+                        allImagePromises.push(imagePromise);
                     }
+                }
 
-                    let loadedFileCount = 0;
-
-                    const updateLoadingPercentage = () => {
-                        loadedFileCount += 1;
-                        const percentage = Math.floor((loadedFileCount / self.allDicomFiles.length) * 100);
-                        const $loadingPercentage = $('#loadingPercentage');
-                        $loadingPercentage.text(percentage);
+                // Handle when all images are loaded
+                Promise.all(allImagePromises).then(() => {
+                    const viewerData = {
+                        studies: []
                     };
 
-                    console.time('performance');
-
-                    // Create study metadata in json
-                    self.allDicomPromises = [];
-                    const imagesData = [];
-
-                    self.allDicomFiles.forEach((file) => {
-                        const fileUrl = context.fileList.getDownloadUrl(file.name, file.path);
-                        const fullUrl = generateFullUrl(fileUrl);
-                        const wadouri = `wadouri:${fullUrl}`;
-                        const { dataSetCacheManager } = cornerstoneWADOImageLoader.wadouri;
-                        const isLoaded = dataSetCacheManager.isLoaded(fullUrl);
-
-                        if (isLoaded) {
-                            const dataSet = dataSetCacheManager.get(fullUrl);
-
-                            // Add instance information
-                            imagesData.push({
-                                dataSet,
-                                wadouri
-                            });
-
-                            // Update loading percentage
-                            updateLoadingPercentage();
-
-                            self.allDicomPromises.push(Promise.resolve());
-                        } else {
-                            self.allDicomPromises.push(new Promise((resolve) => {
-                                const dataSetPromise = dataSetCacheManager.load(fullUrl);
-                                dataSetPromise.then((dataSet) => {
-                                    // Add instance inxformation
-                                    imagesData.push({
-                                        dataSet,
-                                        wadouri
-                                    });
-
-                                    // Update loading percentage
-                                    updateLoadingPercentage();
-
-                                    resolve();
-                                });
-                            }));
-                        }
+                    // Create metadata and set into viewerData
+                    imagesData.forEach((imageData) => {
+                        createMetadata(imageData.wadouri, imageData.dataSet, viewerData.studies);
                     });
 
-                    Promise.all(self.allDicomPromises).then(() => {
-                        const viewerData = {
-                            studies: []
-                        };
-
-                        imagesData.forEach((imageData) => {
-                            updateMetadata(imageData.wadouri, imageData.dataSet, viewerData.studies);
-                        });
-
-                        // Sort series
-                        viewerData.studies.forEach((study) => {
-                            study.seriesList.sort((a, b) => parseInt(a.seriesNumber, 10) - parseInt(b.seriesNumber, 10));
-                        });
-
-                        console.timeEnd('performance');
-
-                        viewerMainMetadataResolve(viewerData);
+                    // Sort series in viewerData
+                    viewerData.studies.forEach((study) => {
+                        study.seriesList.sort((a, b) => parseInt(a.seriesNumber, 10) - parseInt(b.seriesNumber, 10));
                     });
+
+                    // Resolve when all images are loaded and ready to display
+                    resolve(viewerData);
                 });
             });
         });
-
-        self.show(viewerMainMetadataPromise);
     }
 
     /**
@@ -299,9 +315,11 @@ class DicomViewer {
 
                 const isDCMFile = (/\.(dcm)$/i).test(fileName);
                 if (isDCMFile) {
-                    self.loadSingleDICOMInstance();
+                    const promise = self.loadSingleDICOMInstance();
+                    self.show(promise, true);
                 } else {
-                    self.loadMultipleDICOMInstances();
+                    const promise = self.loadMultipleDICOMInstances();
+                    self.show(promise);
                 }
             }
         });

@@ -1,13 +1,16 @@
 import { cornerstone, cornerstoneTools } from '../../../lib/cornerstonejs';
 
 /**
- * Update orientation markers text when image is rotated
- * @param element
- * @param viewport
+ * Updates the orientation labels on a Cornerstone-enabled Viewport element
+ * when the viewport settings change (e.g. when a horizontal flip or a rotation occurs)
+ *
+ * @param element The DOM element of the Cornerstone viewport
+ * optional
+ * @param viewport The current viewport
  */
-export default function (element, viewport) {
+export function updateOrientationMarkers(element, viewport) {
     // Get the current viewport settings
-    if (!viewport) {
+    if(!viewport) {
         viewport = cornerstone.getViewport(element);
     }
 
@@ -19,11 +22,10 @@ export default function (element, viewport) {
         return;
     }
 
-    const { orientation } = cornerstoneTools;
-    const rowString = orientation.getOrientationString(imagePlane.rowCosines);
-    const columnString = orientation.getOrientationString(imagePlane.columnCosines);
-    const oppositeRowString = orientation.invertOrientationString(rowString);
-    const oppositeColumnString = orientation.invertOrientationString(columnString);
+    const rowString = cornerstoneTools.orientation.getOrientationString(imagePlane.rowCosines);
+    const columnString = cornerstoneTools.orientation.getOrientationString(imagePlane.columnCosines);
+    const oppositeRowString = cornerstoneTools.orientation.invertOrientationString(rowString);
+    const oppositeColumnString = cornerstoneTools.orientation.invertOrientationString(columnString);
 
     const markers = {
         top: oppositeColumnString,
@@ -41,9 +43,8 @@ export default function (element, viewport) {
     }
 
     // Get the viewport orientation marker DOM elements
-    const viewportOrientationMarkers = $(element).siblings('.viewportOrientationMarkers');
-    const topMarker = viewportOrientationMarkers.find('.topMid');
-    const leftMarker = viewportOrientationMarkers.find('.leftMid');
+    const topMarker = $('.topMid.orientationMarker');
+    const leftMarker = $('.leftMid.orientationMarker');
 
     // Swap the labels accordingly if the viewport has been rotated
     // This could be done in a more complex way for intermediate rotation values (e.g. 45 degrees)

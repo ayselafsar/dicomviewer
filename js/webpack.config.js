@@ -21,9 +21,6 @@ module.exports = {
             }, {
                 test: /public\/.\.js$/,
                 loader: 'file'
-            }, {
-                test: /\.css$/,
-                loader: ['style-loader', 'css-loader']
             }
         ]
     },

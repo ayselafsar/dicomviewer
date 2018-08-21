@@ -17,7 +17,7 @@ import { isImage } from './isImage';
 import { createStacks } from './createStacks';
 import { getStackDataIfNotEmpty } from './getStackDataIfNotEmpty';
 import { sortingManager } from './sortingManager';
-import updateOrientationMarkers from './updateOrientationMarkers';
+import { updateOrientationMarkers } from './updateOrientationMarkers';
 import { viewportOverlayUtils } from './viewportOverlayUtils';
 import { viewportUtils } from './viewportUtils';
 import { getStudyMetadata } from './getStudyMetadata';

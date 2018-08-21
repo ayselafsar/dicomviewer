@@ -3,7 +3,8 @@ import { DCMViewerManager } from '../DCMViewerManager';
 import { DCMViewerLog } from '../DCMViewerLog';
 import { updateOrientationMarkers } from './updateOrientationMarkers';
 import { getInstanceClassDefaultViewport } from './instanceClassSpecificViewport';
-import {DCMViewer} from "../viewerMain";
+import { DCMViewer } from '../viewerMain';
+import { captureImageDialog } from './captureImageDialog';
 
 /**
  * Get a cornerstone enabledElement for a DOM Element
@@ -43,6 +44,14 @@ const getEnabledElementForActiveElement = () => {
     const enabledElement = getEnabledElement(activeViewportElement);
 
     return enabledElement;
+};
+
+const getAnnotationTools = () => ['length', 'probe', 'simpleAngle', 'arrowAnnotate', 'ellipticalRoi', 'rectangleRoi'];
+
+const toggleAnnotations = (viewportElement, toggle) => {
+    const action = toggle ? 'enable' : 'disable';
+    const annotationTools = getAnnotationTools();
+    annotationTools.forEach(tool => cornerstoneTools[tool][action](viewportElement));
 };
 
 const zoomIn = () => {
@@ -163,6 +172,10 @@ const clearTools = () => {
     const toolStateManager = cornerstoneTools.globalImageIdSpecificToolStateManager;
     toolStateManager.clear(element);
     cornerstone.updateImage(element);
+};
+
+const toggleCaptureImageDialog = () => {
+    captureImageDialog.show();
 };
 
 const linkStackScroll = () => {
@@ -381,6 +394,8 @@ const viewportUtils = {
     resetViewport,
     clearTools,
     linkStackScroll,
+    toggleAnnotations,
+    toggleCaptureImageDialog,
     toggleDialog,
     toggleCinePlay,
     toggleCineDialog,

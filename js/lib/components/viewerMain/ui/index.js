@@ -1,12 +1,7 @@
-import renderStudyBrowser from './renderStudyBrowser';
-import renderToolbar from './renderToolbar';
-import renderViewerMain from './renderViewerMain';
-
+import renderViewer from './renderViewer';
 
 const ui = {
-    renderStudyBrowser,
-    renderToolbar,
-    renderViewerMain,
+    renderViewer
 };
 
 export { ui };

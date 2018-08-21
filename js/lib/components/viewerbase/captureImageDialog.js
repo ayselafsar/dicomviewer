@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import { cornerstone } from '../../../../lib/cornerstonejs';
+import { cornerstone } from '../../cornerstonejs';
 import { viewportUtils } from './viewportUtils';
 
 const DEFAULT_FILENAME = 'image';

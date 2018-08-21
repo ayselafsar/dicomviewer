@@ -1,4 +1,10 @@
-export default function updateMetadata(wadouri, dataSet, studies) {
+/**
+ * Get required metadata of studies, series and instances
+ * @param wadouri
+ * @param dataSet
+ * @param studies
+ */
+export default function createMetadata(wadouri, dataSet, studies) {
     const patientName = dataSet.string('x00100010');
     const patientId = dataSet.string('x00100020');
 

@@ -4,8 +4,8 @@ import { DCMViewer } from '../../lib/components/viewerMain/index';
 import { DCMViewerError } from '../../lib/components/DCMViewerError';
 import { DCMViewerLog } from '../../lib/components/DCMViewerLog';
 
-export default function initializeViewerMain(viewerMainMetadataPromise) {
-    viewerMainMetadataPromise.then((viewerData) => {
+export default function initializeViewerMain(viewerPromise) {
+    viewerPromise.then((viewerData) => {
         // Hide loading view
         $('.loadingViewerMain').css({ display: 'none' });
 
@@ -69,8 +69,6 @@ export default function initializeViewerMain(viewerMainMetadataPromise) {
         cornerstone.metaData.addProvider(metaDataProvider.provider.bind(metaDataProvider));
 
         // Render all content
-        DCMViewer.ui.renderStudyBrowser();
-        DCMViewer.ui.renderToolbar();
-        DCMViewer.ui.renderViewerMain();
+        DCMViewer.ui.renderViewer();
     }).catch(() => new DCMViewerError('Couldn\'t initialize viewer'));
 }

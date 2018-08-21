@@ -92,6 +92,9 @@ function loadDisplaySetIntoViewport(data) {
             return;
         }
 
+        // Update metadata from image dataset
+        DCMViewer.viewer.metadataProvider.updateMetadata(image);
+
         // Update the enabled element with the image and viewport data
         // This is not usually necessary, but we need them stored in case
         // a sopClassUid-specific viewport setting is present.
@@ -99,6 +102,9 @@ function loadDisplaySetIntoViewport(data) {
         enabledElement.viewport = cornerstone.getDefaultViewport(enabledElement.canvas, image);
 
         cornerstone.displayImage(element, image, enabledElement.viewport);
+
+        // Display orientation markers
+        DCMViewer.viewerbase.updateOrientationMarkers(element, viewport);
 
         // Resize the canvas to fit the current viewport element size. Fit the displayed
         // image to the canvas dimensions.
@@ -196,6 +202,7 @@ function loadDisplaySetIntoViewport(data) {
 function renderViewportOverlays(data) {
     const numImages = data.displaySet.images.length;
     const imageIndex = 1;
+
     const source = $('#imageControlsTemplate').html();
     const template = Handlebars.compile(source);
     $('#imageControls').html(template({ imageIndex, numImages }));
@@ -255,6 +262,10 @@ const renderLayout = (viewportData) => {
     $imageViewerViewport.on('selectstart', () => false);
     $imageViewerViewport.on('contextmenu', () => false);
 
+    const orientationMarkersSource = $('#viewportOrientationMarkersTemplate').html();
+    const orientationMarkersTemplate = Handlebars.compile(orientationMarkersSource);
+    $('#viewportOrientationMarkers').html(orientationMarkersTemplate());
+
     loadDisplaySetIntoViewport(viewportData);
 
     renderViewportOverlays(viewportData);
@@ -263,7 +274,7 @@ const renderLayout = (viewportData) => {
 /**
  * Renders viewport
  */
-export default function renderViewerMain() {
+export default function renderViewport() {
     if (!DCMViewer.instance) {
         DCMViewer.instance = {};
     }
@@ -282,5 +293,4 @@ export default function renderViewerMain() {
     DCMViewer.layoutManager.updateViewports();
 
     studyPrefetcher.setStudies(studies);
-
 };
