@@ -3,7 +3,7 @@
     $isSingleDICOMFile = $_['isSingleDICOMFile'];
 ?>
 
-<div id="viewerMain">
+<div id="viewerMain" class="app-dicomviewer">
     <!-- Toolbar -->
     <div class="toolbar">
         <?php print_unescaped($this->inc('toolbarTemplate')); ?>

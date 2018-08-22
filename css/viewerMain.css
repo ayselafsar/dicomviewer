@@ -102,10 +102,10 @@
 }
 
 .scrollableStudyThumbnails {
-    height: calc(100% - 100px);
+    height: 100%;
     overflow-y: auto;
     overflow-x: hidden;
-    padding: 10px 16px 50px 4px;
+    padding: 10px 16px 0 4px;
     margin-right: -16px;
 }
 
@@ -131,6 +131,9 @@
     -moz-background-clip: padding;
     -webkit-background-clip: padding;
     background-clip: padding-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .imageThumbnail.active {
@@ -149,7 +152,7 @@
     font-size: 14px;
     line-height: 1.3em;
     margin-top: 5px;
-    max-width: 217px;
+    max-width: 240px;
     min-height: 36px;
     position: relative;
     word-wrap: break-word;
@@ -163,7 +166,7 @@
 
 .seriesInformation {
     padding-right: 4px;
-    max-width: 50px;
+    width: 45px;
 }
 
 .seriesInformation .item-frames .icon {
