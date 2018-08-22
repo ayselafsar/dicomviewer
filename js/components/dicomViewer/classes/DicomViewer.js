@@ -111,7 +111,7 @@ class DicomViewer {
                     this.activeImageLoader.destroy();
                 }
 
-                this.activeImageLoader = new ImageLoader(context, fileName, self.mimeType);
+                this.activeImageLoader = new ImageLoader(context, fileName, self.mimeType, self.hide);
 
                 const isDCMFile = (/\.(dcm)$/i).test(fileName);
                 if (isDCMFile) {

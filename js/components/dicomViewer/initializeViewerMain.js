@@ -28,6 +28,7 @@ export default function initializeViewerMain(viewerData) {
         DCMViewer.viewer.data.viewportColumns = 1;
         DCMViewer.viewer.data.viewportRows = 1;
         DCMViewer.viewer.data.activeViewport = 0;
+        DCMViewer.viewer.data.viewportIndex = 0;
     }
 
     // Update Studies

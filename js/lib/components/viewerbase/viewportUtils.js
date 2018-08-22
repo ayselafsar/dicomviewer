@@ -141,6 +141,7 @@ const flipH = () => {
 };
 
 const resetViewportWithElement = element => {
+    const viewport = cornerstone.getViewport(element);
     const enabledElement = cornerstone.getEnabledElement(element);
     if (enabledElement.fitToWindow === false) {
         const imageId = enabledElement.image.imageId;
@@ -153,6 +154,8 @@ const resetViewportWithElement = element => {
     } else {
         cornerstone.reset(element);
     }
+
+    updateOrientationMarkers(element, viewport);
 };
 
 const resetViewport = (viewportIndex=null) => {

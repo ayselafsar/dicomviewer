@@ -4,10 +4,11 @@ import generateFullUrl from '../../../lib/generateFullUrl';
 import createMetadata from '../lib/createMetadata';
 
 class ImageLoader {
-    constructor(context, fileName, mimeType) {
+    constructor(context, fileName, mimeType, hide) {
         this.context = context;
         this.fileName = fileName;
         this.mimeType = mimeType;
+        this.hide = hide;
         this.destroyed = false;
     }
 
@@ -199,7 +200,28 @@ class ImageLoader {
                 // Warn if no DICOM file is available
                 if (!allDicomFiles || !allDicomFiles.length) {
                     setTimeout(() => {
-                        $('.loadingViewerMain').text('No DICOM File Found');
+                        const $loadingViewerMain = $('.loadingViewerMain');
+
+                        // Clear previous text
+                        $loadingViewerMain.text('');
+
+                        // Create Close button to hide loading view
+                        const icon = document.createElement('i');
+                        icon.className = 'fa fa-times fa-lg';
+
+                        const link = document.createElement('a');
+                        link.className = 'button-close js-close-viewer';
+
+                        $(link).append(icon);
+                        $loadingViewerMain.append(link);
+                        $(link).click(() => {
+                            self.hide();
+                        });
+
+                        const content = '<p style="text-align: center;">' +
+                            'There is no available DICOM image to display.' +
+                            '</p>';
+                        $loadingViewerMain.append(content);
                     }, 500);
                     return;
                 }

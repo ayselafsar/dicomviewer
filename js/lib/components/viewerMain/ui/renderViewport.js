@@ -199,8 +199,36 @@ function loadDisplaySetIntoViewport() {
         updateOverlay();
 
         // Handle changes if a new image is displayed
-        element.addEventListener('cornerstonenewimage', () => {
+        element.addEventListener('cornerstonenewimage', (event) => {
+            const eventData = event.detail;
+            const currentImage = eventData.enabledElement.image;
+
+            // Update metadata from image dataset
+            DCMViewer.viewer.metadataProvider.updateMetadata(currentImage);
+
+            layoutManager.viewportData[viewportIndex].imageId = currentImage.imageId;
+
+            // Get the element and stack data
+            const element = event.target;
+            const toolData = cornerstoneTools.getToolState(element, 'stack');
+            if (!toolData || !toolData.data || !toolData.data.length) {
+                return;
+            }
+
+            // Update overlay information
             updateOverlay();
+
+            // Display orientation markers
+            DCMViewer.viewerbase.updateOrientationMarkers(element);
+
+            // If this viewport is displaying a stack of images, save the current image
+            // index in the stack to the global DCMViewer.viewer.data object.
+            const stack = cornerstoneTools.getToolState(element, 'stack');
+            if (stack && stack.data.length && stack.data[0].imageIds.length > 1) {
+                const { imageId } = currentImage;
+                const imageIdIndex = stack.data[0].imageIds.indexOf(imageId);
+                layoutManager.viewportData[viewportIndex].currentImageIdIndex = imageIdIndex;
+            }
         });
 
         // Handle changes on each image rendering
