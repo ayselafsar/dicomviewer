@@ -8,14 +8,14 @@
 
 See [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap.]]></description>
     <licence>AGPL</licence>
-    <version>0.0.6</version>
+    <version>1.0.0</version>
     <author mail="aysel.afsar@gmail.com" >Aysel Afsar</author>
     <namespace>DICOMViewer</namespace>
     <category>multimedia</category>
     <website>https://github.com/ayselafsar/dicomviewer</website>
     <bugs>https://github.com/ayselafsar/dicomviewer/issues</bugs>
     <dependencies>
-        <nextcloud min-version="12" max-version="13"/>
+        <nextcloud min-version="12" max-version="14"/>
     </dependencies>
     <repository type="git">https://github.com/ayselafsar/dicomviewer.git</repository>
     <screenshot small-thumbnail="https://raw.githubusercontent.com/ayselafsar/dicomviewer/master/screenshots/viewer1-small.png">https://raw.githubusercontent.com/ayselafsar/dicomviewer/master/screenshots/viewer1.png</screenshot>

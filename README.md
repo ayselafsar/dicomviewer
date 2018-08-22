@@ -2,7 +2,7 @@
 
 # DICOM Viewer
 
-It is a DICOM viewer which uses [cornerstonejs](https://github.com/cornerstonejs) library to display DICOM files on Nextcloud.
+It is a DICOM viewer which uses [cornerstonejs](https://github.com/cornerstonejs) library to display DICOM files in Nextcloud.
 
 For more information, see the blog post [Nextcloud in Digital Imaging](https://nextcloud.com/blog/digital-imaging-for-medicine-in-nextcloud/)
 
@@ -17,8 +17,8 @@ For more information, see the blog post [Nextcloud in Digital Imaging](https://n
 
 ### Features
 
-* **Viewer:** A DICOM viewer with basic imaging tools
-* **DICOM Dump:** A list of DICOM attributes displayed on the sidebar
+* **Viewer:** A DICOM viewer which displays images grouped by study and series in selected folders and allows to manipulate images with imaging tools
+* **DICOM Dump:** A list of DICOM attributes displayed on the sidebar with image thumbnail
 
 
 ### Installation
