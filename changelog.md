@@ -5,6 +5,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [1.0.0] - 2018-08-22
+
+### Added
+- Added support for opening DICOM images grouped by study and series in a folder
+- Added "Open with DICOM Viewer" in file actions menu
+- Added series panel
+- Added stack scroll tool
+- Added scrollbar
+- Added image thumbnail into the sidebar
+
+
 ## [0.0.6] - 2018-04-08
 
 ### Fixed
