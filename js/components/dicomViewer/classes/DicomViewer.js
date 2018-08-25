@@ -65,6 +65,12 @@ class DicomViewer {
                 }
             });
 
+            // Hide footer on public template
+            if ($('#isPublic').val()) {
+                $('#content').addClass('full-height');
+                $('footer').addClass('hidden');
+            }
+
             $('#app-content-files').css({ display: 'none' });
             $appContent.append(response);
 
