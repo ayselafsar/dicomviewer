@@ -111,9 +111,10 @@ class ImageLoader {
      */
     getAllDicomFiles(files) {
         const self = this;
+        const noExtension = 'application/octet-stream';
 
         return new Promise((resolve, reject) => {
-            let allDicomFiles = files.filter(file => file.mimetype === self.mimeType);
+            let allDicomFiles = files.filter(file => file.mimetype === self.mimeType || file.mimetype === noExtension);
 
             const folderMimeType = 'httpd/unix-directory';
             const folders = files.filter(file => file.mimetype === folderMimeType);
@@ -281,7 +282,7 @@ class ImageLoader {
                                 updateLoadingPercentage();
 
                                 imageResolve();
-                            }).catch(self.handleError);
+                            }).catch(() => imageReject());
                         });
 
                         // Resolve when image is loaded
@@ -289,8 +290,17 @@ class ImageLoader {
                     }
                 }
 
+                // Catch errors if any image promise fails
+                const resolveImagePromises = allImagePromises.map((p) => {
+                    if (p.catch) {
+                        p.catch(e => e);
+                    }
+
+                    return p;
+                });
+
                 // Handle when all images are loaded
-                Promise.all(allImagePromises).then(() => {
+                Promise.all(resolveImagePromises).then(() => {
                     // Reject if it is canceled/destroyed
                     if (self.destroyed) {
                         reject();
