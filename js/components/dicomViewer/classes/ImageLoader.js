@@ -290,17 +290,8 @@ class ImageLoader {
                     }
                 }
 
-                // Catch errors if any image promise fails
-                const resolveImagePromises = allImagePromises.map((p) => {
-                    if (p.catch) {
-                        p.catch(e => e);
-                    }
-
-                    return p;
-                });
-
                 // Handle when all images are loaded
-                Promise.all(resolveImagePromises).then(() => {
+                Promise.all(Array.from(allImagePromises.map(p => p.catch(() => null)))).then(() => {
                     // Reject if it is canceled/destroyed
                     if (self.destroyed) {
                         reject();

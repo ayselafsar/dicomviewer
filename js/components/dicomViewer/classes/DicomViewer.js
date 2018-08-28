@@ -34,6 +34,12 @@ class DicomViewer {
         $('#viewerMain').remove();
         $('#app-content-files').css({ display: 'block' });
 
+        // Show footer on public template
+        if ($('#isPublic').val()) {
+            $('#content').removeClass('full-height');
+            $('footer').removeClass('hidden');
+        }
+
         this.isViewerMainShown = false;
 
         FileList.setViewerMode(false);

@@ -9,6 +9,11 @@
     background-image: url('../img/app-dark.svg');
 }
 
+footer.hidden {
+    display: none !important;
+}
+
+
 /* Toolbar */
 
 
@@ -119,8 +124,6 @@
 .button-close:hover {
     color: #fff;
 }
-
-
 
 
 /* Viewer */
