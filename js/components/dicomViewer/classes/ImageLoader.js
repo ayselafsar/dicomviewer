@@ -40,6 +40,38 @@ class ImageLoader {
     }
 
     /**
+     * Show warning if there is no available dicom file
+     */
+    noAvailableDicomFileWarning() {
+        const self = this;
+
+        setTimeout(() => {
+            const $loadingViewerMain = $('.loadingViewerMain');
+
+            // Clear previous text
+            $loadingViewerMain.text('');
+
+            // Create Close button to hide loading view
+            const icon = document.createElement('i');
+            icon.className = 'fa fa-times fa-lg';
+
+            const link = document.createElement('a');
+            link.className = 'button-close js-close-viewer';
+
+            $(link).append(icon);
+            $loadingViewerMain.append(link);
+            $(link).click(() => {
+                self.hide();
+            });
+
+            const content = '<p style="text-align: center;">' +
+                'There is no available DICOM image to display' +
+                '</p>';
+            $loadingViewerMain.append(content);
+        }, 500);
+    }
+
+    /**
      * Load single DICOM instance
      */
     loadSingleDICOMInstance() {
@@ -200,30 +232,7 @@ class ImageLoader {
 
                 // Warn if no DICOM file is available
                 if (!allDicomFiles || !allDicomFiles.length) {
-                    setTimeout(() => {
-                        const $loadingViewerMain = $('.loadingViewerMain');
-
-                        // Clear previous text
-                        $loadingViewerMain.text('');
-
-                        // Create Close button to hide loading view
-                        const icon = document.createElement('i');
-                        icon.className = 'fa fa-times fa-lg';
-
-                        const link = document.createElement('a');
-                        link.className = 'button-close js-close-viewer';
-
-                        $(link).append(icon);
-                        $loadingViewerMain.append(link);
-                        $(link).click(() => {
-                            self.hide();
-                        });
-
-                        const content = '<p style="text-align: center;">' +
-                            'There is no available DICOM image to display.' +
-                            '</p>';
-                        $loadingViewerMain.append(content);
-                    }, 500);
+                    self.noAvailableDicomFileWarning();
                     return;
                 }
 
@@ -295,6 +304,12 @@ class ImageLoader {
                     // Reject if it is canceled/destroyed
                     if (self.destroyed) {
                         reject();
+                        return;
+                    }
+
+                    // Stop if there is no available image data
+                    if (!imagesData.length) {
+                        self.noAvailableDicomFileWarning();
                         return;
                     }
 

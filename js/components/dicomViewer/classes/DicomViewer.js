@@ -112,7 +112,7 @@ class DicomViewer {
         fileActions.registerAction({
             name: 'view',
             displayName: 'Open with DICOM Viewer',
-            mime: 'all',
+            mime: 'httpd/unix-directory',
             permissions: OC.PERMISSION_READ,
             order: -10000,
             templateName: 'viewerMain',
