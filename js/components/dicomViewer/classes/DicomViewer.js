@@ -102,15 +102,16 @@ class DicomViewer {
     }
 
     /**
-     * Register file actions for dcm files
+     * Register file actions for dicom files
      * @param fileActions
      * @private
      */
     _registerFileActions(fileActions) {
         const self = this;
 
+        // Register file actions for folders containing dicom files
         fileActions.registerAction({
-            name: 'view',
+            name: 'viewDicomFolder',
             displayName: 'Open with DICOM Viewer',
             mime: 'httpd/unix-directory',
             permissions: OC.PERMISSION_READ,
@@ -119,25 +120,44 @@ class DicomViewer {
             iconClass: 'icon-dicomviewer-dark',
             actionHandler: (fileName, context) => {
                 // Destroy the active image loader if exists
-                if (this.activeImageLoader) {
-                    this.activeImageLoader.destroy();
+                if (self.activeImageLoader) {
+                    self.activeImageLoader.destroy();
                 }
 
-                this.activeImageLoader = new ImageLoader(context, fileName, self.mimeType, self.hide);
+                self.activeImageLoader = new ImageLoader(context, fileName, self.mimeType, self.hide);
+
+                const imageLoadPromise = self.activeImageLoader.loadMultipleDICOMInstances();
+                self.show(imageLoadPromise);
+            }
+        });
+
+        // Register file actions for single dicom files
+        fileActions.registerAction({
+            name: 'viewDicomFile',
+            displayName: 'Open with DICOM Viewer',
+            mime: this.mimeType,
+            permissions: OC.PERMISSION_READ,
+            templateName: 'viewerMain',
+            actionHandler: (fileName, context) => {
+                // Destroy the active image loader if exists
+                if (self.activeImageLoader) {
+                    self.activeImageLoader.destroy();
+                }
+
+                self.activeImageLoader = new ImageLoader(context, fileName, self.mimeType, self.hide);
 
                 const isDCMFile = (/\.(dcm)$/i).test(fileName);
-                if (isDCMFile) {
-                    const imageLoadPromise = this.activeImageLoader.loadSingleDICOMInstance();
-                    self.show(imageLoadPromise, true);
-                } else {
-                    const imageLoadPromise = this.activeImageLoader.loadMultipleDICOMInstances();
-                    self.show(imageLoadPromise);
+                if (!isDCMFile) {
+                    return;
                 }
+
+                const imageLoadPromise = self.activeImageLoader.loadSingleDICOMInstance();
+                self.show(imageLoadPromise, true);
             }
         });
 
         // Add default action
-        fileActions.setDefault(self.mimeType, 'view');
+        fileActions.setDefault(self.mimeType, 'viewDicomFile');
     }
 }
 
