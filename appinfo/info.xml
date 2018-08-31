@@ -8,8 +8,8 @@
 
 See [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap.]]></description>
     <licence>AGPL</licence>
-    <version>1.0.0</version>
-    <author mail="aysel.afsar@gmail.com" >Aysel Afsar</author>
+    <version>1.0.1</version>
+    <author mail="aysel.afsar@gmail.com">Aysel Afsar</author>
     <namespace>DICOMViewer</namespace>
     <category>multimedia</category>
     <website>https://github.com/ayselafsar/dicomviewer</website>
