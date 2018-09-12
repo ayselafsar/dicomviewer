@@ -10,7 +10,7 @@ class RegisterMimeType implements IRepairStep {
 
     public function __construct() {
         // Define the custom mimetype mapping
-        $this->customMimetypeMapping = array("dcm" => array("application/dicom"));
+        $this->customMimetypeMapping = array("dcm" => array("application/dicom"),"ima" => array("application/dicom"),"dicom" => array("application/dicom"),"dic" => array("application/dicom"),"dc3" => array("application/dicom"));
     }
 
     public function getName() {
