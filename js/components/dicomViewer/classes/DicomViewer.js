@@ -5,6 +5,9 @@ import configureCodecs from '../configureCodecs';
 import ImageLoader from './ImageLoader';
 import { DCMViewerError } from '../../../lib/components/DCMViewerError';
 
+// Min device width to close series panel by default
+const MIN_DEVICE_WIDTH = 992;
+
 class DicomViewer {
     constructor() {
         this.mimeType = 'application/dicom';
@@ -48,18 +51,25 @@ class DicomViewer {
     /**
      * Show viewer
      * @param imageLoadPromise
-     * @param isSingleDICOMFile
+     * @param seriesPanelOpen
      */
-    show(imageLoadPromise, isSingleDICOMFile) {
+    show(imageLoadPromise, seriesPanelOpen = true) {
         const self = this;
         const url = OC.generateUrl('/apps/dicomviewer/viewerMain');
+
+        // Close series panel on small screens
+        const bodyWidth = $('body').width();
+        const isSmallScreen = parseInt(bodyWidth, 10) < MIN_DEVICE_WIDTH;
+        if (isSmallScreen && seriesPanelOpen) {
+            seriesPanelOpen = false;
+        }
 
         $.ajax({
             url,
             type: 'GET',
             contentType: 'text/html',
             data: {
-                isSingleDICOMFile
+                seriesPanelOpen,
             }
         }).done((response) => {
             const $appContent = $('#content');
@@ -152,7 +162,7 @@ class DicomViewer {
                 }
 
                 const imageLoadPromise = self.activeImageLoader.loadSingleDICOMInstance();
-                self.show(imageLoadPromise, true);
+                self.show(imageLoadPromise, false);
             }
         });
 

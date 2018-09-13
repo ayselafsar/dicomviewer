@@ -6,7 +6,7 @@ import $ from 'jquery';
  */
 export default function (commandManager) {
     const toolbarSectionButtonHandler = () => {
-        const $toolbarSectionButton = $('.toolbarSectionButton').not('.toggleSeriesPanelButton');
+        const $toolbarSectionButton = $('.toolbarSectionButton').not('.toggleSeriesPanelButton, .notTool');
         $toolbarSectionButton.click((e) => {
             const button = e.currentTarget;
             const $button = $(button);

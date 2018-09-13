@@ -35,9 +35,7 @@ function toggleSeriesPanel() {
 export default function renderToolbar() {
     const source = $('#toolbarTemplate').html();
     const template = Handlebars.compile(source);
-    $('#toolbar').html(template({
-        hasMultipleInstances: DCMViewer.ui.hasMultipleInstances
-    }));
+    $('#toolbar').html(template());
 
     // Wait until all DOM is rendered
     setTimeout(() => {
@@ -51,6 +49,37 @@ export default function renderToolbar() {
         // Close viewer if close icon is clicked
         $('.js-close-viewer').click(() => {
             DCMViewer.ui.closeViewer();
+        });
+
+        // Expand toolbar
+        const $moreTools = $('.js-more-tools');
+        $moreTools.click(() => {
+            const $toolbarSectionTools = $('.toolbarSectionTools');
+            const className = 'expandedToolbar';
+
+            if ($toolbarSectionTools.hasClass(className)) {
+                $toolbarSectionTools.removeClass(className);
+            } else {
+                $toolbarSectionTools.addClass(className);
+            }
+
+            // Rotate arrow icon
+            const $moreIcon = $moreTools.find('.svgContainer');
+            const $moreText = $moreTools.find('span');
+
+            if ($moreIcon.hasClass('rotate-180')) {
+                $moreIcon.removeClass('rotate-180');
+                $moreText.text('More');
+            } else {
+                $moreIcon.addClass('rotate-180');
+                $moreText.text('Less');
+            }
+
+            // Resize viewport
+            setTimeout(() => {
+                const viewportElement = $('.imageViewerViewport').get(0);
+                window.ResizeViewportManager.resizeViewportElement(viewportElement);
+            }, 300);
         });
     }, 300);
 }

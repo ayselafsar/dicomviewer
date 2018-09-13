@@ -32,7 +32,7 @@
 
 #viewerMain #toolbar {
     height: auto;
-    overflow: auto;
+    overflow: hidden;
 }
 
 #viewerMain .content {
@@ -40,7 +40,6 @@
     display: flex;
     width: 100%;
     border: 1px solid #44626f;
-    overflow: auto;
 }
 
 #viewerMain .sidebarMenu {
@@ -225,6 +224,8 @@
     margin-right: 20px;
     width: auto;
     text-align: center;
+    height: 50px;
+    transition: 0.3s;
 }
 
 #toolbar .toolbarSectionButton {
@@ -284,6 +285,18 @@
     transform: scaleX(-1);
     filter: FlipH;
     -ms-filter: "FlipH";
+}
+
+.toolbarSectionTools .moreTools {
+    color: #91b9cd;
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 35px;
+}
+
+.toolbarSectionTools .moreTools .toolbarSectionButton .svgContainer {
+    transition: 0.3s;
 }
 
 .series-panel {
@@ -576,8 +589,22 @@
     color: #91b9cd;
 }
 
+.expandedToolbar {
+    height: auto !important;
+}
 
+.rotate-180 {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
 
+@media only screen and (max-width: 1200px) {
+    #toolbar .toolbarSectionTools {
+        padding-right: 60px;
+    }
 
-
-
+    .toolbarSectionTools .moreTools {
+        display: block;
+    }
+}

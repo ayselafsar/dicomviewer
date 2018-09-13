@@ -44,7 +44,7 @@ class DisplayController extends Controller {
         $params = [
             'urlGenerator' => $this->urlGenerator,
             'minmode' => $minmode,
-            'isSingleDICOMFile' => $_GET['isSingleDICOMFile']
+            'seriesPanelOpen' => $_GET['seriesPanelOpen']
         ];
 
         return new TemplateResponse('dicomviewer', 'viewerMain', $params, 'blank');

@@ -1,8 +1,7 @@
 <?php
-    // Check if a single DICOM file is opened
-    $isSingleDICOMFile = $_['isSingleDICOMFile'];
+    // Check if series panel is open
+    $seriesPanelOpen = $_['seriesPanelOpen'];
 ?>
-
 <div id="viewerMain" class="app-dicomviewer">
     <!-- Toolbar -->
     <div class="toolbar">
@@ -11,12 +10,12 @@
 
     <!-- Viewport Content -->
     <div class="content">
-        <div class="sidebarMenu <?php if(!$isSingleDICOMFile) { echo 'sidebar-open'; } ?>">
+        <div class="sidebarMenu <?php if($seriesPanelOpen === 'true') { echo 'sidebar-open'; } ?>">
             <div class="studyBrowser">
                 <?php print_unescaped($this->inc('studyBrowserTemplate')); ?>
             </div>
         </div>
-        <div class="mainContent <?php if($isSingleDICOMFile) { echo 'content-full'; } ?>">
+        <div class="mainContent <?php if($seriesPanelOpen === 'false') { echo 'content-full'; } ?>">
             <div id="layoutManagerTarget">
                 <div class="viewportContainer">
                     <div class="removable">

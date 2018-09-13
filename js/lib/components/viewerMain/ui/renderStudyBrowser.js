@@ -15,7 +15,6 @@ export default function renderStudyBrowser() {
     const template = Handlebars.compile(source);
     const html = template({
         studies,
-        isSeriesPanelOpen: DCMViewer.ui.hasMultipleInstances
     });
 
     $('#studyBrowser').html(html);
