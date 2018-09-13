@@ -156,11 +156,6 @@ class DicomViewer {
 
                 self.activeImageLoader = new ImageLoader(context, fileName, self.mimeType, self.hide);
 
-                const isDCMFile = (/\.(dcm)$/i).test(fileName);
-                if (!isDCMFile) {
-                    return;
-                }
-
                 const imageLoadPromise = self.activeImageLoader.loadSingleDICOMInstance();
                 self.show(imageLoadPromise, false);
             }

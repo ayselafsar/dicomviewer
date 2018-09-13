@@ -4,13 +4,23 @@ namespace OCA\DICOMViewer\Migration;
 
 use OCP\Migration\IOutput;
 use OCP\Migration\IRepairStep;
+use OCP\ILogger;
 
 class RegisterMimeType implements IRepairStep {
+    protected $logger;
     private $customMimetypeMapping;
 
-    public function __construct() {
+    public function __construct(ILogger $logger) {
+        $this->logger = $logger;
+
         // Define the custom mimetype mapping
-        $this->customMimetypeMapping = array("dcm" => array("application/dicom"),"ima" => array("application/dicom"),"dicom" => array("application/dicom"),"dic" => array("application/dicom"),"dc3" => array("application/dicom"));
+        $this->customMimetypeMapping = array(
+            "dcm" => array("application/dicom"),
+            "ima" => array("application/dicom"),
+            "dicom" => array("application/dicom"),
+            "dic" => array("application/dicom"),
+            "dc3" => array("application/dicom")
+        );
     }
 
     public function getName() {
@@ -42,7 +52,7 @@ class RegisterMimeType implements IRepairStep {
     }
 
     public function run(IOutput $output) {
-        $output->info('Registering the mimetype...');
+        $this->logger->info('Registering the mimetype...');
 
         // Register the mime type for existing files
         $this->registerForExistingFiles();
@@ -50,6 +60,6 @@ class RegisterMimeType implements IRepairStep {
         // Register the mime type for new files
         $this->registerForNewFiles();
 
-        $output->info('The mimetype was successfully registered.');
+        $this->logger->info('The mimetype was successfully registered.');
     }
 }
