@@ -13,8 +13,8 @@
         <div class="load-progress-content"></div>
 
         <div class="bottomleft dicomTag">
-            <div id="seriesNumber">Ser: {{seriesNumber}}</div>
-            <div id="instanceNumber">Img: {{instanceNumber}} {{#if numImages}}({{imageIndex}}/{{numImages}}){{/if}}</div>
+            <div id="seriesNumber"><?php print_unescaped($this->l10n->t('Ser')); ?>: {{seriesNumber}}</div>
+            <div id="instanceNumber"><?php print_unescaped($this->l10n->t('Img')); ?>: {{instanceNumber}} {{#if numImages}}({{imageIndex}}/{{numImages}}){{/if}}</div>
             <div id="dimensions">{{dimensions}}</div>
             <div id="seriesDescription">{{seriesDescription}}</div>
         </div>
