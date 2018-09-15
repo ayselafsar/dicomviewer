@@ -2,6 +2,7 @@ OC.L10N.register(
     "dicomviewer",
     {
     "Loading..." : "Lade ...",
+	"There is no available DICOM image to display" : "Es existieren keine DICOM Bilddaten zum Anzeigen.",	
 	"Ser" : "Serie",
 	"Img" : "Bild",
 	"Series" : "Serien",
