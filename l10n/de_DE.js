@@ -24,7 +24,25 @@ OC.L10N.register(
 	"Image Quality (%)" : "Bildqualität (%)",
 	"Image Preview" : "Vorschau",
 	"Close" : "Schließen",
-	"Download" : "Herunterladen"
+	"Download" : "Herunterladen",
+	"Stack Scroll" : "Scrollen",
+	"Levels" : "Fensterung",
+	"Zoom" : "Zoom",
+	"Pan" : "Verschieben",
+	"Invert" : "Invertieren",
+	"Flip H" : "Spiegeln H",
+	"Flip V" : "Spiegeln V",
+	"Rotate L" : "Rotieren L",
+	"Rotate R" : "Rotieren R",
+	"ROI Window" : "ROI Fensterung",
+	"Reset" : "Zurücksetzen",
+	"Length" : "Länge",
+	"Probe" : "ROI Punkt",
+	"Elliptical ROI" : "ROI Elipse",
+	"Rectangle ROI" : "ROI rechteck",
+	"Angle" : "Winkel",
+	"Clear" : "Löschen",
+	"Capture" : "Speichern"
 	
 	
 },
