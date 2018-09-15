@@ -43,7 +43,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>File Type</td>
+                            <td><?php print_unescaped($this->l10n->t('File Type')); ?></td>
                             <td>
                                 <select id="viewport-image-type" class="form-control">
                                     <option value="png" selected="selected">PNG</option>
