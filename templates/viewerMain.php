@@ -36,6 +36,6 @@
 
     <!-- Loading View which shows the percentage of the loaded files -->
     <div class="loadingViewerMain">
-        Loading... <span id="loadingPercentage">0</span>%
+        <?php print_unescaped($this->l10n->t('Loading...')); ?> <span id="loadingPercentage">0</span>%
     </div>
 </div>
