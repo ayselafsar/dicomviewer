@@ -40,7 +40,7 @@ OC.L10N.register(
 	"Length" : "Länge",
 	"Probe" : "ROI Punkt",
 	"Elliptical ROI" : "ROI Ellipse",
-	"Rectangle ROI" : "ROI rechteck",
+	"Rectangle ROI" : "ROI Rechteck",
 	"Angle" : "Winkel",
 	"Clear" : "Löschen",
 	"Capture" : "Speichern"
