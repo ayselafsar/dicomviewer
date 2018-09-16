@@ -39,7 +39,7 @@ OC.L10N.register(
 	"Reset" : "Zurücksetzen",
 	"Length" : "Länge",
 	"Probe" : "ROI Punkt",
-	"Elliptical ROI" : "ROI Elipse",
+	"Elliptical ROI" : "ROI Ellipse",
 	"Rectangle ROI" : "ROI rechteck",
 	"Angle" : "Winkel",
 	"Clear" : "Löschen",
