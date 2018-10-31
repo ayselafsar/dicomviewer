@@ -23,15 +23,17 @@ For more information, see the blog post [Nextcloud in Digital Imaging](https://n
 
 ### Installation
 
-On your Nextcloud, simply navigate to Apps > Multimedia > DICOM Viewer, and enable it.
+Build the app using the instructions below and then on Nextcloud, simply navigate to Apps > Multimedia > DICOM Viewer, and enable it.
 
 
 ### Build
 
 Firstly, install NodeJS for JavaScript dependencies, then follow these steps:
-1. Run `make && make source` command to build source code
-2. Copy `build/artifacts/source/dicomviewer` into `path-to-nextcloud/apps`
-3. Enable the DICOM Viewer app
+1. Clone this repository
+2. Change into the directory you have cloned this repository into
+3. Run `make && make source` command to build source code
+4. Copy `build/artifacts/source/dicomviewer` into `path-to-nextcloud/apps`
+5. Enable the DICOM Viewer app
 
 
 ### Roadmap
