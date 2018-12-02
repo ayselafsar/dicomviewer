@@ -15,7 +15,7 @@ See [README](https://github.com/ayselafsar/dicomviewer) for a list of full featu
     <website>https://github.com/ayselafsar/dicomviewer</website>
     <bugs>https://github.com/ayselafsar/dicomviewer/issues</bugs>
     <dependencies>
-        <nextcloud min-version="12" max-version="14"/>
+        <nextcloud min-version="12" max-version="16"/>
     </dependencies>
     <repository type="git">https://github.com/ayselafsar/dicomviewer.git</repository>
     <screenshot small-thumbnail="https://raw.githubusercontent.com/ayselafsar/dicomviewer/master/screenshots/viewer1-small.png">https://raw.githubusercontent.com/ayselafsar/dicomviewer/master/screenshots/viewer1.png</screenshot>
