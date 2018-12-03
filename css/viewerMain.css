@@ -8,8 +8,9 @@
     bottom: 0;
     overflow: hidden;
     z-index: 9999;
+
     display: flex;
-    flex-flow: column;
+    flex-direction: column;
 }
 
 .loadingViewerMain {
@@ -28,6 +29,7 @@
 
 #viewerMain .toolbar {
     width: 100%;
+    flex: 0 1 50px;
 }
 
 #viewerMain #toolbar {
@@ -36,8 +38,9 @@
 }
 
 #viewerMain .content {
-    flex: 1;
     display: flex;
+    flex-direction: row;
+    flex: 1;
     width: 100%;
     border: 1px solid #44626f;
 }
@@ -45,10 +48,12 @@
 #viewerMain .sidebarMenu {
     width: 0;
     border-right: 1px solid #44626f;
+    position: relative;
     transition: all 0.3s ease;
 }
 
 #viewerMain .mainContent {
+    flex: 1;
     width: calc(100% - 272px);
     transition: all 0.3s ease;
 }
@@ -91,25 +96,29 @@
     transition: all 0.3s ease;
 }
 
-#studyBrowser, .studyBrowser {
-    float: left;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
+#studyBrowser {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     background-color: black;
+}
+
+.studyBrowser {
+    width: 100%;
+    height: 100%;
     position: relative;
 }
 
-.scrollableStudyThumbnails {
-    height: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
-    padding: 10px 16px 0 4px;
-    margin-right: -16px;
+.slimScrollBar {
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
 }
 
-.scrollableStudyThumbnails::-webkit-scrollbar {
-    display: none;
+.slimScrollBarActive {
+    background-color: #2CA6D4 !important;
 }
 
 .thumbnailEntry {
@@ -374,7 +383,7 @@
 .imageControls {
     height: 100%;
     position: absolute;
-    right: 0;
+    right: 5px;
     top: 0;
 }
 
@@ -382,15 +391,16 @@
     height: calc(100% - 20px);
     margin-top: 5px;
     position: relative;
-    width: 12px;
+    width: 14px;
 }
 
 .imageControls .scrollbar .imageSlider {
-    height: 12px;
-    min-height: 12px !important;
+    height: 14px;
+    min-height: 14px !important;
     padding: 0;
     position: absolute;
     top: 0;
+    left: 7px;
     transform: rotate(90deg);
     transform-origin: top left;
     -webkit-appearance: none;
@@ -414,7 +424,7 @@
     background-color: rgba(0,0,0,0);
     border: none;
     cursor: pointer;
-    height: 5px;
+    height: 14px;
     z-index: 6;
 }
 
@@ -422,7 +432,7 @@
     background-color: rgba(0,0,0,0);
     border: none;
     cursor: pointer;
-    height: 5px;
+    height: 14px;
     z-index: 6;
 }
 
@@ -433,7 +443,7 @@
     border-width: 15px 0;
     color: rgba(0,0,0,0);
     cursor: pointer;
-    height: 12px;
+    height: 14px;
     width: 100%;
 }
 
@@ -451,7 +461,7 @@
     border: none;
     border-radius: 57px;
     cursor: -webkit-grab;
-    height: 12px;
+    height: 14px;
     margin-top: -4px;
     width: 39px;
 }
@@ -466,7 +476,7 @@
     border: none;
     border-radius: 57px;
     cursor: -moz-grab;
-    height: 12px;
+    height: 14px;
     width: 39px;
     z-index: 7;
 }
@@ -481,7 +491,7 @@
     border: none;
     border-radius: 57px;
     cursor: ns-resize;
-    height: 12px;
+    height: 14px;
     width: 39px;
 }
 
