@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import { cornerstone } from '../../cornerstonejs';
 import { viewportUtils } from './viewportUtils';
+import CaptureImageDialog from '../../../../templates/CaptureImageDialog.html';
 
 const DEFAULT_FILENAME = 'image';
 
@@ -214,31 +215,23 @@ const show = () => {
         $viewerMain.find('.modal').remove();
     }
 
-    // Get modal dialog content
-    $.ajax({
-        url: OC.generateUrl('/apps/dicomviewer/captureImage'),
-        type: 'GET',
-        contentType: 'text/html',
-    }).done((response) => {
-        $viewerMain.append(response);
+    // Add capture image dialog content
+    $viewerMain.append(CaptureImageDialog);
 
-        registerPreviewDialogEvents();
-        initializeViewport();
+    registerPreviewDialogEvents();
+    initializeViewport();
 
-        // Set initial image size
-        const activeViewport = viewportUtils.getActiveViewportElement();
-        const enabledElement = cornerstone.getEnabledElement(activeViewport);
+    // Set initial image size
+    const activeViewport = viewportUtils.getActiveViewportElement();
+    const enabledElement = cornerstone.getEnabledElement(activeViewport);
 
-        updateViewportElement(enabledElement.image.width, enabledElement.image.height);
+    updateViewportElement(enabledElement.image.width, enabledElement.image.height);
 
-        $('#viewport-preview-width').val(enabledElement.image.width);
-        $('#viewport-preview-height').val(enabledElement.image.height);
+    $('#viewport-preview-width').val(enabledElement.image.width);
+    $('#viewport-preview-height').val(enabledElement.image.height);
 
-        // Open dialog
-        $('.captureImageDialog').modal();
-    }).fail((response, code) => {
-        console.error(response, code);
-    });
+    // Open dialog
+    $('.captureImageDialog').modal();
 };
 
 const captureImageDialog = {

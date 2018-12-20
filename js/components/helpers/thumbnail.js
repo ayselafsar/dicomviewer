@@ -1,8 +1,9 @@
 import $ from 'jquery';
-import Handlebars from 'handlebars';
 import { _ } from 'underscore';
+import Handlebars from 'handlebars';
 import { cornerstone } from '../../lib/cornerstonejs';
 import { DCMViewer } from '../../lib/components/viewerMain';
+import ImageThumbnail from '../../../templates/ImageThumbnail.html';
 
 /**
  * Create data for thumbnail
@@ -46,20 +47,27 @@ function getThumbnailImageId(stack) {
     return imageInstance.getImageId(imageIndex, true);
 }
 
+
 /**
  * Render each thumbnail
  */
 Handlebars.registerHelper('renderThumbnail', function () {
-    const { stack } = this;
-    const { seriesNumber } = stack;
-    const { displaySetInstanceUid } = stack;
-
-    const imageId = getThumbnailImageId(stack);
-
-    // Wait until DOM is rendered
     setTimeout(() => {
-        const elementId = `imageThumbnailCanvas${seriesNumber}_${displaySetInstanceUid}`;
-        const $element = $(`#${elementId}`);
+        const { stack } = this;
+        const { thumbnailIndex } = this;
+
+        const imageId = getThumbnailImageId(stack);
+
+        const $scrollableStudyThumbnails = $('.scrollableStudyThumbnails');
+        const templateContent = ImageThumbnail({
+            stack,
+            activeThumbnail: (thumbnailIndex === 0)
+        });
+        const $imageThumbnail = $($.parseHTML(templateContent));
+
+        $scrollableStudyThumbnails.append($imageThumbnail);
+
+        const $element = $imageThumbnail.find('.imageThumbnailCanvas');
         const element = $element.get(0);
 
         // Enable element

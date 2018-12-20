@@ -1,11 +1,13 @@
 import $ from 'jquery';
-import Handlebars from 'handlebars';
 import { _ } from 'underscore';
 import { cornerstone, cornerstoneTools } from '../../../cornerstonejs';
 import { DCMViewer } from '../index';
 import { Viewerbase } from '../../viewerbase';
 import { DCMViewerError } from '../../DCMViewerError';
 import { DCMViewerLog } from '../../DCMViewerLog';
+import ImageControls from '../../../../../templates/ImageControls.html';
+import ViewportOverlay from '../../../../../templates/ViewportOverlay.html';
+import ViewportOrientationMarkers from '../../../../../templates/ViewportOrientationMarkers.html';
 
 // Get compression information of image
 function getCompression() {
@@ -46,11 +48,11 @@ function updateOverlay() {
     const $slider = $('.imageSlider');
     $slider.val(stack.currentImageIdIndex + 1);
 
-    // Update overlay data
-    const source = $('#viewportOverlayTemplate').html();
-    const template = Handlebars.compile(source);
+    // Remove viewport overlay if exists
+    $('.imageViewerViewportOverlay').remove();
 
-    const content = template({
+    // Update overlay data
+    const viewportOverlayContent = ViewportOverlay({
         patientName: viewportOverlayUtils.getPatient.call(viewportData, 'name'),
         patientId: viewportOverlayUtils.getPatient.call(viewportData, 'id'),
         studyDescription: viewportOverlayUtils.getStudy.call(viewportData, 'studyDescription'),
@@ -65,7 +67,7 @@ function updateOverlay() {
         compression: getCompression(),
     });
 
-    $('#viewportOverlay').html(content);
+    $('.removable').append(viewportOverlayContent);
 }
 
 function loadDisplaySetIntoViewport() {
@@ -251,9 +253,8 @@ function renderImageControls() {
     const numImages = data.displaySet.images.length;
     const imageIndex = 1;
 
-    const source = $('#imageControlsTemplate').html();
-    const template = Handlebars.compile(source);
-    $('#imageControls').html(template({ imageIndex, numImages }));
+    const imageControlsContent = ImageControls({ imageIndex, numImages });
+    $('#imageControls').html(imageControlsContent);
 
     // Set size of scrollbar
     setTimeout(() => {
@@ -317,9 +318,7 @@ const renderLayout = (viewportData) => {
     $imageViewerViewport.on('contextmenu', () => false);
 
     // Render orientation markers template before displaying image
-    const orientationMarkersSource = $('#viewportOrientationMarkersTemplate').html();
-    const orientationMarkersTemplate = Handlebars.compile(orientationMarkersSource);
-    $('#viewportOrientationMarkers').html(orientationMarkersTemplate());
+    $('#viewportOrientationMarkers').html(ViewportOrientationMarkers);
 
     // Load and display image
     loadDisplaySetIntoViewport();

@@ -1,0 +1,9 @@
+<div id="studyBrowser" class="studyBrowser">
+    <div class="scrollableStudyThumbnails">
+        {{#each studies as |study|}}
+            {{#each (studyThumbnails study) as |thumbnail|}}
+                {{renderThumbnail}}
+            {{/each}}
+        {{/each}}
+    </div>
+</div>r

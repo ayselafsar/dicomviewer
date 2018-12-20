@@ -10,7 +10,7 @@ module.exports = {
         filename: 'app.bundle.js'
     },
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
@@ -19,20 +19,32 @@ module.exports = {
                     presets: ['es2015']
                 }
             }, {
+                test: /\.html/,
+                loader: 'handlebars-loader',
+                query: {
+                    extensions: '.html',
+                    helperDirs: path.resolve(__dirname, 'components/helpers'),
+                    precompileOptions: {
+                        knownHelpersOnly: false,
+                    },
+                }
+            }, {
                 test: /public\/.\.js$/,
                 loader: 'file'
             }
         ]
     },
     resolve: {
+        modules: [path.resolve(__dirname), 'node_modules'],
         alias: {
-            handlebars: 'handlebars/dist/handlebars.min.js',
+            'handlebars': 'handlebars/runtime.js'
         }
     },
     stats: {
         colors: true
     },
-    devtool: 'source-map',
+    mode: 'development',
+    devtool: '#source-map',
     plugins: [
         new CleanWebpackPlugin(['dist']),
         new CopyWebpackPlugin([

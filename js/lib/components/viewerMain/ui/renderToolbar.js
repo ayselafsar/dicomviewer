@@ -33,10 +33,6 @@ function toggleSeriesPanel() {
  * Renders toolbar and actions
  */
 export default function renderToolbar() {
-    const source = $('#toolbarTemplate').html();
-    const template = Handlebars.compile(source);
-    $('#toolbar').html(template());
-
     // Wait until all DOM is rendered
     setTimeout(() => {
         // Enable to toggle series panel

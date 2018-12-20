@@ -4,6 +4,7 @@ import initializeViewerMain from '../initializeViewerMain';
 import configureCodecs from '../configureCodecs';
 import ImageLoader from './ImageLoader';
 import { DCMViewerError } from '../../../lib/components/DCMViewerError';
+import AppDicomViewer from '../../../../templates/AppDicomViewer.html';
 
 // Min device width to close series panel by default
 const MIN_DEVICE_WIDTH = 992;
@@ -54,8 +55,38 @@ class DicomViewer {
      * @param seriesPanelOpen
      */
     show(imageLoadPromise, seriesPanelOpen = true) {
-        const self = this;
-        const url = OC.generateUrl('/apps/dicomviewer/viewerMain');
+        // Hide footer on public template
+        if ($('#isPublic').val()) {
+            $('#content').addClass('full-height');
+            $('footer').addClass('hidden');
+        }
+
+        $('#app-content-files').css({ display: 'none' });
+
+        const $appContent = $('#content');
+        $appContent.append(AppDicomViewer);
+
+        // Go back on ESC
+        $(document).keyup((e) => {
+            if (this.isViewerMainShown && e.keyCode === 27) {
+                this.hide();
+            }
+        });
+
+        if (!$('html').hasClass('ie8')) {
+            history.pushState({}, '', '#dcmviewer');
+        }
+
+        if (!$('html').hasClass('ie8')) {
+            $(window).one('popstate', () => {
+                this.hide();
+            });
+        }
+
+        this.isViewerMainShown = true;
+
+        // Close viewer
+        DCMViewer.ui.closeViewer = this.hide;
 
         // Close series panel on small screens
         const bodyWidth = $('body').width();
@@ -64,51 +95,9 @@ class DicomViewer {
             seriesPanelOpen = false;
         }
 
-        $.ajax({
-            url,
-            type: 'GET',
-            contentType: 'text/html',
-            data: {
-                seriesPanelOpen,
-            }
-        }).done((response) => {
-            const $appContent = $('#content');
-
-            // Go back on ESC
-            $(document).keyup((e) => {
-                if (self.isViewerMainShown && e.keyCode === 27) {
-                    self.hide();
-                }
-            });
-
-            // Hide footer on public template
-            if ($('#isPublic').val()) {
-                $('#content').addClass('full-height');
-                $('footer').addClass('hidden');
-            }
-
-            $('#app-content-files').css({ display: 'none' });
-            $appContent.append(response);
-
-            if (!$('html').hasClass('ie8')) {
-                history.pushState({}, '', '#dcmviewer');
-            }
-
-            if (!$('html').hasClass('ie8')) {
-                $(window).one('popstate', () => {
-                    self.hide();
-                });
-            }
-
-            self.isViewerMainShown = true;
-
-            // Close viewer
-            DCMViewer.ui.closeViewer = self.hide;
-
-            imageLoadPromise.then((viewerData) => {
-                initializeViewerMain(viewerData);
-            }).catch(() => new DCMViewerError('Failed to load images'));
-        });
+        imageLoadPromise.then((viewerData) => {
+            initializeViewerMain(viewerData);
+        }).catch(() => new DCMViewerError('Failed to load images'));
     }
 
     /**
@@ -126,7 +115,7 @@ class DicomViewer {
             mime: 'httpd/unix-directory',
             permissions: OC.PERMISSION_READ,
             order: -10000,
-            templateName: 'viewerMain',
+            templateName: 'AppDicomViewer',
             iconClass: 'icon-dicomviewer-dark',
             actionHandler: (fileName, context) => {
                 // Destroy the active image loader if exists
@@ -147,7 +136,7 @@ class DicomViewer {
             displayName: 'Open with DICOM Viewer',
             mime: this.mimeType,
             permissions: OC.PERMISSION_READ,
-            templateName: 'viewerMain',
+            templateName: 'AppDicomViewer',
             actionHandler: (fileName, context) => {
                 // Destroy the active image loader if exists
                 if (self.activeImageLoader) {

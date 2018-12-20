@@ -1,21 +1,11 @@
-<?php
-    // Check if series panel is open
-    $seriesPanelOpen = $_['seriesPanelOpen'];
-?>
 <div id="viewerMain" class="app-dicomviewer">
     <!-- Toolbar -->
-    <div class="toolbar">
-        <?php print_unescaped($this->inc('toolbarTemplate')); ?>
-    </div>
+    {{> Toolbar}}
 
     <!-- Viewport Content -->
     <div class="content">
-        <div class="sidebarMenu <?php if($seriesPanelOpen === 'true') { echo 'sidebar-open'; } ?>">
-            <div class="studyBrowser">
-                <?php print_unescaped($this->inc('studyBrowserTemplate')); ?>
-            </div>
-        </div>
-        <div class="mainContent <?php if($seriesPanelOpen === 'false') { echo 'content-full'; } ?>">
+        <div class="sidebarMenu sidebar-open"></div>
+        <div class="mainContent">
             <div id="layoutManagerTarget">
                 <div class="viewportContainer">
                     <div class="removable">
@@ -25,9 +15,8 @@
                              onselectstart="return false;"
                              tabindex="0">
                         </div>
-                        <?php print_unescaped($this->inc('viewportOverlayTemplate')); ?>
-                        <?php print_unescaped($this->inc('imageControlsTemplate')); ?>
-                        <?php print_unescaped($this->inc('viewportOrientationMarkersTemplate')); ?>
+                        {{> ImageControls}}
+                        {{> ViewportOrientationMarkers}}
                     </div>
                 </div>
             </div>

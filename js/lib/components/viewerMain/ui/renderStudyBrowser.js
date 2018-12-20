@@ -3,6 +3,7 @@ import slimscroll from 'jquery-slimscroll';
 import Handlebars from 'handlebars';
 import { _ } from 'underscore';
 import { DCMViewer } from '../index';
+import StudyBrowser from '../../../../../templates/StudyBrowser.html';
 
 // Enable scrollbar for study browser section when page is resized
 const handleStudyBrowserScrollbar = _.throttle(() => {
@@ -37,21 +38,16 @@ const handleStudyBrowserScrollbar = _.throttle(() => {
 }, 300);
 
 /**
- * Renders study browser
+ * Renders study browser with studies
  */
 export default function renderStudyBrowser() {
-    const imageThumbnailSource = $('#imageThumbnailTemplate').html();
-    Handlebars.registerPartial('imageThumbnail', imageThumbnailSource);
-
-    const source = $('#studyBrowserTemplate').html();
     const { studies } = DCMViewer.viewerbase.data;
-
-    const template = Handlebars.compile(source);
-    const html = template({
-        studies,
+    const $sidebarMenu = $('.sidebarMenu');
+    const templateContent = StudyBrowser({
+        studies: studies
     });
 
-    $('#studyBrowser').html(html);
+    $sidebarMenu.html(templateContent);
 
     // Show scrollbar if needed
     handleStudyBrowserScrollbar();
