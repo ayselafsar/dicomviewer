@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import initializeSidebarPreview from '../initializeSidebarPreview';
+import Sidebar from '../../../../templates/Sidebar.html';
 
 class SidebarPreview {
     constructor() {
@@ -13,27 +14,20 @@ class SidebarPreview {
     }
 
     handlePreview(model, $thumbnailDiv, $thumbnailContainer) {
-        const fileDownloadUrl = Files.getDownloadUrl(model.get('name'), model.get('path'));
+        // Wait until sidebar is rendered
+        setTimeout(() => {
+            const fileDownloadUrl = Files.getDownloadUrl(model.get('name'), model.get('path'));
 
-        const sidebarUrl = OC.generateUrl('/apps/dicomviewer/dicomSidebar?file={file}', {
-            file: fileDownloadUrl,
-        });
+            const $appSidebar = $('#app-sidebar');
+            const appSidebarHeight = $appSidebar.height();
+            const previewHeight = parseInt(appSidebarHeight, 10) / 2;
 
-        const $appSidebar = $('#app-sidebar');
-        const appSidebarHeight = $appSidebar.height();
-        const previewHeight = parseInt(appSidebarHeight, 10) / 2;
-
-        $.ajax({
-            url: sidebarUrl,
-            type: 'GET',
-            contentType: 'text/html',
-        }).done((response) => {
             $thumbnailDiv.removeClass('icon-loading icon-32');
             $thumbnailContainer.addClass('large');
             $thumbnailDiv.children('.stretcher').remove();
             $thumbnailContainer.css('height', previewHeight);
 
-            $thumbnailContainer.html(response);
+            $thumbnailContainer.html(Sidebar);
 
             $(window).on('resize', () => {
                 const frameHeight = parseInt($appSidebar.height(), 10) / 2;
@@ -42,9 +36,7 @@ class SidebarPreview {
 
             // Initialize sidebar
             initializeSidebarPreview(fileDownloadUrl);
-        }).fail((response, code) => {
-            console.error(response, code);
-        });
+        }, 300);
     }
 }
 
