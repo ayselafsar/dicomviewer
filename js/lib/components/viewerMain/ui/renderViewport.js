@@ -248,6 +248,40 @@ function loadDisplaySetIntoViewport() {
     });
 }
 
+function setImageControlButton($element) {
+    $element.on('touchstart', function () {
+        if ($(this).hasClass('imageControlButtonActive')) {
+            return;
+        }
+
+        $(this).addClass('imageControlButtonActive');
+    });
+
+    $element.on('touchend', function () {
+        if (!$(this).hasClass('imageControlButtonActive')) {
+            return;
+        }
+
+        $(this).removeClass('imageControlButtonActive');
+    });
+
+    $element.on('mouseenter', function () {
+        if ($(this).hasClass('imageControlButtonActive')) {
+            return;
+        }
+
+        $(this).addClass('imageControlButtonActive');
+    });
+
+    $element.on('mouseleave', function () {
+        if (!$(this).hasClass('imageControlButtonActive')) {
+            return;
+        }
+
+        $(this).removeClass('imageControlButtonActive');
+    });
+}
+
 function renderImageControls() {
     const data = DCMViewer.instance.viewportData;
     const numImages = data.displaySet.images.length;
@@ -259,6 +293,8 @@ function renderImageControls() {
     // Set size of scrollbar
     setTimeout(() => {
         const $slider = $('.imageSlider');
+        const $imageControlUp = $('.imageControlUp');
+        const $imageControlDown = $('.imageControlDown');
         const $element = DCMViewer.ui.$imageViewerViewport;
         const element = $element.get(0);
 
@@ -268,9 +304,40 @@ function renderImageControls() {
             cornerstoneTools.scrollToIndex(element, newImageIdIndex);
         });
 
+        // Change image slider's value with image control buttons
+        $imageControlUp.on('click', () => {
+            let currentSliderVal = parseInt($slider.val(), 10);
+            if (currentSliderVal === 0) {
+                return;
+            }
+
+            currentSliderVal -= 1;
+
+            $slider.val(currentSliderVal);
+            $slider.trigger('change');
+        });
+
+        // Change image slider's value with image control buttons
+        $imageControlDown.on('click', () => {
+            let currentSliderVal = parseInt($slider.val(), 10);
+            let maxValue = $slider.attr('max');
+            maxValue = parseInt(maxValue, 10);
+            if (currentSliderVal === maxValue) {
+                return;
+            }
+
+            currentSliderVal += 1;
+
+            $slider.val(currentSliderVal);
+            $slider.trigger('change');
+        });
+
+        setImageControlButton($imageControlUp);
+        setImageControlButton($imageControlDown);
+
         const handleResize = _.throttle(() => {
             const viewportHeight = $element.height();
-            $slider.width(viewportHeight - 20);
+            $slider.width(viewportHeight - 120);
         }, 150);
 
         handleResize();

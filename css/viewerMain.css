@@ -107,6 +107,7 @@
 }
 
 .slimScrollBar {
+    margin: 10px 0;
     cursor: grab;
     cursor: -moz-grab;
     cursor: -webkit-grab;
@@ -375,11 +376,34 @@
     color: #2CA6D4 !important;
 }
 
-.imageControls {
-    height: 100%;
+#imageControls .imageControlButton {
     position: absolute;
-    right: 5px;
-    top: 0;
+    right: 0;
+    color: #163239;
+    cursor: pointer;
+    font-size: 28px;
+    width: 40px;
+    height: 40px;
+    padding: 4px;
+}
+
+#imageControls .imageControlButtonActive {
+    color: #2CA6D4;
+}
+
+#imageControls .imageControlUp {
+    top: 10px;
+}
+
+#imageControls .imageControlDown {
+    bottom: 10px;
+}
+
+.imageControls {
+    position: absolute;
+    right: 14px;
+    top: 50px;
+    bottom: 40px;
 }
 
 .imageControls .scrollbar {
