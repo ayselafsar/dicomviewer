@@ -12,29 +12,14 @@
     margin-top: 0;
 }
 
-.captureImageDialog .btn-image-download {
-    background-color: #16202b !important;
-    color: #ffffff !important;
-    border-color: #92b9cc !important;
-}
-
-.captureImageDialog .btn-close {
-    background-color: #000 !important;
-    text-shadow: none;
-}
-
-.captureImageDialog .btn-close:hover, .captureImageDialog .btn-close:focus {
-    color: #fff;
-    background-color: #000 !important;
-}
-
-.captureImageDialog .btn-close > span {
+.captureImageDialog .modal-title, .captureImageDialog .modal-sub-title {
     color: #91b9cd;
 }
 
-.captureImageDialog .btn-close:hover > span {
-    color: #fff;
-    cursor: pointer;
+.captureImageDialog .btn-image-download, .captureImageDialog .btn-close {
+    background-color: #16202b !important;
+    color: #ffffff !important;
+    border-color: #92b9cc !important;
 }
 
 .captureImageDialog .card-round {
@@ -116,6 +101,8 @@
 }
 
 .captureImageDialog #keepAspectRatio {
+    background-color: #16202b;
+    border-radius: 3px !important;
     color: #91b9cd;
     margin-left: 10px;
 }
@@ -135,9 +122,6 @@
     padding-left: 0;
 }
 
-.captureImageDialog #keepAspectRatio {
-    margin-left: 0;
-}
 
 table.capture-settings  tr, table.capture-settings  td {
     border-bottom: none !important;
