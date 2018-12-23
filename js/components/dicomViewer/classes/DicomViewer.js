@@ -35,7 +35,7 @@ class DicomViewer {
             this.activeImageLoader = null;
         }
 
-        $('#viewerMain').remove();
+        $('#DicomViewerApp').remove();
         $('#app-content-files').css({ display: 'block' });
 
         // Show footer on public template
@@ -63,8 +63,15 @@ class DicomViewer {
 
         $('#app-content-files').css({ display: 'none' });
 
+        // Close series panel on small screens
+        const bodyWidth = $('body').width();
+        const isSmallScreen = parseInt(bodyWidth, 10) < MIN_DEVICE_WIDTH;
+        if (isSmallScreen && seriesPanelOpen) {
+            seriesPanelOpen = false;
+        }
+
         const $appContent = $('#content');
-        $appContent.append(AppDicomViewer);
+        $appContent.append(AppDicomViewer({ seriesPanelOpen }));
 
         // Go back on ESC
         $(document).keyup((e) => {
@@ -87,13 +94,6 @@ class DicomViewer {
 
         // Close viewer
         DCMViewer.ui.closeViewer = this.hide;
-
-        // Close series panel on small screens
-        const bodyWidth = $('body').width();
-        const isSmallScreen = parseInt(bodyWidth, 10) < MIN_DEVICE_WIDTH;
-        if (isSmallScreen && seriesPanelOpen) {
-            seriesPanelOpen = false;
-        }
 
         imageLoadPromise.then((viewerData) => {
             initializeViewerMain(viewerData);

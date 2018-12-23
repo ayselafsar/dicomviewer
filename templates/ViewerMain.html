@@ -4,8 +4,8 @@
 
     <!-- Viewport Content -->
     <div class="content">
-        <div class="sidebarMenu sidebar-open"></div>
-        <div class="mainContent">
+        <div class="sidebarMenu {{#if seriesPanelOpen}}sidebar-open{{/if}}"></div>
+        <div class="mainContent {{#unless seriesPanelOpen}}content-full{{/unless}}">
             <div id="layoutManagerTarget">
                 <div class="viewportContainer">
                     <div class="removable">

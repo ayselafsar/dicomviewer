@@ -1,6 +1,6 @@
 <div id="toolbar" class="toolbar">
     <div class="toggleSeriesPanel">
-        <div id="toggleSeriesPanelButton" tabindex="1" class="toolbarSectionButton roundedButton toggleSeriesPanelButton <?php if($seriesPanelOpen === 'true') echo 'active'; ?> {{classes}}" title="Toggle Series Panel">
+        <div id="toggleSeriesPanelButton" tabindex="1" class="toolbarSectionButton roundedButton toggleSeriesPanelButton {{#if seriesPanelOpen}}active{{/if}} {{classes}}" title="Toggle Series Panel">
             <div class="svgContainer">
                 <div class="svgContent series-panel"></div>
             </div>
