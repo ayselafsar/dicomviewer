@@ -3,10 +3,10 @@ import { _ } from 'underscore';
 import Handlebars from 'handlebars';
 import { cornerstone } from '../../lib/cornerstonejs';
 import { DCMViewer } from '../../lib/components/viewerMain';
-import ImageThumbnail from '../../../templates/ImageThumbnail.html';
 
 /**
- * Create data for thumbnail
+ * Create data for thumbnails
+ *
  */
 Handlebars.registerHelper('studyThumbnails', (study) => {
     if (!study) {
@@ -49,30 +49,30 @@ function getThumbnailImageId(stack) {
 
 
 /**
- * Render each thumbnail
+ * Render each thumbnail image
+ *
  */
-Handlebars.registerHelper('renderThumbnail', function () {
+Handlebars.registerHelper('imageThumbnailCanvas', function () {
     setTimeout(() => {
         const { stack } = this;
-        const { thumbnailIndex } = this;
+        const { isActiveStudy } = this;
+        const activeThumbnail = (this.thumbnailIndex === 0);
+        const thumbnailCanvasId = `imageThumbnailCanvas${stack.seriesNumber}_${stack.displaySetInstanceUid}`;
 
         const imageId = getThumbnailImageId(stack);
 
-        const $scrollableStudyThumbnails = $('.scrollableStudyThumbnails');
-        const templateContent = ImageThumbnail({
-            stack,
-            activeThumbnail: (thumbnailIndex === 0)
-        });
-        const $imageThumbnail = $($.parseHTML(templateContent));
-
-        $scrollableStudyThumbnails.append($imageThumbnail);
-
-        const $element = $imageThumbnail.find('.imageThumbnailCanvas');
+        const $element = $(`#${thumbnailCanvasId}`);
         const element = $element.get(0);
+
+        // Highlight active thumbnail
+        if (isActiveStudy && activeThumbnail) {
+            $element.parent('.imageThumbnail').addClass('active');
+        }
 
         // Enable element
         cornerstone.enable(element);
 
+        // Display image in thumbnail
         cornerstone.loadAndCacheImage(imageId).then(function (image) {
             cornerstone.displayImage(element, image);
         });
@@ -88,6 +88,10 @@ Handlebars.registerHelper('renderThumbnail', function () {
     }, 300);
 });
 
+/**
+ * List all modalities inside a study
+ *
+ */
 Handlebars.registerHelper('modalitiesList', (study) => {
     if (!study) {
         return;
@@ -101,4 +105,3 @@ Handlebars.registerHelper('modalitiesList', (study) => {
 
     return seriesList.map(series => series.modality).join(', ');
 });
-

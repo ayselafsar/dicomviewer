@@ -1,6 +1,5 @@
 import $ from 'jquery';
 import slimscroll from 'jquery-slimscroll';
-import Handlebars from 'handlebars';
 import { _ } from 'underscore';
 import { DCMViewer } from '../index';
 import StudyBrowser from '../../../../../templates/StudyBrowser.html';

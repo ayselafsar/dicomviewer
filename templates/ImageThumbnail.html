@@ -1,6 +1,8 @@
 <div class="thumbnailEntry">
-    <div class="imageThumbnail {{#if activeThumbnail}}active{{/if}}">
-        <div id="imageThumbnailCanvas{{stack.seriesNumber}}_{{stack.displaySetInstanceUid}}" class="imageThumbnailCanvas"></div>
+    <div class="imageThumbnail">
+        <div id="imageThumbnailCanvas{{stack.seriesNumber}}_{{stack.displaySetInstanceUid}}" class="imageThumbnailCanvas">
+            {{imageThumbnailCanvas}}
+        </div>
     </div>
     <div class="seriesDetails">
         <div class="seriesDescription">{{stack.seriesDescription}}</div>
