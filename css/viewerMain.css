@@ -32,11 +32,6 @@
     flex: 0 1 50px;
 }
 
-#viewerMain #toolbar {
-    height: auto;
-    overflow: hidden;
-}
-
 #viewerMain .content {
     display: flex;
     flex-direction: row;
