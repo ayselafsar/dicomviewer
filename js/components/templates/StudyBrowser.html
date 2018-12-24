@@ -1,0 +1,49 @@
+<div id="studyBrowser" class="studyBrowser">
+    <div class="scrollableStudyThumbnails">
+        {{studies.length}}
+        {{#if (eq studies.length 1)}}
+            {{#each studies as |study|}}
+                {{#each (studyThumbnails study) as |thumbnail|}}
+                    {{> ImageThumbnail isActiveStudy=true}}
+                {{/each}}
+            {{/each}}
+        {{else}}
+        <div class="accordion" id="studyBrowserAccordion">
+            {{#each studies as |study|}}
+                <div class="card">
+                    <div class="card-header" id="heading{{study.patientId}}">
+                        <div data-toggle="collapse" data-target="#collapse{{study.patientId}}"
+                             aria-expanded="true" aria-controls="collapse{{study.patientId}}">
+                            <div class="study-item-box">
+                                <div class="study-modality">
+                                    <div class="study-modality-text">
+                                        {{modalitiesList study}}
+                                    </div>
+                                </div>
+                                <div class="study-text">
+                                    <div class="study-date">{{formatDA study.studyDate}}</div>
+                                    <div class="study-description">{{study.studyDescription}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="collapse{{study.patientId}}" class="collapse show" aria-labelledby="heading{{study.patientId}}">
+                        <div class="card-body">
+                            {{#if @first}}
+                                {{#each (studyThumbnails study) as |thumbnail|}}
+                                    {{> ImageThumbnail isActiveStudy=true}}
+                                {{/each}}
+                            {{else}}
+                                {{#each (studyThumbnails study) as |thumbnail|}}
+                                    {{> ImageThumbnail}}
+                                {{/each}}
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+        {{/if}}
+    </div>
+</div>

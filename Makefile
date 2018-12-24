@@ -97,7 +97,6 @@ source:
 		"css" \
 		"img" \
 		"lib" \
-		"templates" \
 		"LICENSE" \
 	$(source_artifact_directory)/$(app_name)
 	mkdir -p $(source_artifact_directory)/$(app_name)/js
@@ -116,7 +115,6 @@ appstore:
 		"css" \
 		"img" \
 		"lib" \
-		"templates" \
 		"LICENSE" \
 	$(appstore_artifact_directory)/$(app_name)
 	mkdir -p $(appstore_artifact_directory)/$(app_name)/js

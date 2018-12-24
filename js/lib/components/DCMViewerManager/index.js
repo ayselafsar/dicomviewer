@@ -5,21 +5,7 @@ import { StackImagePositionOffsetSynchronizer } from '../viewerbase/classes/Stac
  */
 const DCMViewerManager = {
     stackImagePositionOffsetSynchronizer: new StackImagePositionOffsetSynchronizer(),
-    defaultTool: undefined,
-    settings: {
-        public: {
-            defaultMouseButtonTools: undefined,
-            defaultGestures: {
-                zoomTouchPinch: undefined,
-                stackScrollMultiTouch: undefined,
-                panMultiTouch: undefined,
-                doubleTapZoom: undefined,
-            }
-        }
-    },
-    sessions: {
-
-    }
+    sessions: {}
 };
 
 export { DCMViewerManager };

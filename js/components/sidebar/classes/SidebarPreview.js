@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import initializeSidebarPreview from '../initializeSidebarPreview';
-import Sidebar from '../../../../templates/Sidebar.html';
+import Sidebar from '../../templates/Sidebar.html';
 
 class SidebarPreview {
     constructor() {

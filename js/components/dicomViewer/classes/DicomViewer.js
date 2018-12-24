@@ -4,7 +4,7 @@ import initializeViewerMain from '../initializeViewerMain';
 import configureCodecs from '../configureCodecs';
 import ImageLoader from './ImageLoader';
 import { DCMViewerError } from '../../../lib/components/DCMViewerError';
-import AppDicomViewer from '../../../../templates/AppDicomViewer.html';
+import AppDicomViewer from '../../templates/AppDicomViewer.html';
 
 // Min device width to close series panel by default
 const MIN_DEVICE_WIDTH = 992;
