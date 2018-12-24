@@ -5,6 +5,7 @@ import Sidebar from '../../../../templates/Sidebar.html';
 class SidebarPreview {
     constructor() {
         this.mimeType = 'application/dicom';
+        this.sidebarCheckTimer = null;
     }
 
     attach(manager) {
@@ -15,12 +16,20 @@ class SidebarPreview {
 
     handlePreview(model, $thumbnailDiv, $thumbnailContainer) {
         // Wait until sidebar is rendered
-        setTimeout(() => {
+        this.sidebarCheckTimer = setInterval(() => {
+            const $appSidebar = $('#app-sidebar');
+            const appSidebarHeight = parseInt($appSidebar.height(), 10);
+
+            if (!appSidebarHeight) {
+                return;
+            }
+
+            // Clear timer
+            clearInterval(this.sidebarCheckTimer);
+
             const fileDownloadUrl = Files.getDownloadUrl(model.get('name'), model.get('path'));
 
-            const $appSidebar = $('#app-sidebar');
-            const appSidebarHeight = $appSidebar.height();
-            const previewHeight = parseInt(appSidebarHeight, 10) / 2;
+            const previewHeight = appSidebarHeight / 2;
 
             $thumbnailDiv.removeClass('icon-loading icon-32');
             $thumbnailContainer.addClass('large');
@@ -36,7 +45,7 @@ class SidebarPreview {
 
             // Initialize sidebar
             initializeSidebarPreview(fileDownloadUrl);
-        }, 300);
+        }, 100);
     }
 }
 
