@@ -114,10 +114,8 @@ const toolManager = {
     configureTools() {
         // Get Cornerstone Tools
         const {
-            panMultiTouch, textStyle, toolStyle, toolColors
-        } = cornerstoneTools;
-        const {
-            length, arrowAnnotate, zoom, ellipticalRoi, magnify
+            panMultiTouch, textStyle, toolStyle, toolColors,
+            length, arrowAnnotate, zoom, ellipticalRoi, rectangleRoi, magnify
         } = cornerstoneTools;
 
         // Set the configuration for the multitouch pan tool
@@ -149,13 +147,17 @@ const toolManager = {
         // Get some tools config to not override them
         const lengthConfig = length.getConfiguration();
         const ellipticalRoiConfig = ellipticalRoi.getConfiguration();
+        const rectangleRoiConfig = rectangleRoi.getConfiguration();
         const handlesOnHover = { drawHandlesOnHover: true };
 
         // Add shadow to length tool
         length.setConfiguration(Object.assign({}, lengthConfig, shadowConfig, handlesOnHover));
 
-        // Add shadow to length tool
-        ellipticalRoi.setConfiguration(Object.assign({}, ellipticalRoiConfig, shadowConfig));
+        // Add shadow to ellipticalRoi tool
+        ellipticalRoi.setConfiguration(Object.assign({}, ellipticalRoiConfig, shadowConfig, handlesOnHover));
+
+        // Add shadow to rectangleRoi tool
+        rectangleRoi.setConfiguration(Object.assign({}, rectangleRoiConfig, shadowConfig, handlesOnHover));
 
         // Set the configuration values for the text annotation (Arrow) tool
         const annotateConfig = {
