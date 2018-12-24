@@ -35,13 +35,14 @@ class DicomViewer {
             this.activeImageLoader = null;
         }
 
-        $('#DicomViewerApp').remove();
+        $('#AppDicomViewer').remove();
         $('#app-content-files').css({ display: 'block' });
 
         // Show footer on public template
         if ($('#isPublic').val()) {
             $('#content').removeClass('full-height');
             $('footer').removeClass('hidden');
+            $('#app-content').removeClass('hidden');
         }
 
         this.isViewerMainShown = false;
@@ -59,6 +60,7 @@ class DicomViewer {
         if ($('#isPublic').val()) {
             $('#content').addClass('full-height');
             $('footer').addClass('hidden');
+            $('#app-content').addClass('hidden');
         }
 
         $('#app-content-files').css({ display: 'none' });
