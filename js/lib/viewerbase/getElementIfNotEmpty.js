@@ -1,4 +1,4 @@
-import { cornerstone } from '../../../lib/cornerstonejs';
+import { cornerstone } from '../../lib/cornerstonejs';
 
 export function getElementIfNotEmpty(viewportIndex) {
     var imageViewerViewports = $('.imageViewerViewport'),

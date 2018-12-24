@@ -1,5 +1,5 @@
 import Handlebars from 'handlebars';
-import { DCMViewer } from '../../lib/components/viewerMain';
+import { DCMViewer } from '../../lib/viewerMain';
 
 const tools = [{
     id: 'stackScroll',

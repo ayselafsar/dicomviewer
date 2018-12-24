@@ -1,4 +1,4 @@
-import { cornerstoneTools } from '../../cornerstonejs';
+import { cornerstoneTools } from '../cornerstonejs';
 import { toolManager } from './toolManager';
 import { viewportUtils } from './viewportUtils';
 import { isTouchDevice } from './isTouchDevice';

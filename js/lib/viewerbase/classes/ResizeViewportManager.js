@@ -1,4 +1,4 @@
-import { cornerstone } from '../../../cornerstonejs';
+import { cornerstone } from '../../cornerstonejs';
 import { getInstanceClassDefaultViewport } from '../instanceClassSpecificViewport';
 import { DCMViewerLog } from '../../DCMViewerLog';
 

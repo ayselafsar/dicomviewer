@@ -2,7 +2,7 @@ import $ from 'jquery';
 import { _ } from 'underscore';
 import Handlebars from 'handlebars';
 import { cornerstone } from '../../lib/cornerstonejs';
-import { DCMViewer } from '../../lib/components/viewerMain';
+import { DCMViewer } from '../../lib/viewerMain';
 
 /**
  * Create data for thumbnails

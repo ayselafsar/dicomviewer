@@ -1,4 +1,4 @@
-import { cornerstone, cornerstoneWADOImageLoader } from '../../../cornerstonejs';
+import { cornerstone, cornerstoneWADOImageLoader } from '../../cornerstonejs';
 import { StackManager } from '../StackManager';
 import { DCMViewerManager } from '../../DCMViewerManager';
 import { DCMViewerLog } from '../../DCMViewerLog';

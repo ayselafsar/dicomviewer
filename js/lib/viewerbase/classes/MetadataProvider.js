@@ -1,4 +1,4 @@
-import { cornerstoneMath } from '../../../cornerstonejs';
+import { cornerstoneMath } from '../../cornerstonejs';
 import { parsingUtils } from '../parsingUtils';
 
 const FUNCTION = 'function';

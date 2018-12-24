@@ -1,4 +1,4 @@
-import { cornerstone } from '../../../lib/cornerstonejs';
+import { cornerstone } from '../../lib/cornerstonejs';
 import { getElementIfNotEmpty } from './getElementIfNotEmpty';
 
 const getPatient = function(property) {

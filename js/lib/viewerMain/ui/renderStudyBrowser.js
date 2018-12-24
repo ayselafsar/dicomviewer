@@ -2,7 +2,7 @@ import $ from 'jquery';
 import slimscroll from 'jquery-slimscroll';
 import { _ } from 'underscore';
 import { DCMViewer } from '../index';
-import StudyBrowser from '../../../../components/templates/StudyBrowser.html';
+import StudyBrowser from '../../../components/templates/StudyBrowser.html';
 
 // Enable scrollbar for study browser section when page is resized
 const handleStudyBrowserScrollbar = _.throttle(() => {

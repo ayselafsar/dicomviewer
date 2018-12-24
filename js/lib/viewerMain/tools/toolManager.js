@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import { cornerstone, cornerstoneTools } from '../../../../lib/cornerstonejs';
+import { cornerstone, cornerstoneTools } from '../../../lib/cornerstonejs';
 
 const defaultTool = {
     left: 'wwwc',

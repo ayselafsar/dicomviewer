@@ -1,5 +1,5 @@
-import { cornerstone, cornerstoneTools } from '../../cornerstonejs';
 import RandomID from 'random-id';
+import { cornerstone, cornerstoneTools } from '../cornerstonejs';
 import { DCMViewerManager } from '../DCMViewerManager';
 import { Utils } from './Utils';
 import { getFrameOfReferenceUID } from './getFrameOfReferenceUID';

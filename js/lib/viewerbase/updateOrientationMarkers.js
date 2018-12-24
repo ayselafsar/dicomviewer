@@ -1,4 +1,4 @@
-import { cornerstone, cornerstoneTools } from '../../../lib/cornerstonejs';
+import { cornerstone, cornerstoneTools } from '../../lib/cornerstonejs';
 
 /**
  * Updates the orientation labels on a Cornerstone-enabled Viewport element

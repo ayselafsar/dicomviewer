@@ -1,4 +1,4 @@
-import { cornerstone, cornerstoneTools } from '../../../cornerstonejs';
+import { cornerstone, cornerstoneTools } from '../../cornerstonejs';
 import { toolManager } from '../toolManager';
 import { DCMViewerLog } from '../../DCMViewerLog';
 import { DCMViewerManager } from '../../DCMViewerManager';

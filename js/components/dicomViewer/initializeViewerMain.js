@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import { cornerstone } from '../../lib/cornerstonejs';
-import { DCMViewer } from '../../lib/components/viewerMain/index';
-import { DCMViewerLog } from '../../lib/components/DCMViewerLog';
+import { DCMViewer } from '../../lib/viewerMain/index';
+import { DCMViewerLog } from '../../lib/DCMViewerLog';
 
 export default function initializeViewerMain(viewerData) {
     // Hide loading view

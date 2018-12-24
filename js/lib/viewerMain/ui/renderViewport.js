@@ -1,13 +1,13 @@
 import $ from 'jquery';
 import { _ } from 'underscore';
-import { cornerstone, cornerstoneTools } from '../../../cornerstonejs';
+import { cornerstone, cornerstoneTools } from '../../cornerstonejs';
 import { DCMViewer } from '../index';
 import { Viewerbase } from '../../viewerbase';
 import { DCMViewerError } from '../../DCMViewerError';
 import { DCMViewerLog } from '../../DCMViewerLog';
-import ImageControls from '../../../../components/templates/ImageControls.html';
-import ViewportOverlay from '../../../../components/templates/ViewportOverlay.html';
-import ViewportOrientationMarkers from '../../../../components/templates/ViewportOrientationMarkers.html';
+import ImageControls from '../../../components/templates/ImageControls.html';
+import ViewportOverlay from '../../../components/templates/ViewportOverlay.html';
+import ViewportOrientationMarkers from '../../../components/templates/ViewportOrientationMarkers.html';
 
 // Get compression information of image
 function getCompression() {

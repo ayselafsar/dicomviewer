@@ -1,7 +1,7 @@
 import $ from 'jquery';
-import { cornerstone } from '../../cornerstonejs';
+import { cornerstone } from '../cornerstonejs';
 import { viewportUtils } from './viewportUtils';
-import CaptureImageDialog from '../../../components/templates/CaptureImageDialog.html';
+import CaptureImageDialog from '../../components/templates/CaptureImageDialog.html';
 
 const DEFAULT_FILENAME = 'image';
 

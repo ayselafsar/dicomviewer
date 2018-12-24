@@ -1,4 +1,4 @@
-import { dicomParser } from '../../cornerstonejs';
+import { dicomParser } from '../cornerstonejs';
 
 /**
  * A small set of utilities to help parsing DICOM element values.

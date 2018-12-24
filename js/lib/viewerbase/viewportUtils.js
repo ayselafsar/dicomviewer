@@ -1,4 +1,5 @@
-import { cornerstone, cornerstoneTools } from '../../cornerstonejs';
+import RandomID from 'random-id';
+import { cornerstone, cornerstoneTools } from '../cornerstonejs';
 import { DCMViewerManager } from '../DCMViewerManager';
 import { DCMViewerLog } from '../DCMViewerLog';
 import { updateOrientationMarkers } from './updateOrientationMarkers';
@@ -229,7 +230,7 @@ const toggleCinePlay = () => {
     }
 
     // Update the UpdateCINE session property
-    DCMViewerManager.sessions['UpdateCINE'] = Math.random();
+    DCMViewerManager.sessions['UpdateCINE'] = RandomID();
 };
 
 // Show/hide the CINE dialog
@@ -237,7 +238,7 @@ const toggleCineDialog = () => {
     const dialog = document.getElementById('cineDialog');
 
     toggleDialog(dialog, stopAllClips);
-    DCMViewerManager.sessions['UpdateCINE'] = Random.id();
+    DCMViewerManager.sessions['UpdateCINE'] = RandomID();
 };
 
 const toggleDownloadDialog = () => {
@@ -259,8 +260,8 @@ const isDownloadEnabled = () => {
 // Check if the clip is playing on the active viewport
 const isPlaying = () => {
     // Create a dependency on LayoutManagerUpdated and UpdateCINE session
-    DCMViewerManager.sessions['UpdateCINE'];
-    DCMViewerManager.sessions['LayoutManagerUpdated'];
+    // DCMViewerManager.sessions['UpdateCINE'];
+    // DCMViewerManager.sessions['LayoutManagerUpdated'];
 
     // Get the viewport element and its current playClip tool state
     const element = getActiveViewportElement();
@@ -290,8 +291,8 @@ const isPlaying = () => {
 // Check if a study has multiple frames
 const hasMultipleFrames = () => {
     // Its called everytime active viewport and/or layout change
-    DCMViewerManager.sessions['activeViewport'];
-    DCMViewerManager.sessions['LayoutManagerUpdated'];
+    // DCMViewerManager.sessions['activeViewport'];
+    // DCMViewerManager.sessions['LayoutManagerUpdated'];
 
     const activeViewport = getActiveViewportElement();
 
@@ -374,8 +375,7 @@ const isStackScrollLinkingActive = () => {
 
 // Create an event listener to update playing state when a clip stops playing
 window.addEventListener('cornerstonetoolsclipstopped', () => {
-    // TODO: Add handler for session
-    // DCMViewerManager.sessions.UpdateCINE = Math.random();
+    DCMViewerManager.sessions.UpdateCINE = RandomID();
 });
 
 /**

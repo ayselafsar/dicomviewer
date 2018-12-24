@@ -1,4 +1,4 @@
-import { StackImagePositionOffsetSynchronizer } from '../viewerbase/classes/StackImagePositionOffsetSynchronizer';
+import { StackImagePositionOffsetSynchronizer } from './viewerbase/classes/StackImagePositionOffsetSynchronizer';
 
 /**
  * Manages all global variables, sessions and collections

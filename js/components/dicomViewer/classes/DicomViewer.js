@@ -1,9 +1,9 @@
 import $ from 'jquery';
-import { DCMViewer } from '../../../lib/components/viewerMain';
+import { DCMViewer } from '../../../lib/viewerMain';
 import initializeViewerMain from '../initializeViewerMain';
 import configureCodecs from '../configureCodecs';
 import ImageLoader from './ImageLoader';
-import { DCMViewerError } from '../../../lib/components/DCMViewerError';
+import { DCMViewerError } from '../../../lib/DCMViewerError';
 import AppDicomViewer from '../../templates/AppDicomViewer.html';
 
 // Min device width to close series panel by default

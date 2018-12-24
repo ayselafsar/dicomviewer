@@ -1,4 +1,4 @@
-import { cornerstone } from '../../cornerstonejs';
+import { cornerstone } from '../cornerstonejs';
 
 /**
  * Helper function to quickly obtain the frameOfReferenceUID
