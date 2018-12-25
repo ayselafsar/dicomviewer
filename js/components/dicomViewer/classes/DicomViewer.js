@@ -47,6 +47,13 @@ class DicomViewer {
 
         this.isViewerMainShown = false;
 
+        if (history && history.replaceState) {
+            const stateData = {
+                dir: FileList.getCurrentDirectory()
+            };
+            history.replaceState(stateData, '', '#');
+        }
+
         FileList.setViewerMode(false);
     }
 
@@ -82,15 +89,15 @@ class DicomViewer {
             }
         });
 
-        if (!$('html').hasClass('ie8')) {
+        if (history && history.pushState) {
             history.pushState({}, '', '#dcmviewer');
-        }
 
-        if (!$('html').hasClass('ie8')) {
             $(window).one('popstate', () => {
                 this.hide();
             });
         }
+
+        FileList.setViewerMode(true);
 
         this.isViewerMainShown = true;
 
