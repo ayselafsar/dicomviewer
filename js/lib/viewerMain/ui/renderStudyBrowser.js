@@ -1,5 +1,5 @@
+import '../../../external/jquery.slimscroll';
 import $ from 'jquery';
-import slimscroll from 'jquery-slimscroll';
 import { _ } from 'underscore';
 import { DCMViewer } from '../index';
 import StudyBrowser from '../../../components/templates/StudyBrowser.html';
