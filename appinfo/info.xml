@@ -7,16 +7,13 @@
     <description><![CDATA[DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.
 
 See [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap.]]></description>
-    <licence>AGPL</licence>
     <version>1.0.2</version>
+    <licence>agpl</licence>
     <author mail="aysel.afsar@gmail.com">Aysel Afsar</author>
     <namespace>DICOMViewer</namespace>
     <category>multimedia</category>
     <website>https://github.com/ayselafsar/dicomviewer</website>
     <bugs>https://github.com/ayselafsar/dicomviewer/issues</bugs>
-    <dependencies>
-        <nextcloud min-version="12" max-version="15"/>
-    </dependencies>
     <repository type="git">https://github.com/ayselafsar/dicomviewer.git</repository>
     <screenshot small-thumbnail="https://raw.githubusercontent.com/ayselafsar/dicomviewer/master/screenshots/viewer1-small.png">https://raw.githubusercontent.com/ayselafsar/dicomviewer/master/screenshots/viewer1.png</screenshot>
     <screenshot small-thumbnail="https://raw.githubusercontent.com/ayselafsar/dicomviewer/master/screenshots/viewer2-small.png">https://raw.githubusercontent.com/ayselafsar/dicomviewer/master/screenshots/viewer2.png</screenshot>
@@ -24,6 +21,9 @@ See [README](https://github.com/ayselafsar/dicomviewer) for a list of full featu
     <screenshot small-thumbnail="https://raw.githubusercontent.com/ayselafsar/dicomviewer/master/screenshots/viewer4-small.png">https://raw.githubusercontent.com/ayselafsar/dicomviewer/master/screenshots/viewer4.png</screenshot>
     <screenshot small-thumbnail="https://raw.githubusercontent.com/ayselafsar/dicomviewer/master/screenshots/dump1-small.png">https://raw.githubusercontent.com/ayselafsar/dicomviewer/master/screenshots/dump1.png</screenshot>
     <screenshot small-thumbnail="https://raw.githubusercontent.com/ayselafsar/dicomviewer/master/screenshots/dump2-small.png">https://raw.githubusercontent.com/ayselafsar/dicomviewer/master/screenshots/dump2.png</screenshot>
+    <dependencies>
+        <nextcloud min-version="12" max-version="16"/>
+    </dependencies>
     <repair-steps>
         <install>
             <step>OCA\DICOMViewer\Migration\RegisterMimeType</step>
