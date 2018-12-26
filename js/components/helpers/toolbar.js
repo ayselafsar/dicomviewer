@@ -64,6 +64,11 @@ const tools = [{
     classes: 'imageViewerTool',
     iconClasses: 'fa fa-arrows-v fa-lg',
 }, {
+    id: 'annotate',
+    title: 'Annotate',
+    classes: 'imageViewerTool',
+    iconClasses: 'fa fa-long-arrow-down fa-lg',
+}, {
     id: 'dragProbe',
     title: 'Probe',
     classes: 'imageViewerTool',

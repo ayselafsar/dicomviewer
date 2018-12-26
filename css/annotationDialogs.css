@@ -1,0 +1,40 @@
+#AppDicomViewer .annotationDialog {
+    border: 1px solid #44626F;
+    background: #14202A;
+    color: #91B9CD;
+    z-index: 1000;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    overflow: hidden;
+    padding: 10px;
+    width: 300px;
+    height: 140px;
+    border-radius: 8px;
+}
+
+#AppDicomViewer .annotationDialog h5,
+#AppDicomViewer .annotationDialog label {
+    font-weight: 400;
+}
+
+#AppDicomViewer .annotationDialog .annotationTextInputOptions {
+    padding: 10px 0;
+}
+
+#AppDicomViewer .annotationDialog .annotationTextInput {
+    margin-left: 5px;
+}
+
+#AppDicomViewer .annotationDialog .annotationDialogConfirm,
+#AppDicomViewer .annotationDialog .relabelConfirm,
+#AppDicomViewer .annotationDialog .relabelRemove {
+    background-color: #16202b !important;
+    color: #ffffff !important;
+    border-color: #92b9cc !important;
+    border-radius: 3px !important;
+    float: right;
+}

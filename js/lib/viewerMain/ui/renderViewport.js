@@ -380,7 +380,6 @@ const renderLayout = (viewportData) => {
     $imageViewerViewport.on('contextmenu', () => false);
     $imageViewerViewport.on('mousedown', () => false);
     $imageViewerViewport.on('selectstart', () => false);
-    $imageViewerViewport.on('contextmenu', () => false);
 
     // Render orientation markers template before displaying image
     $('#viewportOrientationMarkers').html(ViewportOrientationMarkers);

@@ -33,6 +33,7 @@
     "cornerstone-math": "^0.1.7",
     "cornerstone-tools": "^2.4.0",
     "cornerstone-wado-image-loader": "^2.2.3",
+    "dialog-polyfill": "^0.4.10",
     "dicom-parser": "^1.8.3",
     "hammerjs": "^2.0.8",
     "jquery": "^3.3.1",

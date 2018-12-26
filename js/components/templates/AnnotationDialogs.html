@@ -1,0 +1,32 @@
+<div id="AnnotationDialogs">
+    <dialog id="annotationDialog"
+            class="annotationDialog noselect">
+        <h5>Enter your annotation</h5>
+        <div class="annotationTextInputOptions">
+            <label for="annotationTextInput">New label</label>
+            <input name="annotationTextInput"
+                   class="annotationTextInput"
+                   type="text"
+                   tabindex="-1"
+                   autocomplete="off"/>
+        </div>
+        <button type="button" class="btn btn-primary annotationDialogConfirm">OK</button>
+    </dialog>
+
+    <dialog id="relabelAnnotationDialog"
+            class="annotationDialog noselect">
+        <h5>Edit your annotation</h5>
+        <div class="annotationTextInputOptions">
+            <label for="annotationTextInput">New label</label>
+            <input name="annotationTextInput"
+                   class="annotationTextInput"
+                   type="text"
+                   tabindex="-1"
+                   autocomplete="off"/>
+        </div>
+        <div>
+            <button type="button" class="btn btn-primary relabelConfirm">OK</button>
+            <button type="button" class="btn btn-primary relabelRemove">Remove marker</button>
+        </div>
+    </dialog>
+</div>

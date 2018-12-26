@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import { cornerstone, cornerstoneTools } from '../../../lib/cornerstonejs';
+import { annotateTextUtils } from '../../viewerbase/annotateTextUtils';
 
 const defaultTool = {
     left: 'wwwc',
@@ -161,6 +162,8 @@ const toolManager = {
 
         // Set the configuration values for the text annotation (Arrow) tool
         const annotateConfig = {
+            getTextCallback: annotateTextUtils.getTextCallback,
+            changeTextCallback: annotateTextUtils.changeTextCallback,
             drawHandles: false,
             arrowFirst: true
         };
