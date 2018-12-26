@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import * as cornerstone from 'cornerstone-core';
 import * as cornerstoneTools from 'cornerstone-tools';
 import * as cornerstoneMath from 'cornerstone-math';
@@ -7,11 +6,11 @@ import * as dicomParser from 'dicom-parser';
 import Hammer from 'hammerjs';
 
 // Inject the current cornerstone version into the WADO Image Loader and Tools libraries
-cornerstone.external.$ = $;
-cornerstoneTools.external.$ = $;
 cornerstoneTools.external.Hammer = Hammer;
 cornerstoneTools.external.cornerstone = cornerstone;
+cornerstoneTools.external.cornerstoneMath = cornerstoneMath;
 cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
+cornerstoneWADOImageLoader.external.dicomParser = dicomParser;
 
 export {
     cornerstone,
