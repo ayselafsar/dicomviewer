@@ -1,8 +1,8 @@
-import '../../../external/jquery.slimscroll';
 import $ from 'jquery';
 import { _ } from 'underscore';
 import { DCMViewer } from '../index';
 import StudyBrowser from '../../../components/templates/StudyBrowser.html';
+import '../../../external/jquery.slimscroll';
 
 // Enable scrollbar for study browser section when page is resized
 const handleStudyBrowserScrollbar = _.throttle(() => {
@@ -27,7 +27,7 @@ const handleStudyBrowserScrollbar = _.throttle(() => {
         $(this).addClass('slimScrollBarActive');
     });
 
-    $(document).on('mouseup', function () {
+    $(document).on('mouseup', () => {
         if (!$slimScrollBar.hasClass('slimScrollBarActive')) {
             return;
         }
@@ -43,7 +43,7 @@ export default function renderStudyBrowser() {
     const { studies } = DCMViewer.viewerbase.data;
     const $sidebarMenu = $('.sidebarMenu');
     const templateContent = StudyBrowser({
-        studies: studies
+        studies
     });
 
     $sidebarMenu.html(templateContent);

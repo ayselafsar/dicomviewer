@@ -1,3 +1,5 @@
+/* eslint import/no-extraneous-dependencies:0 */
+
 import $ from 'jquery';
 import { _ } from 'underscore';
 import Handlebars from 'handlebars';
@@ -73,7 +75,7 @@ Handlebars.registerHelper('imageThumbnailCanvas', function () {
         cornerstone.enable(element);
 
         // Display image in thumbnail
-        cornerstone.loadAndCacheImage(imageId).then(function (image) {
+        cornerstone.loadAndCacheImage(imageId).then((image) => {
             cornerstone.displayImage(element, image);
         });
 

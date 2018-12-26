@@ -1,9 +1,8 @@
-import { BaseInstanceMetadata } from '../BaseInstanceMetadata'
+import { BaseInstanceMetadata } from '../BaseInstanceMetadata';
 import { getImageId } from '../../../getImageId';
 import { DICOMTagDescriptions } from '../../../DICOMTagDescriptions';
 
 export class InstanceMetadata extends BaseInstanceMetadata {
-
     /**
      * @param {Object} Instance object.
      */
@@ -52,7 +51,6 @@ export class InstanceMetadata extends BaseInstanceMetadata {
 
     // Override
     getTagValue(tagOrProperty, defaultValue, bypassCache) {
-
         // check if this property has been cached...
         if (tagOrProperty in this._cache && bypassCache !== true) {
             return this._cache[tagOrProperty];
@@ -70,7 +68,7 @@ export class InstanceMetadata extends BaseInstanceMetadata {
             rawValue = this._study[propertyName];
         }
 
-        if (rawValue !== void 0) {
+        if (rawValue !== undefined) {
             // if rawValue value is not undefined, cache result...
             this._cache[tagOrProperty] = rawValue;
             return rawValue;
@@ -107,7 +105,7 @@ export class InstanceMetadata extends BaseInstanceMetadata {
         let propertyName;
         const tagInfo = DICOMTagDescriptions.find(tagOrProperty);
 
-        if (tagInfo !== void 0) {
+        if (tagInfo !== undefined) {
             // This function tries to translate standard DICOM property names into local naming convention.
             propertyName = tagInfo.keyword.replace(/^SOP/, 'sop').replace(/UID$/, 'Uid').replace(/ID$/, 'Id');
             propertyName = propertyName.charAt(0).toLowerCase() + propertyName.substr(1);

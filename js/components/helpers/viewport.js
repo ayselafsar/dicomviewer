@@ -1,3 +1,5 @@
+/* eslint import/no-extraneous-dependencies:0 */
+
 import Handlebars from 'handlebars';
 import moment from 'moment';
 
@@ -37,7 +39,7 @@ Handlebars.registerHelper('formatTM', (context, options) => {
 
     let format = 'HH:mm:ss';
     if (options && options.format) {
-        format = options.format;
+        ({ format } = options);
     }
 
     return dateTime.format(format);

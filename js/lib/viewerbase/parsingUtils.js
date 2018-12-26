@@ -13,7 +13,7 @@ export const parsingUtils = {
      * @param data {Object} An instance of the dicomParser.DataSet class.
      * @returns {Boolean} Returns true if data is a valid instance of the dicomParser.DataSet class.
      */
-    isValidDataSet: function(data) {
+    isValidDataSet(data) {
         return (data instanceof dicomParser.DataSet);
     },
 
@@ -23,14 +23,14 @@ export const parsingUtils = {
      * @param tag {String} A DICOM tag with in the format xGGGGEEEE.
      * @returns {String} A string representation of a data element tag or null if the field is not present or data is not long enough.
      */
-    attributeTag: function(data, tag) {
+    attributeTag(data, tag) {
         if (this.isValidDataSet(data) && tag in data.elements) {
-            let element = data.elements[tag];
+            const element = data.elements[tag];
             if (element && element.length === 4) {
-                let parser = data.byteArrayParser.readUint16,
-                    bytes = data.byteArray,
-                    offset = element.dataOffset;
-                return 'x' + ('00000000' + (parser(bytes, offset) * 256 * 256 + parser(bytes, offset + 2)).toString(16)).substr(-8);
+                const parser = data.byteArrayParser.readUint16;
+                const bytes = data.byteArray;
+                const offset = element.dataOffset;
+                return `x${(`00000000${(((parser(bytes, offset) * 256) * 256) + parser(bytes, offset + 2)).toString(16)}`).substr(-8)}`;
             }
         }
 
@@ -45,17 +45,17 @@ export const parsingUtils = {
      * @param parser {Function} An optional parser function that can be applied to each element of the array.
      * @returns {Array} An array of floating point numbers or null if the field is not present or data is not long enough.
      */
-    multiValue: function(data, tag, parser) {
+    multiValue(data, tag, parser) {
         if (this.isValidDataSet(data) && tag in data.elements) {
-            let element = data.elements[tag];
+            const element = data.elements[tag];
             if (element && element.length > 0) {
-                let string = dicomParser.readFixedString(data.byteArray, element.dataOffset, element.length);
+                const string = dicomParser.readFixedString(data.byteArray, element.dataOffset, element.length);
                 if (typeof string === 'string' && string.length > 0) {
                     if (typeof parser !== 'function') {
                         parser = null;
                     }
 
-                    return string.split('\\').map(function(value) {
+                    return string.split('\\').map((value) => {
                         value = value.trim();
                         return parser !== null ? parser(value) : value;
                     });
@@ -72,7 +72,7 @@ export const parsingUtils = {
      * @param tag {String} A DICOM tag with in the format xGGGGEEEE.
      * @returns {Array} An array of floating point numbers or null if the field is not present or data is not long enough.
      */
-    floatArray: function(data, tag) {
+    floatArray(data, tag) {
         return this.multiValue(data, tag, parseFloat);
     }
 

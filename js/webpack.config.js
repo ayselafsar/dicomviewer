@@ -37,7 +37,7 @@ module.exports = {
     resolve: {
         modules: [path.resolve(__dirname), 'node_modules'],
         alias: {
-            'handlebars': 'handlebars/runtime.js'
+            handlebars: 'handlebars/runtime.js'
         }
     },
     stats: {
@@ -60,8 +60,8 @@ module.exports = {
             __DEVTOOLS__: false
         }),
         new webpack.ProvidePlugin({
-            'jQuery': 'jquery',
-            '$': 'jquery'
+            jQuery: 'jquery',
+            $: 'jquery'
         })
     ]
 };

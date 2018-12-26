@@ -1,16 +1,12 @@
+import $ from 'jquery';
 import { cornerstoneTools } from '../cornerstonejs';
 import { toolManager } from './toolManager';
 import { viewportUtils } from './viewportUtils';
 import { isTouchDevice } from './isTouchDevice';
 
 const changeTextCallback = (data, eventData, doneChangingTextCallback) => {
-    // This handles the double-click/long-press event on Spine text marker labels
-    const keyPressHandler = e => {
-        // If Enter or Esc are pressed, close the dialog
-        if (e.which === 13 || e.which === 27) {
-            closeHandler();
-        }
-    };
+    const dialog = $('#textMarkerRelabelDialog');
+    const select = dialog.find('.relabelSelect');
 
     // Deactivate textMarker tool after editing a spine label & if spine is not active tool
     const deactivateAfterEdit = () => {
@@ -30,7 +26,13 @@ const changeTextCallback = (data, eventData, doneChangingTextCallback) => {
         $(element).focus();
     };
 
-    const dialog = $('#textMarkerRelabelDialog');
+    // This handles the double-click/long-press event on Spine text marker labels
+    const keyPressHandler = (e) => {
+        // If Enter or Esc are pressed, close the dialog
+        if (e.which === 13 || e.which === 27) {
+            closeHandler();
+        }
+    };
 
     if (isTouchDevice()) {
         // Center the dialog on screen on touch devices
@@ -48,12 +50,11 @@ const changeTextCallback = (data, eventData, doneChangingTextCallback) => {
         // page coordinates.
         dialog.css({
             top: eventData.currentPoints.page.y - dialog.outerHeight() - 20,
-            left: eventData.currentPoints.page.x - dialog.outerWidth() / 2
+            left: eventData.currentPoints.page.x - (dialog.outerWidth() / 2)
         });
         dialog.find('.dialog.arrow').show();
     }
 
-    const select = dialog.find('.relabelSelect');
     const confirm = dialog.find('.relabelConfirm');
     const remove = dialog.find('.relabelRemove');
 
@@ -66,7 +67,7 @@ const changeTextCallback = (data, eventData, doneChangingTextCallback) => {
     });
 
     dialog.get(0).showModal();
-    $('.relabelSelect').val(data.text).trigger('change'); //Update selector to the current
+    $('.relabelSelect').val(data.text).trigger('change'); // Update selector to the current
 
     confirm.off('click');
     confirm.on('click', () => {

@@ -1,5 +1,5 @@
 import { cornerstoneTools } from '../cornerstonejs';
-import { getElementIfNotEmpty } from './getElementIfNotEmpty.js';
+import { getElementIfNotEmpty } from './getElementIfNotEmpty';
 
 export function getStackDataIfNotEmpty(viewportIndex) {
     const element = getElementIfNotEmpty(viewportIndex);

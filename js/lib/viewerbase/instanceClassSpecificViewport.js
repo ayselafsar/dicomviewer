@@ -2,7 +2,7 @@
 const instanceClassViewportSettingsFunctions = {};
 
 const getInstanceClassDefaultViewport = (series, enabledElement, imageId) => {
-    let instanceClass = series.sopClassUid;
+    const instanceClass = series.sopClassUid;
 
     if (!instanceClassViewportSettingsFunctions[instanceClass]) {
         return;

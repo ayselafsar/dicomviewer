@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import { _ } from 'underscore';
 
 const Utils = {};
@@ -5,11 +6,11 @@ const Utils = {};
 Utils.string = {};
 
 // Search for some string inside any object or array
-Utils.string.search = (object, query, property=null, result=[]) => {
+Utils.string.search = (object, query, property = null, result = []) => {
     // Create the search pattern
     const pattern = new RegExp($.trim(query), 'i');
 
-    _.each(object, item => {
+    _.each(object, (item) => {
         // Stop here if item is empty
         if (!item) {
             return;
@@ -35,7 +36,7 @@ Utils.string.search = (object, query, property=null, result=[]) => {
 };
 
 // Encode any string into a safe format for HTML id attribute
-Utils.string.encodeId = input => {
+Utils.string.encodeId = (input) => {
     const string = input && input.toString ? input.toString() : input;
 
     // Return an underscore if the given string is empty or if it's not a string
@@ -44,7 +45,7 @@ Utils.string.encodeId = input => {
     }
 
     // Create a converter to replace non accepted chars
-    const converter = match => '_' + match[0].charCodeAt(0).toString(16) + '_';
+    const converter = match => `_${match[0].charCodeAt(0).toString(16)}_`;
 
     // Encode the given string and return it
     return string.replace(/[^a-zA-Z0-9-]/g, converter);

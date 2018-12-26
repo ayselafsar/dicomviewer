@@ -16,7 +16,7 @@ export function getWADORSImageId(instance, frame) {
 
     const imageId = `wadors:${uri}`;
 
-    DCMViewerLog.info('WADO-RS ImageID: ' + imageId);
+    DCMViewerLog.info(`WADO-RS ImageID: ${imageId}`);
 
     return imageId;
 }

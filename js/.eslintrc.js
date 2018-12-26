@@ -13,7 +13,12 @@ module.exports = {
         "no-prototype-builtins": 0,
         "no-restricted-globals": 0,
         "import/prefer-default-export": 0,
-        "consistent-return": 0
+        "consistent-return": 0,
+        "no-plusplus": 0,
+        "no-bitwise": 0,
+        "func-names": 0,
+        "max-len": [2, 200, 4],
+        "prefer-destructuring": ["error", {"array": false, "object": true}]
     },
     "globals": {
         "OC": true,

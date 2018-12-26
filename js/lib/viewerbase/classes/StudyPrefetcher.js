@@ -1,3 +1,5 @@
+import $ from 'jquery';
+import { _ } from 'underscore';
 import { cornerstone, cornerstoneTools } from '../../cornerstonejs';
 import { DCMViewerError } from '../../DCMViewerError';
 import { DCMViewerLog } from '../../DCMViewerLog';
@@ -6,9 +8,9 @@ import { DCMViewerManager } from '../../DCMViewerManager';
 import { StackManager } from '../StackManager';
 import { viewportUtils } from '../viewportUtils';
 import { getStudyMetadata } from '../getStudyMetadata';
+import { getImageId } from '../getImageId';
 
 export class StudyPrefetcher {
-
     constructor(studies) {
         this.studies = studies || [];
         this.prefetchDisplaySetsTimeout = 300;
@@ -58,7 +60,7 @@ export class StudyPrefetcher {
     }
 
     disableViewportPrefetch() {
-        $('.imageViewerViewport').each(function() {
+        $('.imageViewerViewport').each(() => {
             if (!$(this).find('canvas').length) {
                 return;
             }
@@ -87,7 +89,7 @@ export class StudyPrefetcher {
         if (this.hasStack(element)) {
             // Check if this is a clip or not
             const activeViewportIndex = DCMViewerManager.sessions.activeViewport;
-            const displaySetInstanceUid = DCMViewer.viewerbase.data.loadedSeriesData[activeViewportIndex].displaySetInstanceUid;
+            const { displaySetInstanceUid } = DCMViewer.viewerbase.data.loadedSeriesData[activeViewportIndex];
 
             const stack = StackManager.findStack(displaySetInstanceUid);
 
@@ -140,12 +142,12 @@ export class StudyPrefetcher {
 
     prefetchImageIds(imageIds) {
         const nonCachedImageIds = this.filterCachedImageIds(imageIds);
-        const requestPoolManager = cornerstoneTools.requestPoolManager;
+        const { requestPoolManager } = cornerstoneTools;
         const requestType = 'prefetch';
         const preventCache = false;
         const noop = () => {};
 
-        nonCachedImageIds.forEach(imageId => {
+        nonCachedImageIds.forEach((imageId) => {
             requestPoolManager.addRequest({}, imageId, requestType, preventCache, noop, noop);
         });
 
@@ -160,9 +162,7 @@ export class StudyPrefetcher {
         }
 
         const enabledElement = cornerstone.getEnabledElement(element);
-        const image = enabledElement.image;
-
-        return image;
+        return enabledElement.image;
     }
 
     getStudy(image) {
@@ -188,11 +188,7 @@ export class StudyPrefetcher {
     }
 
     getActiveDisplaySet(displaySets, instance) {
-        return _.find(displaySets, displaySet => {
-            return _.some(displaySet.images, displaySetImage => {
-                return displaySetImage.sopInstanceUid === instance.sopInstanceUid;
-            });
-        });
+        return _.find(displaySets, displaySet => _.some(displaySet.images, displaySetImage => displaySetImage.sopInstanceUid === instance.sopInstanceUid));
     }
 
     getDisplaySetsToPrefetch(config) {
@@ -205,7 +201,7 @@ export class StudyPrefetcher {
         const study = this.getStudy(image);
         const series = this.getSeries(study, image);
         const instance = this.getInstance(series, image);
-        const displaySets = study.displaySets;
+        const { displaySets } = study;
         const activeDisplaySet = this.getActiveDisplaySet(displaySets, instance);
         const prefetchMethodMap = {
             topdown: 'getFirstDisplaySets',
@@ -229,7 +225,7 @@ export class StudyPrefetcher {
     }
 
     getFirstDisplaySets(displaySets, activeDisplaySet, displaySetCount) {
-        const length = displaySets.length;
+        const { length } = displaySets;
         const selectedDisplaySets = [];
 
         for (let i = 0; (i < length) && displaySetCount; i++) {
@@ -254,7 +250,7 @@ export class StudyPrefetcher {
 
     getClosestDisplaySets(displaySets, activeDisplaySet, displaySetCount) {
         const activeDisplaySetIndex = displaySets.indexOf(activeDisplaySet);
-        const length = displaySets.length;
+        const { length } = displaySets;
         const selectedDisplaySets = [];
         let left = activeDisplaySetIndex - 1;
         let right = activeDisplaySetIndex + 1;
@@ -279,7 +275,7 @@ export class StudyPrefetcher {
     getImageIdsFromDisplaySets(displaySets) {
         let imageIds = [];
 
-        displaySets.forEach(displaySet => {
+        displaySets.forEach((displaySet) => {
             imageIds = imageIds.concat(this.getImageIdsFromDisplaySet(displaySet));
         });
 
@@ -289,15 +285,15 @@ export class StudyPrefetcher {
     getImageIdsFromDisplaySet(displaySet) {
         const imageIds = [];
 
-        displaySet.images.forEach(image => {
-            const numFrames = image.numFrames;
+        displaySet.images.forEach((image) => {
+            const { numFrames } = image;
             if (numFrames > 1) {
                 for (let i = 0; i < numFrames; i++) {
-                    let imageId = getImageId(image, i);
+                    const imageId = getImageId(image, i);
                     imageIds.push(imageId);
                 }
             } else {
-                let imageId = getImageId(image);
+                const imageId = getImageId(image);
                 imageIds.push(imageId);
             }
         });
@@ -306,9 +302,7 @@ export class StudyPrefetcher {
     }
 
     filterCachedImageIds(imageIds) {
-        return _.filter(imageIds, imageId => {
-            return !this.isImageCached(imageId);
-        });
+        return _.filter(imageIds, imageId => !this.isImageCached(imageId));
     }
 
     isImageCached(imageId) {

@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import RandomID from 'random-id';
 import { cornerstone, cornerstoneTools } from '../cornerstonejs';
 import { DCMViewerManager } from '../DCMViewerManager';
@@ -9,7 +10,7 @@ import { annotateTextUtils } from './annotateTextUtils';
 import { textMarkerUtils } from './textMarkerUtils';
 import { isTouchDevice } from './isTouchDevice';
 
-let defaultTool = {
+const defaultTool = {
     left: 'wwwc',
     right: 'zoom',
     middle: 'pan'
@@ -17,7 +18,7 @@ let defaultTool = {
 let activeTool;
 let defaultMouseButtonTools;
 
-let tools = {};
+const tools = {};
 
 let gestures = {
     zoomTouchPinch: {
@@ -152,9 +153,11 @@ export const toolManager = {
 
     configureTools() {
         // Get Cornerstone Tools
-        const { textStyle, toolStyle, toolColors,
+        const {
+            textStyle, toolStyle, toolColors,
             length, arrowAnnotate, zoom, ellipticalRoi,
-            textMarker, magnify } = cornerstoneTools;
+            textMarker, magnify
+        } = cornerstoneTools;
 
         // Set text box background color
         textStyle.setBackgroundColor('transparent');
@@ -162,7 +165,7 @@ export const toolManager = {
         // Set the tool font and font size
         // context.font = "[style] [variant] [weight] [size]/[line height] [font family]";
         const fontFamily = 'Roboto, OpenSans, HelveticaNeue-Light, Helvetica Neue Light, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif';
-        textStyle.setFont('15px ' + fontFamily);
+        textStyle.setFont(`15px ${fontFamily}`);
 
         // Set the tool width
         toolStyle.setToolWidth(2);
@@ -174,7 +177,7 @@ export const toolManager = {
         toolColors.setActiveColor('rgb(0, 255, 0)');
 
         // Set shadow configuration
-        const shadowConfig = toolManager.getToolDefaultStates().shadowConfig;
+        const { shadowConfig } = toolManager.getToolDefaultStates();
 
         // Get some tools config to not override them
         const lengthConfig = length.getConfiguration();
@@ -190,7 +193,7 @@ export const toolManager = {
         const $startFrom = $('#startFrom');
         const $ascending = $('#ascending');
         const textMarkerConfig = {
-            markers: [ 'L5', 'L4', 'L3', 'L2', 'L1', // Lumbar spine
+            markers: ['L5', 'L4', 'L3', 'L2', 'L1', // Lumbar spine
                 'T12', 'T11', 'T10', 'T9', 'T8', 'T7', // Thoracic spine
                 'T6', 'T5', 'T4', 'T3', 'T2', 'T1',
                 'C7', 'C6', 'C5', 'C4', 'C3', 'C2', 'C1', // Cervical spine
@@ -268,10 +271,10 @@ export const toolManager = {
     },
 
     configureLoadProcess() {
-        function handleLoadProgress (e) {
+        function handleLoadProgress(e) {
             const eventData = e.detail;
             const viewportIndices = toolManager.getKeysByValue(window.ViewportLoading, eventData.imageId);
-            viewportIndices.forEach(viewportIndex => {
+            viewportIndices.forEach((viewportIndex) => {
                 DCMViewerManager.sessions[`CornerstoneLoadProgress${viewportIndex}`] = eventData.percentComplete;
             });
 
@@ -332,10 +335,10 @@ export const toolManager = {
         }
 
         // Enable tools based on their default states
-        Object.keys(toolDefaultStates).forEach(action => {
+        Object.keys(toolDefaultStates).forEach((action) => {
             const relevantTools = toolDefaultStates[action];
             if (!relevantTools || !relevantTools.length || action === 'disabledToolButtons') return;
-            relevantTools.forEach(toolType => {
+            relevantTools.forEach((toolType) => {
                 // the currently active tool has already been deactivated and can be skipped
                 if (action === 'deactivate' &&
                     (toolType === activeTool.left ||
@@ -346,7 +349,7 @@ export const toolManager = {
 
                 tools[toolType].mouse[action](
                     element,
-                    (action === 'activate' || action === 'deactivate' ? 1 : void 0)
+                    (action === 'activate' || action === 'deactivate' ? 1 : undefined)
                 );
 
                 if (tools[toolType].touch) {
@@ -366,7 +369,7 @@ export const toolManager = {
         }
 
         // Get the imageIds for this element
-        const imageIds = toolData.data[0].imageIds;
+        const { imageIds } = toolData.data[0];
 
         // Get the mouse button tools
         let newToolIdLeft = activeTool.left;
@@ -454,26 +457,23 @@ export const toolManager = {
                 newCornerstoneToolMiddle.activate(element, 2); // 2 means middle mouse button
                 newCornerstoneToolRight.mouse.activate(element, 4); // 4 means right mouse button
             }
+        } else if (newToolIdLeft === newToolIdMiddle && newToolIdMiddle === newToolIdRight) {
+            newCornerstoneToolRight.mouse.activate(element, 7); // 7 means left mouse button, right mouse button and middle mouse button
+        } else if (newToolIdLeft === newToolIdMiddle) {
+            newCornerstoneToolMiddle.activate(element, 3); // 3 means left mouse button and middle mouse button
+            newCornerstoneToolRight.mouse.activate(element, 4); // 4 means right mouse button
+        } else if (newToolIdMiddle === newToolIdRight) {
+            newCornerstoneToolRight.mouse.activate(element, 6); // 6 means right mouse button and middle mouse button
+            newCornerstoneToolLeft.mouse.activate(element, 1); // 1 means left mouse button
+        } else if (newToolIdLeft === newToolIdRight) {
+            newCornerstoneToolMiddle.activate(element, 2); // 2 means middle mouse button
+            newCornerstoneToolRight.mouse.activate(element, 5); // 5 means left mouse button and right mouse button
         } else {
-            // This block ensures that all mouse button tools keep working
-            if (newToolIdLeft === newToolIdMiddle && newToolIdMiddle === newToolIdRight) {
-                newCornerstoneToolRight.mouse.activate(element, 7); // 7 means left mouse button, right mouse button and middle mouse button
-            } else if (newToolIdLeft === newToolIdMiddle) {
-                newCornerstoneToolMiddle.activate(element, 3); // 3 means left mouse button and middle mouse button
-                newCornerstoneToolRight.mouse.activate(element, 4); // 4 means right mouse button
-            } else if (newToolIdMiddle === newToolIdRight) {
-                newCornerstoneToolRight.mouse.activate(element, 6); // 6 means right mouse button and middle mouse button
-                newCornerstoneToolLeft.mouse.activate(element, 1); // 1 means left mouse button
-            } else if (newToolIdLeft === newToolIdRight) {
-                newCornerstoneToolMiddle.activate(element, 2); // 2 means middle mouse button
-                newCornerstoneToolRight.mouse.activate(element, 5); // 5 means left mouse button and right mouse button
-            } else {
-                setTimeout(() => newCornerstoneToolLeft.mouse.activate(element, 1));
-                // >>>> TODO Find out why it's working only with a timeout
-                // newCornerstoneToolLeft.mouse.activate(element, 1); // 1 means left mouse button
-                newCornerstoneToolMiddle.activate(element, 2); // 2 means middle mouse button
-                newCornerstoneToolRight.mouse.activate(element, 4); // 4 means right mouse button
-            }
+            setTimeout(() => newCornerstoneToolLeft.mouse.activate(element, 1));
+            // >>>> TODO Find out why it's working only with a timeout
+            // newCornerstoneToolLeft.mouse.activate(element, 1); // 1 means left mouse button
+            newCornerstoneToolMiddle.activate(element, 2); // 2 means middle mouse button
+            newCornerstoneToolRight.mouse.activate(element, 4); // 4 means right mouse button
         }
 
         // One finger touch
@@ -525,7 +525,7 @@ export const toolManager = {
             $elements = $(elements);
         }
 
-        const checkElementEnabled = function(allElementsEnabled, element) {
+        const checkElementEnabled = function (allElementsEnabled, element) {
             try {
                 cornerstone.getEnabledElement(element);
 
@@ -571,7 +571,7 @@ export const toolManager = {
         activeTool[button] = toolId;
 
         // Enable reactivity
-        DCMViewerManager.sessions['ToolManagerActiveToolUpdated'] = RandomID();
+        DCMViewerManager.sessions.ToolManagerActiveToolUpdated = RandomID();
     },
 
     getNearbyToolData(element, coords, toolTypes) {
@@ -580,13 +580,13 @@ export const toolManager = {
         const nearbyTool = {};
         let pointNearTool = false;
 
-        toolTypes.forEach(function(toolType) {
+        toolTypes.forEach((toolType) => {
             const toolData = cornerstoneTools.getToolState(element, toolType);
             if (!toolData) {
                 return;
             }
 
-            toolData.data.forEach(function(data, index) {
+            toolData.data.forEach((data, index) => {
                 let toolInterfaceName = toolType;
                 let toolInterface;
 
@@ -662,22 +662,22 @@ export const toolManager = {
     },
 
     activateCommandButton(button) {
-        const activeCommandButtons = DCMViewerManager.sessions['ToolManagerActiveCommandButtons'] || [];
+        const activeCommandButtons = DCMViewerManager.sessions.ToolManagerActiveCommandButtons || [];
 
         if (activeCommandButtons.indexOf(button) === -1) {
             activeCommandButtons.push(button);
 
-            DCMViewerManager.sessions['ToolManagerActiveCommandButtons'] = activeCommandButtons;
+            DCMViewerManager.sessions.ToolManagerActiveCommandButtons = activeCommandButtons;
         }
     },
 
     deactivateCommandButton(button) {
-        const activeCommandButtons = DCMViewerManager.sessions['ToolManagerActiveCommandButtons'] || [];
+        const activeCommandButtons = DCMViewerManager.sessions.ToolManagerActiveCommandButtons || [];
         const index = activeCommandButtons.indexOf(button);
 
         if (index !== -1) {
             activeCommandButtons.splice(index, 1);
-            DCMViewerManager.sessions['ToolManagerActiveCommandButtons'] = activeCommandButtons;
+            DCMViewerManager.sessions.ToolManagerActiveCommandButtons = activeCommandButtons;
         }
     }
 };

@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import { cornerstone } from '../../cornerstonejs';
 import { getInstanceClassDefaultViewport } from '../instanceClassSpecificViewport';
 import { DCMViewerLog } from '../../DCMViewerLog';
@@ -9,7 +10,7 @@ export class ResizeViewportManager {
     }
 
     // Relocate dialogs positions
-    relocateDialogs(){
+    relocateDialogs() {
         DCMViewerLog.info('ResizeViewportManager relocateDialogs');
 
         const $bottomRightDialogs = $('#annotationDialog, #textMarkerOptionsDialog');
@@ -43,14 +44,14 @@ export class ResizeViewportManager {
         let enabledElement;
         try {
             enabledElement = cornerstone.getEnabledElement(element);
-        } catch(error) {
+        } catch (error) {
             return;
         }
 
         cornerstone.resize(element, fitToWindow);
 
         if (enabledElement.fitToWindow === false) {
-            const imageId = enabledElement.image.imageId;
+            const { imageId } = enabledElement.image;
             const instance = cornerstone.metaData.get('instance', imageId);
             const instanceClassViewport = getInstanceClassDefaultViewport(instance, enabledElement, imageId);
             cornerstone.setViewport(element, instanceClassViewport);

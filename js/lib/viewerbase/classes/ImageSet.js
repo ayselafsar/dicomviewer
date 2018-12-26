@@ -10,9 +10,7 @@ const OBJECT = 'object';
  * indiscriminately, but this should be changed).
  */
 export class ImageSet {
-
     constructor(images) {
-
         if (Array.isArray(images) !== true) {
             throw new DCMViewerError('ImageSet expects an array of images');
         }
@@ -32,7 +30,6 @@ export class ImageSet {
             writable: false,
             value: RandomID() // Unique ID of the instance
         });
-
     }
 
     getUID() {
@@ -49,12 +46,11 @@ export class ImageSet {
 
     setAttributes(attributes) {
         if (typeof attributes === OBJECT && attributes !== null) {
-            const imageSet = this, hasOwn = Object.prototype.hasOwnProperty;
-            for (let attribute in attributes) {
-                if (hasOwn.call(attributes, attribute)) {
-                    imageSet[attribute] = attributes[attribute];
-                }
-            }
+            const imageSet = this;
+
+            Object.keys(attributes).forEach((attribute) => {
+                imageSet[attribute] = attributes[attribute];
+            });
         }
     }
 
@@ -65,5 +61,4 @@ export class ImageSet {
     sortBy(sortingCallback) {
         return this.images.sort(sortingCallback);
     }
-
 }

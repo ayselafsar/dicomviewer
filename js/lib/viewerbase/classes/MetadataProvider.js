@@ -4,9 +4,7 @@ import { parsingUtils } from '../parsingUtils';
 const FUNCTION = 'function';
 
 export class MetadataProvider {
-
     constructor() {
-
         // Define the main "metadataLookup" private property as an immutable property.
         Object.defineProperty(this, 'metadataLookup', {
             configurable: false,
@@ -22,7 +20,6 @@ export class MetadataProvider {
             writable: true,
             value: null
         });
-
     }
 
     /**
@@ -41,7 +38,7 @@ export class MetadataProvider {
         const instanceMetadata = data.instance;
         const seriesMetadata = data.series;
         const studyMetadata = data.study;
-        const numImages = data.numImages;
+        const { numImages } = data;
 
         const metadata = {};
 
@@ -63,7 +60,7 @@ export class MetadataProvider {
             seriesTime: seriesMetadata.seriesTime,
             modality: seriesMetadata.modality,
             seriesInstanceUid: seriesMetadata.seriesInstanceUid,
-            numImages: numImages
+            numImages
         };
 
         metadata.instance = instanceMetadata;
@@ -307,7 +304,6 @@ export class MetadataProvider {
                     imageInfo.averageFrameRate = 1000 / frameTime;
                 }
             }
-
         }
 
         return imageInfo;

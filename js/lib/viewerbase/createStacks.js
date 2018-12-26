@@ -1,11 +1,9 @@
 import { ImageSet } from './classes/ImageSet';
 import { isImage } from './isImage';
 
-const isMultiFrame = instance => {
+const isMultiFrame = instance =>
     // NumberOfFrames (0028,0008)
-    return instance.getRawValue('x00280008') > 1;
-};
-
+    instance.getRawValue('x00280008') > 1;
 const makeDisplaySet = (series, instances) => {
     const instance = instances[0];
 
@@ -27,10 +25,9 @@ const makeDisplaySet = (series, instances) => {
     });
 
     // Sort the images in this series if needed
-    imageSet.sortBy((a, b) => {
+    imageSet.sortBy((a, b) =>
         // Sort by InstanceNumber (0020,0013)
-        return (parseInt(a.getRawValue('x00200013', 0)) || 0) - (parseInt(b.getRawValue('x00200013', 0)) || 0);
-    });
+        (parseInt(a.getRawValue('x00200013', 0), 10) || 0) - (parseInt(b.getRawValue('x00200013', 0), 10) || 0));
 
     // Include the first image instance number (after sorted)
     imageSet.setAttribute('instanceNumber', imageSet.getImage(0).getRawValue('x00200013'));
@@ -38,11 +35,9 @@ const makeDisplaySet = (series, instances) => {
     return imageSet;
 };
 
-const isSingleImageModality = modality => {
-    return (modality === 'CR' ||
+const isSingleImageModality = modality => (modality === 'CR' ||
         modality === 'MG' ||
         modality === 'DX');
-};
 
 /**
  * Creates a set of series to be placed in the Study Metadata
@@ -56,7 +51,7 @@ const isSingleImageModality = modality => {
  * @param study The study instance metadata to be used
  * @returns {Array} An array of series to be placed in the Study Metadata
  */
-const createStacks = study => {
+const createStacks = (study) => {
     // Define an empty array of display sets
     const displaySets = [];
 
@@ -65,7 +60,7 @@ const createStacks = study => {
     }
 
     // Loop through the series (SeriesMetadata)
-    study.forEachSeries(series => {
+    study.forEachSeries((series) => {
         // If the series has no instances, skip it
         if (!series.getInstanceCount()) {
             return;
@@ -76,7 +71,7 @@ const createStacks = study => {
         // into their own specific display sets. Place the rest of each
         // series into another display set.
         const stackableInstances = [];
-        series.forEachInstance(instance => {
+        series.forEachInstance((instance) => {
             // All imaging modalities must have a valid value for sopClassUid (x00080016) or rows (x00280010)
             if (!isImage(instance.getRawValue('x00080016')) && !instance.getRawValue('x00280010')) {
                 return;
@@ -84,7 +79,7 @@ const createStacks = study => {
 
             let displaySet;
             if (isMultiFrame(instance)) {
-                displaySet = makeDisplaySet(series, [ instance ]);
+                displaySet = makeDisplaySet(series, [instance]);
                 displaySet.setAttributes({
                     isClip: true,
                     studyInstanceUid: study.getStudyInstanceUID(), // Include the study instance Uid for drag/drop purposes
@@ -94,7 +89,7 @@ const createStacks = study => {
                 });
                 displaySets.push(displaySet);
             } else if (isSingleImageModality(instance.modality)) {
-                displaySet = makeDisplaySet(series, [ instance ]);
+                displaySet = makeDisplaySet(series, [instance]);
                 displaySet.setAttributes({
                     studyInstanceUid: study.getStudyInstanceUID(), // Include the study instance Uid
                     instanceNumber: instance.getRawValue('x00200013'), // Include the instance number

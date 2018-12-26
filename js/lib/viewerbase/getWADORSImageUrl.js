@@ -1,6 +1,5 @@
 export function getWADORSImageUrl(instance, frame) {
-    let wadorsuri = instance.wadorsuri;
-
+    let { wadorsuri } = instance;
     if (!wadorsuri) {
         return;
     }

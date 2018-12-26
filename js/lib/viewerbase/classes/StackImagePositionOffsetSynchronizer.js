@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import { cornerstone, cornerstoneTools } from '../../cornerstonejs';
 import { toolManager } from '../toolManager';
 import { DCMViewerLog } from '../../DCMViewerLog';
@@ -64,7 +65,7 @@ export class StackImagePositionOffsetSynchronizer {
             return;
         }
 
-        viewports.forEach((viewport, index) => {
+        viewports.forEach((viewport) => {
             this.synchronizer.add(viewport.element);
             this.syncedViewports.push(viewport);
             viewportIndexes.push(viewport.index);
@@ -86,7 +87,7 @@ export class StackImagePositionOffsetSynchronizer {
     }
 
     getActiveViewportElement() {
-        const viewportIndex = DCMViewerManager.sessions['activeViewport'] || 0;
+        const viewportIndex = DCMViewerManager.sessions.activeViewport || 0;
         return $('.imageViewerViewport').get(viewportIndex);
     }
 
@@ -104,7 +105,7 @@ export class StackImagePositionOffsetSynchronizer {
     }
 
     getViewportByElement(viewportElement) {
-        const length = this.syncedViewports.length;
+        const { length } = this.syncedViewports;
 
         for (let i = 0; i < length; i++) {
             const viewport = this.syncedViewports[i];
@@ -116,7 +117,7 @@ export class StackImagePositionOffsetSynchronizer {
     }
 
     removeViewportByElement(viewportElement) {
-        let viewport = this.getViewportByElement(viewportElement);
+        const viewport = this.getViewportByElement(viewportElement);
 
         if (viewport) {
             this.removeViewport(viewport);
@@ -141,7 +142,7 @@ export class StackImagePositionOffsetSynchronizer {
         const viewports = [];
         const $viewportElements = $('.imageViewerViewport');
 
-        viewportIndexes.forEach(index => {
+        viewportIndexes.forEach((index) => {
             const element = $viewportElements.get(index);
 
             if (!element) {
@@ -179,7 +180,7 @@ export class StackImagePositionOffsetSynchronizer {
         $('.imageViewerViewport').each((index, viewportElement) => {
             if (this.isViewportsLinkable(activeViewportElement, viewportElement)) {
                 viewports.push({
-                    index: index,
+                    index,
                     element: viewportElement
                 });
             }
@@ -202,7 +203,7 @@ export class StackImagePositionOffsetSynchronizer {
                 return;
             }
 
-            const imageId = enabledElement.image.imageId;
+            const { imageId } = enabledElement.image;
             const imagePlane = cornerstone.metaData.get('imagePlane', imageId);
 
             if (!imagePlane || !imagePlane.rowCosines || !imagePlane.columnCosines) {
@@ -210,7 +211,7 @@ export class StackImagePositionOffsetSynchronizer {
             }
 
             return imagePlane.rowCosines.clone().cross(imagePlane.columnCosines);
-        } catch(error) {
+        } catch (error) {
             const errorMessage = error.message || error;
             DCMViewerLog.info(`StackImagePositionOffsetSynchronizer getViewportImageNormal: ${errorMessage}`);
         }

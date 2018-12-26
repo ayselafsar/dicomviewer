@@ -1,7 +1,7 @@
 import { cornerstone } from '../../lib/cornerstonejs';
 import { getElementIfNotEmpty } from './getElementIfNotEmpty';
 
-const getPatient = function(property) {
+const getPatient = function (property) {
     if (!this.imageId) {
         return false;
     }
@@ -14,7 +14,7 @@ const getPatient = function(property) {
     return patient[property];
 };
 
-const getStudy = function(property) {
+const getStudy = function (property) {
     if (!this.imageId) {
         return false;
     }
@@ -27,7 +27,7 @@ const getStudy = function(property) {
     return study[property];
 };
 
-const getSeries = function(property) {
+const getSeries = function (property) {
     if (!this.imageId) {
         return false;
     }
@@ -40,7 +40,7 @@ const getSeries = function(property) {
     return series[property];
 };
 
-const getInstance = function(property) {
+const getInstance = function (property) {
     if (!this.imageId) {
         return false;
     }
@@ -53,7 +53,7 @@ const getInstance = function(property) {
     return instance[property];
 };
 
-const getTagDisplay = function(property) {
+const getTagDisplay = function (property) {
     if (!this.imageId) {
         return false;
     }
@@ -66,7 +66,7 @@ const getTagDisplay = function(property) {
     return instance[property];
 };
 
-const getImage = function(viewportIndex) {
+const getImage = function (viewportIndex) {
     const element = getElementIfNotEmpty(viewportIndex);
     if (!element) {
         return false;
@@ -75,7 +75,7 @@ const getImage = function(viewportIndex) {
     let enabledElement;
     try {
         enabledElement = cornerstone.getEnabledElement(element);
-    } catch(error) {
+    } catch (error) {
         return false;
     }
 

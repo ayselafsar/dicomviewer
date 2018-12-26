@@ -18,7 +18,7 @@ const DICOMTagDescriptions = Object.create(Object.prototype, {
             let string; // by default, undefined is returned...
             if (this.isValidTagNumber(tag)) {
                 // if it's a number, build its hexadecimal representation...
-                string = 'x' + ('00000000' + tag.toString(16)).substr(-8);
+                string = `x${(`00000000${tag.toString(16)}`).substr(-8)}`;
             }
             return string;
         }
@@ -60,38 +60,39 @@ const DICOMTagDescriptions = Object.create(Object.prototype, {
         enumerable: true,
         writable: false,
         value: function init(descriptionMap) {
-            const _hasOwn = Object.prototype.hasOwnProperty;
-            const _descriptions = this._descriptions;
-            for (let tag in descriptionMap) {
-                if (_hasOwn.call(descriptionMap, tag)) {
-                    if (!this.isValidTag(tag)) {
-                        // Skip in case tag is not valid...
-                        console.info(`DICOMTagDescriptions: Invalid tag "${tag}"...`);
-                        continue;
-                    }
-                    if (tag in _descriptions) {
-                        // Skip in case the tag is duplicated...
-                        console.info(`DICOMTagDescriptions: Duplicated tag "${tag}"...`);
-                        continue;
-                    }
-                    // Save keyword...
-                    const keyword = descriptionMap[tag];
-                    // Create a description entry and freeze it...
-                    const entry = Object.create(null);
-                    entry.tag = tag;
-                    entry.keyword = keyword;
-                    Object.freeze(entry);
-                    // Add tag references to entry...
-                    _descriptions[tag] = entry;
-                    // Add keyword references to entry (if not present already)...
-                    if (keyword in _descriptions) {
-                        const currentEntry = _descriptions[keyword];
-                        console.info(`DICOMTagDescriptions: Using <${currentEntry.tag},${currentEntry.keyword}> instead of <${entry.tag},${entry.keyword}> for keyword "${keyword}"...`);
-                    } else {
-                        _descriptions[keyword] = entry;
-                    }
+            const { _descriptions } = this;
+            const tags = Object.keys(descriptionMap);
+            for (let i = 0; i < tags.length; i++) {
+                const tag = tags[i];
+
+                if (!this.isValidTag(tag)) {
+                    // Skip in case tag is not valid...
+                    console.info(`DICOMTagDescriptions: Invalid tag "${tag}"...`);
+                    continue;
+                }
+                if (tag in _descriptions) {
+                    // Skip in case the tag is duplicated...
+                    console.info(`DICOMTagDescriptions: Duplicated tag "${tag}"...`);
+                    continue;
+                }
+                // Save keyword...
+                const keyword = descriptionMap[tag];
+                // Create a description entry and freeze it...
+                const entry = Object.create(null);
+                entry.tag = tag;
+                entry.keyword = keyword;
+                Object.freeze(entry);
+                // Add tag references to entry...
+                _descriptions[tag] = entry;
+                // Add keyword references to entry (if not present already)...
+                if (keyword in _descriptions) {
+                    const currentEntry = _descriptions[keyword];
+                    console.info(`DICOMTagDescriptions: Using <${currentEntry.tag},${currentEntry.keyword}> instead of <${entry.tag},${entry.keyword}> for keyword "${keyword}"...`);
+                } else {
+                    _descriptions[keyword] = entry;
                 }
             }
+
             // Freeze internal description map...
             Object.freeze(_descriptions);
             // Freeze itself...

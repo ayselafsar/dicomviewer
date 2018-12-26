@@ -7,13 +7,11 @@ import { DCMViewerError } from '../../../DCMViewerError';
  */
 
 const UNDEFINED = 'undefined';
-const NUMBER = 'number';
 const STRING = 'string';
 const STUDY_INSTANCE_UID = 'x0020000d';
 const SERIES_INSTANCE_UID = 'x0020000e';
 
 export class BaseInstanceMetadata extends Metadata {
-
     constructor(data, uid) {
         super(data, uid);
         // Initialize Private Properties
@@ -44,7 +42,6 @@ export class BaseInstanceMetadata extends Metadata {
      * This method should only be called during initialization (inside the class constructor)
      */
     _definePublicProperties() {
-
         /**
          * Property: this.sopInstanceUID
          * Same as this.getSOPInstanceUID()
@@ -56,11 +53,10 @@ export class BaseInstanceMetadata extends Metadata {
         Object.defineProperty(this, 'sopInstanceUID', {
             configurable: false,
             enumerable: false,
-            get: function() {
+            get() {
                 return this.getSOPInstanceUID();
             }
         });
-
     }
 
     /**
@@ -104,8 +100,8 @@ export class BaseInstanceMetadata extends Metadata {
         let value = this.getTagValue(tagOrProperty, defaultValue);
         value = BaseInstanceMetadata.getIndexedValue(value, index, defaultValue);
 
-        if(value instanceof Array) {
-            value.forEach( (val, idx) => {
+        if (value instanceof Array) {
+            value.forEach((val, idx) => {
                 value[idx] = parseFloat(val);
             });
 
@@ -120,15 +116,15 @@ export class BaseInstanceMetadata extends Metadata {
         let value = this.getTagValue(tagOrProperty, defaultValue);
         value = BaseInstanceMetadata.getIndexedValue(value, index, defaultValue);
 
-        if(value instanceof Array) {
-            value.forEach( (val, idx) => {
+        if (value instanceof Array) {
+            value.forEach((val, idx) => {
                 value[idx] = parseFloat(val);
             });
 
             return value;
         }
 
-        return typeof value === STRING ? parseInt(value) : value;
+        return typeof value === STRING ? parseInt(value, 10) : value;
     }
 
     /**
@@ -140,12 +136,14 @@ export class BaseInstanceMetadata extends Metadata {
 
     /**
      * This function should be overriden by specialized classes in order to allow client libraries or viewers to take advantage of the Study Metadata API.
+     * @param tagOrProperty
+     * @param defaultValue
      */
     getTagValue(tagOrProperty, defaultValue) {
         /**
          * Please override this method on a specialized class.
          */
-        throw new DCMViewerError('InstanceMetadata::getTagValue is not overriden. Please, override it in a specialized class. See InstanceMetadata for example');
+        throw new DCMViewerError('InstanceMetadata::getTagValue is not overriden. Please, override it in a specialized class. See InstanceMetadata for example', tagOrProperty, defaultValue);
     }
 
     /**
@@ -173,18 +171,19 @@ export class BaseInstanceMetadata extends Metadata {
         /**
          * Please override this method
          */
-        throw new DCMViewerError('InstanceMetadata::tagExists is not overriden. Please, override it in a specialized class. See InstanceMetadata for example');
+        throw new DCMViewerError('InstanceMetadata::tagExists is not overriden. Please, override it in a specialized class. See InstanceMetadata for example', tagOrProperty);
     }
 
     /**
      * Get custom image id of a sop instance
+     * @param frame
      * @return {Any}          sop instance image id
      */
     getImageId(frame) {
         /**
          * Please override this method
          */
-        throw new DCMViewerError('InstanceMetadata::getImageId is not overriden. Please, override it in a specialized class. See InstanceMetadata for example');
+        throw new DCMViewerError('InstanceMetadata::getImageId is not overriden. Please, override it in a specialized class. See InstanceMetadata for example', frame);
     }
 
     /**
@@ -208,14 +207,13 @@ export class BaseInstanceMetadata extends Metadata {
 
             result = value;
 
-            if(hasIndexValues) {
+            if (hasIndexValues) {
                 const splitValues = value.split('\\');
                 if (Metadata.isValidIndex(index)) {
                     const indexedValue = splitValues[index];
 
                     result = typeof indexedValue !== STRING ? defaultValue : indexedValue;
-                }
-                else {
+                } else {
                     result = splitValues;
                 }
             }
@@ -223,5 +221,4 @@ export class BaseInstanceMetadata extends Metadata {
 
         return result;
     }
-
 }

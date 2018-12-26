@@ -29,8 +29,8 @@ class BaseLoadingListener {
 
     _addStatsData(value) {
         const date = new Date();
-        const stats = this.stats;
-        const items = stats.items;
+        const { stats } = this;
+        const { items } = stats;
         const newItem = {
             value,
             date
@@ -55,8 +55,8 @@ class BaseLoadingListener {
     }
 
     _getProgressSessionId() {
-        const displaySetInstanceUid = this.stack.displaySetInstanceUid;
-        return 'StackProgress:' + displaySetInstanceUid;
+        const { displaySetInstanceUid } = this.stack;
+        return `StackProgress:${displaySetInstanceUid}`;
     }
 
     _clearSession() {
@@ -80,7 +80,7 @@ class BaseLoadingListener {
 
     static getNewId() {
         const timeSlice = (new Date()).getTime().toString().slice(-8);
-        const randomNumber = parseInt(Math.random() * 1000000000);
+        const randomNumber = parseInt(Math.random() * 1000000000, 10);
 
         return timeSlice.toString() + randomNumber.toString();
     }
@@ -111,7 +111,7 @@ class DICOMFileLoadingListener extends BaseLoadingListener {
     }
 
     _getImageLoadProgressEventName() {
-        return 'cornerstoneimageloadprogress.' + this.id;
+        return `cornerstoneimageloadprogress.${this.id}`;
     }
 
     startListening() {
@@ -219,7 +219,7 @@ class StackLoadingListener extends BaseLoadingListener {
         // const imageIds = this.stack.imageIds;
 
         // TODO: No way to check status of Promise.
-        /*for(let i = 0; i < imageIds.length; i++) {
+        /* for(let i = 0; i < imageIds.length; i++) {
             const imageId = imageIds[i];
 
             const imagePromise = cornerstone.imageCache.getImageLoadObject(imageId).promise;
@@ -227,15 +227,15 @@ class StackLoadingListener extends BaseLoadingListener {
             if (imagePromise && (imagePromise.state() === 'resolved')) {
                 this._updateFrameStatus(imageId, true);
             }
-        }*/
+        } */
     }
 
     _getImageLoadedEventName() {
-        return 'cornerstoneimageloaded.' + this.id;
+        return `cornerstoneimageloaded.${this.id}`;
     }
 
     _getImageCachePromiseRemoveEventName() {
-        return 'cornerstoneimagecachepromiseremoved.' + this.id;
+        return `cornerstoneimagecachepromiseremoved.${this.id}`;
     }
 
     startListening() {
@@ -288,7 +288,7 @@ class StackLoadingListener extends BaseLoadingListener {
         const totalFramesCount = this.stack.imageIds.length;
         const loadedFramesCount = this.loadedCount;
         const loadingFramesCount = totalFramesCount - loadedFramesCount;
-        const percentComplete = Math.round(loadedFramesCount / totalFramesCount * 100);
+        const percentComplete = Math.round((loadedFramesCount / totalFramesCount) * 100);
         const progressSessionId = this._getProgressSessionId();
 
         DCMViewerManager.sessions[progressSessionId] = {
@@ -304,7 +304,7 @@ class StackLoadingListener extends BaseLoadingListener {
 
     _logProgress() {
         const totalFramesCount = this.stack.imageIds.length;
-        const displaySetInstanceUid = this.stack.displaySetInstanceUid;
+        const { displaySetInstanceUid } = this.stack;
         let progressBar = '[';
 
         for (let i = 0; i < totalFramesCount; i++) {
@@ -324,7 +324,7 @@ class StudyLoadingListener {
     }
 
     addStack(stack, stackMetaData) {
-        const displaySetInstanceUid = stack.displaySetInstanceUid;
+        const { displaySetInstanceUid } = stack;
 
         if (!this.listeners[displaySetInstanceUid]) {
             const listener = this._createListener(stack, stackMetaData);
@@ -335,7 +335,7 @@ class StudyLoadingListener {
     }
 
     addStudy(study) {
-        study.displaySets.forEach(displaySet => {
+        study.displaySets.forEach((displaySet) => {
             const stack = StackManager.findOrCreateStack(study, displaySet);
             this.addStack(stack, {
                 isMultiFrame: displaySet.isMultiFrame
@@ -355,7 +355,7 @@ class StudyLoadingListener {
 
     clear() {
         const displaySetInstanceUids = Object.keys(this.listeners);
-        const length = displaySetInstanceUids.length;
+        const { length } = displaySetInstanceUids;
 
         for (let i = 0; i < length; i++) {
             const displaySetInstanceUid = displaySetInstanceUids[i];
@@ -377,9 +377,8 @@ class StudyLoadingListener {
         // how many frames has already been loaded (bytes/s instead of frames/s).
         if ((schema === 'wadors') || !stackMetaData.isMultiFrame) {
             return new StackLoadingListener(stack);
-        } else {
-            return new DICOMFileLoadingListener(stack);
         }
+        return new DICOMFileLoadingListener(stack);
     }
 
     _getSchema(stack) {

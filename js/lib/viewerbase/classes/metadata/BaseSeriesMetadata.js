@@ -2,7 +2,6 @@ import { Metadata } from './Metadata';
 import { BaseInstanceMetadata } from './BaseInstanceMetadata';
 
 export class BaseSeriesMetadata extends Metadata {
-
     constructor(data, uid) {
         super(data, uid);
         // Initialize Private Properties
@@ -39,7 +38,6 @@ export class BaseSeriesMetadata extends Metadata {
      * This method should only be called during initialization (inside the class constructor)
      */
     _definePublicProperties() {
-
         /**
          * Property: this.seriesInstanceUID
          * Same as this.getSeriesInstanceUID()
@@ -51,11 +49,10 @@ export class BaseSeriesMetadata extends Metadata {
         Object.defineProperty(this, 'seriesInstanceUID', {
             configurable: false,
             enumerable: false,
-            get: function() {
+            get() {
                 return this.getSeriesInstanceUID();
             }
         });
-
     }
 
     /**
@@ -76,7 +73,7 @@ export class BaseSeriesMetadata extends Metadata {
      */
     addInstance(instance) {
         let result = false;
-        if (instance instanceof BaseInstanceMetadata && this.getInstanceByUID(instance.getSOPInstanceUID()) === void 0) {
+        if (instance instanceof BaseInstanceMetadata && this.getInstanceByUID(instance.getSOPInstanceUID()) === undefined) {
             this._instances.push(instance);
             result = true;
         }
@@ -121,9 +118,7 @@ export class BaseSeriesMetadata extends Metadata {
     getInstanceByUID(uid) {
         let found; // undefined by default...
         if (Metadata.isValidUID(uid)) {
-            found = this._instances.find(instance => {
-                return instance.getSOPInstanceUID() === uid;
-            });
+            found = this._instances.find(instance => instance.getSOPInstanceUID() === uid);
         }
         return found;
     }
@@ -170,9 +165,7 @@ export class BaseSeriesMetadata extends Metadata {
      */
     findInstance(callback) {
         if (Metadata.isValidCallback(callback)) {
-            return this._instances.find((instance, index) => {
-                return callback.call(null, instance, index);
-            });
+            return this._instances.find((instance, index) => callback.call(null, instance, index));
         }
     }
 
@@ -191,5 +184,4 @@ export class BaseSeriesMetadata extends Metadata {
             )
         );
     }
-
 }

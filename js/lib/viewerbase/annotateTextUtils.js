@@ -1,14 +1,14 @@
+import $ from 'jquery';
 import { viewportUtils } from './viewportUtils';
 import { isTouchDevice } from './isTouchDevice';
 
-const getTextCallback = doneChangingTextCallback => {
-    // This handles the text entry for the annotation tool
-    const keyPressHandler = e => {
-        // If Enter or Esc are pressed, close the dialog
-        if (e.which === 13 || e.which === 27) {
-            closeHandler();
-        }
-    };
+const getTextCallback = (doneChangingTextCallback) => {
+    const dialog = $('#annotationDialog');
+    if (dialog.get(0).open === true) {
+        return;
+    }
+
+    const getTextInput = $('.annotationTextInput');
 
     const closeHandler = () => {
         dialog.get(0).close();
@@ -22,12 +22,13 @@ const getTextCallback = doneChangingTextCallback => {
         $(element).focus();
     };
 
-    const dialog = $('#annotationDialog');
-    if (dialog.get(0).open === true) {
-        return;
-    }
-
-    const getTextInput = $('.annotationTextInput');
+    // This handles the text entry for the annotation tool
+    const keyPressHandler = (e) => {
+        // If Enter or Esc are pressed, close the dialog
+        if (e.which === 13 || e.which === 27) {
+            closeHandler();
+        }
+    };
 
     // Focus on the text input to open the Safari keyboard
     getTextInput.focus();
@@ -64,7 +65,7 @@ const changeTextCallback = (data, eventData, doneChangingTextCallback) => {
         // Place the dialog above the tool that is being relabelled
         dialog.css({
             top: eventData.currentPoints.page.y - dialog.outerHeight() - 20,
-            left: eventData.currentPoints.page.x - dialog.outerWidth() / 2
+            left: eventData.currentPoints.page.x - (dialog.outerWidth() / 2)
         });
     }
 
@@ -92,16 +93,6 @@ const changeTextCallback = (data, eventData, doneChangingTextCallback) => {
         doneChangingTextCallback(data, undefined, true);
     });
 
-    dialog.off('keydown');
-    dialog.on('keydown', keyPressHandler);
-
-    const keyPressHandler = e => {
-        // If Enter is pressed, close the dialog
-        if (e.which === 13) {
-            closeHandler();
-        }
-    };
-
     const closeHandler = () => {
         dialog.get(0).close();
         doneChangingTextCallback(data, getTextInput.val());
@@ -113,6 +104,16 @@ const changeTextCallback = (data, eventData, doneChangingTextCallback) => {
         const element = viewportUtils.getActiveViewportElement();
         $(element).focus();
     };
+
+    const keyPressHandler = (e) => {
+        // If Enter is pressed, close the dialog
+        if (e.which === 13) {
+            closeHandler();
+        }
+    };
+
+    dialog.off('keydown');
+    dialog.on('keydown', keyPressHandler);
 };
 
 const annotateTextUtils = {

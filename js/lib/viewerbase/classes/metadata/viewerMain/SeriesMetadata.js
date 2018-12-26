@@ -1,8 +1,7 @@
 import { BaseSeriesMetadata } from '../BaseSeriesMetadata';
-import { InstanceMetadata} from './InstanceMetadata';
+import { InstanceMetadata } from './InstanceMetadata';
 
 export class SeriesMetadata extends BaseSeriesMetadata {
-
     /**
      * @param {Object} Series object.
      */
@@ -23,10 +22,9 @@ export class SeriesMetadata extends BaseSeriesMetadata {
         });
 
         // populate internal list of instances...
-        series.instances.forEach(instance => {
+        series.instances.forEach((instance) => {
             this.addInstance(new InstanceMetadata(instance, series, study));
         });
     }
-
 }
 

@@ -13,7 +13,6 @@ const OBJECT = 'object';
  */
 
 export class Metadata {
-
     /**
      * Constructor and Instance Methods
      */
@@ -53,8 +52,8 @@ export class Metadata {
 
     getDataProperty(propertyName) {
         let propertyValue;
-        const _data = this._data;
-        if (_data instanceof Object || typeof _data === OBJECT && _data !== null) {
+        const { _data } = this;
+        if ((_data instanceof Object || typeof _data === OBJECT) && _data !== null) {
             propertyValue = _data[propertyName];
         }
         return propertyValue;
@@ -99,13 +98,10 @@ export class Metadata {
      * @param {Object} attributeMap An object whose own properties will be used as custom attributes.
      */
     setCustomAttributes(attributeMap) {
-        const _hasOwn = Object.prototype.hasOwnProperty;
-        const _custom = this._custom;
-        for (let attribute in attributeMap) {
-            if (_hasOwn.call(attributeMap, attribute)) {
-                _custom[attribute] = attributeMap[attribute];
-            }
-        }
+        const { _custom } = this;
+        Object.keys(attributeMap).forEach((attribute) => {
+            _custom[attribute] = attributeMap[attribute];
+        });
     }
 
     /**
@@ -123,5 +119,4 @@ export class Metadata {
     static isValidCallback(callback) {
         return typeof callback === FUNCTION;
     }
-
 }

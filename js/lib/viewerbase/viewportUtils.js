@@ -1,4 +1,5 @@
-import RandomID from 'random-id';
+import $ from 'jquery';
+import { _ } from 'underscore';
 import { cornerstone, cornerstoneTools } from '../cornerstonejs';
 import { DCMViewerManager } from '../DCMViewerManager';
 import { DCMViewerLog } from '../DCMViewerLog';
@@ -13,12 +14,12 @@ import { captureImageDialog } from './captureImageDialog';
  * @return {Object}             Cornerstone's enabledElement object for the given
  *                              element or undefined if the element is not enabled
  */
-const getEnabledElement = element => {
+const getEnabledElement = (element) => {
     let enabledElement;
 
     try {
         enabledElement = cornerstone.getEnabledElement(element);
-    } catch(error) {
+    } catch (error) {
         DCMViewerLog.warn(error);
     }
 
@@ -141,11 +142,11 @@ const flipH = () => {
     updateOrientationMarkers(element, viewport);
 };
 
-const resetViewportWithElement = element => {
+const resetViewportWithElement = (element) => {
     const viewport = cornerstone.getViewport(element);
     const enabledElement = cornerstone.getEnabledElement(element);
     if (enabledElement.fitToWindow === false) {
-        const imageId = enabledElement.image.imageId;
+        const { imageId } = enabledElement.image;
         const instance = cornerstone.metaData.get('instance', imageId);
 
         enabledElement.viewport = cornerstone.getDefaultViewport(enabledElement.canvas, enabledElement.image);
@@ -159,7 +160,7 @@ const resetViewportWithElement = element => {
     updateOrientationMarkers(element, viewport);
 };
 
-const resetViewport = (viewportIndex=null) => {
+const resetViewport = (viewportIndex = null) => {
     if (viewportIndex === null) {
         resetViewportWithElement(getActiveViewportElement());
     } else if (viewportIndex === 'all') {
@@ -217,51 +218,11 @@ const toggleDialog = (element, closeAction) => {
     }
 };
 
-// Toggle the play/stop state for the cornerstone clip tool
-const toggleCinePlay = () => {
-    // Get the active viewport element
-    const element = getActiveViewportElement();
-
-    // Check if it's playing the clip to toggle it
-    if (isPlaying()) {
-        cornerstoneTools.stopClip(element);
-    } else {
-        cornerstoneTools.playClip(element);
-    }
-
-    // Update the UpdateCINE session property
-    DCMViewerManager.sessions['UpdateCINE'] = RandomID();
-};
-
-// Show/hide the CINE dialog
-const toggleCineDialog = () => {
-    const dialog = document.getElementById('cineDialog');
-
-    toggleDialog(dialog, stopAllClips);
-    DCMViewerManager.sessions['UpdateCINE'] = RandomID();
-};
-
-const toggleDownloadDialog = () => {
-    stopActiveClip();
-    const $dialog = $('#imageDownloadDialog');
-    if ($dialog.length) {
-        $dialog.find('.close:first').click();
-    } else {
-        DCMViewer.ui.showDialog('imageDownloadDialog');
-    }
-};
-
-const isDownloadEnabled = () => {
-    const activeViewport = getActiveViewportElement();
-
-    return activeViewport ? true : false;
-};
-
 // Check if the clip is playing on the active viewport
 const isPlaying = () => {
     // Create a dependency on LayoutManagerUpdated and UpdateCINE session
-    // DCMViewerManager.sessions['UpdateCINE'];
-    // DCMViewerManager.sessions['LayoutManagerUpdated'];
+    // DCMViewerManager.sessions.UpdateCINE;
+    // DCMViewerManager.sessions.LayoutManagerUpdated;
 
     // Get the viewport element and its current playClip tool state
     const element = getActiveViewportElement();
@@ -288,11 +249,69 @@ const isPlaying = () => {
     return false;
 };
 
+// Toggle the play/stop state for the cornerstone clip tool
+const toggleCinePlay = () => {
+    // Get the active viewport element
+    const element = getActiveViewportElement();
+
+    // Check if it's playing the clip to toggle it
+    if (isPlaying()) {
+        cornerstoneTools.stopClip(element);
+    } else {
+        cornerstoneTools.playClip(element);
+    }
+
+    // Update the UpdateCINE session property
+    DCMViewerManager.sessions.UpdateCINE = Math.random();
+};
+
+// Stop clips on all non-empty elements
+const stopAllClips = () => {
+    const elements = $('.imageViewerViewport').not('.empty');
+    elements.each((index, element) => {
+        if ($(element).find('canvas').length) {
+            cornerstoneTools.stopClip(element);
+        }
+    });
+};
+
+// Show/hide the CINE dialog
+const toggleCineDialog = () => {
+    const dialog = document.getElementById('cineDialog');
+
+    toggleDialog(dialog, stopAllClips);
+    DCMViewerManager.sessions.UpdateCINE = Math.random();
+};
+
+const stopActiveClip = () => {
+    const activeElement = getActiveViewportElement();
+
+    if ($(activeElement).find('canvas').length) {
+        cornerstoneTools.stopClip(activeElement);
+    }
+};
+
+const toggleDownloadDialog = () => {
+    stopActiveClip();
+    const $dialog = $('#imageDownloadDialog');
+    if ($dialog.length) {
+        $dialog.find('.close:first').click();
+    } else {
+        DCMViewer.ui.showDialog('imageDownloadDialog');
+    }
+};
+
+const isDownloadEnabled = () => {
+    const activeViewport = getActiveViewportElement();
+
+    return !!activeViewport;
+};
+
 // Check if a study has multiple frames
 const hasMultipleFrames = () => {
     // Its called everytime active viewport and/or layout change
-    // DCMViewerManager.sessions['activeViewport'];
-    // DCMViewerManager.sessions['LayoutManagerUpdated'];
+    // DCMViewerManager.sessions.activeViewport;
+    // DCMViewerManager.sessions.LayoutManagerUpdated;
 
     const activeViewport = getActiveViewportElement();
 
@@ -319,24 +338,6 @@ const hasMultipleFrames = () => {
     }
 
     return false;
-};
-
-// Stop clips on all non-empty elements
-const stopAllClips = () => {
-    const elements = $('.imageViewerViewport').not('.empty');
-    elements.each((index, element) => {
-        if ($(element).find('canvas').length) {
-            cornerstoneTools.stopClip(element);
-        }
-    });
-};
-
-const stopActiveClip = () => {
-    const activeElement = getActiveViewportElement();
-
-    if ($(activeElement).find('canvas').length) {
-        cornerstoneTools.stopClip(activeElement);
-    }
 };
 
 const isStackScrollLinkingDisabled = () => {
@@ -375,7 +376,8 @@ const isStackScrollLinkingActive = () => {
 
 // Create an event listener to update playing state when a clip stops playing
 window.addEventListener('cornerstonetoolsclipstopped', () => {
-    DCMViewerManager.sessions.UpdateCINE = RandomID();
+    // TODO: Add handler for session
+    // DCMViewerManager.sessions.UpdateCINE = Math.random();
 });
 
 /**

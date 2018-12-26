@@ -72,8 +72,8 @@ export class LayoutManager {
         }
 
         // Get all the display sets for the viewer studies
-        let displaySets = [];
-        this.studies.forEach(study => {
+        const displaySets = [];
+        this.studies.forEach((study) => {
             study.displaySets.forEach(dSet => dSet.images.length && displaySets.push(dSet));
         });
 
@@ -93,7 +93,9 @@ export class LayoutManager {
         // Generate the additional data based on the appendix
         const additionalData = [];
         appendix.forEach((displaySet, index) => {
-            const { images, studyInstanceUid, seriesInstanceUid, displaySetInstanceUid } = displaySet;
+            const {
+                images, studyInstanceUid, seriesInstanceUid, displaySetInstanceUid
+            } = displaySet;
             const sopInstanceUid = images[0] && images[0].getSOPInstanceUID ? images[0].getSOPInstanceUID() : '';
             const viewportIndex = currentViewportIndex + index;
             const data = {
@@ -163,12 +165,12 @@ export class LayoutManager {
 
         // imageViewerViewports occasionally needs relevant layout data in order to set
         // the element style of the viewport in question
-        const layoutProps = this.layoutProps;
+        const { layoutProps } = this;
         const data = $.extend({
             viewportData: []
         }, layoutProps);
 
-        this.viewportData.forEach(viewportData => {
+        this.viewportData.forEach((viewportData) => {
             const viewportDataAndLayoutProps = $.extend(viewportData, layoutProps);
             data.viewportData.push(viewportDataAndLayoutProps);
         });
@@ -192,14 +194,13 @@ export class LayoutManager {
 
         // The parent container is identified because it is later removed from the DOM
         const element = $('.imageViewerViewport').eq(viewportIndex);
-        const container = element.parents('.viewportContainer').get(0);
 
         // Record the current viewportIndex so this can be passed into the re-rendering call
         data.viewportIndex = viewportIndex;
 
         // Update the dictionary of loaded displaySet for the specified viewport
         this.viewportData[viewportIndex] = {
-            viewportIndex: viewportIndex,
+            viewportIndex,
             displaySetInstanceUid: data.displaySetInstanceUid,
             seriesInstanceUid: data.seriesInstanceUid,
             studyInstanceUid: data.studyInstanceUid,
@@ -278,12 +279,10 @@ export class LayoutManager {
 
         if (this.isZoomed) {
             this.resetPreviousLayout();
-        } else {
+        } else if (this.getNumberOfViewports() > 1) {
             // Don't enlarge the viewport if we only have one Viewport
             // to begin with
-            if (this.getNumberOfViewports() > 1) {
-                this.enlargeViewport(viewportIndex);
-            }
+            this.enlargeViewport(viewportIndex);
         }
     }
 
@@ -307,7 +306,7 @@ export class LayoutManager {
             }) || this.studies[0];
 
             // Get the display sets
-            const displaySets = currentStudy.displaySets;
+            const { displaySets } = currentStudy;
 
             // Get the current display set
             const displaySet = _.findWhere(displaySets, {
@@ -349,10 +348,10 @@ export class LayoutManager {
         // Get the studies and display sets sequence map
         const sequenceMap = definedSequenceMap || this.getDisplaySetSequenceMap();
 
-        sequenceMap.forEach((studyViewports, study) => {
+        sequenceMap.forEach((studyViewports) => {
             let lastDisplaySetIndex = null;
             let lastViewportIndex = null;
-            studyViewports.forEach(({ viewportIndex, displaySetIndex }, index) => {
+            studyViewports.forEach(({ viewportIndex, displaySetIndex }) => {
                 // Check if the sequence is wrong
                 if (
                     displaySetIndex !== 9999 &&
@@ -399,7 +398,7 @@ export class LayoutManager {
         const isSequenced = this.isDisplaySetsSequenced(sequenceMap);
 
         // Get Active Viewport Index if isMultiple is false
-        const activeViewportIndex = !isMultiple ? DCMViewerManager.sessions['activeViewport'] : null;
+        const activeViewportIndex = !isMultiple ? DCMViewerManager.sessions.activeViewport : null;
 
         // Check if is next and looping is blocked
         if (isNext && !allowLooping) {
@@ -437,7 +436,7 @@ export class LayoutManager {
             let beginReached = true;
 
             if (activeViewportIndex >= 0) {
-                sequenceMap.forEach((studyViewports, study) => {
+                sequenceMap.forEach((studyViewports) => {
                     // Get active viewport index if isMultiple is false ortherwise get first
                     const studyViewport = studyViewports[activeViewportIndex !== null ? activeViewportIndex : 0];
                     if (!studyViewport) {
@@ -483,7 +482,7 @@ export class LayoutManager {
         }) || this.studies[0];
 
         // Get the display sets
-        const displaySets = currentStudy.displaySets;
+        const { displaySets } = currentStudy;
 
         // Get the current display set
         const currentDisplaySet = _.findWhere(displaySets, {
@@ -545,7 +544,7 @@ export class LayoutManager {
             studyViewports.sort((a, b) => a.displaySetIndex > b.displaySetIndex);
 
             // Get the study display sets
-            const displaySets = study.displaySets;
+            const { displaySets } = study;
 
             // Calculate the base index
             const firstIndex = studyViewports[0].displaySetIndex;
@@ -588,7 +587,7 @@ export class LayoutManager {
             }
 
             // Iterate over the current study viewports
-            studyViewports.forEach(({ viewportIndex }, index) => {
+            studyViewports.forEach((viewport, index) => {
                 // Get the new displaySet index to be rendered in viewport
                 const newIndex = baseIndex + index;
 
@@ -623,13 +622,13 @@ export class LayoutManager {
     moveDisplaySets(isNext) {
         DCMViewerLog.info('LayoutManager moveDisplaySets');
 
-        //Check if navigation is on a single or multiple viewports
+        // Check if navigation is on a single or multiple viewports
         if (DCMViewerManager.uiSettings.displaySetNavigationMultipleViewports) {
             // Move display sets on multiple viewports
             this.moveMultipleViewportDisplaySets(isNext);
         } else {
             // Get the selected viewport index
-            const viewportIndex = DCMViewerManager.sessions['activeViewport'];
+            const viewportIndex = DCMViewerManager.sessions.activeViewport;
 
             // Move display sets on a single viewport
             this.moveSingleViewportDisplaySets(viewportIndex, isNext);
@@ -643,7 +642,7 @@ export class LayoutManager {
      * @return {Boolean}                  Returns if the given study is in the given viewport or not
      */
     isStudyLoadedIntoViewport(studyInstanceUid, viewportIndex) {
-        return (this.viewportData.find(item => item.studyInstanceUid === studyInstanceUid && item.viewportIndex === viewportIndex) !== void 0);
+        return (this.viewportData.find(item => item.studyInstanceUid === studyInstanceUid && item.viewportIndex === viewportIndex) !== undefined);
     }
 
     /**
@@ -653,5 +652,4 @@ export class LayoutManager {
     isMultipleLayout() {
         return this.layoutProps.row !== 1 && this.layoutProps.columns !== 1;
     }
-
 }

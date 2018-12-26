@@ -1,3 +1,5 @@
+/* eslint import/no-extraneous-dependencies:0 */
+
 import Handlebars from 'handlebars';
 import { DCMViewer } from '../../lib/viewerMain';
 

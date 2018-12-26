@@ -11,13 +11,12 @@ const stackUpdatedCallbacks = [];
  * Loop through the current series and add metadata to the
  * Cornerstone meta data provider. This will be used to fill information
  * into the viewport overlays, and to calculate reference lines and orientation markers
- * @param  {Object} stackMap              stackMap object
  * @param  {Object} study                 Study object
  * @param  {Object} displaySet            The set of images to make the stack from
  * @return {Array}                        Array with image IDs
  */
-function createAndAddStack(stackMap, study, displaySet) {
-    const metadataProvider = DCMViewer.viewer.metadataProvider;
+function createAndAddStack(study, displaySet) {
+    const { metadataProvider } = DCMViewer.viewer;
     const numImages = displaySet.images.length;
     const imageIds = [];
     let imageId;
@@ -32,7 +31,7 @@ function createAndAddStack(stackMap, study, displaySet) {
             imageIndex: imageIndex + 1
         };
 
-        const numberOfFrames = image.numberOfFrames;
+        const { numberOfFrames } = image;
         if (numberOfFrames > 1) {
             DCMViewerLog.info('Multiframe image detected');
             for (let i = 0; i < numberOfFrames; i++) {
@@ -83,7 +82,7 @@ const StackManager = {
      * @return {Array} Array with image IDs
      */
     makeAndAddStack(study, displaySet) {
-        return configuration.createAndAddStack(stackMap, study, displaySet, stackUpdatedCallbacks);
+        return configuration.createAndAddStack(study, displaySet, stackUpdatedCallbacks);
     },
     /**
      * Find a stack from the currently created stacks.

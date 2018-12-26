@@ -5,7 +5,6 @@ import { ImageSet } from '../ImageSet';
 import { DCMViewerError } from '../../../DCMViewerError';
 
 export class BaseStudyMetadata extends Metadata {
-
     constructor(data, uid) {
         super(data, uid);
         // Initialize Private Properties
@@ -54,7 +53,6 @@ export class BaseStudyMetadata extends Metadata {
      * This method should only be called during initialization (inside the class constructor)
      */
     _definePublicProperties() {
-
         /**
          * Property: this.studyInstanceUID
          * Same as this.getStudyInstanceUID()
@@ -66,11 +64,10 @@ export class BaseStudyMetadata extends Metadata {
         Object.defineProperty(this, 'studyInstanceUID', {
             configurable: false,
             enumerable: false,
-            get: function() {
+            get() {
                 return this.getStudyInstanceUID();
             }
         });
-
     }
 
     /**
@@ -130,9 +127,7 @@ export class BaseStudyMetadata extends Metadata {
      */
     findDisplaySet(callback) {
         if (Metadata.isValidCallback(callback)) {
-            return this._displaySets.find((displaySet, index) => {
-                return callback.call(null, displaySet, index);
-            });
+            return this._displaySets.find((displaySet, index) => callback.call(null, displaySet, index));
         }
     }
 
@@ -166,7 +161,7 @@ export class BaseStudyMetadata extends Metadata {
      */
     addSeries(series) {
         let result = false;
-        if (series instanceof BaseSeriesMetadata && this.getSeriesByUID(series.getSeriesInstanceUID()) === void 0) {
+        if (series instanceof BaseSeriesMetadata && this.getSeriesByUID(series.getSeriesInstanceUID()) === undefined) {
             this._series.push(series);
             result = true;
         }
@@ -194,9 +189,7 @@ export class BaseStudyMetadata extends Metadata {
     getSeriesByUID(uid) {
         let found; // undefined by default...
         if (Metadata.isValidUID(uid)) {
-            found = this._series.find(series => {
-                return series.getSeriesInstanceUID() === uid;
-            });
+            found = this._series.find(series => series.getSeriesInstanceUID() === uid);
         }
         return found;
     }
@@ -214,9 +207,7 @@ export class BaseStudyMetadata extends Metadata {
      * @returns {number} The number of instances in the current study.
      */
     getInstanceCount() {
-        return this._series.reduce((sum, series) => {
-            return sum + series.getInstanceCount();
-        }, 0);
+        return this._series.reduce((sum, series) => sum + series.getInstanceCount(), 0);
     }
 
     /**
@@ -251,19 +242,17 @@ export class BaseStudyMetadata extends Metadata {
      *     needs series sorted by the same criteria used for sorting display sets.
      */
     sortSeriesByDisplaySets() {
-
         // Object for mapping display sets' index by seriesInstanceUid
         const displaySetsMapping = {};
 
         // Loop through each display set to create the mapping
-        this.forEachDisplaySet( (displaySet, index) => {
-
+        this.forEachDisplaySet((displaySet, index) => {
             if (!(displaySet instanceof ImageSet)) {
                 throw new DCMViewerError(`StudyMetadata::sortSeriesByDisplaySets display set at index ${index} is not an instance of ImageSet`);
             }
 
             // In case of multiframe studies, just get the first index occurence
-            if (displaySetsMapping[displaySet.seriesInstanceUid] === void 0) {
+            if (displaySetsMapping[displaySet.seriesInstanceUid] === undefined) {
                 displaySetsMapping[displaySet.seriesInstanceUid] = index;
             }
         });
@@ -271,8 +260,7 @@ export class BaseStudyMetadata extends Metadata {
         // Clone of actual series
         const actualSeries = this.getSeries();
 
-        actualSeries.forEach( (series, index) => {
-
+        actualSeries.forEach((series, index) => {
             if (!(series instanceof BaseSeriesMetadata)) {
                 throw new DCMViewerError(`StudyMetadata::sortSeriesByDisplaySets series at index ${index} is not an instance of SeriesMetadata`);
             }
@@ -352,8 +340,8 @@ export class BaseStudyMetadata extends Metadata {
         if (Metadata.isValidCallback(callback)) {
             let instance;
 
-            const series = this._series.find(series => {
-                instance = series.findInstance(callback);
+            const series = this._series.find((seriesItem) => {
+                instance = seriesItem.findInstance(callback);
                 return instance instanceof BaseInstanceMetadata;
             });
 
@@ -396,7 +384,4 @@ export class BaseStudyMetadata extends Metadata {
 
         return result.instance;
     }
-
-
-
 }

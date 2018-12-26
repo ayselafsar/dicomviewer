@@ -11,10 +11,10 @@ import { cornerstone } from '../cornerstonejs';
  * @returns {string}
  */
 export function getFrameOfReferenceUID(element) {
-    var enabledElement;
+    let enabledElement;
     try {
         enabledElement = cornerstone.getEnabledElement(element);
-    } catch(error) {
+    } catch (error) {
         return;
     }
 
@@ -22,8 +22,8 @@ export function getFrameOfReferenceUID(element) {
         return;
     }
 
-    var imageId = enabledElement.image.imageId;
-    var imagePlane = cornerstone.metaData.get('imagePlane', imageId);
+    const { imageId } = enabledElement.image;
+    const imagePlane = cornerstone.metaData.get('imagePlane', imageId);
     if (!imagePlane || !imagePlane.frameOfReferenceUID) {
         return;
     }

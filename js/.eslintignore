@@ -1,4 +1,4 @@
+external/*
 public/*
 dist/*
 node_modules/*
-lib/dicom/dataDictionary.js

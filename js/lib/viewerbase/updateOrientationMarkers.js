@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import { cornerstone, cornerstoneTools } from '../../lib/cornerstonejs';
 
 /**
@@ -10,7 +11,7 @@ import { cornerstone, cornerstoneTools } from '../../lib/cornerstonejs';
  */
 export function updateOrientationMarkers(element, viewport) {
     // Get the current viewport settings
-    if(!viewport) {
+    if (!viewport) {
         viewport = cornerstone.getViewport(element);
     }
 

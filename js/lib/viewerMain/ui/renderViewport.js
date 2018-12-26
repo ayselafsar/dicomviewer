@@ -211,8 +211,8 @@ function loadDisplaySetIntoViewport() {
             layoutManager.viewportData[viewportIndex].imageId = currentImage.imageId;
 
             // Get the element and stack data
-            const element = event.target;
-            const toolData = cornerstoneTools.getToolState(element, 'stack');
+            const targetElement = event.target;
+            const toolData = cornerstoneTools.getToolState(targetElement, 'stack');
             if (!toolData || !toolData.data || !toolData.data.length) {
                 return;
             }
@@ -221,15 +221,13 @@ function loadDisplaySetIntoViewport() {
             updateOverlay();
 
             // Display orientation markers
-            DCMViewer.viewerbase.updateOrientationMarkers(element);
+            DCMViewer.viewerbase.updateOrientationMarkers(targetElement);
 
             // If this viewport is displaying a stack of images, save the current image
             // index in the stack to the global DCMViewer.viewer.data object.
-            const stack = cornerstoneTools.getToolState(element, 'stack');
-            if (stack && stack.data.length && stack.data[0].imageIds.length > 1) {
-                const { imageId } = currentImage;
-                const imageIdIndex = stack.data[0].imageIds.indexOf(imageId);
-                layoutManager.viewportData[viewportIndex].currentImageIdIndex = imageIdIndex;
+            const stackState = cornerstoneTools.getToolState(targetElement, 'stack');
+            if (stackState && stackState.data.length && stackState.data[0].imageIds.length > 1) {
+                layoutManager.viewportData[viewportIndex].currentImageIdIndex = stackState.data[0].imageIds.indexOf(currentImage.imageId);
             }
         });
 

@@ -5,8 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prebuild": "npm install",
-    "build": "webpack",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "build": "npm run lint && webpack"
   },
   "author": "Aysel Afsar",
   "license": "AGPL-3.0-only",
