@@ -54,6 +54,11 @@ const tools = [{
     classes: 'imageViewerTool',
     iconClasses: 'fa fa-square fa-lg',
 }, {
+    id: 'magnify',
+    title: 'Magnify',
+    classes: 'imageViewerTool',
+    iconClasses: 'fa fa-circle'
+}, {
     id: 'reset',
     title: 'Reset',
     classes: 'imageViewerCommand',

@@ -87,6 +87,14 @@ footer.hidden {
     -ms-filter: "FlipH";
 }
 
+.magnifyTool {
+    border: 4px white solid;
+    box-shadow: 2px 2px 10px #1e1e1e;
+    border-radius: 50%;
+    display: none;
+    cursor: none;
+}
+
 .toolbarSectionButton:not(.active):hover .buttonLabel, .toolbarSectionButton:not(.active):hover .svgContainer {
     color: #ffffff;
 }
