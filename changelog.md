@@ -5,6 +5,24 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [1.1.0] - 2018-12-27
+
+### Fixed
+- Fixed compatibility issues with Nextcloud 15 and older
+- Fixed url string and navigation with browser back button
+
+### Added
+- Added series panel scrollbar
+- Added viewport scrollbar up/down buttons
+- Added a toolbar button used to collapse/expand toolbar in small screens
+- Added annotate and magnify tools
+- Support for additional DICOM extensions (Thanks to @doc-sebastian)
+
+### Changed
+- Update cornerstone modules
+- Refactor templates with compiled handlebars
+
+
 ## [1.0.2] - 2018-08-30
 
 ### Fixed
