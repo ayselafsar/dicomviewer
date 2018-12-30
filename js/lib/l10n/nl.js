@@ -48,7 +48,7 @@ OC.L10N.register(
     "Close" : "Sluiten",
     "Download" : "Opslaan",
     /* ViewerMain and ViewerOverlay */
-    "Loading..." : "Lade ...",
+    "Loading..." : "Laden ...",
     "There is no available DICOM image to display" : "Er is geen DICOM-bestand beschikbaar om weer te geven.",
     "Ser:" : "Serie:",
     "Img:" : "Beeld:"
