@@ -24,6 +24,8 @@
     "Close Viewer" : "Viewer afsluiten",
     "DICOM Attributes" : "DICOM-attributen",
     "Parsing DICOM file..." : "DICOM-Bestand analyseren ...",
+    "Search for attributes.." : "Zoek naar attributen..",
+    "Type in an attribute" : "Geef een attribuut in",
     "Attribute" : "Attribuut",
     "Value" : "Waarde",
     "Enter your annatotation" : "Notitie ingeven",

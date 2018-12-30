@@ -27,6 +27,8 @@ OC.L10N.register(
     "Close Viewer" : "Viewer afsluiten",
     /* Sidebar */
     "DICOM Attributes" : "DICOM-attributen",
+    "Search for attributes.." : "Zoek naar attributen..",
+    "Type in an attribute" : "Geef een attribuut in",
     "Parsing DICOM file..." : "DICOM-Bestand analyseren ...",
     "Attribute" : "Attribuut",
     "Value" : "Waarde",
