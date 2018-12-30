@@ -33,8 +33,8 @@ OC.L10N.register(
     "Attribute" : "Attribuut",
     "Value" : "Waarde",
     /* AnnotationDialogs */
-    "Enter your annatotation" : "Notitie ingeven",
-    "Edit your annatotation" : "Notitie bewerken",
+    "Enter your annotation" : "Notitie ingeven",
+    "Edit your annotation" : "Notitie bewerken",
     "New label" : "Tekst",
     "Remove Marker" : "Markering verwijderen",
     /* CaptureImageDialog */

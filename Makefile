@@ -97,6 +97,7 @@ source:
 		"css" \
 		"img" \
 		"lib" \
+		"l10n" \
 		"LICENSE" \
 	$(source_artifact_directory)/$(app_name)
 	mkdir -p $(source_artifact_directory)/$(app_name)/js
@@ -115,6 +116,7 @@ appstore:
 		"css" \
 		"img" \
 		"lib" \
+		"l10n" \
 		"LICENSE" \
 	$(appstore_artifact_directory)/$(app_name)
 	mkdir -p $(appstore_artifact_directory)/$(app_name)/js

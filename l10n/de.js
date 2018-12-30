@@ -1,4 +1,7 @@
-{ "translations": {
+OC.L10N.register(
+    "dicomviewer",
+    {
+    /* Toolbar */
     "Series" : "Serie(n)",
     "Toggle Series Panel" : "Serienübersicht einschalten",
     "More" : "Weitere",
@@ -22,18 +25,21 @@
     "Clear" : "Löschen",
     "Capture" : "Export",
     "Close Viewer" : "Viewer schließen",
+    /* Sidebar */
     "DICOM Attributes" : "DICOM-Attribute",
     "Search for attributes.." : "Suche nach Attributen..",
     "Type in an attribute" : "Gesuchtes Attribut eingeben",
     "Parsing DICOM file..." : "DICOM-Datei analysieren ...",
     "Attribute" : "Attribute",
     "Value" : "Wert",
-    "Enter your annatotation" : "Notiz eingeben",
-    "Edit your annatotation" : "Notiz bearbeiten",
+    /* AnnotationDialogs */
+    "Enter your annotation" : "Notiz eingeben",
+    "Edit your annotation" : "Notiz bearbeiten",
     "New label" : "Text",
     "Remove Marker" : "Markierung löschen",
+    /* CaptureImageDialog */
     "Capture High Quality Image" : "Hochauflösendes Bild exportieren",
-    "Please specify the dimensions, and desired type for the output image." : "Bitte geben Sie die Bildgröße und Dateityp der gewünschten Bildausgabe an:",
+    "Please specify the dimensions, and desired type for the output image." : "Bitte gib die Bildgröße und Dateityp der gewünschten Bildausgabe an:",
     "Width (px)" : "Breite (px)",
     "Height (px)" : "Höhe (px)",
     "File Name" : "Dateiname",
@@ -43,9 +49,10 @@
     "Image Preview" : "Vorschau",
     "Close" : "Schließen",
     "Download" : "Herunterladen",
+    /* ViewerMain and ViewerOverlay */
     "Loading..." : "Lade ...",
     "There is no available DICOM image to display" : "Es existiert keine DICOM-Bilddatei zum Anzeigen.",
     "Ser:" : "Serie:",
     "Img:" : "Bild:"
-    },"pluralForm" :"nplurals=2; plural=(n != 1);"
-}
+    },
+"nplurals=2; plural=(n != 1);");
