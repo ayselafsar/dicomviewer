@@ -28,7 +28,7 @@ OC.L10N.register(
     /* Sidebar */
     "DICOM Attributes" : "DICOM-Attribute",
     "Search for attributes.." : "Suche nach Attributen..",
-    "Type in an attribute" : "gesuchtes Attribut eingeben",
+    "Type in an attribute" : "Gesuchtes Attribut eingeben",
     "Parsing DICOM file..." : "DICOM-Datei analysieren ...",
     "Attribute" : "Attribute",
     "Value" : "Wert",
