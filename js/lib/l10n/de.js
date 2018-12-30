@@ -39,7 +39,7 @@ OC.L10N.register(
     "Remove Marker" : "Markierung löschen",
     /* CaptureImageDialog */
     "Capture High Quality Image" : "Hochauflösendes Bild exportieren",
-    "Please specify the dimensions, and desired type for the output image." : "Bitte geben Sie die Bildgröße und Dateityp der gewünschten Bildausgabe an:",
+    "Please specify the dimensions, and desired type for the output image." : "Bitte gebe die Bildgröße und Dateityp der gewünschten Bildausgabe an:",
     "Width (px)" : "Breite (px)",
     "Height (px)" : "Höhe (px)",
     "File Name" : "Dateiname",
