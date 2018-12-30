@@ -1,8 +1,10 @@
 OC.L10N.register(
     "dicomviewer",
     {
+    /* Toolbar */
     "Series" : "Series",
-    "Toggle Series Panel" : "Serievenster inschakelen",
+    "Toggle Series Panel" : "Seriepaneel inschakelen",
+    "More" : "Meer",
     "Stack Scroll" : "Doorloop serie",
     "Levels" : "Helderheid",
     "Zoom" : "Zoomen",
@@ -16,14 +18,24 @@ OC.L10N.register(
     "Magnify" : "Loep",
     "Reset" : "Terugzetten",
     "Annotate" : "Notitie",
-    "Enter your annatotation" : "Notitie ingeven",
-    "New label" : "Tekst",
     "Probe" : "Positie",
     "Elliptical ROI" : " Ellipsvormige ROI",
     "Rectangle ROI" : "Rechthoekige ROI",
     "Angle" : "Hoek",
     "Clear" : "Terugzetten",
     "Capture" : "Export",
+    "Close Viewer" : "Viewer afsluiten",
+    /* Sidebar */
+    "DICOM Attributes" : "DICOM-attributen",
+    "Parsing DICOM file..." : "DICOM-Bestand analyseren ...",
+    "Attribute" : "Attribuut",
+    "Value" : "Waarde",
+    /* AnnotationDialogs */
+    "Enter your annatotation" : "Notitie ingeven",
+    "Edit your annatotation" : "Notitie bewerken",
+    "New label" : "Tekst",
+    "Remove Marker" : "Markering verwijderen",
+    /* CaptureImageDialog */
     "Capture High Quality Image" : "Afbeelding met hoge kwaliteit exportieren",
     "Please specify the dimensions, and desired type for the output image." : "Geef a.u.b. de afmetingen und het gewenste type voor de afbeelding aan:",
     "Width (px)" : "Breedte (px)",
@@ -35,21 +47,10 @@ OC.L10N.register(
     "Image Preview" : "Voorbeeld",
     "Close" : "Sluiten",
     "Download" : "Opslaan",
-    "Close Viewer" : "Viewer afsluiten",
-    "Ser:" : "Serie:",
-    "Img:" : "Beeld:",
-	
-	
-	
-	
-    "More" : "Meer",
-    "DICOM Attributes" : "DICOM-attributen",
-    "Search for attributes.." : "Naar attributen zoeken..",
-    "Type in an attribute" : "Geef eein attribuut in",
-    "Parsing DICOM file..." : "DICOM-Bestand analyseren ...",
-    "Attribute" : "Attribuut",
-    "Value" : "Waarde",
+    /* ViewerMain and ViewerOverlay */
     "Loading..." : "Lade ...",
     "There is no available DICOM image to display" : "Er is geen DICOM-bestand beschikbaar om weer te geven.",
+    "Ser:" : "Serie:",
+    "Img:" : "Beeld:"
     },
 "nplurals=2; plural=(n != 1);");
