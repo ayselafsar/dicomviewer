@@ -1,3 +1,4 @@
+![Downloads](https://img.shields.io/github/downloads/ayselafsar/dicomviewer/total.svg?style=flat-square)
 [![Support][support-image]][support-url]
 
 # DICOM Viewer
