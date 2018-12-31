@@ -120,7 +120,7 @@ class DicomViewer {
         // Register file actions for folders containing dicom files
         fileActions.registerAction({
             name: 'viewDicomFolder',
-            displayName: 'Open with DICOM Viewer',
+            displayName: window.t('dicomviewer', 'Open with DICOM Viewer'),
             mime: 'httpd/unix-directory',
             permissions: OC.PERMISSION_READ,
             order: -10000,
@@ -142,7 +142,7 @@ class DicomViewer {
         // Register file actions for single dicom files
         fileActions.registerAction({
             name: 'viewDicomFile',
-            displayName: 'Open with DICOM Viewer',
+            displayName: window.t('dicomviewer', 'Open with DICOM Viewer'),
             mime: this.mimeType,
             permissions: OC.PERMISSION_READ,
             templateName: 'AppDicomViewer',

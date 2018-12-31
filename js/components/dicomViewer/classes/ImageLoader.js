@@ -65,7 +65,7 @@ class ImageLoader {
             });
 
             const content = '<p style="text-align: center;">' +
-                'There is no available DICOM image to display' +
+                `${window.t('dicomviewer', 'There is no available DICOM image to display')}` +
                 '</p>';
             $loadingViewerMain.append(content);
         }, 500);

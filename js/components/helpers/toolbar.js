@@ -5,102 +5,102 @@ import { DCMViewer } from '../../lib/viewerMain';
 
 const tools = [{
     id: 'stackScroll',
-    title: 'Stack Scroll',
+    title: window.t('dicomviewer', 'Stack Scroll'),
     classes: 'imageViewerTool',
     iconClasses: 'fa fa-bars fa-lg',
 }, {
     id: 'wwwc',
-    title: 'Levels',
+    title: window.t('dicomviewer', 'Levels'),
     classes: 'imageViewerTool',
     iconClasses: 'fa fa-sun-o fa-lg',
 }, {
     id: 'zoom',
-    title: 'Zoom',
+    title: window.t('dicomviewer', 'Zoom'),
     classes: 'imageViewerTool',
     iconClasses: 'fa fa-search fa-lg',
 }, {
     id: 'pan',
-    title: 'Pan',
+    title: window.t('dicomviewer', 'Pan'),
     classes: 'imageViewerTool',
     iconClasses: 'fa fa-arrows fa-lg',
 }, {
     id: 'invert',
-    title: 'Invert',
+    title: window.t('dicomviewer', 'Invert'),
     classes: 'imageViewerCommand',
     iconClasses: 'fa fa-adjust fa-lg',
 }, {
     id: 'flipH',
-    title: 'Flip H',
+    title: window.t('dicomviewer', 'Flip H'),
     classes: 'imageViewerCommand',
     iconClasses: 'fa fa-ellipsis-h fa-lg',
 }, {
     id: 'flipV',
-    title: 'Flip V',
+    title: window.t('dicomviewer', 'Flip V'),
     classes: 'imageViewerCommand',
     iconClasses: 'fa fa-ellipsis-v fa-lg',
 }, {
     id: 'rotateL',
-    title: 'Rotate L',
+    title: window.t('dicomviewer', 'Rotate L'),
     classes: 'imageViewerCommand',
     svgClasses: 'svgContent rotate-left',
 }, {
     id: 'rotateR',
-    title: 'Rotate R',
+    title: window.t('dicomviewer', 'Rotate R'),
     classes: 'imageViewerCommand',
     svgClasses: 'svgContent rotate-right'
 }, {
     id: 'wwwcRegion',
-    title: 'ROI Window',
+    title: window.t('dicomviewer', 'ROI Window'),
     classes: 'imageViewerTool',
     iconClasses: 'fa fa-square fa-lg',
 }, {
     id: 'magnify',
-    title: 'Magnify',
+    title: window.t('dicomviewer', 'Magnify'),
     classes: 'imageViewerTool',
     iconClasses: 'fa fa-circle'
 }, {
     id: 'reset',
-    title: 'Reset',
+    title: window.t('dicomviewer', 'Reset'),
     classes: 'imageViewerCommand',
     iconClasses: 'fa fa-undo fa-lg',
 }, {
     id: 'length',
-    title: 'Length',
+    title: window.t('dicomviewer', 'Length'),
     classes: 'imageViewerTool',
     iconClasses: 'fa fa-arrows-v fa-lg',
 }, {
     id: 'annotate',
-    title: 'Annotate',
+    title: window.t('dicomviewer', 'Annotate'),
     classes: 'imageViewerTool',
     iconClasses: 'fa fa-long-arrow-down fa-lg',
 }, {
     id: 'dragProbe',
-    title: 'Probe',
+    title: window.t('dicomviewer', 'Probe'),
     classes: 'imageViewerTool',
     iconClasses: 'fa fa-dot-circle-o fa-lg',
 }, {
     id: 'ellipticalRoi',
-    title: 'Elliptical ROI',
+    title: window.t('dicomviewer', 'Elliptical ROI'),
     classes: 'imageViewerTool',
     iconClasses: 'fa fa-circle-o fa-lg',
 }, {
     id: 'rectangleRoi',
-    title: 'Rectangle ROI',
+    title: window.t('dicomviewer', 'Rectangle ROI'),
     classes: 'imageViewerTool',
     iconClasses: 'fa fa-square-o fa-lg',
 }, {
     id: 'angle',
-    title: 'Angle',
+    title: window.t('dicomviewer', 'Angle'),
     classes: 'imageViewerTool',
     iconClasses: 'fa fa-angle-left fa-lg',
 }, {
     id: 'clearTools',
-    title: 'Clear',
+    title: window.t('dicomviewer', 'Clear'),
     classes: 'imageViewerCommand',
     iconClasses: 'fa fa-trash fa-lg',
 }, {
     id: 'toggleCaptureImageDialog',
-    title: 'Capture',
+    title: window.t('dicomviewer', 'Capture'),
     classes: 'imageViewerCommand',
     iconClasses: 'fa fa-camera fa-lg',
 }];

@@ -26,12 +26,12 @@ function getCompression() {
 
     if (instance.lossyImageCompression === '01' &&
         instance.lossyImageCompressionRatio !== '') {
-        const compressionMethod = instance.lossyImageCompressionMethod || 'Lossy: ';
+        const compressionMethod = instance.lossyImageCompressionMethod || window.t('dicomviewer', 'Lossy: ');
         const compressionRatio = parseFloat(instance.lossyImageCompressionRatio).toFixed(2);
         return `${compressionMethod}${compressionRatio} : 1`;
     }
 
-    return 'Lossless / Uncompressed';
+    return window.t('dicomviewer', 'Lossless / Uncompressed');
 }
 
 // Update overlay information which shows study and series information briefly on viewport
@@ -240,8 +240,8 @@ function loadDisplaySetIntoViewport() {
             const $zoomLevel = $('#zoomLevel');
             const $windowLevel = $('#windowLevel');
 
-            $zoomLevel.text(`Zoom: ${viewportVal.scale.toFixed(2)}`);
-            $windowLevel.text(`WW/WC: ${Math.round(viewportVal.voi.windowWidth)} / ${Math.round(viewportVal.voi.windowCenter)}`);
+            $zoomLevel.text(`${window.t('dicomviewer', 'Zoom')}: ${viewportVal.scale.toFixed(2)}`);
+            $windowLevel.text(`${window.t('dicomviewer', 'WW/WC')}: ${Math.round(viewportVal.voi.windowWidth)} / ${Math.round(viewportVal.voi.windowCenter)}`);
         });
     });
 }
