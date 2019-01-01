@@ -14,6 +14,11 @@ const tools = [{
     classes: 'imageViewerTool',
     iconClasses: 'fa fa-sun-o fa-lg',
 }, {
+    id: 'wwwcRegion',
+    title: window.t('dicomviewer', 'ROI Window'),
+    classes: 'imageViewerTool',
+    iconClasses: 'fa fa-square fa-lg',
+}, {
     id: 'zoom',
     title: window.t('dicomviewer', 'Zoom'),
     classes: 'imageViewerTool',
@@ -49,20 +54,15 @@ const tools = [{
     classes: 'imageViewerCommand',
     svgClasses: 'svgContent rotate-right'
 }, {
-    id: 'wwwcRegion',
-    title: window.t('dicomviewer', 'ROI Window'),
-    classes: 'imageViewerTool',
-    iconClasses: 'fa fa-square fa-lg',
+    id: 'reset',
+    title: window.t('dicomviewer', 'Reset'),
+    classes: 'imageViewerCommand',
+    iconClasses: 'fa fa-undo fa-lg',
 }, {
     id: 'magnify',
     title: window.t('dicomviewer', 'Magnify'),
     classes: 'imageViewerTool',
     iconClasses: 'fa fa-circle'
-}, {
-    id: 'reset',
-    title: window.t('dicomviewer', 'Reset'),
-    classes: 'imageViewerCommand',
-    iconClasses: 'fa fa-undo fa-lg',
 }, {
     id: 'length',
     title: window.t('dicomviewer', 'Length'),
