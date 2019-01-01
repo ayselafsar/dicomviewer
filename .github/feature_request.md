@@ -1,6 +1,11 @@
 name: Feature request
 about: Suggest an idea for this project
 ---
+<!--
+Thanks for contributing to the DICOM viewer app!
+
+To make it possible for us to help you please fill out below information carefully.
+-->
 
 **Is your feature request related to a problem? Please describe.**
 A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
