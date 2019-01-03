@@ -14,6 +14,11 @@ const tools = [{
     classes: 'imageViewerTool',
     iconClasses: 'fa fa-sun-o fa-lg',
 }, {
+    id: 'wwwcRegion',
+    title: window.t('dicomviewer', 'ROI Window'),
+    classes: 'imageViewerTool',
+    iconClasses: 'fa fa-square fa-lg',
+}, {
     id: 'zoom',
     title: window.t('dicomviewer', 'Zoom'),
     classes: 'imageViewerTool',
@@ -49,30 +54,20 @@ const tools = [{
     classes: 'imageViewerCommand',
     svgClasses: 'svgContent rotate-right'
 }, {
-    id: 'wwwcRegion',
-    title: window.t('dicomviewer', 'ROI Window'),
-    classes: 'imageViewerTool',
-    iconClasses: 'fa fa-square fa-lg',
-}, {
     id: 'magnify',
     title: window.t('dicomviewer', 'Magnify'),
     classes: 'imageViewerTool',
     iconClasses: 'fa fa-circle'
-}, {
-    id: 'reset',
-    title: window.t('dicomviewer', 'Reset'),
-    classes: 'imageViewerCommand',
-    iconClasses: 'fa fa-undo fa-lg',
 }, {
     id: 'length',
     title: window.t('dicomviewer', 'Length'),
     classes: 'imageViewerTool',
     iconClasses: 'fa fa-arrows-v fa-lg',
 }, {
-    id: 'annotate',
-    title: window.t('dicomviewer', 'Annotate'),
+    id: 'angle',
+    title: window.t('dicomviewer', 'Angle'),
     classes: 'imageViewerTool',
-    iconClasses: 'fa fa-long-arrow-down fa-lg',
+    iconClasses: 'fa fa-angle-left fa-lg',
 }, {
     id: 'dragProbe',
     title: window.t('dicomviewer', 'Probe'),
@@ -89,15 +84,20 @@ const tools = [{
     classes: 'imageViewerTool',
     iconClasses: 'fa fa-square-o fa-lg',
 }, {
-    id: 'angle',
-    title: window.t('dicomviewer', 'Angle'),
+    id: 'annotate',
+    title: window.t('dicomviewer', 'Annotate'),
     classes: 'imageViewerTool',
-    iconClasses: 'fa fa-angle-left fa-lg',
+    iconClasses: 'fa fa-long-arrow-down fa-lg',
 }, {
     id: 'clearTools',
     title: window.t('dicomviewer', 'Clear'),
     classes: 'imageViewerCommand',
     iconClasses: 'fa fa-trash fa-lg',
+}, {
+    id: 'reset',
+    title: window.t('dicomviewer', 'Reset'),
+    classes: 'imageViewerCommand',
+    iconClasses: 'fa fa-undo fa-lg',
 }, {
     id: 'toggleCaptureImageDialog',
     title: window.t('dicomviewer', 'Capture'),
