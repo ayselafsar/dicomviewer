@@ -16,11 +16,11 @@
     "Length" : "Lengte",
     "Annotate" : "Notitie",
     "Probe" : "Positie",
-    "Elliptical ROI" : "ROI ovaal",
-    "Rectangle ROI" : "ROI rechthoek",
+    "Elliptical ROI" : "Ovaal",
+    "Rectangle ROI" : "Rechthoek",
     "Angle" : "Hoek",
     "Clear" : "Terug",
-    "Capture" : "Opslaan",
+    "Capture" : "Export",
     "Enter your annotation" : "Notitie ingeven",
     "Edit your annotation" : "Notitie bewerken",
     "New label" : "Tekst",
@@ -53,6 +53,6 @@
     "Less" : "minder",
     "Lossy" : "Verliesend",
     "Lossless / Uncompressed" : "Verliesloos / Ongecomprimeerd",
-    "WW/WC" : "BH/BK"
+    "WW/WC" : "H/K" 
     },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

@@ -20,12 +20,12 @@ OC.L10N.register(
     "Magnify" : "Loep",
     "Length" : "Lengte",
     "Annotate" : "Notitie",
-    "Probe" : "Positie",
-    "Elliptical ROI" : "ROI ovaal",
-    "Rectangle ROI" : "ROI rechthoek",
+    "Probe" : "Beeldpunt",
+    "Elliptical ROI" : "Ovaal",
+    "Rectangle ROI" : "Rechthoek",
     "Angle" : "Hoek",
     "Clear" : "Terug",
-    "Capture" : "Opslaan",
+    "Capture" : "Export",
     /* AnnotationDialogs.html */
     "Enter your annotation" : "Notitie ingeven",
     "Edit your annotation" : "Notitie bewerken",
@@ -66,6 +66,6 @@ OC.L10N.register(
     /* renderViewport.js */
     "Lossy" : "Verliesend",
     "Lossless / Uncompressed" : "Verliesloos / Ongecomprimeerd",
-    "WW/WC" : "BH/BK"
+    "WW/WC" : "H/B"
     },
 "nplurals=2; plural=(n != 1);");
