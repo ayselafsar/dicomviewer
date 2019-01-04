@@ -11,7 +11,7 @@ OC.L10N.register(
     "ROI Window" : "H/K Fenster",
     "Zoom" : "Zoom",
     "Pan" : "Verschieben",
-    "Invert" : "Invertieren",
+    "Invert" : "Farbumkehr",
     "Flip H" : "Spiegeln H",
     "Flip V" : "Spiegeln V",
     "Rotate L" : "Rotieren L",
@@ -20,12 +20,12 @@ OC.L10N.register(
     "Magnify" : "Lupe",
     "Length" : "Länge",
     "Annotate" : "Notiz",
-    "Probe" : "Punkt",
-    "Elliptical ROI" : "ROI Ellipse",
-    "Rectangle ROI" : "ROI Rechteck",
+    "Probe" : "Bildpunkt",
+    "Elliptical ROI" : "Ellipse",
+    "Rectangle ROI" : "Rechteck",
     "Angle" : "Winkel",
     "Clear" : "Löschen",
-    "Capture" : "Speichern",
+    "Capture" : "Export",
     /* AnnotationDialogs.html */
     "Enter your annotation" : "Notiz eingeben",
     "Edit your annotation" : "Notiz bearbeiten",
@@ -66,6 +66,6 @@ OC.L10N.register(
     /* renderViewport.js */
     "Lossy" : "Verlustbehaftet",
     "Lossless / Uncompressed" : "Verlustfrei / Unkomprimiert",
-    "WW/WC" : "BH/BK"
+    "WW/WC" : "H/K"
     },
 "nplurals=2; plural=(n != 1);");

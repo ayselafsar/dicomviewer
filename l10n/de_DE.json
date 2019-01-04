@@ -6,7 +6,7 @@
     "ROI Window" : "H/K Fenster",
     "Zoom" : "Zoom",
     "Pan" : "Verschieben",
-    "Invert" : "Invertieren",
+    "Invert" : "Farbumkehr",
     "Flip H" : "Spiegeln H",
     "Flip V" : "Spiegeln V",
     "Rotate L" : "Rotieren L",
@@ -15,12 +15,12 @@
     "Magnify" : "Lupe",
     "Length" : "Länge",
     "Annotate" : "Notiz",
-    "Probe" : "Punkt",
-    "Elliptical ROI" : "ROI Ellipse",
-    "Rectangle ROI" : "ROI Rechteck",
+    "Probe" : "Bildunkt",
+    "Elliptical ROI" : "Ellipse",
+    "Rectangle ROI" : "Rechteck",
     "Angle" : "Winkel",
     "Clear" : "Löschen",
-    "Capture" : "Speichern",
+    "Capture" : "Export",
     "Enter your annotation" : "Notiz eingeben",
     "Edit your annotation" : "Notiz bearbeiten",
     "New label" : "Text",
@@ -53,6 +53,6 @@
     "Less" : "weniger",
     "Lossy" : "Verlustbehaftet",
     "Lossless / Uncompressed" : "Verlustfrei / Unkomprimiert",
-    "WW/WC" : "BH/BK"
+    "WW/WC" : "H/K"
     },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
