@@ -66,6 +66,6 @@ OC.L10N.register(
     /* renderViewport.js */
     "Lossy" : "Verliesend",
     "Lossless / Uncompressed" : "Verliesloos / Ongecomprimeerd",
-    "WW/WC" : "H/B"
+    "WW/WC" : "H/K"
     },
 "nplurals=2; plural=(n != 1);");
