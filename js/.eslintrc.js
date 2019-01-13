@@ -21,6 +21,8 @@ module.exports = {
         "prefer-destructuring": ["error", {"array": false, "object": true}]
     },
     "globals": {
+        "t": true,
+        "n": true,
         "OC": true,
         "OCA": true,
         "Files": true,

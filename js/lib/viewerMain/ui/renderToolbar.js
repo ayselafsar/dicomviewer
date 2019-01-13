@@ -64,10 +64,10 @@ export default function renderToolbar() {
 
             if ($moreIcon.hasClass('rotate-180')) {
                 $moreIcon.removeClass('rotate-180');
-                $moreText.text(window.t('dicomviewer', 'More'));
+                $moreText.text(t('dicomviewer', 'More'));
             } else {
                 $moreIcon.addClass('rotate-180');
-                $moreText.text(window.t('dicomviewer', 'Less'));
+                $moreText.text(t('dicomviewer', 'Less'));
             }
 
             // Resize viewport

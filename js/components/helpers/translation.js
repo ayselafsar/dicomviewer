@@ -7,5 +7,5 @@ Handlebars.registerHelper('translate', (value) => {
         return;
     }
 
-    return window.t('dicomviewer', value);
+    return t('dicomviewer', value);
 });
