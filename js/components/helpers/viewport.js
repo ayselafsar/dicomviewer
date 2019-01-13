@@ -1,7 +1,9 @@
 /* eslint import/no-extraneous-dependencies:0 */
 
 import Handlebars from 'handlebars';
-import moment from 'moment';
+import moment from 'moment/min/moment-with-locales';
+
+const momentLocale = OC.getLocale().replace('_', '-').toLowerCase().split('-')[0];
 
 Handlebars.registerHelper('formatPN', (context) => {
     if (!context) {
@@ -15,7 +17,7 @@ Handlebars.registerHelper('formatDA', (context, format, options) => {
     if (!context) {
         return undefined;
     }
-    const dateAsMoment = moment(context, 'YYYYMMDD');
+    const dateAsMoment = moment(context, 'YYYYMMDD').locale(momentLocale);
     let strFormat = 'MMM D, YYYY';
     if (options) {
         strFormat = format;
@@ -27,7 +29,6 @@ Handlebars.registerHelper('formatTM', (context, options) => {
     if (!context) {
         return;
     }
-
     // DICOM Time is stored as HHmmss.SSS, where:
     //      HH 24 hour time:
     //      m mm    0..59   Minutes
@@ -35,7 +36,7 @@ Handlebars.registerHelper('formatTM', (context, options) => {
     //      S SS SSS    0..999  Fractional seconds
     //
     // See MomentJS: http://momentjs.com/docs/#/parsing/string-format/
-    const dateTime = moment(context, 'HHmmss.SSS');
+    const dateTime = moment(context, 'HHmmss.SSS').locale(momentLocale);
 
     let format = 'HH:mm:ss';
     if (options && options.format) {
