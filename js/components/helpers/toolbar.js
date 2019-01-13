@@ -15,7 +15,7 @@ const tools = [{
     iconClasses: 'fa fa-sun-o fa-lg',
 }, {
     id: 'wwwcRegion',
-    title: window.t('dicomviewer', 'ROI Window'),
+    title: window.t('dicomviewer', 'Levels ROI'),
     classes: 'imageViewerTool',
     iconClasses: 'fa fa-square fa-lg',
 }, {
