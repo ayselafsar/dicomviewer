@@ -1,22 +1,7 @@
 import $ from 'jquery';
-import { cornerstone, dicomParser } from '../../lib/cornerstonejs';
+import { cornerstone } from '../../lib/cornerstonejs';
 import getDICOMAttributes from '../../lib/dicom/getDICOMAttributes';
 import generateFullUrl from '../../lib/generateFullUrl';
-
-function displaySidebarThumbnail(fileDownloadUrl) {
-    const $element = $('.sidebar-thumbnail');
-    const element = $element.get(0);
-    const imageId = `wadouri:${generateFullUrl(fileDownloadUrl)}`;
-
-    cornerstone.enable(element);
-    cornerstone.loadAndCacheImage(imageId).then((image) => {
-        $('.sidebar-thumbnail-loading').css({
-            display: 'none'
-        });
-
-        cornerstone.displayImage(element, image);
-    });
-}
 
 function addRow(attribute) {
     let { tagName } = attribute;
@@ -70,12 +55,8 @@ function searchAttributesHandler() {
     });
 }
 
-function dumpByteArray(byteArray) {
-    // Invoke the parseDicom function and get back a DataSet object with the contents
-    let dataSet;
-
+function dumpDataSet(dataSet) {
     try {
-        dataSet = dicomParser.parseDicom(byteArray);
         // Here we call dumpDataSet to recursively iterate through the DataSet
         // and create a table of content
         const attributes = getDICOMAttributes(dataSet);
@@ -111,24 +92,22 @@ function dumpByteArray(byteArray) {
  * @param fileDownloadUrl
  */
 export default function (fileDownloadUrl) {
-    // Display sidebar thumbnail
-    displaySidebarThumbnail(fileDownloadUrl);
+    const imageId = `wadouri:${generateFullUrl(fileDownloadUrl)}`;
+    cornerstone.loadAndCacheImage(imageId).then((image) => {
+        // Display sidebar thumbnail
+        const $element = $('.sidebar-thumbnail');
+        const element = $element.get(0);
+        if (!element) {
+            return;
+        }
 
-    const oReq = new XMLHttpRequest();
+        $('.sidebar-thumbnail-loading').css({
+            display: 'none'
+        });
 
-    try {
-        oReq.open('GET', generateFullUrl(fileDownloadUrl), true);
-        oReq.responseType = 'arraybuffer';
+        cornerstone.enable(element);
+        cornerstone.displayImage(element, image);
 
-        oReq.onreadystatechange = () => {
-            if (oReq.readyState === 4 && oReq.status === 200) {
-                const byteArray = new Uint8Array(oReq.response);
-                dumpByteArray(byteArray);
-            }
-        };
-
-        oReq.send();
-    } catch (err) {
-        console.error(err);
-    }
+        dumpDataSet(image.data);
+    });
 }
