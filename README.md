@@ -19,12 +19,11 @@ For more information, see the blog post [Nextcloud in Digital Imaging](https://n
 ### Features
 
 * **Viewer:** A DICOM viewer which displays images grouped by study and series in selected folders and allows to manipulate images with imaging tools.
-* **DICOM Dump:** A list of DICOM attributes displayed on the sidebar with image thumbnail (*Note:* The Nextcloud files app plugin "Comments" must be activated to use this).
+* **DICOM Dump:** A list of DICOM attributes displayed on the sidebar with image thumbnail. 
 * **Translation:** DICOM Viewer now has the ability to use localized languages. Translators are encouraged to commit.
 
 
 ### Installation
-
 On your Nextcloud, simply navigate to Apps > Multimedia > DICOM Viewer, and enable it.
 
 
