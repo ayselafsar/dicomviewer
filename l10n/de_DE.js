@@ -8,7 +8,7 @@ OC.L10N.register(
     /* Toolbar.js */
     "Stack Scroll" : "Scrollen",
     "Levels" : "H/K",
-    "Levels ROI" : "H/K Fenster",
+    "Levels ROI" : "H/K Bild",
     "Zoom" : "Zoom",
     "Pan" : "Verschieben",
     "Invert" : "Farbumkehr",
