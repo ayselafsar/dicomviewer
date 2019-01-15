@@ -28,10 +28,12 @@ If applicable, add screenshots to help explain your problem.
 
 <details>
 <summary>Server details</summary>
+
 <!--
 You can use the Issue Template application to prefill most of the required information: https://apps.nextcloud.com/apps/issuetemplate
 -->
-**Social app version:**
+
+**DICOM viewer app version:**
 
 **Operating system**:
 
