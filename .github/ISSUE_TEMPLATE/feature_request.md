@@ -1,6 +1,9 @@
+---
 name: Feature request
 about: Suggest an idea for this project
+labels: enhancement
 ---
+
 <!--
 Thanks for contributing to the DICOM viewer app!
 
