@@ -12,8 +12,8 @@
     <div class="load-progress-content"></div>
 
     <div class="bottomleft dicomTag">
-        <div id="seriesNumber">{{translate "Ser:"}} {{seriesNumber}}</div>
-        <div id="instanceNumber">{{translate "Img:"}} {{instanceNumber}} {{#if numImages}}({{imageIndex}}/{{numImages}}){{/if}}</div>
+        <div id="seriesNumber">{{SerText}} {{seriesNumber}}</div>
+        <div id="instanceNumber">{{ImgText}} {{instanceNumber}} {{#if numImages}}({{imageIndex}}/{{numImages}}){{/if}}</div>
         <div id="dimensions">{{dimensions}}</div>
         <div id="seriesDescription">{{seriesDescription}}</div>
     </div>

@@ -1,11 +1,11 @@
 <div id="toolbar" class="toolbar">
     <div class="toggleSeriesPanel">
-        <div id="toggleSeriesPanelButton" tabindex="1" class="toolbarSectionButton roundedButton toggleSeriesPanelButton {{#if seriesPanelOpen}}active{{/if}} {{classes}}" title="{{translate 'Toggle Series Panel'}}">
+        <div id="toggleSeriesPanelButton" tabindex="1" class="toolbarSectionButton roundedButton toggleSeriesPanelButton {{#if seriesPanelOpen}}active{{/if}} {{classes}}" title="{{ToggleSeriesPanelText}}">
             <div class="svgContainer">
                 <div class="svgContent series-panel"></div>
             </div>
             <div class="buttonLabel">
-                <span>{{translate "Series"}}</span>
+                <span>{{SeriesText}}</span>
             </div>
         </div>
     </div>
@@ -32,11 +32,11 @@
                     <i class="fa fa-chevron-down"></i>
                 </div>
                 <div class="buttonLabel">
-                    <span>{{translate "More"}}</span>
+                    <span>{{MoreText}}</span>
                 </div>
             </div>
         </div>
     </div>
 
-    <a class="button-close js-close-viewer" title="{{translate 'Close Viewer'}}"><i class="fa fa-times fa-lg"></i></a>
+    <a class="button-close js-close-viewer" title="{{CloseViewerText}}"><i class="fa fa-times fa-lg"></i></a>
 </div>

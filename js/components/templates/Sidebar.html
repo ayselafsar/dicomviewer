@@ -6,22 +6,22 @@
             </div>
         </div>
     </div>
-    <h5><strong>{{translate "DICOM Attributes"}}</strong></h5>
+    <h5><strong>{{DICOMAttributesText}}</strong></h5>
     <div class="attributes-search-container">
-        <input type="text" class="form-control dicom-attributes-search" placeholder="{{translate 'Search for attributes..'}}" title="{{translate 'Type in an attribute'}}">
+        <input type="text" class="form-control dicom-attributes-search" placeholder="{{SearchAttributesText}}" title="{{TypeAttributeText}}">
     </div>
 
     <div class="sidebar-content-loading">
         <i class="fa fa-spinner fa-spin"></i>
-        <span>{{translate "Parsing DICOM file..."}}</span>
+        <span>{{ParsingDICOMFileText}}</span>
     </div>
 
     <div class="sidebar-table-container">
         <table class="dicom-elements-table">
             <thead>
             <tr>
-                <th>{{translate "Attribute"}}</th>
-                <th>{{translate "Value"}}</th>
+                <th>{{AttributeText}}</th>
+                <th>{{ValueText}}</th>
             </tr>
             </thead>
             <tbody></tbody>
