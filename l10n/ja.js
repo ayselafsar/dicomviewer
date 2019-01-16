@@ -1,0 +1,28 @@
+OC.L10N.register(
+    "dicomviewer",
+    {
+    "Open with DICOM Viewer" : "DICOMビューワで開く",
+    "There is no available DICOM image to display" : "表示するDICOM画像がありません",
+    "Zoom" : "拡大",
+    "Pan" : "移動",
+    "Invert" : "階調反転",
+    "Flip H" : "水平反転",
+    "Flip V" : "上下反転",
+    "Rotate L" : "左回転",
+    "Rotate R" : "右回転",
+    "Magnify" : "拡大",
+    "Length" : "長さ",
+    "Angle" : "角度",
+    "Elliptical ROI" : "円形ROI",
+    "Rectangle ROI" : "矩形ROI",
+    "Annotate" : "注釈",
+    "Clear" : "クリア",
+    "Reset" : "リセット",
+    "Capture" : "キャプチャ",
+    "Lossy: " : "非可逆圧縮:",
+    "Lossless / Uncompressed" : "ロスレス / 非圧縮",
+    "WW/WC" : "WW/WC",
+    "DICOM Viewer" : "DICOMビューワ",
+    "Digital Imaging for Medicine" : "医学用デジタルイメージング"
+},
+"nplurals=1; plural=0;");

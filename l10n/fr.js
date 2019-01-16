@@ -1,0 +1,27 @@
+OC.L10N.register(
+    "dicomviewer",
+    {
+    "Open with DICOM Viewer" : "Ouvrir avec la visionneuse DICOM",
+    "There is no available DICOM image to display" : "Aucune image DICOM à afficher",
+    "Levels" : "Niveaux",
+    "Zoom" : "Zoom",
+    "Pan" : "Panoramique",
+    "Invert" : "Inverser",
+    "Flip H" : "Basculer horizontalement",
+    "Flip V" : "Basculer verticalement",
+    "Rotate L" : "Rotation à gauche",
+    "Rotate R" : "Rotation à droite",
+    "Magnify" : "Grossir",
+    "Length" : "Longueur",
+    "Angle" : "Angle",
+    "Annotate" : "Annoter",
+    "Clear" : "Effacer",
+    "Reset" : "Réinitialiser",
+    "Capture" : "Capturer",
+    "More" : "Plus",
+    "Less" : "Moins",
+    "Lossless / Uncompressed" : "Sans perte / non compressé",
+    "DICOM Viewer" : "Visionneuse DICOM",
+    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "La visionneuse DICOM permet d'afficher et de manipuler les images au format DICOM avec une barre latérale simplifiée et une visionneuse\n\nVoir le [README](https://github.com/ayselafsar/dicomviewer) pour une liste complète des fonctionnalités et la feuille de route."
+},
+"nplurals=2; plural=(n > 1);");
