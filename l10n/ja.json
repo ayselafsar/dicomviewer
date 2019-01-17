@@ -1,16 +1,17 @@
 { "translations": {
     "Open with DICOM Viewer" : "DICOMビューワで開く",
     "There is no available DICOM image to display" : "表示するDICOM画像がありません",
-    "Zoom" : "拡大",
+    "Zoom" : "ズーム",
     "Pan" : "移動",
     "Invert" : "階調反転",
     "Flip H" : "水平反転",
     "Flip V" : "上下反転",
     "Rotate L" : "左回転",
     "Rotate R" : "右回転",
-    "Magnify" : "拡大",
+    "Magnify" : "拡大鏡",
     "Length" : "長さ",
     "Angle" : "角度",
+    "Probe" : "プローブ",
     "Elliptical ROI" : "円形ROI",
     "Rectangle ROI" : "矩形ROI",
     "Annotate" : "注釈",
@@ -21,6 +22,7 @@
     "Lossless / Uncompressed" : "ロスレス / 非圧縮",
     "WW/WC" : "WW/WC",
     "DICOM Viewer" : "DICOMビューワ",
-    "Digital Imaging for Medicine" : "医学用デジタルイメージング"
+    "Digital Imaging for Medicine" : "医学用デジタルイメージング",
+    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "DICOMビューワは、DICOM画像を表示・操作することができ、効率的なサイドバーならびにビューワを備えています。\n\nすべての機能と今後のロードマップのリストは [README](https://github.com/ayselafsar/dicomviewer) を参照してください。"
 },"pluralForm" :"nplurals=1; plural=0;"
 }
