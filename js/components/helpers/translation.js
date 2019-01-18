@@ -24,10 +24,10 @@ Handlebars.registerHelper('DownloadText', t('dicomviewer', 'Download'));
 
 // Sidebar.html
 Handlebars.registerHelper('DICOMAttributesText', t('dicomviewer', 'DICOM Attributes'));
-Handlebars.registerHelper('ParsingDICOMFileText', t('dicomviewer', 'Parsing DICOM file...'));
+Handlebars.registerHelper('ParsingDICOMFileText', t('dicomviewer', 'Parsing DICOM file…'));
 Handlebars.registerHelper('AttributeText', t('dicomviewer', 'Attribute'));
 Handlebars.registerHelper('ValueText', t('dicomviewer', 'Value'));
-Handlebars.registerHelper('SearchAttributesText', t('dicomviewer', 'Search for attributes...'));
+Handlebars.registerHelper('SearchAttributesText', t('dicomviewer', 'Search for attributes…'));
 Handlebars.registerHelper('TypeAttributeText', t('dicomviewer', 'Type an attribute'));
 
 // Toolbar.html
@@ -37,7 +37,7 @@ Handlebars.registerHelper('MoreText', t('dicomviewer', 'More'));
 Handlebars.registerHelper('CloseViewerText', t('dicomviewer', 'Close Viewer'));
 
 // ViewerMain.html
-Handlebars.registerHelper('LoadingText', t('dicomviewer', 'Loading...'));
+Handlebars.registerHelper('LoadingText', t('dicomviewer', 'Loading…'));
 
 // ViewportOverlay.html
 Handlebars.registerHelper('SerText', t('dicomviewer', 'Ser:'));
