@@ -20,7 +20,6 @@ OC.L10N.register(
     "Download" : "Atsisiųsti",
     "More" : "Daugiau",
     "Close Viewer" : "Užverti žiūryklę",
-    "Loading..." : "Įkeliama...",
     "Less" : "Mažiau",
     "Lossy: " : "Nuostolingasis: ",
     "Lossless / Uncompressed" : "Nenuostolingasis / Nesuglaudintas",

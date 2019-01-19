@@ -40,16 +40,13 @@ OC.L10N.register(
     "Close" : "Kapat",
     "Download" : "İndir",
     "DICOM Attributes" : "DICOM Öznitelikleri",
-    "Parsing DICOM file..." : "DICOM dosyası işleniyor...",
     "Attribute" : "Öznitelik",
     "Value" : "Değer",
-    "Search for attributes..." : "Öznitelik arama...",
     "Type an attribute" : "Bir öznitelik yazın",
     "Toggle Series Panel" : "Dizi Panosunu Aç/Kapat",
     "Series" : "Dizi",
     "More" : "Daha Fazla",
     "Close Viewer" : "Görüntüleyiciyi Kapat",
-    "Loading..." : "Yükleniyor...",
     "Ser:" : "Dizi:",
     "Img:" : "Görsel:",
     "Less" : "Daha Az",
@@ -57,6 +54,7 @@ OC.L10N.register(
     "Lossless / Uncompressed" : "Kayıpsız / Sıkıştırılmamış",
     "WW/WC" : "WW/WC",
     "DICOM Viewer" : "DICOM Görüntüleyici",
-    "Digital Imaging for Medicine" : "Tıbbi Sayısal Görüntüleme"
+    "Digital Imaging for Medicine" : "Tıbbi Sayısal Görüntüleme",
+    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "DICOM Görüntüleyici, DICOM görsellerinin sıralanarak görüntülenip değiştirilebileceği bir yan çubuk ve görüntüleyici sunar.\n\nÖzelliklerin tümü ve geliştirme yol haritasını [README](https://github.com/ayselafsar/dicomviewer) içeriğinde görebilirsiniz."
 },
 "nplurals=2; plural=(n > 1);");
