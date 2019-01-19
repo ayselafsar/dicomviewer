@@ -1,9 +1,9 @@
 import $ from 'jquery';
-import { cornerstone } from '../../lib/cornerstonejs';
+import { cornerstone, cornerstoneWADOImageLoader } from '../../lib/cornerstonejs';
 import getDICOMAttributes from '../../lib/dicom/getDICOMAttributes';
 import generateFullUrl from '../../lib/generateFullUrl';
 
-function addRow(attribute) {
+function addAttributeRowToTable(tableRef, attribute) {
     let { tagName } = attribute;
     let { tagValue } = attribute;
 
@@ -15,7 +15,6 @@ function addRow(attribute) {
         tagValue = '';
     }
 
-    const tableRef = $('.dicom-elements-table > tbody')[0];
     const rowsLength = tableRef.rows.length;
     const newRow = tableRef.insertRow(rowsLength);
 
@@ -55,13 +54,48 @@ function searchAttributesHandler() {
     });
 }
 
+function loadSidebarThumbnail(imageId, dataSet) {
+    const pixelDataElement = dataSet.elements.x7fe00010 || dataSet.elements.x7fe00008;
+    if (!pixelDataElement) {
+        $('.sidebar-thumbnail-loading').css({
+            display: 'none'
+        });
+        console.warn('No pixel data');
+        return;
+    }
+
+    const { loadImageFromPromise } = cornerstoneWADOImageLoader.wadouri;
+    const imageLoadObject = loadImageFromPromise(Promise.resolve(dataSet), imageId);
+    imageLoadObject.promise.then((image) => {
+        const $element = $('.sidebar-thumbnail');
+        const element = $element.get(0);
+        if (!element) {
+            return;
+        }
+
+        $('.sidebar-thumbnail-loading').css({
+            display: 'none'
+        });
+
+        cornerstone.enable(element);
+        cornerstone.displayImage(element, image);
+    }).catch((error) => {
+        console.error('Failed to load image', error);
+    });
+}
+
 function dumpDataSet(dataSet) {
     try {
+        const tableRef = $('.dicom-elements-table > tbody')[0];
+        if (!tableRef) {
+            return;
+        }
+
         // Here we call dumpDataSet to recursively iterate through the DataSet
         // and create a table of content
         const attributes = getDICOMAttributes(dataSet);
         attributes.forEach((attribute) => {
-            addRow(attribute);
+            addAttributeRowToTable(tableRef, attribute);
         });
 
         // Enable to search attributes
@@ -75,15 +109,10 @@ function dumpDataSet(dataSet) {
         });
 
         if (dataSet.warnings.length > 0) {
-            console.warn(' Warnings encountered while parsing file');
-        } else {
-            const pixelData = dataSet.elements.x7fe00010;
-            if (!pixelData) {
-                console.log('No pixel data found');
-            }
+            console.warn(' Warnings encountered while parsing file', dataSet.warnings);
         }
-    } catch (err) {
-        console.error(err);
+    } catch (error) {
+        console.error('Failed to dump dataset', error);
     }
 }
 
@@ -92,22 +121,22 @@ function dumpDataSet(dataSet) {
  * @param fileDownloadUrl
  */
 export default function (fileDownloadUrl) {
-    const imageId = `wadouri:${generateFullUrl(fileDownloadUrl)}`;
-    cornerstone.loadAndCacheImage(imageId).then((image) => {
-        // Display sidebar thumbnail
-        const $element = $('.sidebar-thumbnail');
-        const element = $element.get(0);
-        if (!element) {
-            return;
-        }
+    const { dataSetCacheManager } = cornerstoneWADOImageLoader.wadouri;
+    const fullUrl = generateFullUrl(fileDownloadUrl);
+    const imageId = `wadouri:${fullUrl}`;
 
-        $('.sidebar-thumbnail-loading').css({
-            display: 'none'
+    const isLoaded = dataSetCacheManager.isLoaded(fullUrl);
+    if (isLoaded) {
+        const dataSet = dataSetCacheManager.get(fullUrl);
+        dumpDataSet(dataSet);
+        loadSidebarThumbnail(imageId, dataSet);
+    } else {
+        const dataSetPromise = dataSetCacheManager.load(fullUrl);
+        dataSetPromise.then((dataSet) => {
+            dumpDataSet(dataSet);
+            loadSidebarThumbnail(imageId, dataSet);
+        }).catch((error) => {
+            console.error('Failed to load dataset', error);
         });
-
-        cornerstone.enable(element);
-        cornerstone.displayImage(element, image);
-
-        dumpDataSet(image.data);
-    });
+    }
 }
