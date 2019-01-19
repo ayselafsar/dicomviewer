@@ -11,9 +11,9 @@
         <div class="accordion" id="studyBrowserAccordion">
             {{#each studies as |study|}}
                 <div class="card">
-                    <div class="card-header" id="heading{{study.patientId}}">
-                        <div data-toggle="collapse" data-target="#collapse{{study.patientId}}"
-                             aria-expanded="true" aria-controls="collapse{{study.patientId}}">
+                    <div class="card-header" id="heading{{study.studyIndex}}">
+                        <div data-toggle="collapse" data-target="#collapse{{study.studyIndex}}"
+                             aria-expanded="true" aria-controls="collapse{{study.studyIndex}}">
                             <div class="study-item-box">
                                 <div class="study-modality">
                                     <div class="study-modality-text">
@@ -28,7 +28,7 @@
                         </div>
                     </div>
 
-                    <div id="collapse{{study.patientId}}" class="collapse show" aria-labelledby="heading{{study.patientId}}">
+                    <div id="collapse{{study.studyIndex}}" class="collapse show" aria-labelledby="heading{{study.studyIndex}}">
                         <div class="card-body">
                             {{#if @first}}
                                 {{#each (studyThumbnails study) as |thumbnail|}}

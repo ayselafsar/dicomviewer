@@ -105,5 +105,11 @@ Handlebars.registerHelper('modalitiesList', (study) => {
         return;
     }
 
-    return seriesList.map(series => series.modality).join(', ');
+    const modalities = _.uniq(seriesList.map(series => series.modality));
+
+    if (modalities.length > 1) {
+        return `${modalities[0]}…`;
+    }
+
+    return modalities[0];
 });

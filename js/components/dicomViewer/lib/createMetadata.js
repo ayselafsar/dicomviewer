@@ -7,8 +7,14 @@
 export default function createMetadata(wadouri, dataSet, studies) {
     const patientName = dataSet.string('x00100010');
     const patientId = dataSet.string('x00100020');
+    if (!patientId) {
+        return;
+    }
 
     const studyInstanceUid = dataSet.string('x0020000d');
+    if (!studyInstanceUid) {
+        return;
+    }
     const studyDate = dataSet.string('x00080020');
     const studyTime = dataSet.string('x00080030');
     const studyDescription = dataSet.string('x00081030');
@@ -47,7 +53,7 @@ export default function createMetadata(wadouri, dataSet, studies) {
         seriesList: [targetSeries],
     };
 
-    const study = studies.find(entry => entry.patientId === patientId);
+    const study = studies.find(entry => entry.patientId === patientId && entry.studyInstanceUid === studyInstanceUid);
     if (study) {
         study.seriesList = study.seriesList || [];
         const series = study.seriesList.find(entry => entry.seriesInstanceUid === seriesInstanceUid);

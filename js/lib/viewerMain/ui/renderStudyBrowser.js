@@ -42,6 +42,12 @@ const handleStudyBrowserScrollbar = _.throttle(() => {
 export default function renderStudyBrowser() {
     const { studies } = DCMViewer.viewerbase.data;
     const $sidebarMenu = $('.sidebarMenu');
+
+    // Add study index
+    studies.forEach((study, studyIndex) => {
+        study.studyIndex = studyIndex;
+    });
+
     const templateContent = StudyBrowser({
         studies
     });
