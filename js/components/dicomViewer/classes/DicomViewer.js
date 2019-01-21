@@ -145,7 +145,9 @@ class DicomViewer {
             displayName: t('dicomviewer', 'Open with DICOM Viewer'),
             mime: this.mimeType,
             permissions: OC.PERMISSION_READ,
+            order: -10000,
             templateName: 'AppDicomViewer',
+            iconClass: 'icon-dicomviewer-dark',
             actionHandler: (fileName, context) => {
                 // Destroy the active image loader if exists
                 if (self.activeImageLoader) {
@@ -158,8 +160,28 @@ class DicomViewer {
                 self.show(imageLoadPromise, false);
             }
         });
+        fileActions.registerAction({
+            name: 'viewAllDicomFiles',
+            displayName: t('dicomviewer', 'Open All with DICOM Viewer'),
+            mime: this.mimeType,
+            permissions: OC.PERMISSION_READ,
+            order: -10000,
+            templateName: 'AppDicomViewer',
+            iconClass: 'icon-dicomviewer-dark',
+            actionHandler: (fileName, context) => {
+                // Destroy the active image loader if exists
+                if (self.activeImageLoader) {
+                    self.activeImageLoader.destroy();
+                }
 
-        // Add default action
+                self.activeImageLoader = new ImageLoader(context, '', self.mimeType, self.hide);
+
+                const imageLoadPromise = self.activeImageLoader.loadMultipleDICOMInstances();
+                self.show(imageLoadPromise);
+            }
+        });
+
+        // TODO: Add default action viewDicomFile or viewAllDicomFiles based on user settings
         fileActions.setDefault(self.mimeType, 'viewDicomFile');
     }
 }
