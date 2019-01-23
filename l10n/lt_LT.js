@@ -2,6 +2,7 @@ OC.L10N.register(
     "dicomviewer",
     {
     "Open with DICOM Viewer" : "Atverti naudojant DICOM žiūryklę",
+    "Open All with DICOM Viewer" : "Atverti visus naudojant DICOM žiūryklę",
     "Zoom" : "Mastelis",
     "Invert" : "Invertuoti",
     "Flip H" : "Apversti H",

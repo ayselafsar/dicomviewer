@@ -2,6 +2,7 @@ OC.L10N.register(
     "dicomviewer",
     {
     "Open with DICOM Viewer" : "Abrir com o visualizador DICOM",
+    "Open All with DICOM Viewer" : "Abrir Todos com o Visualizador DICOM",
     "There is no available DICOM image to display" : "Não há imagem DICOM disponível para exibir",
     "Stack Scroll" : "Rolar a Pilha",
     "Levels" : "Níveis",
