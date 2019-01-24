@@ -2,6 +2,7 @@ OC.L10N.register(
     "dicomviewer",
     {
     "Open with DICOM Viewer" : "Otevřít prohlížeč DICOM souborů",
+    "Open All with DICOM Viewer" : "Otevřít vše v prohlížeči DICOM",
     "There is no available DICOM image to display" : "Není k dispozici žádný DICOM obrázek který by bylo možné zobrazit",
     "Stack Scroll" : "Posouvání zásobníkem",
     "Levels" : "Úrovně",

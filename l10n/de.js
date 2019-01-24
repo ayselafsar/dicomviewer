@@ -2,7 +2,7 @@ OC.L10N.register(
     "dicomviewer",
     {
     "Open with DICOM Viewer" : "Mit DICOM Viewer öffnen",
-    "Open All with DICOM Viewer" : "Alle mit dem DICOM Viewer öffnen",
+    "Open All with DICOM Viewer" : "Alle Dateien mit dem DICOM Viewer öffnen",
     "There is no available DICOM image to display" : "Es existiert keine DICOM-Bilddatei zum Anzeigen",
     "Stack Scroll" : "Scrollen",
     "Levels" : "H/K",
