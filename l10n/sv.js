@@ -2,6 +2,7 @@ OC.L10N.register(
     "dicomviewer",
     {
     "Open with DICOM Viewer" : "Öppna med DICOM-visare",
+    "Open All with DICOM Viewer" : "Öppna alla med DICOM-visare",
     "There is no available DICOM image to display" : "Det finns ingen tillgänglig DICOM-bild att visa",
     "Levels" : "Nivåer",
     "Levels ROI" : "Nivåer ROI",
