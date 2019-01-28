@@ -1,5 +1,6 @@
-![Downloads](https://img.shields.io/github/downloads/ayselafsar/dicomviewer/total.svg?style=flat-square)
-[![Support][support-image]][support-url]
+[![Build Status](https://travis-ci.org/ayselafsar/dicomviewer.svg?branch=master)](https://travis-ci.org/ayselafsar/dicomviewer)
+[![Downloads](https://img.shields.io/github/downloads/ayselafsar/dicomviewer/total.svg)](https://github.com/ayselafsar/dicomviewer/releases)
+[![Support](https://img.shields.io/badge/Support-Patreon-blue.svg)](https://www.patreon.com/ayselafsar)
 
 # DICOM Viewer
 
@@ -19,11 +20,12 @@ For more information, see the blog post [Nextcloud in Digital Imaging](https://n
 ### Features
 
 * **Viewer:** A DICOM viewer which displays images grouped by study and series in selected folders and allows to manipulate images with imaging tools.
-* **DICOM Dump:** A list of DICOM attributes displayed on the sidebar with image thumbnail. 
-* **Translation:** DICOM Viewer now has the ability to use localized languages. Translators are encouraged to commit.
+* **DICOM Dump:** A list of DICOM attributes displayed on the sidebar with image thumbnail.
+* **Translation:** The ability to use localized languages. Translators are encouraged to contribute.
 
 
 ### Installation
+
 On your Nextcloud, simply navigate to Apps > Multimedia > DICOM Viewer, and enable it.
 
 
@@ -39,9 +41,5 @@ Firstly, install NodeJS for JavaScript dependencies, then follow these steps:
 
 ### Roadmap
 
-- Multiframe Support
+- Multi-frame Image Support (CINE Tool)
 - DICOM Worklist
-
-
-[support-image]: https://img.shields.io/badge/Support-Patreon-blue.svg
-[support-url]: https://www.patreon.com/ayselafsar
