@@ -1,0 +1,69 @@
+sudo: false
+dist: trusty
+language: php
+php:
+    - 7.1
+    - 7.2
+    - 7.3
+    - nightly
+
+env:
+    global:
+        - CORE_BRANCH=stable15
+        - MOZ_HEADLESS=1
+    matrix:
+        - DB=pgsql
+
+matrix:
+    allow_failures:
+        - env: DB=pgsql CORE_BRANCH=master
+        - php: nightly
+    include:
+        - php: 7.1
+          env: DB=sqlite
+        - php: 7.2
+          env: DB=sqlite
+        - php: 7.1
+          env: DB=mysql
+        - php: 7.2
+          env: DB=mysql
+        - php: 7.2
+          env: DB=pgsql CORE_BRANCH=master
+        - php: 7.3
+          env: DB=sqlite
+        - php: 7.3
+          env: DB=mysql
+        - php: 7.3
+          env: DB=pgsql CORE_BRANCH=master
+fast_finish: true
+
+install:
+    - make
+    - make source
+    # install core
+    - cd ../
+    - git clone https://github.com/nextcloud/server.git --recursive --depth 1 -b $CORE_BRANCH nextcloud
+    - mv dicomviewer/build/artifacts/source/dicomviewer nextcloud/apps/
+
+script:
+    - if [[ "$DB" == 'pgsql' ]]; then psql -c "CREATE ROLE oc_autotest LOGIN PASSWORD 'oc_autotest'" -U postgres; fi
+    - if [[ "$DB" == 'pgsql' ]]; then psql -c "CREATE DATABASE oc_autotest OWNER oc_autotest;" -U postgres; fi
+    - if [[ "$DB" == 'mysql' ]]; then mysql -u root -e 'CREATE DATABASE oc_autotest;'; fi
+    - if [[ "$DB" == 'mysql' ]]; then mysql -u root -e "CREATE USER 'oc_autotest'@'localhost' IDENTIFIED BY 'oc_autotest';"; fi
+    - if [[ "$DB" == 'mysql' ]]; then mysql -u root -e "GRANT ALL ON oc_autotest.* TO 'oc_autotest'@'localhost';"; fi
+    # fill nextcloud with default configs and enable dicomviewer
+    - cd nextcloud
+    - mkdir data
+    - ./occ maintenance:install --database-name oc_autotest --database-user oc_autotest --admin-user admin --admin-pass admin --database $DB --database-pass="oc_autotest"
+    - ./occ app:enable dicomviewer
+    - ./occ app:check-code dicomviewer
+    - ./occ background:cron  # enable default cron
+    - php -S localhost:8080 &
+
+after_failure:
+    - cat ../../data/nextcloud.log
+
+addons:
+    firefox: "latest-beta"
+    postgresql: "9.6"
+    mariadb: "10.3"
