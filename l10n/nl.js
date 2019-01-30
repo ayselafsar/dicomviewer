@@ -54,7 +54,7 @@ OC.L10N.register(
     "Ser:" : "Serie:",
     "Img:" : "Beeld:",
     "Less" : "minder",
-    "Lossy: " : "Verliesend",
+    "Lossy: " : "Verliesend:",
     "Lossless / Uncompressed" : "Verliesloos / Ongecomprimeerd",
     "WW/WC" : "H/K",
     "DICOM Viewer" : "DICOM-Viewer",
