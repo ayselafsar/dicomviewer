@@ -2,6 +2,7 @@ OC.L10N.register(
     "dicomviewer",
     {
     "Open with DICOM Viewer" : "Ouvrir avec la visionneuse DICOM",
+    "Open All with DICOM Viewer" : "Tout ouvrir avec la visionneuse DICOM",
     "There is no available DICOM image to display" : "Aucune image DICOM à afficher",
     "Levels" : "Niveaux",
     "Zoom" : "Zoom",
@@ -40,6 +41,7 @@ OC.L10N.register(
     "Search for attributes…" : "Rechercher des attributs...",
     "Type an attribute" : "Saisissez un attribut",
     "More" : "Plus",
+    "Close Viewer" : "Fermer la visionneuse",
     "Loading…" : "Chargement…",
     "Img:" : "Img :",
     "Less" : "Moins",
