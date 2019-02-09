@@ -2,6 +2,7 @@ OC.L10N.register(
     "dicomviewer",
     {
     "Open with DICOM Viewer" : "Abrir con el visor DICOM",
+    "Open All with DICOM Viewer" : "Abrir todas con el Visor DICOM ",
     "There is no available DICOM image to display" : "El visor DICOM no está disponible",
     "Stack Scroll" : "Desplazarmiento por la pila",
     "Levels" : "Niveles",
@@ -34,6 +35,9 @@ OC.L10N.register(
     "File Type" : "Tipo de archivo",
     "Show Annotations" : "Mostrar anotaciones",
     "Image Quality (%)" : "Calidad de imagen (%)",
+    "Close" : "Cerrar",
+    "Download" : "Descargar",
+    "DICOM Attributes" : "Atributos DICOM",
     "Attribute" : "Atributo",
     "Value" : "Valor",
     "Search for attributes…" : "Buscar atributos...",
