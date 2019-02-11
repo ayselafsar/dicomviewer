@@ -40,6 +40,7 @@ OC.L10N.register(
     "Value" : "Valeur",
     "Search for attributes…" : "Rechercher des attributs...",
     "Type an attribute" : "Saisissez un attribut",
+    "Series" : "Série",
     "More" : "Plus",
     "Close Viewer" : "Fermer la visionneuse",
     "Loading…" : "Chargement…",
