@@ -23,6 +23,8 @@ OC.L10N.register(
     "OK" : "OK",
     "Close" : "閉じる",
     "Download" : "ダウンロード",
+    "Value" : "値",
+    "Loading…" : "ローディング …",
     "Lossy: " : "非可逆圧縮:",
     "Lossless / Uncompressed" : "ロスレス / 非圧縮",
     "WW/WC" : "WW/WC",
