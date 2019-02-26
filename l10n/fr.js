@@ -48,6 +48,7 @@ OC.L10N.register(
     "Less" : "Moins",
     "Lossless / Uncompressed" : "Sans perte / non compressé",
     "DICOM Viewer" : "Visionneuse DICOM",
+    "Digital Imaging for Medicine" : "Imagerie numérique pour la médecine",
     "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "La visionneuse DICOM permet d'afficher et de manipuler les images au format DICOM avec une barre latérale simplifiée et une visionneuse\n\nVoir le [README](https://github.com/ayselafsar/dicomviewer) pour une liste complète des fonctionnalités et la feuille de route."
 },
 "nplurals=2; plural=(n > 1);");
