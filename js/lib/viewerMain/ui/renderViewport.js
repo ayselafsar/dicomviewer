@@ -395,6 +395,30 @@ const renderLayout = (viewportData) => {
     renderImageControls();
 };
 
+function jumpToImage(viewportIndex, studyInstanceUid, seriesInstanceUid, sopInstanceUid) {
+    const study = DCMViewer.viewer.Studies.find(s => s.studyInstanceUid === studyInstanceUid);
+
+    // Find the proper stack to display
+    const stacksFromSeries = study.displaySets.filter(stack => stack.seriesInstanceUid === seriesInstanceUid);
+    const stack = stacksFromSeries.find((s) => {
+        const imageIndex = s.images.findIndex(image => image.getSOPInstanceUID() === sopInstanceUid);
+        return imageIndex > -1;
+    });
+
+    // TODO: make this work for multi-frame instances
+    const specificImageIndex = stack.images.findIndex(image => image.getSOPInstanceUID() === sopInstanceUid);
+
+    const viewportData = {
+        studyInstanceUid,
+        seriesInstanceUid,
+        displaySetInstanceUid: stack.displaySetInstanceUid,
+        displaySet: stack,
+        currentImageIdIndex: specificImageIndex
+    };
+
+    DCMViewer.layoutManager.rerenderViewportWithNewDisplaySet(viewportIndex, viewportData);
+}
+
 /**
  * Render viewport
  */
@@ -403,7 +427,7 @@ export default function renderViewport() {
         DCMViewer.instance = {};
     }
 
-    const { studies } = DCMViewer.viewerbase.data;
+    const { studies, imageToJump } = DCMViewer.viewerbase.data;
     DCMViewer.instance.parentElement = $('#layoutManagerTarget');
 
     const studyPrefetcher = DCMViewer.viewerbase.StudyPrefetcher.getInstance();
@@ -415,6 +439,11 @@ export default function renderViewport() {
 
     DCMViewer.layoutManager = new DCMViewer.viewerbase.LayoutManager(DCMViewer.instance.parentElement, studies, renderLayout);
     DCMViewer.layoutManager.updateViewports();
+
+    if (imageToJump) {
+        const { studyInstanceUid, seriesInstanceUid, sopInstanceUid } = imageToJump;
+        jumpToImage(0, studyInstanceUid, seriesInstanceUid, sopInstanceUid);
+    }
 
     studyPrefetcher.setStudies(studies);
 }

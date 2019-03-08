@@ -3,6 +3,10 @@ import { cornerstone, cornerstoneWADOImageLoader } from '../../../lib/cornerston
 import generateFullUrl from '../../../lib/generateFullUrl';
 import createMetadata from '../lib/createMetadata';
 
+const STUDY_INSTANCE_UID = 'x0020000d';
+const SERIES_INSTANCE_UID = 'x0020000e';
+const SOP_INSTANCE_UID = 'x00080018';
+
 class ImageLoader {
     constructor(context, fileName, mimeType, hide) {
         this.context = context;
@@ -218,7 +222,7 @@ class ImageLoader {
     /**
      * Load multiple instances
      */
-    loadMultipleDICOMInstances() {
+    loadMultipleDICOMInstances(options) {
         const { context } = this;
         const self = this;
 
@@ -258,16 +262,28 @@ class ImageLoader {
                     const fileUrl = context.fileList.getDownloadUrl(file.name, file.path);
                     const fullUrl = generateFullUrl(fileUrl);
                     const wadouri = `wadouri:${fullUrl}`;
+                    const isFileToJump = options && options.jumpToFileName === file.name;
 
                     const { dataSetCacheManager } = cornerstoneWADOImageLoader.wadouri;
                     const isLoaded = dataSetCacheManager.isLoaded(fullUrl);
 
                     if (isLoaded) {
                         const dataSet = dataSetCacheManager.get(fullUrl);
-                        imagesData.push({
+
+                        const imageData = {
                             dataSet,
-                            wadouri
-                        });
+                            wadouri,
+                        };
+
+                        if (isFileToJump) {
+                            imageData.imageToJump = {
+                                studyInstanceUid: dataSet.string(STUDY_INSTANCE_UID),
+                                seriesInstanceUid: dataSet.string(SERIES_INSTANCE_UID),
+                                sopInstanceUid: dataSet.string(SOP_INSTANCE_UID)
+                            };
+                        }
+
+                        imagesData.push(imageData);
 
                         updateLoadingPercentage();
 
@@ -283,10 +299,20 @@ class ImageLoader {
                                     return;
                                 }
 
-                                imagesData.push({
+                                const imageData = {
                                     dataSet,
-                                    wadouri
-                                });
+                                    wadouri,
+                                };
+
+                                if (isFileToJump) {
+                                    imageData.imageToJump = {
+                                        studyInstanceUid: dataSet.string(STUDY_INSTANCE_UID),
+                                        seriesInstanceUid: dataSet.string(SERIES_INSTANCE_UID),
+                                        sopInstanceUid: dataSet.string(SOP_INSTANCE_UID)
+                                    };
+                                }
+
+                                imagesData.push(imageData);
 
                                 updateLoadingPercentage();
 
@@ -319,6 +345,9 @@ class ImageLoader {
 
                     // Create metadata and set into viewerData
                     imagesData.forEach((imageData) => {
+                        if (imageData.imageToJump) {
+                            viewerData.imageToJump = imageData.imageToJump;
+                        }
                         createMetadata(imageData.wadouri, imageData.dataSet, viewerData.studies);
                     });
 

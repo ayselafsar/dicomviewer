@@ -176,13 +176,13 @@ class DicomViewer {
 
                 self.activeImageLoader = new ImageLoader(context, '', self.mimeType, self.hide);
 
-                const imageLoadPromise = self.activeImageLoader.loadMultipleDICOMInstances();
+                const imageLoadPromise = self.activeImageLoader.loadMultipleDICOMInstances({ jumpToFileName: fileName });
                 self.show(imageLoadPromise);
             }
         });
 
         // TODO: Add default action viewDicomFile or viewAllDicomFiles based on user settings
-        fileActions.setDefault(self.mimeType, 'viewDicomFile');
+        fileActions.setDefault(self.mimeType, 'viewAllDicomFiles');
     }
 }
 

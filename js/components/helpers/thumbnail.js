@@ -60,14 +60,15 @@ Handlebars.registerHelper('imageThumbnailCanvas', function () {
         const { isActiveStudy } = this;
         const activeThumbnail = (this.thumbnailIndex === 0);
         const thumbnailCanvasId = `imageThumbnailCanvas${stack.seriesNumber}_${stack.displaySetInstanceUid}`;
-
         const imageId = getThumbnailImageId(stack);
-
         const $element = $(`#${thumbnailCanvasId}`);
         const element = $element.get(0);
+        const { imageToJump } = DCMViewer.viewerbase.data;
+        const isActiveSeries = imageToJump && imageToJump.seriesInstanceUid && imageToJump.seriesInstanceUid === stack.seriesInstanceUid;
 
         // Highlight active thumbnail
-        if (isActiveStudy && activeThumbnail) {
+        if (isActiveSeries || (isActiveStudy && activeThumbnail)) {
+            $('.imageThumbnail').removeClass('active');
             $element.parent('.imageThumbnail').addClass('active');
         }
 

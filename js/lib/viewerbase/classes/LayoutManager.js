@@ -202,6 +202,7 @@ export class LayoutManager {
         this.viewportData[viewportIndex] = {
             viewportIndex,
             displaySetInstanceUid: data.displaySetInstanceUid,
+            displaySet: data.displaySet,
             seriesInstanceUid: data.seriesInstanceUid,
             studyInstanceUid: data.studyInstanceUid,
             renderedCallback: data.renderedCallback,
@@ -214,7 +215,7 @@ export class LayoutManager {
         const newViewportContainer = document.createElement('div');
         newViewportContainer.className = 'removable';
 
-        this.renderLayout(this.viewportData[0]);
+        this.renderLayout(this.viewportData[viewportIndex]);
     }
 
     /**
