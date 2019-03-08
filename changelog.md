@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2019-03-08
+
+### Fixed
+- Fixed the sidebar issue with no pixel data
+- Fixed incorrect index while scrolling via arrow buttons
+
+### Added
+- Added localization support (Thanks to @Lars1963 and @doc-sebastian)
+- Jump to selected image when it is opened with all images
+
+### Changed
+- Open the selected DICOM file with all images by default
+- Support for opening only the selected DICOM file using the "Open with DICOM Viewer" file action menu
+
 
 ## [1.1.0] - 2018-12-27
 

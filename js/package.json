@@ -1,6 +1,6 @@
 {
   "name": "dicomviewer",
-  "version": "0.0.1",
+  "version": "1.2.0",
   "description": "Place this app in **nextcloud/apps/**",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
