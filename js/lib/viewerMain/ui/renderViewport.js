@@ -303,7 +303,9 @@ function renderImageControls() {
         });
 
         // Change image slider's value with image control buttons
-        $imageControlUp.on('click', () => {
+        $imageControlUp.on('click', (e) => {
+            e.stopImmediatePropagation();
+
             let currentSliderVal = parseInt($slider.val(), 10);
             if (currentSliderVal === 0) {
                 return;
@@ -316,7 +318,9 @@ function renderImageControls() {
         });
 
         // Change image slider's value with image control buttons
-        $imageControlDown.on('click', () => {
+        $imageControlDown.on('click', (e) => {
+            e.stopImmediatePropagation();
+
             let currentSliderVal = parseInt($slider.val(), 10);
             let maxValue = $slider.attr('max');
             maxValue = parseInt(maxValue, 10);
