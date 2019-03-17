@@ -5,7 +5,15 @@ OC.L10N.register(
     "Open All with DICOM Viewer" : "用 DICOM 查看器打开全部图片",
     "There is no available DICOM image to display" : "没有可显示的 DICOM 图片",
     "Zoom" : "放大",
+    "Invert" : "反转",
+    "Flip H" : "水平翻转",
+    "Flip V" : "垂直翻转",
+    "Rotate L" : "向左旋转",
+    "Rotate R" : "向右旋转",
+    "Magnify" : "放大",
     "Length" : "长度",
+    "Angle" : "角度",
+    "Probe" : "探查",
     "Clear" : "清空",
     "Reset" : "重置",
     "Capture" : "截获",
@@ -33,6 +41,7 @@ OC.L10N.register(
     "Img:" : "图片:",
     "Less" : "更少",
     "Lossless / Uncompressed" : "无损 / 未压缩",
-    "DICOM Viewer" : "DICOM 查看器"
+    "DICOM Viewer" : "DICOM 查看器",
+    "Digital Imaging for Medicine" : "医学数字影像"
 },
 "nplurals=1; plural=0;");
