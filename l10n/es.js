@@ -46,9 +46,19 @@ OC.L10N.register(
     "Value" : "Valor",
     "Search for attributes…" : "Buscar atributos...",
     "Type an attribute" : "Escribe un atributo",
+    "Toggle Series Panel" : "Activar/desactivar panel de serie",
+    "Series" : "Serie",
     "More" : "Más",
     "Close Viewer" : "Cerrar visor",
     "Loading…" : "Cargando...",
-    "DICOM Viewer" : "Visor DICOM"
+    "Ser:" : "Ser:",
+    "Img:" : "Img:",
+    "Less" : "Less",
+    "Lossy: " : "Lossy:",
+    "Lossless / Uncompressed" : "Sin pérdida / sin comprimir",
+    "WW/WC" : "WW/WC",
+    "DICOM Viewer" : "Visor DICOM",
+    "Digital Imaging for Medicine" : "Imágenes digitales para medicina",
+    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "El Visor DICOM permite mostrar y manipular imágenes DICOM con una sencilla barra lateral y un visor.\n\nVer [README](https://github.com/ayselafsar/dicomviewer) para una lista completa de características y una hoja de ruta para el futuro."
 },
 "nplurals=2; plural=(n != 1);");
