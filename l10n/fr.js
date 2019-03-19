@@ -41,6 +41,7 @@ OC.L10N.register(
     "Close" : "Fermer",
     "Download" : "Télécharger",
     "DICOM Attributes" : "Attributs DICOM",
+    "Parsing DICOM file…" : "Analyse syntaxique du fichier DICOM ...",
     "Attribute" : "Attribut",
     "Value" : "Valeur",
     "Search for attributes…" : "Rechercher des attributs...",
