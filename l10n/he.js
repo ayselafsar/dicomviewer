@@ -30,6 +30,20 @@ OC.L10N.register(
     "Image Preview" : "תצוגה מקדימה של תמונה",
     "Close" : "סגירה",
     "Download" : "הורדה",
-    "DICOM Attributes" : "מאפייני DICOM"
+    "DICOM Attributes" : "מאפייני DICOM",
+    "Parsing DICOM file…" : "קובץ DICOM מפוענח…",
+    "Attribute" : "מאפיין",
+    "Value" : "ערך",
+    "Search for attributes…" : "חיפוש מאפיינים…",
+    "Type an attribute" : "נא להקליד מאפיין",
+    "Toggle Series Panel" : "הצגה/הסתרה של לוח סדרה",
+    "Series" : "סדרה",
+    "More" : "עוד",
+    "Close Viewer" : "סגירת המציג",
+    "Loading…" : "בטעינה…",
+    "Less" : "פחות:",
+    "DICOM Viewer" : "מציג DICOM",
+    "Digital Imaging for Medicine" : "צילום דיגיטלי לרפואה",
+    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "מציג DICOM מאפשר להציג ולערוך תמונות DICOM עם סרגל צד ומציג תואמים.\n\nיש לעיין ב[קובץ הדרכה - README](https://github.com/ayselafsar/dicomviewer) כדי לצפות ברשימת תכונות מלאה והתכנית לטווח הארוך."
 },
 "nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;");
