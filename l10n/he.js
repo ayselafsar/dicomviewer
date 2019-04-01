@@ -16,6 +16,7 @@ OC.L10N.register(
     "Magnify" : "הגדלה",
     "Length" : "אורך",
     "Angle" : "זווית",
+    "Clear" : "מחיקה",
     "Reset" : "איפוס",
     "Capture" : "לכידה",
     "New label" : "תווית חדשה",
