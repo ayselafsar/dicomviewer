@@ -35,7 +35,7 @@ OC.L10N.register(
     "Height (px)" : "Altura (px)",
     "File Name" : "Nome do Arquivo",
     "File Type" : "Tipo de Arquivo",
-    "Show Annotations" : "Mostrar Anotações",
+    "Show Annotations" : "Exibir Anotações",
     "Image Quality (%)" : "Qualidade da Imagem (%)",
     "Image Preview" : "Pré-visualização da Imagem",
     "Close" : "Fechar",
