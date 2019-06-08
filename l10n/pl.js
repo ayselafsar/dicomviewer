@@ -6,6 +6,7 @@ OC.L10N.register(
     "There is no available DICOM image to display" : "Brak dostępnego obrazu DICOM do wyświetlenia",
     "Stack Scroll" : "Przewijanie stosu",
     "Levels" : "Poziomy",
+    "Levels ROI" : "Poziom ROI",
     "Zoom" : "Powiększenie",
     "Pan" : "Przesuwaj",
     "Invert" : "Odwróć",
