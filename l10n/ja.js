@@ -2,6 +2,7 @@ OC.L10N.register(
     "dicomviewer",
     {
     "Open with DICOM Viewer" : "DICOMビューワで開く",
+    "Open All with DICOM Viewer" : "全てDICOMビューワで開く",
     "There is no available DICOM image to display" : "表示するDICOM画像がありません",
     "Zoom" : "ズーム",
     "Pan" : "移動",
