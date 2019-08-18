@@ -24,7 +24,7 @@ OC.L10N.register(
     "Clear" : "Terug",
     "Reset" : "Reset",
     "Capture" : "Export",
-    "Enter your annotation" : "Notitie ingeven",
+    "Enter your annotation" : "Notitie opvoeren",
     "New label" : "Nieuwe tekst",
     "Edit your annotation" : "Notitie bewerken",
     "OK" : "OK",
