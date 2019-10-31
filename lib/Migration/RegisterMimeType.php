@@ -19,7 +19,8 @@ class RegisterMimeType implements IRepairStep {
             "ima" => array("application/dicom"),
             "dicom" => array("application/dicom"),
             "dic" => array("application/dicom"),
-            "dc3" => array("application/dicom")
+            "dc3" => array("application/dicom"),
+            "pano" => array("application/dicom")
         );
     }
 
