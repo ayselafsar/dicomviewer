@@ -38,7 +38,7 @@ OC.L10N.register(
     "Image Quality (%)" : "Bildkvalitet (%)",
     "Image Preview" : "Förhandsgranska bild",
     "Close" : "Stäng",
-    "Download" : "Ladda ned",
+    "Download" : "Hämta",
     "DICOM Attributes" : "DICOM-attribut",
     "Parsing DICOM file…" : "Analyserar DICOM-fil...",
     "Attribute" : "Attribut",
