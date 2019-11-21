@@ -1,8 +1,8 @@
 OC.L10N.register(
     "dicomviewer",
     {
-    "Open with DICOM Viewer" : "Otevřít prohlížeč DICOM souborů",
-    "Open All with DICOM Viewer" : "Otevřít vše v prohlížeči DICOM",
+    "Open with DICOM Viewer" : "Otevřít v prohlížeči DICOM souborů",
+    "Open All with DICOM Viewer" : "Otevřít vše v DICOM prohlížeči",
     "There is no available DICOM image to display" : "Není k dispozici žádný DICOM obrázek který by bylo možné zobrazit",
     "Stack Scroll" : "Posouvání zásobníkem",
     "Levels" : "Úrovně",
@@ -10,7 +10,7 @@ OC.L10N.register(
     "Zoom" : "Přiblížit",
     "Pan" : "Posunout",
     "Invert" : "Převrátit barvy",
-    "Flip H" : "Převrátit",
+    "Flip H" : "Převrátit vodorovně",
     "Flip V" : "Převrátit svisle",
     "Rotate L" : "Otočit vlevo",
     "Rotate R" : "Otočit vpravo",
