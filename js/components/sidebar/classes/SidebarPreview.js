@@ -23,8 +23,7 @@ class SidebarPreview {
         // Wait until sidebar is rendered
         this.sidebarCheckTimer = setInterval(() => {
             const $appSidebar = $('#app-sidebar');
-            const appSidebarHeight = parseInt($appSidebar.height(), 10);
-            if (!appSidebarHeight) {
+            if (!$appSidebar) {
                 return;
             }
 
@@ -33,23 +32,34 @@ class SidebarPreview {
 
             const fileDownloadUrl = Files.getDownloadUrl(model.get('name'), model.get('path'));
 
-            let previewHeight = appSidebarHeight / 2;
+            const $previewDiv = $("<div id='sidebar_dicomviewer'/>");
 
             $thumbnailDiv.removeClass('icon-loading icon-32');
             $thumbnailContainer.addClass('large');
+            $thumbnailContainer.addClass('text');
+            $thumbnailContainer.addClass('thumbnailContainer-dicomviewer');
             $thumbnailDiv.children('.stretcher').remove();
-            $thumbnailContainer.css('height', previewHeight);
 
-            $thumbnailContainer.append(Sidebar);
+            $previewDiv.append(Sidebar);
+            $thumbnailDiv.append($previewDiv);
 
-            $(window).on('resize', () => {
-                previewHeight = parseInt($appSidebar.height(), 10) / 2;
+            const setPreviewSize = () => {
+                const previewHeight = ($appSidebar.height() * (2 / 3));
                 $thumbnailContainer.css('height', previewHeight);
-            });
+                $previewDiv.css('height', previewHeight);
+            };
+
+            setPreviewSize();
+
+            // Adjust the preview size on window resized
+            $(window).on('resize', () => setPreviewSize());
+
+            // Prevent open on click in preview
+            $previewDiv.on('click', e => e.stopPropagation());
 
             // Initialize sidebar
             initializeSidebarPreview(fileDownloadUrl);
-        }, 100);
+        }, 300);
     }
 }
 
