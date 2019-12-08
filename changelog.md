@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.2.1] - 2019-12-07
+
+### Fixed
+- Fixed the sidebar issues in Nextcloud 16 and 17
+- Fixed some translations (Thanks to the translation contributors)
+
+### Added
+- Support for Nextcloud 17
+- Added PANO extension with DICOM mimetype
+- Added new translations (Thanks to the translation contributors)
+
 ## [1.2.0] - 2019-03-08
 
 ### Fixed
