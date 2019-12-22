@@ -1,0 +1,8 @@
+{ "translations": {
+    "OK" : "හරි",
+    "Close" : "වසන්න",
+    "Download" : "බාන්න",
+    "More" : "වැඩි",
+    "Less" : "අඩු"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}

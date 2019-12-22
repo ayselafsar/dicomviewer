@@ -1,0 +1,12 @@
+{ "translations": {
+    "Clear" : "Pastro",
+    "Reset" : "Rivendos",
+    "OK" : "OK",
+    "Close" : "Mbylleni",
+    "Download" : "Shkarko",
+    "Value" : "Vlerë",
+    "More" : "More",
+    "Loading…" : "Duke u ngarkuar…",
+    "Less" : "Më pak"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}

@@ -36,6 +36,7 @@ OC.L10N.register(
     "More" : "Больше",
     "Close Viewer" : "Закрыть просмотр",
     "Loading…" : "Загрузка..",
+    "Less" : "Меньше",
     "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "DICOM Viewer позволяет просматривать и управлять DICOM изображениями.\n\nЧитайте README на https://github.com/ayselafsar/dicomviewer чтобы узнать все возможности."
 },
 "nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);");

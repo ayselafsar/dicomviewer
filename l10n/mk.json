@@ -1,0 +1,10 @@
+{ "translations": {
+    "Reset" : "Поништи",
+    "OK" : "Добро",
+    "Close" : "Затвори",
+    "Download" : "Превземи",
+    "More" : "Повеќе",
+    "Loading…" : "Се вчитува…",
+    "Less" : "Помалку"
+},"pluralForm" :"nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;"
+}

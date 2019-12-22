@@ -1,0 +1,11 @@
+{ "translations": {
+    "Reset" : "Berrezarri",
+    "OK" : "Ados",
+    "Close" : "Itxi",
+    "Download" : "Deskargatu",
+    "Value" : "Balioa",
+    "More" : "Gehiago",
+    "Loading…" : "Kargatzen…",
+    "Less" : "Gutxiago"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}

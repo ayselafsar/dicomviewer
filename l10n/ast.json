@@ -1,0 +1,9 @@
+{ "translations": {
+    "OK" : "Aceutar",
+    "Close" : "Zarrar",
+    "Download" : "Baxar",
+    "More" : "Más",
+    "Loading…" : "Cargando...",
+    "Less" : "Menos"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}

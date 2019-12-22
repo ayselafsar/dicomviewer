@@ -1,0 +1,9 @@
+{ "translations": {
+    "Reset" : "Sıfırla",
+    "OK" : "Oldu",
+    "Close" : "Bağla",
+    "Download" : "Yüklə",
+    "More" : "Daha da",
+    "Less" : "Az"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}

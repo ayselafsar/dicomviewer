@@ -1,0 +1,10 @@
+{ "translations": {
+    "Reset" : "Lähtesta",
+    "OK" : "OK",
+    "Close" : "Sulge",
+    "Download" : "Lae alla",
+    "More" : "Rohkem",
+    "Loading…" : "Laadimine…",
+    "Less" : "Vähem"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}

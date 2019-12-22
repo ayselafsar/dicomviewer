@@ -1,0 +1,9 @@
+{ "translations": {
+    "Reset" : "পূণঃনির্ধানণ",
+    "OK" : "তথাস্তু",
+    "Close" : "বন্ধ",
+    "Download" : "ডাউনলোড",
+    "More" : "বেশী",
+    "Less" : "কম"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}

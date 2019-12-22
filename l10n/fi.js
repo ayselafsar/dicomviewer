@@ -3,6 +3,8 @@ OC.L10N.register(
     {
     "Open with DICOM Viewer" : "Avaa DICOM-katselimella",
     "Open All with DICOM Viewer" : "Avaa kaikki DICOM-katselimella",
+    "Clear" : "Tyhjennä",
+    "Reset" : "Nollaa",
     "OK" : "OK",
     "Width (px)" : "Leveys (px)",
     "Height (px)" : "Korkeus (px)",
@@ -14,8 +16,10 @@ OC.L10N.register(
     "Download" : "Lataa",
     "Parsing DICOM file…" : "Jäsennetään DICOM-tiedostoa…",
     "Value" : "Arvo",
+    "More" : "Lisää",
     "Close Viewer" : "Sulje katselin",
     "Loading…" : "Ladataan…",
+    "Less" : "Vähemmän",
     "Lossless / Uncompressed" : "Häviötön/pakkaamaton",
     "DICOM Viewer" : "DICOM-katselin"
 },

@@ -1,0 +1,8 @@
+{ "translations": {
+    "OK" : "சரி ",
+    "Close" : "மூடுக",
+    "Download" : "பதிவிறக்குக",
+    "More" : "மேலதிக",
+    "Less" : "குறைவான"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}

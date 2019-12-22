@@ -1,0 +1,8 @@
+{ "translations": {
+    "OK" : "OK",
+    "Close" : "Lukk",
+    "Download" : "Last ned",
+    "More" : "Meir",
+    "Less" : "Mindre"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}

@@ -1,0 +1,10 @@
+{ "translations": {
+    "Reset" : "тохируулах",
+    "OK" : "ок",
+    "Close" : "Хаах",
+    "Download" : "Татах",
+    "Value" : "Үнийн дүн",
+    "More" : "Дэлгэрэнгүй",
+    "Loading…" : "уншиж байна"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}

@@ -1,0 +1,12 @@
+{ "translations": {
+    "Clear" : "Tøm",
+    "Reset" : "Tilbakestill",
+    "OK" : "OK",
+    "Close" : "Lukk",
+    "Download" : "Last ned",
+    "Value" : "Verdi",
+    "More" : "Mer",
+    "Loading…" : "Laster…",
+    "Less" : "Mindre"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}

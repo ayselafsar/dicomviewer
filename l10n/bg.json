@@ -1,0 +1,11 @@
+{ "translations": {
+    "Reset" : "Нулирай",
+    "OK" : "ОК",
+    "Close" : "Затваряне",
+    "Download" : "Свали",
+    "Value" : "Стойност",
+    "More" : "Още",
+    "Loading…" : "Зареждане…",
+    "Less" : "По-малко"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}

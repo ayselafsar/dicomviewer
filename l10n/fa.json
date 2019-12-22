@@ -1,0 +1,10 @@
+{ "translations": {
+    "Reset" : "ریست",
+    "OK" : "تایید",
+    "Close" : "بستن",
+    "Download" : "دانلود",
+    "More" : "بیش‌تر",
+    "Loading…" : "بار کردن…",
+    "Less" : "کم‌تر"
+},"pluralForm" :"nplurals=2; plural=(n > 1);"
+}
