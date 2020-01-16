@@ -2,6 +2,8 @@ OC.L10N.register(
     "dicomviewer",
     {
     "OK" : "OK",
+    "Close" : "Zatvori",
+    "Download" : "Preuzmi",
     "More" : "More",
     "Loading…" : "Učitavanje..."
 },
