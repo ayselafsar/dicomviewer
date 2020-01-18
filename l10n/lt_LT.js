@@ -9,6 +9,7 @@ OC.L10N.register(
     "Flip V" : "Apversti V",
     "Rotate L" : "Pasukti K",
     "Rotate R" : "Pasukti D",
+    "Length" : "Trukmė",
     "Angle" : "Kampas",
     "Clear" : "Išvalyti",
     "Reset" : "Atstatyti",
