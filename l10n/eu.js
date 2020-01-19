@@ -1,6 +1,7 @@
 OC.L10N.register(
     "dicomviewer",
     {
+    "Length" : "Iraupena",
     "Reset" : "Berrezarri",
     "OK" : "Ados",
     "Close" : "Itxi",
