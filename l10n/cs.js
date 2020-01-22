@@ -51,6 +51,7 @@ OC.L10N.register(
     "More" : "Více",
     "Close Viewer" : "Zavřít prohlížeč",
     "Loading…" : "Načítání…",
+    "Ser:" : "Ser:",
     "Img:" : "Obr.:",
     "Less" : "Méně",
     "Lossy: " : "Ztrátové:",
