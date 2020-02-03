@@ -5,6 +5,7 @@ OC.L10N.register(
     "OK" : "تایید",
     "Close" : "بستن",
     "Download" : "دانلود",
+    "Value" : "ارزش",
     "More" : "بیش‌تر",
     "Loading…" : "بار کردن…",
     "Less" : "کم‌تر"
