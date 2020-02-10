@@ -1,6 +1,7 @@
 OC.L10N.register(
     "dicomviewer",
     {
+    "Length" : "Дужина",
     "Clear" : "Очисти",
     "Reset" : "Ресетуј",
     "OK" : "У реду",
