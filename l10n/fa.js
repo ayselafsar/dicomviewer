@@ -1,6 +1,7 @@
 OC.L10N.register(
     "dicomviewer",
     {
+    "Length" : "طول",
     "Reset" : "ریست",
     "OK" : "تایید",
     "Close" : "بستن",
