@@ -14,7 +14,7 @@ OC.L10N.register(
     "Flip V" : "Ribalta V",
     "Rotate L" : "Ruota S",
     "Rotate R" : "Ruota D",
-    "Magnify" : "Ingtandisci",
+    "Magnify" : "Ingrandisci",
     "Length" : "Lunghezza",
     "Angle" : "Angolo",
     "Probe" : "Esplora",
