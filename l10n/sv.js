@@ -50,7 +50,7 @@ OC.L10N.register(
     "Series" : "Serie",
     "More" : "Mer",
     "Close Viewer" : "Stäng visare",
-    "Loading…" : "Laddar...",
+    "Loading…" : "Läser in...",
     "Ser:" : "Ser:",
     "Img:" : "Bild:",
     "Less" : "Mindre",
