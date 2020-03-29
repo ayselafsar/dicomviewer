@@ -1,11 +1,14 @@
 sudo: false
-dist: trusty
+dist: xenial
 language: php
 php:
-    - 7.1
     - 7.2
     - 7.3
-    - nightly
+    - 7.4
+
+services:
+    - mysql
+    - postgresql
 
 env:
     global:
@@ -19,21 +22,19 @@ matrix:
         - env: DB=pgsql CORE_BRANCH=master
         - php: nightly
     include:
-        - php: 7.1
-          env: DB=sqlite
-        - php: 7.2
-          env: DB=sqlite
-        - php: 7.1
-          env: DB=mysql
         - php: 7.2
           env: DB=mysql
         - php: 7.2
           env: DB=pgsql CORE_BRANCH=master
         - php: 7.3
-          env: DB=sqlite
-        - php: 7.3
           env: DB=mysql
         - php: 7.3
+          env: DB=pgsql CORE_BRANCH=master
+        - php: 7.4
+          env: DB=mysql
+        - php: 7.4
+          env: DB=pgsql CORE_BRANCH=master
+        - php: nightly
           env: DB=pgsql CORE_BRANCH=master
 fast_finish: true
 
@@ -62,8 +63,3 @@ script:
 
 after_failure:
     - cat ../../data/nextcloud.log
-
-addons:
-    firefox: "latest-beta"
-    postgresql: "9.6"
-    mariadb: "10.3"
