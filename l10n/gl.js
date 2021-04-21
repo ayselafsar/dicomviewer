@@ -59,6 +59,6 @@ OC.L10N.register(
     "WW/WC" : "WW/WC",
     "DICOM Viewer" : "Visor DICOM",
     "Digital Imaging for Medicine" : "Imaxes dixitais para a medicina",
-    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "O visor DICOM permite amosar e manipular imaxes DICOM cunha barra lateral e un visor optimizados.\n\nVexa o ficheiro [README](https://github.com/ayselafsar/dicomviewer) para obter unha lista das características completas e do mapa de desenvolvemento futuro."
+    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "O visor DICOM permite amosar e manipular imaxes DICOM cunha barra lateral e un visor optimizados.\n\nVexa o ficheiro [LÉEME](https://github.com/ayselafsar/dicomviewer) para obter unha lista das características completas e do mapa de desenvolvemento futuro."
 },
 "nplurals=2; plural=(n != 1);");

@@ -30,7 +30,7 @@ OC.L10N.register(
     "OK" : "Tamam",
     "Remove Marker" : "İşareti Kaldır",
     "Capture High Quality Image" : "Yüksek Kalitede Görsel Yakala",
-    "Please specify the dimensions, and desired type for the output image." : "Lütfen çıkış görseli için boyut ve türü belirtin.",
+    "Please specify the dimensions, and desired type for the output image." : "Lütfen çıkış görselinin ölçülerini ve türünü belirtin.",
     "Width (px)" : "Genişlik (piksel)",
     "Height (px)" : "Yükseklik (piksel)",
     "File Name" : "Dosya Adı",

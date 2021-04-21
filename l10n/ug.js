@@ -7,4 +7,4 @@ OC.L10N.register(
     "More" : "تېخىمۇ كۆپ",
     "Less" : "ئاز"
 },
-"nplurals=1; plural=0;");
+"nplurals=2; plural=(n != 1);");
