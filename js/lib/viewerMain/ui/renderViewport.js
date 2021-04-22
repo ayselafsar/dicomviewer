@@ -31,7 +31,7 @@ function getCompression() {
         return `${compressionMethod}${compressionRatio} : 1`;
     }
 
-    return t('dicomviewer', 'Lossless / Uncompressed');
+    return t('dicomviewer', 'Lossless/Uncompressed');
 }
 
 // Update overlay information which shows study and series information briefly on viewport
