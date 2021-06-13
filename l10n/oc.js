@@ -6,6 +6,6 @@ OC.L10N.register(
     "Close" : "Tampar",
     "Download" : "Telecargar",
     "More" : "Mai",
-    "Loading…" : "Cargament..."
+    "Loading…" : "Cargament…"
 },
 "nplurals=2; plural=(n > 1);");
