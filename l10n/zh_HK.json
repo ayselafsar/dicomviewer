@@ -34,7 +34,7 @@
     "File Name" : "檔案名稱",
     "File Type" : "檔案類型",
     "Show Annotations" : "顯示註釋",
-    "Image Quality (%)" : "圖像品質（%)",
+    "Image Quality (%)" : "圖像品質（%）",
     "Image Preview" : "圖像預覽",
     "Close" : "關閉",
     "Download" : "下載",
@@ -57,6 +57,6 @@
     "WW/WC" : "WW/WC",
     "DICOM Viewer" : "DICOM檢視器",
     "Digital Imaging for Medicine" : "用於醫學的數碼影像 ",
-    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "DICOM Viewer使用簡化的側邊欄和查看器顯示和處理DICOM圖像。\n\n有關完整功能和未來路線圖的列表，請參見[README]（https：//github。com/ayselafsar/dicomviewer）。"
+    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "DICOM Viewer使用簡化的側邊欄和查看器顯示和處理DICOM圖像。\n\n有關完整功能和未來路線圖的列表，請參見[README]（https://github.com/ayselafsar/dicomviewer）。"
 },"pluralForm" :"nplurals=1; plural=0;"
 }
