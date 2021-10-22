@@ -24,7 +24,7 @@ OC.L10N.register(
     "Reset" : "Visszaállítás",
     "Capture" : "Megragad",
     "Enter your annotation" : "Írd be a jegyzeted",
-    "New label" : "Új felirat",
+    "New label" : "Új címke",
     "Edit your annotation" : "Jegyzet szerkeztése",
     "OK" : "OK",
     "Remove Marker" : "Jelölő törlése",
