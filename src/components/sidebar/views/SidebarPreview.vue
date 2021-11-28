@@ -169,8 +169,9 @@ export default {
       }
       const filter = this.attributeSearchText.toUpperCase();
       this.attributes = this.cachedAllAttributes.filter(attr =>
-          attr.tagName.toUpperCase().indexOf(filter) > -1 ||
-          attr.tagName.toUpperCase().indexOf(filter.replace(/\s/g, '')) > -1
+          (attr.tagName && attr.tagName.toUpperCase().indexOf(filter) > -1) ||
+          (attr.tagName && attr.tagName.toUpperCase().indexOf(filter.replace(/\s/g, '')) > -1) ||
+          (attr.tagValue && attr.tagValue.indexOf(filter) > -1)
       ).slice();
     },
   },
