@@ -7,7 +7,7 @@
     <description><![CDATA[DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.
 
 See [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap.]]></description>
-    <version>1.2.2</version>
+    <version>1.2.3</version>
     <licence>agpl</licence>
     <author mail="aysel.afsar@gmail.com">Aysel Afsar</author>
     <namespace>DICOMViewer</namespace>
