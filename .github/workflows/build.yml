@@ -1,4 +1,4 @@
-name: PHPUnit
+name: Build
 
 on:
   pull_request:
@@ -49,9 +49,9 @@ jobs:
         with:
           path: apps/${{ env.APP_NAME }}
 
-      - name: Set up PHPUnit
+      - name: Set up PHPUnit and Build
         working-directory: apps/${{ env.APP_NAME }}
-        run: composer i
+        run: composer i && make
 
       - name: Set up php ${{ matrix.php-versions }}
         uses: "shivammathur/setup-php@v2"

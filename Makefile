@@ -4,8 +4,8 @@ app_name=dicomviewer
 project_dir=$(CURDIR)
 src_js_dir=$(CURDIR)/src
 build_dir=$(project_dir)/build
-appstore_build_dir=/tmp/dicomviewer/build
-appstore_sign_dir=/tmp/dicomviewer/sign
+appstore_build_dir=/tmp/build
+appstore_sign_dir=/tmp/sign
 cert_dir=$(HOME)/.nextcloud/certificates
 webpack=node_modules/.bin/webpack
 
