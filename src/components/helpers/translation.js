@@ -22,14 +22,6 @@ Handlebars.registerHelper('ImagePreviewText', t('dicomviewer', 'Image Preview'))
 Handlebars.registerHelper('CloseText', t('dicomviewer', 'Close'));
 Handlebars.registerHelper('DownloadText', t('dicomviewer', 'Download'));
 
-// Sidebar.html
-Handlebars.registerHelper('DICOMAttributesText', t('dicomviewer', 'DICOM Attributes'));
-Handlebars.registerHelper('ParsingDICOMFileText', t('dicomviewer', 'Parsing DICOM file…'));
-Handlebars.registerHelper('AttributeText', t('dicomviewer', 'Attribute'));
-Handlebars.registerHelper('ValueText', t('dicomviewer', 'Value'));
-Handlebars.registerHelper('SearchAttributesText', t('dicomviewer', 'Search for attributes…'));
-Handlebars.registerHelper('TypeAttributeText', t('dicomviewer', 'Type an attribute'));
-
 // Toolbar.html
 Handlebars.registerHelper('ToggleSeriesPanelText', t('dicomviewer', 'Toggle Series Panel'));
 Handlebars.registerHelper('SeriesText', t('dicomviewer', 'Series'));

@@ -1,7 +1,7 @@
 /* eslint import/no-extraneous-dependencies:0 */
 
 import Handlebars from 'handlebars';
-import { _ } from 'underscore';
+import _ from 'underscore';
 
 // Convert any value into a boolean value
 Handlebars.registerHelper('bool', value => !!value);

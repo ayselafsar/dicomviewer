@@ -3,10 +3,8 @@
   "version": "1.2.2",
   "description": "Place this app in **nextcloud/apps/**",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prebuild": "npm install",
-    "lint": "eslint .",
-    "build": "npm run lint && webpack"
+    "lint": "echo TODO",
+    "build": "webpack"
   },
   "author": "Aysel Afsar",
   "license": "AGPL-3.0-only",
@@ -24,6 +22,8 @@
     "handlebars-loader": "^1.7.0",
     "imports-loader": "^0.8.0",
     "style-loader": "^0.22.1",
+    "vue-loader": "^15.9.3",
+    "vue-template-compiler": "^2.6.12",
     "webpack": "^4.26.1",
     "webpack-cli": "^3.1.2"
   },
@@ -41,6 +41,7 @@
     "moment": "^2.22.2",
     "popper.js": "^1.14.6",
     "random-id": "^0.0.2",
-    "underscore": "^1.9.1"
+    "underscore": "^1.13.1",
+    "vue": "^2.6.12"
   }
 }

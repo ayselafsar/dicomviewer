@@ -2,11 +2,12 @@ const path = require('path');
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { VueLoaderPlugin } = require("vue-loader");
 
 module.exports = {
     entry: './index.js',
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, '../js'),
         filename: 'app.bundle.js'
     },
     module: {
@@ -29,6 +30,9 @@ module.exports = {
                     },
                 }
             }, {
+                test: /\.vue$/,
+                loader: 'vue-loader'
+            }, {
                 test: /public\/.\.js$/,
                 loader: 'file'
             }
@@ -37,8 +41,10 @@ module.exports = {
     resolve: {
         modules: [path.resolve(__dirname), 'node_modules'],
         alias: {
-            handlebars: 'handlebars/runtime.js'
-        }
+            handlebars: 'handlebars/runtime.js',
+            vue$: 'vue/dist/vue.runtime.esm.js',
+        },
+        extensions: ["*", ".js", ".vue", ".json"],
     },
     stats: {
         colors: true
@@ -46,7 +52,8 @@ module.exports = {
     mode: 'development',
     devtool: '#source-map',
     plugins: [
-        new CleanWebpackPlugin(['dist']),
+        new VueLoaderPlugin(),
+        new CleanWebpackPlugin([path.resolve(__dirname, '../js')]),
         new CopyWebpackPlugin([
             {
                 from: 'public',

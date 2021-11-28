@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import { _ } from 'underscore';
+import _ from 'underscore';
 
 const Utils = {};
 

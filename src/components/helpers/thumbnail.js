@@ -1,7 +1,7 @@
 /* eslint import/no-extraneous-dependencies:0 */
 
 import $ from 'jquery';
-import { _ } from 'underscore';
+import _ from 'underscore';
 import Handlebars from 'handlebars';
 import { cornerstone } from '../../lib/cornerstonejs';
 import { DCMViewer } from '../../lib/viewerMain';

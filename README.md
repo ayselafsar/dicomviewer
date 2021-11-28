@@ -40,20 +40,15 @@ On your Nextcloud, simply navigate to Apps > Multimedia > DICOM Viewer, and enab
 
 #### Build
 
-You can build the source code with the following steps
+You can build the source code with the following steps:
 
-1. Clone this repository
-2. Change into the directory you have cloned this repository into
-3. Run `make && make source` command to build source code
-4. Copy `build/artifacts/source/dicomviewer` into `path-to-nextcloud/apps`
-5. Enable the DICOM Viewer app in Nextcloud
+1. Clone this repository on `path-to-nextcloud/apps`
 
+2. Change into the directory you have cloned this repository
 
-### Roadmap
+3. Run `make` command to build source code
 
-- Multi-frame Image Support (CINE Tool)
-- DICOM Worklist
-
+4. Enable the DICOM Viewer app in Nextcloud
 
 ### Sponsors
 
@@ -62,6 +57,5 @@ Thanks to our all contributors and sponsors!
 <table>
   <tr>
     <td><a href="https://nextcloud.com"><img src="https://user-images.githubusercontent.com/8215016/70382026-f51b2200-1922-11ea-9121-6bbbb9fb2a6f.png" height="50px;" alt="Nextcloud"/></td>
-    <td><a href="https://jetbrains.com"><img src="https://user-images.githubusercontent.com/8215016/70381982-1fb8ab00-1922-11ea-8aeb-0088bcf58183.png" height="50px;" alt="JetBrains"/></td>
   </tr>
 </table>

@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import { _ } from 'underscore';
+import _ from 'underscore';
 import { cornerstone, cornerstoneTools } from '../cornerstonejs';
 import { DCMViewerManager } from '../DCMViewerManager';
 import { DCMViewerLog } from '../DCMViewerLog';

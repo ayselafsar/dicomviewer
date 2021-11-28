@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import { _ } from 'underscore';
+import _ from 'underscore';
 import { DCMViewer } from '../../viewerMain';
 import { DCMViewerLog } from '../../DCMViewerLog';
 import { DCMViewerManager } from '../../DCMViewerManager';

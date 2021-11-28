@@ -1,8 +1,9 @@
 .idea/
+.history/
 node_modules
 .npm
 npm-debug.log
 package-lock.json
 vendor
 build
-js/dist
+js/
