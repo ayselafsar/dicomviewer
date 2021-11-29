@@ -1,6 +1,13 @@
 OC.L10N.register(
     "dicomviewer",
     {
+    "DICOM Viewer" : "Visualizador DICOM",
+    "Digital Imaging for Medicine" : "Escaneamento Digital para Medicina",
+    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "O visualizador DICOM permite exibir e manipular imagens DICOM com uma barra lateral e visualizador simplificados.\n\nVeja o [README](https://github.com/ayselafsar/dicomviewer) para uma lista de recursos completos e futuro roteiro.",
+    "DICOM Attributes" : "Atributos DICOM",
+    "Search for attributes…" : "Procurando por atributos...",
+    "Attribute" : "Atributo",
+    "Value" : "Valor",
     "Open with DICOM Viewer" : "Abrir com o visualizador DICOM",
     "Open All with DICOM Viewer" : "Abrir Todos com o Visualizador DICOM",
     "There is no available DICOM image to display" : "Não há imagem DICOM disponível para exibir",
@@ -40,12 +47,6 @@ OC.L10N.register(
     "Image Preview" : "Pré-visualização da Imagem",
     "Close" : "Fechar",
     "Download" : "Baixar",
-    "DICOM Attributes" : "Atributos DICOM",
-    "Parsing DICOM file…" : "Analisando o arquivo DICOM...",
-    "Attribute" : "Atributo",
-    "Value" : "Valor",
-    "Search for attributes…" : "Procurando por atributos...",
-    "Type an attribute" : "Digite um atributo",
     "Toggle Series Panel" : "Alternar Painel da Série",
     "Series" : "Séries",
     "More" : "Mais",
@@ -56,9 +57,6 @@ OC.L10N.register(
     "Less" : "Menos",
     "Lossy: " : "Com perda:",
     "Lossless / Uncompressed" : "Sem perda / Sem compressão",
-    "WW/WC" : "WW/WC",
-    "DICOM Viewer" : "Visualizador DICOM",
-    "Digital Imaging for Medicine" : "Escaneamento Digital para Medicina",
-    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "O visualizador DICOM permite exibir e manipular imagens DICOM com uma barra lateral e visualizador simplificados.\n\nVeja o [README](https://github.com/ayselafsar/dicomviewer) para uma lista de recursos completos e futuro roteiro."
+    "WW/WC" : "WW/WC"
 },
 "nplurals=2; plural=(n > 1);");

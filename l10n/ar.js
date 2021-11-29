@@ -1,13 +1,13 @@
 OC.L10N.register(
     "dicomviewer",
     {
+    "Value" : "القيمة",
     "Reset" : "إعادة الضبط",
     "OK" : "موافق",
     "File Type" : "نوع الملف",
     "Image Quality (%)" : "جودة الصورة (٪)",
     "Close" : "إغلاق",
     "Download" : "تنزيل",
-    "Value" : "القيمة",
     "More" : "المزيد",
     "Loading…" : "التحميل جارٍ…",
     "Less" : "أقل"

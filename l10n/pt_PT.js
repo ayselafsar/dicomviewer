@@ -1,6 +1,13 @@
 OC.L10N.register(
     "dicomviewer",
     {
+    "DICOM Viewer" : "DICOM Viewer",
+    "Digital Imaging for Medicine" : "Imagiologia digital para medicina",
+    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "DICOM Viewer permite exibir e manipular imagens DICOM com uma barra lateral e visualizador simplificados.\n\nVeja [README](https://github.com/ayselafsar/dicomviewer) para uma lista completa das funcionalidades e planeamento futuro.",
+    "DICOM Attributes" : "Atributos DICOM",
+    "Search for attributes…" : "A procurar atributos...",
+    "Attribute" : "Atributo",
+    "Value" : "Valor",
     "Open with DICOM Viewer" : "Abrir com DICOM Viewer",
     "Open All with DICOM Viewer" : "Abrir todos com DICOM Viewer",
     "There is no available DICOM image to display" : "Nenhuma imagem DICOM disponível para visualizar",
@@ -40,12 +47,6 @@ OC.L10N.register(
     "Image Preview" : "Pré-visualizar imagem",
     "Close" : "Fechar",
     "Download" : "Transferir",
-    "DICOM Attributes" : "Atributos DICOM",
-    "Parsing DICOM file…" : "A analisar ficheiro DICOM...",
-    "Attribute" : "Atributo",
-    "Value" : "Valor",
-    "Search for attributes…" : "A procurar atributos...",
-    "Type an attribute" : "Introduza um atributo",
     "Toggle Series Panel" : "Alternar painel de séries",
     "Series" : "Séries",
     "More" : "Mais",
@@ -56,9 +57,6 @@ OC.L10N.register(
     "Less" : "Menos",
     "Lossy: " : "Com perdas:",
     "Lossless / Uncompressed" : "Sem perdas / Descomprimido",
-    "WW/WC" : "WW/WC",
-    "DICOM Viewer" : "DICOM Viewer",
-    "Digital Imaging for Medicine" : "Imagiologia digital para medicina",
-    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "DICOM Viewer permite exibir e manipular imagens DICOM com uma barra lateral e visualizador simplificados.\n\nVeja [README](https://github.com/ayselafsar/dicomviewer) para uma lista completa das funcionalidades e planeamento futuro."
+    "WW/WC" : "WW/WC"
 },
 "nplurals=2; plural=(n != 1);");

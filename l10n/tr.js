@@ -1,6 +1,13 @@
 OC.L10N.register(
     "dicomviewer",
     {
+    "DICOM Viewer" : "DICOM görüntüleyici",
+    "Digital Imaging for Medicine" : "Tıbbi sayısal görüntüleme",
+    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "DICOM Görüntüleyici, DICOM görsellerinin sıralanarak görüntülenip değiştirilebileceği bir yan çubuk ve görüntüleyici sunar.\n\nÖzelliklerin tümü ve geliştirme yol haritasını [README](https://github.com/ayselafsar/dicomviewer) içeriğinde görebilirsiniz.",
+    "DICOM Attributes" : "DICOM öznitelikleri",
+    "Search for attributes…" : "Öznitelik arama …",
+    "Attribute" : "Öznitelik",
+    "Value" : "Değer",
     "Open with DICOM Viewer" : "DICOM görüntüleyici ile aç",
     "Open All with DICOM Viewer" : "Tümünü DICOM görüntüleyici ile aç",
     "There is no available DICOM image to display" : "Görüntülenebilecek bir DICOM dosyası bulunamadı",
@@ -40,12 +47,6 @@ OC.L10N.register(
     "Image Preview" : "Görsel ön izleme",
     "Close" : "Kapat",
     "Download" : "İndir",
-    "DICOM Attributes" : "DICOM öznitelikleri",
-    "Parsing DICOM file…" : "DICOM dosyası işleniyor …",
-    "Attribute" : "Öznitelik",
-    "Value" : "Değer",
-    "Search for attributes…" : "Öznitelik arama …",
-    "Type an attribute" : "Bir öznitelik yazın",
     "Toggle Series Panel" : "Dizi panosunu aç/kapat",
     "Series" : "Dizi",
     "More" : "Daha fazla",
@@ -56,9 +57,6 @@ OC.L10N.register(
     "Less" : "Daha az",
     "Lossy: " : "Kayıplı:",
     "Lossless / Uncompressed" : "Kayıpsız / sıkıştırılmamış",
-    "WW/WC" : "WW/WC",
-    "DICOM Viewer" : "DICOM görüntüleyici",
-    "Digital Imaging for Medicine" : "Tıbbi sayısal görüntüleme",
-    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "DICOM Görüntüleyici, DICOM görsellerinin sıralanarak görüntülenip değiştirilebileceği bir yan çubuk ve görüntüleyici sunar.\n\nÖzelliklerin tümü ve geliştirme yol haritasını [README](https://github.com/ayselafsar/dicomviewer) içeriğinde görebilirsiniz."
+    "WW/WC" : "WW/WC"
 },
 "nplurals=2; plural=(n > 1);");

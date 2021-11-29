@@ -1,12 +1,12 @@
 OC.L10N.register(
     "dicomviewer",
     {
+    "Value" : "අගය",
     "Length" : "දිග",
     "OK" : "හරි",
     "File Name" : "ගොනුවේ නම",
     "Close" : "වසන්න",
     "Download" : "බාගන්න",
-    "Value" : "අගය",
     "More" : "තව",
     "Loading…" : "පූරණය වෙමින්…"
 },

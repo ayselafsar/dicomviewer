@@ -1,6 +1,8 @@
 OC.L10N.register(
     "dicomviewer",
     {
+    "DICOM Viewer" : "DICOM fremviser",
+    "Value" : "Værdi",
     "Open with DICOM Viewer" : "Åbn med DICOM Fremviser",
     "Open All with DICOM Viewer" : "Åbn alle med DICOM Fremviser",
     "There is no available DICOM image to display" : "Der er Ingen DICOM billeder at vise",
@@ -29,11 +31,9 @@ OC.L10N.register(
     "Image Quality (%)" : "Billedkvalitet (%)",
     "Close" : "Luk",
     "Download" : "Download",
-    "Value" : "Værdi",
     "More" : "Mere",
     "Close Viewer" : "Luk fremviser",
     "Loading…" : "Indlæser…",
-    "Less" : "Mindre",
-    "DICOM Viewer" : "DICOM fremviser"
+    "Less" : "Mindre"
 },
 "nplurals=2; plural=(n != 1);");

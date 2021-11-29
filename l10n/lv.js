@@ -1,11 +1,11 @@
 OC.L10N.register(
     "dicomviewer",
     {
+    "Value" : "Vērtība",
     "Reset" : "Atiestatīt",
     "OK" : "Labi",
     "Close" : "Aizvērt",
     "Download" : "Lejupielādēt",
-    "Value" : "Vērtība",
     "More" : "Vairāk",
     "Loading…" : "Notiek ielāde...",
     "Less" : "Mazāk"

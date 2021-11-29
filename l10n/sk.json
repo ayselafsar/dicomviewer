@@ -1,4 +1,11 @@
 { "translations": {
+    "DICOM Viewer" : "DICOM Viewer",
+    "Digital Imaging for Medicine" : "Digitálne spracovanie pre medicíne",
+    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "Prehliadač DICOM údajov umožňuje zobraziť a manipulovať s DICOM obrázkami pomocou efektívnej postrannej lišty a prehliadača.\n\nÚplný zoznam funkcií a plán vývoja je k dispozícii v [README](https://github.com/ayselafsar/dicomviewer)",
+    "DICOM Attributes" : "DICOM atribúty",
+    "Search for attributes…" : "Hľadať atribúty...",
+    "Attribute" : "Atribút",
+    "Value" : "Hodnota",
     "Open with DICOM Viewer" : "Otvoriť pomocou DICOM Viewer",
     "Open All with DICOM Viewer" : "Otvoriť všetko v prehliadači DICOM",
     "There is no available DICOM image to display" : "Nie je k dispozícii žiadna DICOM snímka, ktorú by bolo možné zobraziť",
@@ -38,12 +45,6 @@
     "Image Preview" : "Náhľad obrázku",
     "Close" : "Zavrieť",
     "Download" : "Stiahnuť",
-    "DICOM Attributes" : "DICOM atribúty",
-    "Parsing DICOM file…" : "Spracovanie súboru DICOM...",
-    "Attribute" : "Atribút",
-    "Value" : "Hodnota",
-    "Search for attributes…" : "Hľadať atribúty...",
-    "Type an attribute" : "Zadajte atribút",
     "Toggle Series Panel" : "Vyp/zap panel série",
     "Series" : "Série",
     "More" : "Viac",
@@ -54,9 +55,6 @@
     "Less" : "Menej",
     "Lossy: " : "Stratové:",
     "Lossless / Uncompressed" : "Bezstratové / nekomprimované",
-    "WW/WC" : "Výška a stred okna",
-    "DICOM Viewer" : "DICOM Viewer",
-    "Digital Imaging for Medicine" : "Digitálne spracovanie pre medicíne",
-    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "Prehliadač DICOM údajov umožňuje zobraziť a manipulovať s DICOM obrázkami pomocou efektívnej postrannej lišty a prehliadača.\n\nÚplný zoznam funkcií a plán vývoja je k dispozícii v [README](https://github.com/ayselafsar/dicomviewer)"
+    "WW/WC" : "Výška a stred okna"
 },"pluralForm" :"nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);"
 }

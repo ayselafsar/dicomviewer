@@ -1,11 +1,11 @@
 OC.L10N.register(
     "dicomviewer",
     {
+    "Value" : "Үнийн дүн",
     "Reset" : "тохируулах",
     "OK" : "ок",
     "Close" : "Хаах",
     "Download" : "Татах",
-    "Value" : "Үнийн дүн",
     "More" : "Дэлгэрэнгүй",
     "Loading…" : "уншиж байна"
 },

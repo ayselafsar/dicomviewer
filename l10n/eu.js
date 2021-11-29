@@ -1,6 +1,13 @@
 OC.L10N.register(
     "dicomviewer",
     {
+    "DICOM Viewer" : "DICOM Viewer",
+    "Digital Imaging for Medicine" : "Medikuntzarako irudi digitalak",
+    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "DICOM Viewer erabiliz DICOM irudiak bistaratu eta manipulatu daitezke erraz, alboko barra eta ikustailearekin.\n\nBegiratu [README](https://github.com/ayselafsar/dicomviewer) osatuta dauden eginbideen zerrenda eta etorkizuneko proiektuak ikusteko.",
+    "DICOM Attributes" : "DICOM atributuak",
+    "Search for attributes…" : "Bilatu atributuak...",
+    "Attribute" : "Atributua",
+    "Value" : "Balioa",
     "Open with DICOM Viewer" : "Ireki DICOM Viewer erabiliz",
     "Open All with DICOM Viewer" : "Ireki guztia DICOM Viewer erabiliz",
     "There is no available DICOM image to display" : "Ez dago DICOM irudi erabilgarririk bistaratzeko",
@@ -40,12 +47,6 @@ OC.L10N.register(
     "Image Preview" : "Irudiaren aurrebista",
     "Close" : "Itxi",
     "Download" : "Deskargatu",
-    "DICOM Attributes" : "DICOM atributuak",
-    "Parsing DICOM file…" : "DICOM fitxategia analizatzen...",
-    "Attribute" : "Atributua",
-    "Value" : "Balioa",
-    "Search for attributes…" : "Bilatu atributuak...",
-    "Type an attribute" : "Idatzi atributu bat",
     "Toggle Series Panel" : "Txandakatu serie-panela",
     "Series" : "Seriea",
     "More" : "Gehiago",
@@ -56,9 +57,6 @@ OC.L10N.register(
     "Less" : "Gutxiago",
     "Lossy: " : "Galerarekin:",
     "Lossless / Uncompressed" : "Galera gabe / Komprimatu gabe",
-    "WW/WC" : "WW/WC",
-    "DICOM Viewer" : "DICOM Viewer",
-    "Digital Imaging for Medicine" : "Medikuntzarako irudi digitalak",
-    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "DICOM Viewer erabiliz DICOM irudiak bistaratu eta manipulatu daitezke erraz, alboko barra eta ikustailearekin.\n\nBegiratu [README](https://github.com/ayselafsar/dicomviewer) osatuta dauden eginbideen zerrenda eta etorkizuneko proiektuak ikusteko."
+    "WW/WC" : "WW/WC"
 },
 "nplurals=2; plural=(n != 1);");

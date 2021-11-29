@@ -1,6 +1,13 @@
 OC.L10N.register(
     "dicomviewer",
     {
+    "DICOM Viewer" : "DICOM-visare",
+    "Digital Imaging for Medicine" : "Digital bildbehandling för medicin",
+    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "DICOM-visaren gör det möjligt att visa och manipulera DICOM-bilder med ett strömlinjeformat sidofält och visare.\n\nSe [README] (https://github.com/ayselafsar/dicomviewer) för en lista över fullständiga funktioner och framtida utvecklingsplan.",
+    "DICOM Attributes" : "DICOM-attribut",
+    "Search for attributes…" : "Sök efter attribut...",
+    "Attribute" : "Attribut",
+    "Value" : "Värde",
     "Open with DICOM Viewer" : "Öppna med DICOM-visare",
     "Open All with DICOM Viewer" : "Öppna alla med DICOM-visare",
     "There is no available DICOM image to display" : "Det finns ingen tillgänglig DICOM-bild att visa",
@@ -40,12 +47,6 @@ OC.L10N.register(
     "Image Preview" : "Förhandsgranska bild",
     "Close" : "Stäng",
     "Download" : "Hämta",
-    "DICOM Attributes" : "DICOM-attribut",
-    "Parsing DICOM file…" : "Analyserar DICOM-fil...",
-    "Attribute" : "Attribut",
-    "Value" : "Värde",
-    "Search for attributes…" : "Sök efter attribut...",
-    "Type an attribute" : "Ange ett attribut",
     "Toggle Series Panel" : "Växla seriepanel",
     "Series" : "Serie",
     "More" : "Mer",
@@ -56,9 +57,6 @@ OC.L10N.register(
     "Less" : "Mindre",
     "Lossy: " : "inexakt komprimering",
     "Lossless / Uncompressed" : "Förlustfri / Okomprimerad",
-    "WW/WC" : "WW/WC",
-    "DICOM Viewer" : "DICOM-visare",
-    "Digital Imaging for Medicine" : "Digital bildbehandling för medicin",
-    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "DICOM-visaren gör det möjligt att visa och manipulera DICOM-bilder med ett strömlinjeformat sidofält och visare.\n\nSe [README] (https://github.com/ayselafsar/dicomviewer) för en lista över fullständiga funktioner och framtida utvecklingsplan."
+    "WW/WC" : "WW/WC"
 },
 "nplurals=2; plural=(n != 1);");

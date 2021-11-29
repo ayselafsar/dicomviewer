@@ -1,6 +1,10 @@
 OC.L10N.register(
     "dicomviewer",
     {
+    "DICOM Viewer" : "DICOM-katselin",
+    "DICOM Attributes" : "DICOM-attribuutit",
+    "Attribute" : "Attribuutti",
+    "Value" : "Arvo",
     "Open with DICOM Viewer" : "Avaa DICOM-katselimella",
     "Open All with DICOM Viewer" : "Avaa kaikki DICOM-katselimella",
     "Length" : "Kesto",
@@ -15,15 +19,10 @@ OC.L10N.register(
     "Image Preview" : "Kuvan esikatselu",
     "Close" : "Sulje",
     "Download" : "Lataa",
-    "DICOM Attributes" : "DICOM-attribuutit",
-    "Parsing DICOM file…" : "Jäsennetään DICOM-tiedostoa…",
-    "Attribute" : "Attribuutti",
-    "Value" : "Arvo",
     "More" : "Lisää",
     "Close Viewer" : "Sulje katselin",
     "Loading…" : "Ladataan…",
     "Less" : "Vähemmän",
-    "Lossless / Uncompressed" : "Häviötön/pakkaamaton",
-    "DICOM Viewer" : "DICOM-katselin"
+    "Lossless / Uncompressed" : "Häviötön/pakkaamaton"
 },
 "nplurals=2; plural=(n != 1);");

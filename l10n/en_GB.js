@@ -1,12 +1,12 @@
 OC.L10N.register(
     "dicomviewer",
     {
+    "Value" : "Value",
     "Clear" : "Clear",
     "Reset" : "Reset",
     "OK" : "OK",
     "Close" : "Close",
     "Download" : "Download",
-    "Value" : "Value",
     "More" : "More",
     "Loading…" : "Loading…",
     "Less" : "Less"

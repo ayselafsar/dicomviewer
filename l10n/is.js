@@ -1,6 +1,13 @@
 OC.L10N.register(
     "dicomviewer",
     {
+    "DICOM Viewer" : "DICOM-myndaskoðari",
+    "Digital Imaging for Medicine" : "Stafræn myndvinnsla fyrir læknisfræði (Digital Imaging and Communications in Medicine)",
+    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "DICOM-myndaskoðarinn gerir kleift að birta og meðhöndla DICOM-myndir með auðveldum skoðara og verkfærastiku.\n\nSkoðaðu [README](https://github.com/ayselafsar/dicomviewer) til að sjá lista yfir alla eiginleika og stefnu í þróun hugbúnaðarins.",
+    "DICOM Attributes" : "DICOM eigindi",
+    "Search for attributes…" : "Leita að eigindum…",
+    "Attribute" : "Eigindi",
+    "Value" : "Gildi",
     "Open with DICOM Viewer" : "Opna með DICOM-myndaskoðara",
     "Open All with DICOM Viewer" : "Opna allt með DICOM-myndaskoðara",
     "There is no available DICOM image to display" : "Það er engin DICOM-mynd tiltæk til birtingar",
@@ -40,12 +47,6 @@ OC.L10N.register(
     "Image Preview" : "Forskoðun myndar",
     "Close" : "Loka",
     "Download" : "Sækja",
-    "DICOM Attributes" : "DICOM eigindi",
-    "Parsing DICOM file…" : "Þátta DICOM-skrá…",
-    "Attribute" : "Eigindi",
-    "Value" : "Gildi",
-    "Search for attributes…" : "Leita að eigindum…",
-    "Type an attribute" : "Settu inn eigindi",
     "Toggle Series Panel" : "Víxla myndarunuspjaldi af/á",
     "Series" : "Runa",
     "More" : "Meira",
@@ -56,9 +57,6 @@ OC.L10N.register(
     "Less" : "Minna",
     "Lossy: " : "Með gagnatapi: ",
     "Lossless / Uncompressed" : "Taplaust / Óþjappað",
-    "WW/WC" : "Breidd/Miðja",
-    "DICOM Viewer" : "DICOM-myndaskoðari",
-    "Digital Imaging for Medicine" : "Stafræn myndvinnsla fyrir læknisfræði (Digital Imaging and Communications in Medicine)",
-    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "DICOM-myndaskoðarinn gerir kleift að birta og meðhöndla DICOM-myndir með auðveldum skoðara og verkfærastiku.\n\nSkoðaðu [README](https://github.com/ayselafsar/dicomviewer) til að sjá lista yfir alla eiginleika og stefnu í þróun hugbúnaðarins."
+    "WW/WC" : "Breidd/Miðja"
 },
 "nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);");

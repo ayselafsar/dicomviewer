@@ -1,4 +1,11 @@
 { "translations": {
+    "DICOM Viewer" : "Visor DICOM",
+    "Digital Imaging for Medicine" : "Imágenes digitales para medicina",
+    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "El Visor DICOM permite mostrar y manipular imágenes DICOM con una sencilla barra lateral y un visor.\n\nVer [README](https://github.com/ayselafsar/dicomviewer) para una lista completa de características y una hoja de ruta para el futuro.",
+    "DICOM Attributes" : "Atributos DICOM",
+    "Search for attributes…" : "Buscar atributos...",
+    "Attribute" : "Atributo",
+    "Value" : "Valor",
     "Open with DICOM Viewer" : "Abrir con el visor DICOM",
     "Open All with DICOM Viewer" : "Abrir todas con el Visor DICOM ",
     "There is no available DICOM image to display" : "El visor DICOM no está disponible",
@@ -38,12 +45,6 @@
     "Image Preview" : "Vista previa de imagen",
     "Close" : "Cerrar",
     "Download" : "Descargar",
-    "DICOM Attributes" : "Atributos DICOM",
-    "Parsing DICOM file…" : "Trazando archivo DICOM…",
-    "Attribute" : "Atributo",
-    "Value" : "Valor",
-    "Search for attributes…" : "Buscar atributos...",
-    "Type an attribute" : "Escribe un atributo",
     "Toggle Series Panel" : "Activar/desactivar panel de serie",
     "Series" : "Serie",
     "More" : "Más",
@@ -54,9 +55,6 @@
     "Less" : "Less",
     "Lossy: " : "Lossy:",
     "Lossless / Uncompressed" : "Sin pérdida / sin comprimir",
-    "WW/WC" : "WW/WC",
-    "DICOM Viewer" : "Visor DICOM",
-    "Digital Imaging for Medicine" : "Imágenes digitales para medicina",
-    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "El Visor DICOM permite mostrar y manipular imágenes DICOM con una sencilla barra lateral y un visor.\n\nVer [README](https://github.com/ayselafsar/dicomviewer) para una lista completa de características y una hoja de ruta para el futuro."
+    "WW/WC" : "WW/WC"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

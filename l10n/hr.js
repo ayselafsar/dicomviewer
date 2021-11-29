@@ -1,6 +1,13 @@
 OC.L10N.register(
     "dicomviewer",
     {
+    "DICOM Viewer" : "Preglednik datoteka DICOM",
+    "Digital Imaging for Medicine" : "Digitalno snimanje za medicinske svrhe",
+    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "Preglednik datoteka DICOM omogućuje prikazivanje i manipuliranje slikama DICOM s pojednostavljenom bočnom trakom i preglednikom.\n\nPogledajte datoteku [README](https://github.com/ayselafsar/dicomviewer) za popis svih značajki i budući razvoj preglednika.",
+    "DICOM Attributes" : "Atributi datoteke DICOM",
+    "Search for attributes…" : "Traži atribute...",
+    "Attribute" : "Atribut",
+    "Value" : "Vrijednost",
     "Open with DICOM Viewer" : "Otvori s preglednikom datoteka DICOM",
     "Open All with DICOM Viewer" : "Otvori sve s preglednikom datoteka DICOM",
     "There is no available DICOM image to display" : "Nema dostupne datoteke DICOM za prikaz",
@@ -40,12 +47,6 @@ OC.L10N.register(
     "Image Preview" : "Pretpregled slike",
     "Close" : "Zatvori",
     "Download" : "Preuzmi",
-    "DICOM Attributes" : "Atributi datoteke DICOM",
-    "Parsing DICOM file…" : "Parsiranje datoteke DICOM…",
-    "Attribute" : "Atribut",
-    "Value" : "Vrijednost",
-    "Search for attributes…" : "Traži atribute...",
-    "Type an attribute" : "Unesi atribut",
     "Toggle Series Panel" : "Uključi/isključi ploču serije",
     "Series" : "Serija",
     "More" : "Više",
@@ -56,9 +57,6 @@ OC.L10N.register(
     "Less" : "Manje",
     "Lossy: " : "Uz gubitak: ",
     "Lossless / Uncompressed" : "Bez gubitka/nekomprimirano",
-    "WW/WC" : "WW/WC",
-    "DICOM Viewer" : "Preglednik datoteka DICOM",
-    "Digital Imaging for Medicine" : "Digitalno snimanje za medicinske svrhe",
-    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "Preglednik datoteka DICOM omogućuje prikazivanje i manipuliranje slikama DICOM s pojednostavljenom bočnom trakom i preglednikom.\n\nPogledajte datoteku [README](https://github.com/ayselafsar/dicomviewer) za popis svih značajki i budući razvoj preglednika."
+    "WW/WC" : "WW/WC"
 },
 "nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;");

@@ -1,4 +1,11 @@
 { "translations": {
+    "DICOM Viewer" : "Visionneuse DICOM",
+    "Digital Imaging for Medicine" : "Imagerie numérique pour la médecine",
+    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "La visionneuse DICOM permet d'afficher et de manipuler les images au format DICOM avec une barre latérale simplifiée et une visionneuse\n\nVoir le [README](https://github.com/ayselafsar/dicomviewer) pour une liste complète des fonctionnalités et la feuille de route.",
+    "DICOM Attributes" : "Attributs DICOM",
+    "Search for attributes…" : "Rechercher des attributs...",
+    "Attribute" : "Attribut",
+    "Value" : "Valeur",
     "Open with DICOM Viewer" : "Ouvrir avec la visionneuse DICOM",
     "Open All with DICOM Viewer" : "Tout ouvrir avec la visionneuse DICOM",
     "There is no available DICOM image to display" : "Aucune image DICOM à afficher",
@@ -38,12 +45,6 @@
     "Image Preview" : "Prévisualiser l'image",
     "Close" : "Fermer",
     "Download" : "Télécharger",
-    "DICOM Attributes" : "Attributs DICOM",
-    "Parsing DICOM file…" : "Analyse syntaxique du fichier DICOM ...",
-    "Attribute" : "Attribut",
-    "Value" : "Valeur",
-    "Search for attributes…" : "Rechercher des attributs...",
-    "Type an attribute" : "Saisissez un attribut",
     "Toggle Series Panel" : "Interrupteur du panneau de la série",
     "Series" : "Série",
     "More" : "Plus",
@@ -54,9 +55,6 @@
     "Less" : "Moins",
     "Lossy: " : "Avec perte: ",
     "Lossless / Uncompressed" : "Sans perte / non compressé",
-    "WW/WC" : "WW/WC",
-    "DICOM Viewer" : "Visionneuse DICOM",
-    "Digital Imaging for Medicine" : "Imagerie numérique pour la médecine",
-    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "La visionneuse DICOM permet d'afficher et de manipuler les images au format DICOM avec une barre latérale simplifiée et une visionneuse\n\nVoir le [README](https://github.com/ayselafsar/dicomviewer) pour une liste complète des fonctionnalités et la feuille de route."
+    "WW/WC" : "WW/WC"
 },"pluralForm" :"nplurals=2; plural=(n > 1);"
 }

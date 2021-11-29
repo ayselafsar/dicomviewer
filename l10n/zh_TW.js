@@ -1,6 +1,13 @@
 OC.L10N.register(
     "dicomviewer",
     {
+    "DICOM Viewer" : "DICOM 檢視器",
+    "Digital Imaging for Medicine" : "醫學數位影像 ",
+    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "DICOM 檢視器使用簡化的側邊欄及檢視器來顯示和處理 DICOM 圖像。\n\n有關完整功能和未來路線圖的清單，請參見 [README]（https://github.com/ayselafsar/dicomviewer）。",
+    "DICOM Attributes" : "DICOM 屬性",
+    "Search for attributes…" : "搜尋屬性...",
+    "Attribute" : "屬性",
+    "Value" : "值",
     "Open with DICOM Viewer" : "用DICOM檢視器開啟",
     "Open All with DICOM Viewer" : "以 DICOM 檢視器開啟全部",
     "There is no available DICOM image to display" : "沒有DICOM影像可以顯示",
@@ -40,12 +47,6 @@ OC.L10N.register(
     "Image Preview" : "圖像預覽",
     "Close" : "關閉",
     "Download" : "下載",
-    "DICOM Attributes" : "DICOM 屬性",
-    "Parsing DICOM file…" : "分析 DICOM 檔案…",
-    "Attribute" : "屬性",
-    "Value" : "值",
-    "Search for attributes…" : "搜尋屬性...",
-    "Type an attribute" : "輸入屬性",
     "Toggle Series Panel" : "切換系列面板",
     "Series" : "系列",
     "More" : "更多",
@@ -56,9 +57,6 @@ OC.L10N.register(
     "Less" : "更少",
     "Lossy: " : "有損：",
     "Lossless / Uncompressed" : "無損/未壓縮",
-    "WW/WC" : "WW/WC",
-    "DICOM Viewer" : "DICOM 檢視器",
-    "Digital Imaging for Medicine" : "醫學數位影像 ",
-    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "DICOM 檢視器使用簡化的側邊欄及檢視器來顯示和處理 DICOM 圖像。\n\n有關完整功能和未來路線圖的清單，請參見 [README]（https://github.com/ayselafsar/dicomviewer）。"
+    "WW/WC" : "WW/WC"
 },
 "nplurals=1; plural=0;");

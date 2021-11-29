@@ -1,9 +1,9 @@
 { "translations": {
+    "Value" : "Valor",
     "Reset" : "Restablecer",
     "OK" : "OK",
     "Close" : "Cerrar",
     "Download" : "Descargar",
-    "Value" : "Valor",
     "More" : "Más",
     "Loading…" : "Cargando..."
 },"pluralForm" :"nplurals=2; plural=(n != 1);"

@@ -1,6 +1,13 @@
 OC.L10N.register(
     "dicomviewer",
     {
+    "DICOM Viewer" : "DICOM-Bildbetrachter",
+    "Digital Imaging for Medicine" : "Digitale Bildbearbeitung für die Medizin",
+    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "Der DICOM-Viewer erlaubt das Anzeigen und bearbeiten von DICOM-Bilddateien mit der Hilfe einer optimierten Seitenleiste und Bildbetrachter.\n\nSiehe [README](https://github.com/ayselafsar/dicomviewer) für eine Übersicht aller Features und der Entwicklungsplan.",
+    "DICOM Attributes" : "DICOM-Attribute",
+    "Search for attributes…" : "Suche nach Attributen …",
+    "Attribute" : "Attribut",
+    "Value" : "Wert",
     "Open with DICOM Viewer" : "Mit DICOM Viewer öffnen",
     "Open All with DICOM Viewer" : "Alle Dateien mit dem DICOM Viewer öffnen",
     "There is no available DICOM image to display" : "Es existiert keine DICOM-Bilddatei zum Anzeigen",
@@ -40,12 +47,6 @@ OC.L10N.register(
     "Image Preview" : "Bildvorschau",
     "Close" : "Schließen",
     "Download" : "Herunterladen",
-    "DICOM Attributes" : "DICOM-Attribute",
-    "Parsing DICOM file…" : "DICOM-Datei analysieren …",
-    "Attribute" : "Attribut",
-    "Value" : "Wert",
-    "Search for attributes…" : "Suche nach Attributen …",
-    "Type an attribute" : "Attribut eingeben",
     "Toggle Series Panel" : "Serienfenster einschalten",
     "Series" : "Serie",
     "More" : "Mehr",
@@ -56,9 +57,6 @@ OC.L10N.register(
     "Less" : "Weniger",
     "Lossy: " : "Verlustbehaftet",
     "Lossless / Uncompressed" : "Verlustfrei / Unkomprimiert",
-    "WW/WC" : "H/K",
-    "DICOM Viewer" : "DICOM-Bildbetrachter",
-    "Digital Imaging for Medicine" : "Digitale Bildbearbeitung für die Medizin",
-    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "Der DICOM-Viewer erlaubt das Anzeigen und bearbeiten von DICOM-Bilddateien mit der Hilfe einer optimierten Seitenleiste und Bildbetrachter.\n\nSiehe [README](https://github.com/ayselafsar/dicomviewer) für eine Übersicht aller Features und der Entwicklungsplan."
+    "WW/WC" : "H/K"
 },
 "nplurals=2; plural=(n != 1);");

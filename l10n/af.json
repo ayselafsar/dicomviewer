@@ -1,9 +1,9 @@
 { "translations": {
+    "Value" : "Waarde",
     "Reset" : "Herstel",
     "OK" : "Goed",
     "Close" : "Sluit",
     "Download" : "Laai af",
-    "Value" : "Waarde",
     "More" : "Meer",
     "Loading…" : "Laai…"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"

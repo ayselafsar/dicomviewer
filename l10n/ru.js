@@ -1,6 +1,13 @@
 OC.L10N.register(
     "dicomviewer",
     {
+    "DICOM Viewer" : "DICOM Viewer",
+    "Digital Imaging for Medicine" : "Просмотр медицинских изображений в формате DICOM",
+    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "Приложение DICOM Viewer позволяет просматривать и управлять изображениями в формате DICOM.\n\nВ файле [README](https://github.com/ayselafsar/dicomviewer) описаны все  возможности приложения и планы по его развитию.",
+    "DICOM Attributes" : "Атрибуты DICOM",
+    "Search for attributes…" : "Искать по атрибутам..",
+    "Attribute" : "Атрибут",
+    "Value" : "Значение",
     "Open with DICOM Viewer" : "Открыть с помощью DICOM Viewer",
     "Open All with DICOM Viewer" : "Открыть всё с помощью DICOM Viewer",
     "There is no available DICOM image to display" : "Нет доступного DICOM изображения для отображения",
@@ -40,12 +47,6 @@ OC.L10N.register(
     "Image Preview" : "Предпросмотр",
     "Close" : "Закрыть",
     "Download" : "Скачать",
-    "DICOM Attributes" : "Атрибуты DICOM",
-    "Parsing DICOM file…" : "Обработка файла DICOM…",
-    "Attribute" : "Атрибут",
-    "Value" : "Значение",
-    "Search for attributes…" : "Искать по атрибутам..",
-    "Type an attribute" : "Введите атрибут",
     "Toggle Series Panel" : "Скрыть или показать панель серии",
     "Series" : "Серии",
     "More" : "Больше",
@@ -56,9 +57,6 @@ OC.L10N.register(
     "Less" : "Меньше",
     "Lossy: " : "Сжатие:",
     "Lossless / Uncompressed" : "Без потерь / Без сжатия",
-    "WW/WC" : "WW/WC",
-    "DICOM Viewer" : "DICOM Viewer",
-    "Digital Imaging for Medicine" : "Просмотр медицинских изображений в формате DICOM",
-    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "Приложение DICOM Viewer позволяет просматривать и управлять изображениями в формате DICOM.\n\nВ файле [README](https://github.com/ayselafsar/dicomviewer) описаны все  возможности приложения и планы по его развитию."
+    "WW/WC" : "WW/WC"
 },
 "nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);");

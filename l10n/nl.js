@@ -1,6 +1,13 @@
 OC.L10N.register(
     "dicomviewer",
     {
+    "DICOM Viewer" : "DICOM-Viewer",
+    "Digital Imaging for Medicine" : "Digitale beeldbewerking voor geneeskunde",
+    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "Met de DICOM-Viewer kunnen DICOM-Bestanden met behulp van een geoptimeerde zijbalk en beeldweergave weergegeven en bewerkt worden.\n\nZie [README](https://github.com/ayselafsar/dicomviewer) voor een volledige feature-lijst en ontwikkelingsplan.",
+    "DICOM Attributes" : "DICOM-attributen",
+    "Search for attributes…" : "Zoek naar attributen...",
+    "Attribute" : "Attribuut",
+    "Value" : "Waarde",
     "Open with DICOM Viewer" : "Met DICOM-viewer openen",
     "Open All with DICOM Viewer" : "Alle bestanden met DICOM-viewer openen",
     "There is no available DICOM image to display" : "Er is geen DICOM-bestand beschikbaar om weer te geven",
@@ -40,12 +47,6 @@ OC.L10N.register(
     "Image Preview" : "Voorbeeld",
     "Close" : "Sluiten",
     "Download" : "Opslaan",
-    "DICOM Attributes" : "DICOM-attributen",
-    "Parsing DICOM file…" : "DICOM-Bestand analyseren...",
-    "Attribute" : "Attribuut",
-    "Value" : "Waarde",
-    "Search for attributes…" : "Zoek naar attributen...",
-    "Type an attribute" : "Geef een attribuut in",
     "Toggle Series Panel" : "Serievenster inschakelen",
     "Series" : "Series",
     "More" : "meer",
@@ -56,9 +57,6 @@ OC.L10N.register(
     "Less" : "minder",
     "Lossy: " : "Verliesend:",
     "Lossless / Uncompressed" : "Verliesloos / Ongecomprimeerd",
-    "WW/WC" : "H/K",
-    "DICOM Viewer" : "DICOM-Viewer",
-    "Digital Imaging for Medicine" : "Digitale beeldbewerking voor geneeskunde",
-    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "Met de DICOM-Viewer kunnen DICOM-Bestanden met behulp van een geoptimeerde zijbalk en beeldweergave weergegeven en bewerkt worden.\n\nZie [README](https://github.com/ayselafsar/dicomviewer) voor een volledige feature-lijst en ontwikkelingsplan."
+    "WW/WC" : "H/K"
 },
 "nplurals=2; plural=(n != 1);");

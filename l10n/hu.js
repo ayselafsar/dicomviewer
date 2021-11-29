@@ -1,6 +1,13 @@
 OC.L10N.register(
     "dicomviewer",
     {
+    "DICOM Viewer" : "DICOM-megjelenítő",
+    "Digital Imaging for Medicine" : "Gyógyászati digitális megjelenítő",
+    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "A DICOM-megjelenítő segítségével megjelenítheti és szerkesztheti a DICOM képeket egy egyszerű oldalsávval és megjelenítővel.\n\nNézze meg a [README fájlt] (https://github.com/ayselafsar/dicomviewer), ha kíváncsi az összes funkcióra és a fejlesztési ütemtervre.",
+    "DICOM Attributes" : "DICOM tulajdonságok",
+    "Search for attributes…" : "Tulajdonságok keresése…",
+    "Attribute" : "Tulajdonság",
+    "Value" : "Érték",
     "Open with DICOM Viewer" : "Megnyitás DICOM megjelenítővel",
     "Open All with DICOM Viewer" : "Minden megnyitása DICOM megjelenítővel",
     "There is no available DICOM image to display" : "Nincs megjeleníthető DICOM kép ",
@@ -40,12 +47,6 @@ OC.L10N.register(
     "Image Preview" : "Kép előnézete",
     "Close" : "Bezárás",
     "Download" : "Letöltés",
-    "DICOM Attributes" : "DICOM tulajdonságok",
-    "Parsing DICOM file…" : "DICOM-fájl feldolgozása…",
-    "Attribute" : "Tulajdonság",
-    "Value" : "Érték",
-    "Search for attributes…" : "Tulajdonságok keresése…",
-    "Type an attribute" : "Adjon meg egy tulajdonságot",
     "Toggle Series Panel" : "Sorozat panel be/ki",
     "Series" : "Sorozat",
     "More" : "Továbbiak",
@@ -56,9 +57,6 @@ OC.L10N.register(
     "Less" : "Kevesebb",
     "Lossy: " : "Veszteséges:",
     "Lossless / Uncompressed" : "Veszteségmentes / tömörítetlen",
-    "WW/WC" : "WW/WC",
-    "DICOM Viewer" : "DICOM-megjelenítő",
-    "Digital Imaging for Medicine" : "Gyógyászati digitális megjelenítő",
-    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "A DICOM-megjelenítő segítségével megjelenítheti és szerkesztheti a DICOM képeket egy egyszerű oldalsávval és megjelenítővel.\n\nNézze meg a [README fájlt] (https://github.com/ayselafsar/dicomviewer), ha kíváncsi az összes funkcióra és a fejlesztési ütemtervre."
+    "WW/WC" : "WW/WC"
 },
 "nplurals=2; plural=(n != 1);");

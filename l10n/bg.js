@@ -1,6 +1,13 @@
 OC.L10N.register(
     "dicomviewer",
     {
+    "DICOM Viewer" : "DICOM Viewer/библиотека с изображения/",
+    "Digital Imaging for Medicine" : "Цифрови изображения за медицина",
+    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "DICOM Viewer позволява да се показват и манипулират DICOM изображения с опростена странична лента и средство за преглед.\n\nВижте [README](https://github.com/ayselafsar/dicomviewer) за списък с пълни функции и бъдеща пътна карта. ",
+    "DICOM Attributes" : "DICOM Атрибути",
+    "Search for attributes…" : "Търсене на атрибути...",
+    "Attribute" : "Атрибут",
+    "Value" : "Стойност",
     "Open with DICOM Viewer" : "Отваряне с DICOM Viewer/инструмент за преглед/",
     "Open All with DICOM Viewer" : "Отваряне на всички с DICOM Viewer/инструмент за преглед/",
     "There is no available DICOM image to display" : "Няма налично DICOM изображение за показване",
@@ -40,12 +47,6 @@ OC.L10N.register(
     "Image Preview" : "Преглед на изображение",
     "Close" : "Затваряне",
     "Download" : "Свали",
-    "DICOM Attributes" : "DICOM Атрибути",
-    "Parsing DICOM file…" : "Анализиране на DICOM файл…",
-    "Attribute" : "Атрибут",
-    "Value" : "Стойност",
-    "Search for attributes…" : "Търсене на атрибути...",
-    "Type an attribute" : "Въвеждане на атрибут",
     "Toggle Series Panel" : "Превключване на Панела на сериите",
     "Series" : "Серии",
     "More" : "Още",
@@ -56,9 +57,6 @@ OC.L10N.register(
     "Less" : "По-малко",
     "Lossy: " : "Загуба: ",
     "Lossless / Uncompressed" : "Без загуби / Некомпресиран",
-    "WW/WC" : "WW/WC",
-    "DICOM Viewer" : "DICOM Viewer/библиотека с изображения/",
-    "Digital Imaging for Medicine" : "Цифрови изображения за медицина",
-    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "DICOM Viewer позволява да се показват и манипулират DICOM изображения с опростена странична лента и средство за преглед.\n\nВижте [README](https://github.com/ayselafsar/dicomviewer) за списък с пълни функции и бъдеща пътна карта. "
+    "WW/WC" : "WW/WC"
 },
 "nplurals=2; plural=(n != 1);");

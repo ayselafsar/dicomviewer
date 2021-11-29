@@ -1,4 +1,11 @@
 { "translations": {
+    "DICOM Viewer" : "DICOMビューワ",
+    "Digital Imaging for Medicine" : "医学用デジタルイメージング",
+    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "DICOMビューワは、DICOM画像を表示・操作することができ、効率的なサイドバーならびにビューワを備えています。\n\nすべての機能と今後のロードマップのリストは [README](https://github.com/ayselafsar/dicomviewer) を参照してください。",
+    "DICOM Attributes" : "DICOMの属性",
+    "Search for attributes…" : "属性を検索しています……",
+    "Attribute" : "属性",
+    "Value" : "値",
     "Open with DICOM Viewer" : "DICOMビューワで開く",
     "Open All with DICOM Viewer" : "DICOMビューワで全て開く",
     "There is no available DICOM image to display" : "表示するDICOM画像がありません",
@@ -38,12 +45,6 @@
     "Image Preview" : "イメージプレビュー",
     "Close" : "閉じる",
     "Download" : "ダウンロード",
-    "DICOM Attributes" : "DICOMの属性",
-    "Parsing DICOM file…" : "DICOMファイルを解析しています……",
-    "Attribute" : "属性",
-    "Value" : "値",
-    "Search for attributes…" : "属性を検索しています……",
-    "Type an attribute" : "属性を入力してください",
     "Toggle Series Panel" : "シリーズパネルを切り替える",
     "Series" : "シリーズ",
     "More" : "さらに表示",
@@ -54,9 +55,6 @@
     "Less" : "以下",
     "Lossy: " : "非可逆圧縮:",
     "Lossless / Uncompressed" : "ロスレス / 非圧縮",
-    "WW/WC" : "WW/WC",
-    "DICOM Viewer" : "DICOMビューワ",
-    "Digital Imaging for Medicine" : "医学用デジタルイメージング",
-    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "DICOMビューワは、DICOM画像を表示・操作することができ、効率的なサイドバーならびにビューワを備えています。\n\nすべての機能と今後のロードマップのリストは [README](https://github.com/ayselafsar/dicomviewer) を参照してください。"
+    "WW/WC" : "WW/WC"
 },"pluralForm" :"nplurals=1; plural=0;"
 }

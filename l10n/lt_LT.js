@@ -1,6 +1,8 @@
 OC.L10N.register(
     "dicomviewer",
     {
+    "DICOM Viewer" : "DICOM žiūryklė",
+    "Value" : "Reikšmė",
     "Open with DICOM Viewer" : "Atverti naudojant DICOM žiūryklę",
     "Open All with DICOM Viewer" : "Atverti visus naudojant DICOM žiūryklę",
     "Levels" : "Lygiai",
@@ -35,14 +37,12 @@ OC.L10N.register(
     "Image Preview" : "Paveikslo peržiūra",
     "Close" : "Užverti",
     "Download" : "Atsisiųsti",
-    "Value" : "Reikšmė",
     "More" : "Daugiau",
     "Close Viewer" : "Užverti žiūryklę",
     "Loading…" : "Įkeliama…",
     "Less" : "Mažiau",
     "Lossy: " : "Nuostolingasis: ",
     "Lossless / Uncompressed" : "Nenuostolingasis / Nesuglaudintas",
-    "WW/WC" : "LP/LC",
-    "DICOM Viewer" : "DICOM žiūryklė"
+    "WW/WC" : "LP/LC"
 },
 "nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);");

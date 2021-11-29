@@ -1,6 +1,13 @@
 OC.L10N.register(
     "dicomviewer",
     {
+    "DICOM Viewer" : "Visualizadore DICOM",
+    "Digital Imaging for Medicine" : "Imàgines digitales pro sa meighina",
+    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "Su Visualizadore DICOM permitit de mustrare e manogiare is imàgines DICOM cun una istanga laterate fine e unu visualizadore.\n\nCàstia [README](https://github.com/ayselafsar/dicomviewer) pro una lista cumpleta de is funtzionalidades e isvilupos de su benidore.",
+    "DICOM Attributes" : "Atributos DICOM",
+    "Search for attributes…" : "Chirca atributos...",
+    "Attribute" : "Atributu",
+    "Value" : "Balore",
     "Open with DICOM Viewer" : "Aberi cun visualizadore DICOM",
     "Open All with DICOM Viewer" : "Aberi totu cun visualizadore DICOM",
     "There is no available DICOM image to display" : "Peruna imàgine DICOM a disponimentu pro visualizare",
@@ -40,12 +47,6 @@ OC.L10N.register(
     "Image Preview" : "Anteprima de s'imàgine",
     "Close" : "Serra",
     "Download" : "Iscàrriga",
-    "DICOM Attributes" : "Atributos DICOM",
-    "Parsing DICOM file…" : "Anàlisi de is archìvios DICOM...",
-    "Attribute" : "Atributu",
-    "Value" : "Balore",
-    "Search for attributes…" : "Chirca atributos...",
-    "Type an attribute" : "Iscrie un'atributu",
     "Toggle Series Panel" : "Càmbia pannellu de sa sèrie",
     "Series" : "Sèries",
     "More" : "Àteru",
@@ -56,9 +57,6 @@ OC.L10N.register(
     "Less" : "De mancu",
     "Lossy: " : "Cun pèrdida:",
     "Lossless / Uncompressed" : "Chene pèrdida / sena cumpressione",
-    "WW/WC" : "WW/WC",
-    "DICOM Viewer" : "Visualizadore DICOM",
-    "Digital Imaging for Medicine" : "Imàgines digitales pro sa meighina",
-    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "Su Visualizadore DICOM permitit de mustrare e manogiare is imàgines DICOM cun una istanga laterate fine e unu visualizadore.\n\nCàstia [README](https://github.com/ayselafsar/dicomviewer) pro una lista cumpleta de is funtzionalidades e isvilupos de su benidore."
+    "WW/WC" : "WW/WC"
 },
 "nplurals=2; plural=(n != 1);");

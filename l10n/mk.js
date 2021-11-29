@@ -1,13 +1,13 @@
 OC.L10N.register(
     "dicomviewer",
     {
+    "Value" : "Вредност",
     "Length" : "Должина",
     "Clear" : "Исчисти",
     "Reset" : "Поништи",
     "OK" : "Добро",
     "Close" : "Затвори",
     "Download" : "Преземи",
-    "Value" : "Вредност",
     "More" : "Повеќе",
     "Loading…" : "Се вчитува…",
     "Less" : "Помалку"
