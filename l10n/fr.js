@@ -52,10 +52,10 @@ OC.L10N.register(
     "More" : "Plus",
     "Close Viewer" : "Fermer la visionneuse",
     "Loading…" : "Chargement…",
-    "Ser:" : "Ser:",
+    "Ser:" : "Ser :",
     "Img:" : "Img :",
     "Less" : "Moins",
-    "Lossy: " : "Avec perte: ",
+    "Lossy: " : "Avec perte :",
     "Lossless / Uncompressed" : "Sans perte / non compressé",
     "WW/WC" : "WW/WC"
 },
