@@ -16,7 +16,7 @@ OC.L10N.register(
     "Stack Scroll" : "Przewijanie stosu",
     "Levels" : "Poziomy",
     "Levels ROI" : "Poziom ROI",
-    "Zoom" : "Powiększenie",
+    "Zoom" : "Powiększ",
     "Pan" : "Przesuwaj",
     "Invert" : "Odwróć",
     "Flip H" : "Obróć horyzontalnie",
