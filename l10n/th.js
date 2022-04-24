@@ -1,6 +1,7 @@
 OC.L10N.register(
     "dicomviewer",
     {
+    "Clear" : "ล้าง",
     "Reset" : "ตั้งค่าใหม่",
     "OK" : "ตกลง",
     "Close" : "ปิด",

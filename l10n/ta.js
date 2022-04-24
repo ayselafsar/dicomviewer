@@ -1,6 +1,7 @@
 OC.L10N.register(
     "dicomviewer",
     {
+    "Value" : "Value",
     "OK" : "சரி ",
     "Close" : "மூடுக",
     "Download" : "பதிவிறக்குக",

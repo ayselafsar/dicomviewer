@@ -1,8 +1,10 @@
 { "translations": {
+    "Value" : "Verdi",
     "OK" : "OK",
     "Close" : "Lukk",
     "Download" : "Last ned",
     "More" : "Meir",
+    "Loading…" : "Laster...",
     "Less" : "Mindre"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

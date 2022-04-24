@@ -1,6 +1,9 @@
 OC.L10N.register(
     "dicomviewer",
     {
+    "Value" : "Valor",
+    "Length" : "Longor",
+    "Clear" : "Escafar",
     "Reset" : "Reïnicializar",
     "OK" : "D'acòrdi",
     "Close" : "Tampar",

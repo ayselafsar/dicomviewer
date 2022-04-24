@@ -1,6 +1,7 @@
 OC.L10N.register(
     "dicomviewer",
     {
+    "Clear" : "Bersihkan",
     "Reset" : "Setel ulang",
     "OK" : "OK",
     "Close" : "Tutup",

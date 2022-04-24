@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Value" : "ارزش",
     "Length" : "طول",
+    "Clear" : "پاک کردن",
     "Reset" : "ریست",
     "OK" : "تایید",
     "Close" : "بستن",

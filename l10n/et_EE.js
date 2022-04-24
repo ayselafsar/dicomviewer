@@ -1,6 +1,7 @@
 OC.L10N.register(
     "dicomviewer",
     {
+    "Clear" : "Tühjenda",
     "Reset" : "Lähtesta",
     "OK" : "OK",
     "Close" : "Sulge",

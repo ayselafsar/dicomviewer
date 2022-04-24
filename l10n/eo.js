@@ -1,6 +1,7 @@
 OC.L10N.register(
     "dicomviewer",
     {
+    "Clear" : "Viŝi",
     "Reset" : "Restarigi",
     "OK" : "Bone",
     "Close" : "Malfermi",

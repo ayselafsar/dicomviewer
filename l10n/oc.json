@@ -1,4 +1,7 @@
 { "translations": {
+    "Value" : "Valor",
+    "Length" : "Longor",
+    "Clear" : "Escafar",
     "Reset" : "Reïnicializar",
     "OK" : "D'acòrdi",
     "Close" : "Tampar",

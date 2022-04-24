@@ -2,6 +2,7 @@ OC.L10N.register(
     "dicomviewer",
     {
     "Value" : "القيمة",
+    "Clear" : "مسح ",
     "Reset" : "إعادة الضبط",
     "OK" : "موافق",
     "File Type" : "نوع الملف",
