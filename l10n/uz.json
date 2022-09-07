@@ -1,7 +1,7 @@
 { "translations": {
     "OK" : "OK",
-    "Close" : "yopish",
-    "Download" : "Yuklab oling",
-    "Loading…" : "Yuklanmoqda…"
+    "Close" : "Close",
+    "Download" : "Download",
+    "Loading…" : "Loading…"
 },"pluralForm" :"nplurals=1; plural=0;"
 }
