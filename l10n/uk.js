@@ -2,6 +2,7 @@ OC.L10N.register(
     "dicomviewer",
     {
     "Value" : "Значення",
+    "Zoom" : "Масштаб",
     "Clear" : "Очистити",
     "Reset" : "Скидання",
     "OK" : "OK",
