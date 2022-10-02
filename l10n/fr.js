@@ -9,6 +9,7 @@ OC.L10N.register(
     "Attribute" : "Attribut",
     "Value" : "Valeur",
     "No DICOM attribute found" : "Aucun attribut DICOM trouvé",
+    "Unable to load the DICOM attributes" : "Impossible de charger les attributs DICOM",
     "Open with DICOM Viewer" : "Ouvrir avec la visionneuse DICOM",
     "Open All with DICOM Viewer" : "Tout ouvrir avec la visionneuse DICOM",
     "There is no available DICOM image to display" : "Aucune image DICOM à afficher",
