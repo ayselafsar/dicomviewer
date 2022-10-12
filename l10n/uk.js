@@ -6,6 +6,7 @@ OC.L10N.register(
     "Clear" : "Очистити",
     "Reset" : "Скидання",
     "OK" : "OK",
+    "File Name" : "Ім'я файлу",
     "Close" : "Закрити",
     "Download" : "Завантажити",
     "More" : "Додатково",

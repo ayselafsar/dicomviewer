@@ -6,6 +6,7 @@ OC.L10N.register(
     "Clear" : "پاک کردن",
     "Reset" : "ریست",
     "OK" : "تایید",
+    "File Name" : "نام پرونده",
     "Close" : "بستن",
     "Download" : "دانلود",
     "More" : "بیش‌تر",
