@@ -2,6 +2,7 @@ OC.L10N.register(
     "dicomviewer",
     {
     "Value" : "Verdi",
+    "Length" : "Varighet",
     "Clear" : "Tøm",
     "Reset" : "Tilbakestill",
     "OK" : "OK",
