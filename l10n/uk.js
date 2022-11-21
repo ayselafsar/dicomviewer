@@ -8,7 +8,7 @@ OC.L10N.register(
     "OK" : "OK",
     "File Name" : "Ім'я файлу",
     "Close" : "Закрити",
-    "Download" : "Завантажити",
+    "Download" : "Звантажити",
     "More" : "Додатково",
     "Loading…" : "Завантаження…",
     "Less" : "Менше"
