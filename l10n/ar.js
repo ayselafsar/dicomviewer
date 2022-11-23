@@ -2,6 +2,7 @@ OC.L10N.register(
     "dicomviewer",
     {
     "Value" : "القيمة",
+    "Length" : "الطول",
     "Clear" : "مسح ",
     "Reset" : "إعادة الضبط",
     "OK" : "موافق",
