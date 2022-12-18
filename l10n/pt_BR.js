@@ -49,7 +49,7 @@ OC.L10N.register(
     "Image Preview" : "Pré-visualização da Imagem",
     "Close" : "Fechar",
     "Download" : "Baixar",
-    "Toggle Series Panel" : "Alternar Painel da Série",
+    "Toggle Series Panel" : "Alternar painel de séries",
     "Series" : "Séries",
     "More" : "Mais",
     "Close Viewer" : "Fechar Visualizador",
