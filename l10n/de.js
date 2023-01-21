@@ -53,7 +53,7 @@ OC.L10N.register(
     "Series" : "Serie",
     "More" : "mehr",
     "Close Viewer" : "Bildbetrachter schließen",
-    "Loading…" : "Lade…",
+    "Loading…" : "Lade …",
     "Ser:" : "Serie:",
     "Img:" : "Bild:",
     "DICOM" : "DICOM",
