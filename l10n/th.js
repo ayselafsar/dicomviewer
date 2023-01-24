@@ -2,7 +2,7 @@ OC.L10N.register(
     "dicomviewer",
     {
     "Clear" : "ล้าง",
-    "Reset" : "ตั้งค่าใหม่",
+    "Reset" : "รีเซ็ต",
     "OK" : "ตกลง",
     "Close" : "ปิด",
     "Download" : "ดาวน์โหลด",
