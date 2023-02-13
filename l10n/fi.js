@@ -7,6 +7,7 @@ OC.L10N.register(
     "Value" : "Arvo",
     "Open with DICOM Viewer" : "Avaa DICOM-katselimella",
     "Open All with DICOM Viewer" : "Avaa kaikki DICOM-katselimella",
+    "Zoom" : "Suurennus",
     "Length" : "Kesto",
     "Clear" : "Tyhjennä",
     "Reset" : "Nollaa",
