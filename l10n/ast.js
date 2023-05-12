@@ -1,11 +1,8 @@
 OC.L10N.register(
     "dicomviewer",
     {
-    "OK" : "Aceutar",
-    "Close" : "Zarrar",
-    "Download" : "Baxar",
+    "Value" : "Valor",
     "More" : "Más",
-    "Loading…" : "Cargando...",
-    "Less" : "Menos"
+    "Loading…" : "Cargando…"
 },
 "nplurals=2; plural=(n != 1);");
