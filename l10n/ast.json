@@ -1,5 +1,6 @@
 { "translations": {
     "Value" : "Valor",
+    "Download" : "Baxar",
     "More" : "Más",
     "Loading…" : "Cargando…"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
