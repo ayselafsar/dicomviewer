@@ -5,6 +5,7 @@ OC.L10N.register(
     "Zoom" : "Масштаб",
     "Clear" : "Очистити",
     "Reset" : "Скидання",
+    "Edit your annotation" : "Редагувати ваші примітки",
     "OK" : "OK",
     "File Name" : "Ім'я файлу",
     "Close" : "Закрити",
