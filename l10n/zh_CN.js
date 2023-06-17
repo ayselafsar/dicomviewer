@@ -53,7 +53,7 @@ OC.L10N.register(
     "Series" : "系列",
     "More" : "更多",
     "Close Viewer" : "关闭查看器",
-    "Loading…" : "正在加载…",
+    "Loading…" : "正在加载……",
     "Ser:" : "Ser:",
     "Img:" : "图片:",
     "DICOM" : "DICOM",
