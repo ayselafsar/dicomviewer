@@ -1,6 +1,7 @@
 OC.L10N.register(
     "dicomviewer",
     {
+    "Search for attributes…" : "Шукати за атрибутами...",
     "Value" : "Значення",
     "Zoom" : "Масштаб",
     "Clear" : "Очистити",
