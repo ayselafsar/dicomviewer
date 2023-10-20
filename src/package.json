@@ -1,6 +1,6 @@
 {
   "name": "dicomviewer",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "Place this app in **nextcloud/apps/**",
   "scripts": {
     "lint": "echo TODO",
