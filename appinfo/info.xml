@@ -22,7 +22,7 @@ See [README](https://github.com/ayselafsar/dicomviewer) for a list of full featu
     <screenshot small-thumbnail="https://raw.githubusercontent.com/ayselafsar/dicomviewer/master/screenshots/dump1-small.png">https://raw.githubusercontent.com/ayselafsar/dicomviewer/master/screenshots/dump1.png</screenshot>
     <screenshot small-thumbnail="https://raw.githubusercontent.com/ayselafsar/dicomviewer/master/screenshots/dump2-small.png">https://raw.githubusercontent.com/ayselafsar/dicomviewer/master/screenshots/dump2.png</screenshot>
     <dependencies>
-        <nextcloud min-version="19" max-version="25"/>
+        <nextcloud min-version="19" max-version="27"/>
     </dependencies>
     <repair-steps>
         <install>
