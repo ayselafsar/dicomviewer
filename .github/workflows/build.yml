@@ -20,7 +20,7 @@ jobs:
       matrix:
         php-versions: ['7.4']
         databases: ['oci']
-        server-versions: ['master']
+        server-versions: ['stable21']
 
     name: php${{ matrix.php-versions }}-${{ matrix.databases }}-${{ matrix.server-versions }}
 
@@ -31,6 +31,11 @@ jobs:
           - "1521:1521"
 
     steps:
+      - name: Use Node 12
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
       - name: Checkout server
         uses: actions/checkout@v2
         with:
