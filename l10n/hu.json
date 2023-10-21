@@ -57,7 +57,6 @@
     "DICOM" : "DICOM",
     "Less" : "Kevesebb",
     "Lossy: " : "Veszteséges:",
-    "Lossless / Uncompressed" : "Veszteségmentes / tömörítetlen",
     "WW/WC" : "WW/WC"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

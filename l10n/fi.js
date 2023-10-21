@@ -23,7 +23,6 @@ OC.L10N.register(
     "More" : "Lisää",
     "Close Viewer" : "Sulje katselin",
     "Loading…" : "Ladataan…",
-    "Less" : "Vähemmän",
-    "Lossless / Uncompressed" : "Häviötön/pakkaamaton"
+    "Less" : "Vähemmän"
 },
 "nplurals=2; plural=(n != 1);");

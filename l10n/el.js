@@ -56,7 +56,6 @@ OC.L10N.register(
     "Img:" : "Εικ:",
     "Less" : "Λιγότερα",
     "Lossy: " : "Έλλειψη:",
-    "Lossless / Uncompressed" : "Χωρίς Έλλειψη / Ασυμπίεστος",
     "WW/WC" : "WW/WC"
 },
 "nplurals=2; plural=(n != 1);");

@@ -56,7 +56,6 @@ OC.L10N.register(
     "Img:" : "Mynd:",
     "Less" : "Minna",
     "Lossy: " : "Með gagnatapi: ",
-    "Lossless / Uncompressed" : "Taplaust / Óþjappað",
     "WW/WC" : "Breidd/Miðja"
 },
 "nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);");

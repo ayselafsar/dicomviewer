@@ -59,7 +59,6 @@ OC.L10N.register(
     "DICOM" : "DICOM",
     "Less" : "Menej",
     "Lossy: " : "Stratové:",
-    "Lossless / Uncompressed" : "Bezstratové / nekomprimované",
     "WW/WC" : "Výška a stred okna"
 },
 "nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);");

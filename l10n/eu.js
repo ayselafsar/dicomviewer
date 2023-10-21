@@ -59,7 +59,6 @@ OC.L10N.register(
     "DICOM" : "DICOM",
     "Less" : "Gutxiago",
     "Lossy: " : "Galerarekin:",
-    "Lossless / Uncompressed" : "Galera gabe / Komprimatu gabe",
     "WW/WC" : "WW/WC"
 },
 "nplurals=2; plural=(n != 1);");

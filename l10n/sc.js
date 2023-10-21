@@ -56,7 +56,6 @@ OC.L10N.register(
     "Img:" : "Img:",
     "Less" : "De mancu",
     "Lossy: " : "Cun pèrdida:",
-    "Lossless / Uncompressed" : "Chene pèrdida / sena cumpressione",
     "WW/WC" : "WW/WC"
 },
 "nplurals=2; plural=(n != 1);");

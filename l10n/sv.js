@@ -56,7 +56,6 @@ OC.L10N.register(
     "Img:" : "Bild:",
     "Less" : "Mindre",
     "Lossy: " : "inexakt komprimering",
-    "Lossless / Uncompressed" : "Förlustfri / Okomprimerad",
     "WW/WC" : "WW/WC"
 },
 "nplurals=2; plural=(n != 1);");

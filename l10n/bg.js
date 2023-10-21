@@ -59,7 +59,6 @@ OC.L10N.register(
     "DICOM" : "DICOM",
     "Less" : "По-малко",
     "Lossy: " : "Загуба: ",
-    "Lossless / Uncompressed" : "Без загуби / Некомпресиран",
     "WW/WC" : "WW/WC"
 },
 "nplurals=2; plural=(n != 1);");
