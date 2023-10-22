@@ -6,6 +6,8 @@
     "Search for attributes…" : "Sök efter attribut...",
     "Attribute" : "Attribut",
     "Value" : "Värde",
+    "No DICOM attribute found" : "Inget DICOM-attribut hittades",
+    "Unable to load the DICOM attributes" : "Det gick inte att ladda DICOM-attributen",
     "Open with DICOM Viewer" : "Öppna med DICOM-visare",
     "Open All with DICOM Viewer" : "Öppna alla med DICOM-visare",
     "There is no available DICOM image to display" : "Det finns ingen tillgänglig DICOM-bild att visa",
@@ -52,8 +54,10 @@
     "Loading…" : "Läser in...",
     "Ser:" : "Ser:",
     "Img:" : "Bild:",
+    "DICOM" : "DICOM",
     "Less" : "Mindre",
     "Lossy: " : "inexakt komprimering",
+    "Lossless/Uncompressed" : "Förlustfri/Okomprimerad",
     "WW/WC" : "WW/WC"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

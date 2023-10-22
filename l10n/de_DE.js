@@ -59,6 +59,7 @@ OC.L10N.register(
     "DICOM" : "DICOM",
     "Less" : "Weniger",
     "Lossy: " : "Verlustbehaftet",
+    "Lossless/Uncompressed" : "Verlustfrei/Unkomprimiert",
     "WW/WC" : "H/K"
 },
 "nplurals=2; plural=(n != 1);");
