@@ -57,6 +57,7 @@
     "DICOM" : "DICOM",
     "Less" : "Less",
     "Lossy: " : "Lossy: ",
+    "Lossless/Uncompressed" : "Lossless/Uncompressed",
     "WW/WC" : "WW/WC"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

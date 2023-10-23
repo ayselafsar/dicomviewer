@@ -3,7 +3,7 @@ OC.L10N.register(
     {
     "DICOM Viewer" : "DICOM 檢視器",
     "Digital Imaging for Medicine" : "醫學數位影像 ",
-    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "DICOM 檢視器使用簡化的側邊欄及檢視器來顯示和處理 DICOM 圖像。\n\n有關完整功能和未來路線圖的清單，請參見 [README]（https://github.com/ayselafsar/dicomviewer）。",
+    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "DICOM 檢視器使用簡化的側邊欄及檢視器來顯示與處理 DICOM 影像。\n\n關於完整功能與未來路線圖的清單，請參見 [README](https://github.com/ayselafsar/dicomviewer)。",
     "DICOM Attributes" : "DICOM 屬性",
     "Search for attributes…" : "搜尋屬性...",
     "Attribute" : "屬性",
@@ -59,6 +59,7 @@ OC.L10N.register(
     "DICOM" : "DICOM",
     "Less" : "更少",
     "Lossy: " : "有損：",
+    "Lossless/Uncompressed" : "無損/未壓縮",
     "WW/WC" : "WW/WC"
 },
 "nplurals=1; plural=0;");
