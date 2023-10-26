@@ -59,6 +59,7 @@ OC.L10N.register(
     "DICOM" : "DICOM",
     "Less" : "Daha az",
     "Lossy: " : "Kayıplı:",
+    "Lossless/Uncompressed" : "Kayıpsız/sıkıştırılmamış",
     "WW/WC" : "WW/WC"
 },
 "nplurals=2; plural=(n > 1);");
