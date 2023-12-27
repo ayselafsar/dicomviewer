@@ -57,6 +57,7 @@
     "DICOM" : "DICOM",
     "Less" : "Menys",
     "Lossy: " : "Pèrdues: ",
+    "Lossless/Uncompressed" : "Sense pèrdua/sense compressió",
     "WW/WC" : "WW/WC"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
