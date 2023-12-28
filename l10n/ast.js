@@ -2,6 +2,7 @@ OC.L10N.register(
     "dicomviewer",
     {
     "Value" : "Valor",
+    "Reset" : "Reafitar",
     "Download" : "Baxar",
     "More" : "Más",
     "Loading…" : "Cargando…"
