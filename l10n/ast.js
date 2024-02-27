@@ -4,6 +4,7 @@ OC.L10N.register(
     "Value" : "Valor",
     "Reset" : "Reafitar",
     "OK" : "Normal",
+    "Close" : "Zarrar",
     "Download" : "Baxar",
     "More" : "Más",
     "Loading…" : "Cargando…"
