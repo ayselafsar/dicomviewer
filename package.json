@@ -1,0 +1,50 @@
+{
+  "name": "dicomviewer",
+  "version": "2.0.0",
+  "description": "Place this app in **nextcloud/apps/**",
+  "scripts": {
+    "prebuild": "rm -rf js && npm run build:viewer",
+    "build:viewer": "cd acanio-viewer && yarn install && yarn build:nextcloud",
+    "build": "webpack --node-env production --progress",
+    "dev": "webpack --node-env development --progress",
+    "watch": "webpack --node-env development --progress --watch",
+    "lint": "eslint --ext .js,.vue src",
+    "lint:fix": "eslint --ext .js,.vue src --fix",
+    "stylelint": "stylelint src css",
+    "stylelint:fix": "stylelint src css --fix"
+  },
+  "author": "Aysel Afsar",
+  "license": "AGPL-3.0-only",
+  "dependencies": {
+    "@nextcloud/auth": "^2.2.1",
+    "@nextcloud/axios": "^2.4.0",
+    "@nextcloud/dialogs": "^5.0.3",
+    "@nextcloud/logger": "^2.7.0",
+    "@nextcloud/router": "^2.2.0",
+    "cornerstone-core": "^2.2.8",
+    "cornerstone-math": "^0.1.7",
+    "cornerstone-tools": "^2.4.0",
+    "cornerstone-wado-image-loader": "^2.2.3",
+    "dicom-parser": "^1.8.3",
+    "hammerjs": "^2.0.8",
+    "underscore": "^1.13.1"
+  },
+  "browserslist": [
+    "extends @nextcloud/browserslist-config"
+  ],
+  "engines": {
+    "node": "^16.0.0",
+    "npm": "^7.0.0 || ^8.0.0"
+  },
+  "devDependencies": {
+    "@nextcloud/babel-config": "^1.0.0",
+    "@nextcloud/browserslist-config": "^3.0.0",
+    "@nextcloud/eslint-config": "^8.3.0",
+    "@nextcloud/stylelint-config": "^2.3.1",
+    "@nextcloud/webpack-vue-config": "^6.0.0",
+    "adm-zip": "^0.5.10",
+    "axios": "^1.6.2",
+    "cli-progress": "^3.12.0",
+    "copy-webpack-plugin": "^11.0.0"
+  }
+}

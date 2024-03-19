@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] - 2024-03-18
+
+### Added
+- Support for Nextcloud 28
+- Integrate Acan.io, 1.0.0-beta.0, which is a zero-footprint medical image viewer, built on top of OHIF Viewer v3 provided by the Open Health Imaging Foundation (OHIF). It is capable of loading DICOM images directly from Nextcloud, requiring no additional installation. It facilitates rendering sets in 2D, 3D, and reconstructed representations. It also enables the manipulation, annotation, and serialization of observations for medical images, and supports internationalization, hotkeys, and numerous other features.
+
 ## [1.2.5] - 2023-10-19
 
 ### Added

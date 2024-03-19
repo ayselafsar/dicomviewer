@@ -1,34 +1,15 @@
 # Makefile for building the project
 
 app_name=dicomviewer
-project_dir=$(CURDIR)
-src_js_dir=$(CURDIR)/src
-build_dir=$(project_dir)/build
 appstore_build_dir=/tmp/build
 appstore_sign_dir=/tmp/sign
 cert_dir=$(HOME)/.nextcloud/certificates
-webpack=node_modules/.bin/webpack
 
-jssources=$(wildcard js/*) $(wildcard js/*/*) $(wildcard css/*/*) $(wildcard css/*)
-othersources=$(wildcard appinfo/*) $(wildcard css/*/*) $(wildcard controller/*/*) $(wildcard templates/*/*) $(wildcard log/*/*)
+build:
+	npm install
+	npm run build
 
-all: build
-
-clean:
-	rm -rf $(build_dir)
-	rm -rf vendor
-	rm -rf node_modules
-	rm -rf js/vendor
-	rm -rf js/node_modules
-
-build: $(jssources)
-	cd $(src_js_dir) && yarn install
-	cd $(src_js_dir) && yarn lint
-	cd $(src_js_dir) && yarn build
-
-appstore: clean build package
-
-package: build $(othersources)
+appstore: build
 	rm -rf $(appstore_build_dir)
 	mkdir -p $(appstore_build_dir)
 	rm -rf $(appstore_sign_dir)
@@ -38,14 +19,24 @@ package: build $(othersources)
 	--exclude=.idea \
 	--exclude=.github \
 	--exclude=.tx \
+	--exclude=acanio-viewer \
+	--exclude=node_modules \
 	--exclude=src \
 	--exclude=screenshots \
 	--exclude=tests \
+	--exclude=.eslintignore \
+	--exclude=.eslintrc.js \
 	--exclude=.gitignore \
+	--exclude=.gitmodules \
 	--exclude=.l10nignore \
+	--exclude=.php-cs-fixer.dist.php \
+	--exclude=.scrutinizer.yml \
 	--exclude=.travis.yml \
-	--exclude=Makefile \
+	--exclude=babel.config.js \
 	--exclude=composer.* \
+	--exclude=Makefile \
+	--exclude=stylelint.config.js \
+	--exclude=webpack.config.js \
 	../$(app_name) $(appstore_sign_dir)
 	@if [ -f $(cert_dir)/$(app_name).key ]; then \
 		sudo chown $(webserveruser) $(appstore_sign_dir)/$(app_name)/appinfo ;\
