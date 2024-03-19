@@ -1,4 +1,4 @@
-[![Build Status](https://github.com/ayselafsar/dicomviewer/workflows/Build/badge.svg)](https://github.com/ayselafsar/dicomviewer/actions?workflow=Build)
+[![Build Status](https://github.com/ayselafsar/dicomviewer/actions/workflows/build.yml/badge.svg)](https://github.com/ayselafsar/dicomviewer/actions?workflow=Build)
 [![Downloads](https://img.shields.io/github/downloads/ayselafsar/dicomviewer/total.svg)](https://github.com/ayselafsar/dicomviewer/releases)
 
 # DICOM Viewer
