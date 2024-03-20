@@ -1,12 +1,4 @@
 { "translations": {
-    "Value" : "Valor",
-    "Length" : "Longor",
-    "Clear" : "Escafar",
-    "Reset" : "Reïnicializar",
-    "OK" : "D'acòrdi",
-    "Close" : "Tampar",
-    "Download" : "Telecargar",
-    "More" : "Mai",
-    "Loading…" : "Cargament…"
+    "Value" : "Valor"
 },"pluralForm" :"nplurals=2; plural=(n > 1);"
 }

@@ -1,12 +1,4 @@
 { "translations": {
-    "Value" : "Giá trị",
-    "Clear" : "Xóa",
-    "Reset" : "Đặt lại",
-    "OK" : "OK",
-    "Close" : "Đóng",
-    "Download" : "Tải về",
-    "More" : "hơn",
-    "Loading…" : "Đang tải…",
-    "Less" : "ít"
+    "Value" : "Giá trị"
 },"pluralForm" :"nplurals=1; plural=0;"
 }

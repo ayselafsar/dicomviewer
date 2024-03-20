@@ -1,12 +1,4 @@
 { "translations": {
-    "Value" : "Vlerë",
-    "Clear" : "Pastro",
-    "Reset" : "Rivendos",
-    "OK" : "OK",
-    "Close" : "Mbylleni",
-    "Download" : "Shkarko",
-    "More" : "More",
-    "Loading…" : "Duke u ngarkuar…",
-    "Less" : "Më pak"
+    "Value" : "Vlerë"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

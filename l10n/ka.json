@@ -1,12 +1,4 @@
 { "translations": {
-    "Value" : "Value",
-    "Zoom" : "Zoom",
-    "Clear" : "Clear",
-    "Reset" : "Reset",
-    "OK" : "OK",
-    "Close" : "Close",
-    "Download" : "Download",
-    "More" : "More",
-    "Loading…" : "Loading…"
+    "Value" : "Value"
 },"pluralForm" :"nplurals=2; plural=(n!=1);"
 }
