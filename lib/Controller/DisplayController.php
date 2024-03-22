@@ -7,6 +7,7 @@ namespace OCA\DICOMViewer\Controller;
 include_once realpath(dirname(__FILE__)).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'Nanodicom'.DIRECTORY_SEPARATOR.'nanodicom.php';
 
 use Nanodicom;
+use OC\Files\Filesystem;
 use OCA\DICOMViewer\AppInfo\Application;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\EmptyContentSecurityPolicy;
@@ -19,6 +20,7 @@ use OCP\IConfig;
 use OCP\ILogger;
 use OCP\IRequest;
 use OCP\IURLGenerator;
+use OCP\IUserSession;
 use OCP\Share\IManager;
 
 class DisplayController extends Controller {
@@ -36,7 +38,8 @@ class DisplayController extends Controller {
 		ILogger $logger,
 		IMimeTypeDetector $mimeTypeDetector,
 		IRootFolder $rootFolder,
-		IManager $shareManager) {
+		IManager $shareManager,
+		IUserSession $userSession) {
 		parent::__construct(Application::APP_ID, $request);
 		$this->config = $config;
 		$this->urlGenerator = $urlGenerator;
@@ -44,6 +47,7 @@ class DisplayController extends Controller {
 		$this->mimeTypeDetector = $mimeTypeDetector;
 		$this->rootFolder = $rootFolder;
 		$this->shareManager = $shareManager;
+		$this->userSession = $userSession;
 
         $this->publicViewerFolderPath = null;
         $this->publicViewerAssetsFolderPath = null;
@@ -139,7 +143,7 @@ class DisplayController extends Controller {
         return $policy;
     }
 
-    private function generateDICOMJson($dicomFilePaths, $selectedFileFullPath, $parentFullPath, $downloadUrlPrefix, $isPublic, $singlePublicFileDownload) {
+    private function generateDICOMJson($dicomFilePaths, $selectedFileFullPath, $parentFullPath, $currentUserPathToFile, $downloadUrlPrefix, $isPublic, $singlePublicFileDownload) {
         $dicomJson = array('studies' => array());
 
         foreach($dicomFilePaths as $dicomFilePath) {
@@ -153,6 +157,8 @@ class DisplayController extends Controller {
                     $urlParamFiles = substr($dicomFilePath, strrpos($dicomFilePath, '/') + 1);
                     $fileUrlPath = $downloadUrlPrefix.'?path='.$urlParamPath.'&files='.$urlParamFiles;
                 }
+            } else if ($currentUserPathToFile != null) {
+                $fileUrlPath = $downloadUrlPrefix.strstr($dicomFilePath, $currentUserPathToFile);
             } else {
                 $fileUrlPath = $downloadUrlPrefix.$dicomFilePath;
             }
@@ -425,23 +431,27 @@ class DisplayController extends Controller {
 	public function getDICOMJson(): JSONResponse {
 	    $fileQueryParams = explode('|', $this->getQueryParam('file'));
 	    $userId = $fileQueryParams[0];
-	    $filepath = ltrim($fileQueryParams[1], '/');
+	    $fileid = $fileQueryParams[1];
 
+        // Find the file path located in the filesystem
 	    $userFolder = $this->rootFolder->getUserFolder($userId);
-	    $selectedFileFullPath = $this->dataFolder.$userFolder->get($filepath)->getPath();
-	    $dicomFolder = $userFolder->get($filepath)->getParent();
+        $file = $userFolder->getById((int)$fileid)[0];
+	    $selectedFileFullPath = $this->dataFolder.$file->getPath();
 
-	    $parentPathToRemove = $dicomFolder->getParent()->getPath();
-        if ($userFolder->getPath() == $dicomFolder->getPath()) {
-            $parentPathToRemove = '/'.$userId.'/files';
-        }
+	    // Find the file path by current user (e.g. file path in the shared folder)
+        $currentUser = $this->userSession->getUser();
+        $currentUserId = $currentUser->getUID();
+        $currentUserFolder = $this->rootFolder->getUserFolder($currentUserId);
+        $currentUserPathToFile = implode('', explode($currentUserFolder->getPath(), $currentUserFolder->getById((int)$fileid)[0]->getParent()->getPath(), 2));
 
 	    // Get all DICOM files in the folder and sub folders
+	    $parentPathToRemove = '/'.$userId.'/files';
+	    $dicomFolder = $file->getParent();
 	    $dicomFilePaths = $this->getAllDICOMFilesInFolder($parentPathToRemove, $dicomFolder);
 
         $dicomParentFullPath = $this->dataFolder.'/'.$userId.'/files';
-        $downloadUrlPrefix = 'remote.php/dav/files/'.$userId;
-	    $dicomJson = $this->generateDICOMJson($dicomFilePaths, $selectedFileFullPath, $dicomParentFullPath, $downloadUrlPrefix, false, false);
+        $downloadUrlPrefix = 'remote.php/dav/files/'.$currentUserId;
+	    $dicomJson = $this->generateDICOMJson($dicomFilePaths, $selectedFileFullPath, $dicomParentFullPath, $currentUserPathToFile, $downloadUrlPrefix, false, false);
         $response = new JSONResponse($dicomJson);
 		return $response;
 	}
@@ -487,7 +497,7 @@ class DisplayController extends Controller {
             }
 
             $downloadUrlPrefix = $this->getNextcloudBasePath().'/s/'.$shareToken.'/download';
-            $dicomJson = $this->generateDICOMJson($dicomFilePaths, $selectedFileFullPath, $dicomParentFullPath, $downloadUrlPrefix, true, $singlePublicFileDownload);
+            $dicomJson = $this->generateDICOMJson($dicomFilePaths, $selectedFileFullPath, $dicomParentFullPath, null, $downloadUrlPrefix, true, $singlePublicFileDownload);
 
             $response = new JSONResponse($dicomJson);
             return $response;

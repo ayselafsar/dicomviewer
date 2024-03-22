@@ -20,7 +20,7 @@ export default {
       const shareToken = getPublicShareToken();
       dicomUrl = shareToken && window.location.protocol + '//' + window.location.host + generateUrl(`/apps/dicomviewer/publicdicomjson?file=${shareToken}|${file.filename}`);
     } else {
-      dicomUrl = window.location.protocol + '//' + window.location.host + generateUrl(`/apps/dicomviewer/dicomjson?file=${file.ownerId}|${file.filename}`);
+      dicomUrl = window.location.protocol + '//' + window.location.host + generateUrl(`/apps/dicomviewer/dicomjson?file=${file.ownerId}|${file.fileid}`);
     }
 
     if (dicomUrl) {
