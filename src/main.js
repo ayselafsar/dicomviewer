@@ -1,5 +1,6 @@
 import DICOMView from './views/DICOMView.vue';
 import generateFullUrl from './utils/generateFullUrl';
+import registerFileActions from './utils/registerFileActions';
 import './sidebar';
 
 // Add MimeType Icon
@@ -17,3 +18,5 @@ OCA.Viewer.registerHandler({
 
     canCompare: true,
 });
+
+registerFileActions();
