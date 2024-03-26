@@ -46,7 +46,7 @@ You can build the source code with the following steps:
 
 2. Change into the directory you have cloned this repository
 
-3. Run `npm run install` command to build source code
+3. Run `npm run build` command to build source code
 
 4. Enable the DICOM Viewer app in Nextcloud
 

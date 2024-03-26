@@ -20,14 +20,13 @@ export default {
       const shareToken = getPublicShareToken();
       dicomUrl = shareToken && window.location.protocol + '//' + window.location.host + generateUrl(`/apps/dicomviewer/publicdicomjson?file=${shareToken}|${file.filename}`);
     } else {
-      dicomUrl = window.location.protocol + '//' + window.location.host + generateUrl(`/apps/dicomviewer/dicomjson?file=${file.ownerId}|${file.filename}`);
+      dicomUrl = window.location.protocol + '//' + window.location.host + generateUrl(`/apps/dicomviewer/dicomjson?file=${file.ownerId}|${file.fileid}`);
     }
 
-    if (dicomUrl) {
-      const tab = window.open('about:blank');
-      tab.location = generateUrl(`/apps/dicomviewer/ncviewer/viewer/dicomjson?url=${dicomUrl}`);
-      tab.focus();
-    }
+    // Open viewer in a new tab
+    const tab = window.open('about:blank');
+    tab.location = generateUrl(`/apps/dicomviewer/ncviewer/viewer/dicomjson?url=${dicomUrl}`);
+    tab.focus();
 
     // Close the loading modal
     this.$parent.close();
