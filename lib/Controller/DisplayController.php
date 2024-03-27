@@ -54,8 +54,8 @@ class DisplayController extends Controller {
         $this->publicViewerFolderPath = null;
         $this->publicViewerAssetsFolderPath = null;
 
-		$app_path = $this->getAppManager()->getAppPath('dicomviewer');
-		$viewerFolder = $app_path . '/js/public/viewer';
+		$this->appPath = $this->getAppManager()->getAppPath('dicomviewer');
+		$viewerFolder = $this->appPath . '/js/public/viewer';
         if (file_exists($viewerFolder)) {
             $this->publicViewerFolderPath = $viewerFolder;
             $this->publicViewerAssetsFolderPath = $viewerFolder . '/assets';
@@ -312,7 +312,8 @@ class DisplayController extends Controller {
 	public function showDICOMViewer(): TemplateResponse {
 		$params = [
 			'urlGenerator' => $this->urlGenerator,
-			'ignoreFrontController' => $this->config->getSystemValueBool('htaccess.IgnoreFrontController', false) || getenv('front_controller_active') === 'true'
+			'ignoreFrontController' => $this->config->getSystemValueBool('htaccess.IgnoreFrontController', false) || getenv('front_controller_active') === 'true',
+			'dicomViewerAppPath' => $this->appPath
 		];
 
 		$response = new TemplateResponse(Application::APP_ID, 'viewer', $params, 'blank');
@@ -332,7 +333,8 @@ class DisplayController extends Controller {
 	public function showDICOMViewerModeViewer(): TemplateResponse {
 		$params = [
 			'urlGenerator' => $this->urlGenerator,
-			'ignoreFrontController' => $this->config->getSystemValueBool('htaccess.IgnoreFrontController', false) || getenv('front_controller_active') === 'true'
+			'ignoreFrontController' => $this->config->getSystemValueBool('htaccess.IgnoreFrontController', false) || getenv('front_controller_active') === 'true',
+			'dicomViewerAppPath' => $this->appPath
 		];
 
 		$response = new TemplateResponse(Application::APP_ID, 'viewer', $params, 'blank');
@@ -352,7 +354,8 @@ class DisplayController extends Controller {
 	public function showDICOMViewerModeJson(): TemplateResponse {
 		$params = [
 			'urlGenerator' => $this->urlGenerator,
-			'ignoreFrontController' => $this->config->getSystemValueBool('htaccess.IgnoreFrontController', false) || getenv('front_controller_active') === 'true'
+			'ignoreFrontController' => $this->config->getSystemValueBool('htaccess.IgnoreFrontController', false) || getenv('front_controller_active') === 'true',
+			'dicomViewerAppPath' => $this->appPath
 		];
 
 		$response = new TemplateResponse(Application::APP_ID, 'viewer', $params, 'blank');
