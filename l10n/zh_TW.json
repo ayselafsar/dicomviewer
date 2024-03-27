@@ -8,6 +8,7 @@
     "Value" : "值",
     "No DICOM attribute found" : "找不到 DICOM 屬性",
     "Unable to load the DICOM attributes" : "無法載入 DICOM 屬性",
-    "DICOM" : "DICOM"
+    "DICOM" : "DICOM",
+    "Open with DICOM Viewer" : "用DICOM檢視器開啟"
 },"pluralForm" :"nplurals=1; plural=0;"
 }

@@ -10,6 +10,7 @@ OC.L10N.register(
     "Value" : "Değer",
     "No DICOM attribute found" : "Herhangi bir DICOM özniteliği bulunamadı",
     "Unable to load the DICOM attributes" : "DICOM öznitelikleri yüklenemedi",
-    "DICOM" : "DICOM"
+    "DICOM" : "DICOM",
+    "Open with DICOM Viewer" : "DICOM görüntüleyici ile aç"
 },
 "nplurals=2; plural=(n > 1);");

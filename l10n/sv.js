@@ -10,6 +10,7 @@ OC.L10N.register(
     "Value" : "Värde",
     "No DICOM attribute found" : "Inget DICOM-attribut hittades",
     "Unable to load the DICOM attributes" : "Det gick inte att ladda DICOM-attributen",
-    "DICOM" : "DICOM"
+    "DICOM" : "DICOM",
+    "Open with DICOM Viewer" : "Öppna med DICOM-visare"
 },
 "nplurals=2; plural=(n != 1);");

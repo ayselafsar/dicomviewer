@@ -4,6 +4,7 @@ OC.L10N.register(
     "DICOM Viewer" : "DICOM-katselin",
     "DICOM Attributes" : "DICOM-attribuutit",
     "Attribute" : "Attribuutti",
-    "Value" : "Arvo"
+    "Value" : "Arvo",
+    "Open with DICOM Viewer" : "Avaa DICOM-katselimella"
 },
 "nplurals=2; plural=(n != 1);");

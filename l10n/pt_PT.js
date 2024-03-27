@@ -10,6 +10,7 @@ OC.L10N.register(
     "Value" : "Valor",
     "No DICOM attribute found" : "Nenhum atributo DICOM encontrado",
     "Unable to load the DICOM attributes" : "Não foi possível carregar os atributos DICOM",
-    "DICOM" : "DICOM"
+    "DICOM" : "DICOM",
+    "Open with DICOM Viewer" : "Abrir com DICOM Viewer"
 },
 "nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

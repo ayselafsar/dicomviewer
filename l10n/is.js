@@ -7,6 +7,7 @@ OC.L10N.register(
     "DICOM Attributes" : "DICOM eigindi",
     "Search for attributes…" : "Leita að eigindum…",
     "Attribute" : "Eigindi",
-    "Value" : "Gildi"
+    "Value" : "Gildi",
+    "Open with DICOM Viewer" : "Opna með DICOM-myndaskoðara"
 },
 "nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);");

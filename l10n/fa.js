@@ -10,6 +10,7 @@ OC.L10N.register(
     "Value" : "ارزش",
     "No DICOM attribute found" : "No DICOM attribute found",
     "Unable to load the DICOM attributes" : "Unable to load the DICOM attributes",
-    "DICOM" : "DICOM"
+    "DICOM" : "DICOM",
+    "Open with DICOM Viewer" : "Open with DICOM Viewer"
 },
 "nplurals=2; plural=(n > 1);");

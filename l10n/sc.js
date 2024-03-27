@@ -7,6 +7,7 @@ OC.L10N.register(
     "DICOM Attributes" : "Atributos DICOM",
     "Search for attributes…" : "Chirca atributos...",
     "Attribute" : "Atributu",
-    "Value" : "Balore"
+    "Value" : "Balore",
+    "Open with DICOM Viewer" : "Aberi cun visualizadore DICOM"
 },
 "nplurals=2; plural=(n != 1);");

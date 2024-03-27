@@ -10,6 +10,7 @@ OC.L10N.register(
     "Value" : "値",
     "No DICOM attribute found" : "DICOM属性が見つかりません",
     "Unable to load the DICOM attributes" : "DICOM属性を読み込めません",
-    "DICOM" : "DICOM"
+    "DICOM" : "DICOM",
+    "Open with DICOM Viewer" : "DICOMビューワで開く"
 },
 "nplurals=1; plural=0;");

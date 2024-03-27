@@ -7,6 +7,7 @@ OC.L10N.register(
     "DICOM Attributes" : "Χαρακτηριστικά DICOM",
     "Search for attributes…" : "Αναζήτηση για χαρακτηριστικά…",
     "Attribute" : "Γνώρισμα",
-    "Value" : "Τιμή"
+    "Value" : "Τιμή",
+    "Open with DICOM Viewer" : "Άνοιγμα με το πρόγραμμα προβολής αρχείων DICOM"
 },
 "nplurals=2; plural=(n != 1);");

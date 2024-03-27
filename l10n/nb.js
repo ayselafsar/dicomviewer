@@ -10,6 +10,7 @@ OC.L10N.register(
     "Value" : "Verdi",
     "No DICOM attribute found" : "Ingen DICOM-attributt funnet",
     "Unable to load the DICOM attributes" : "Ikke i stand til å laste DICOM-attributtene",
-    "DICOM" : "DICOM"
+    "DICOM" : "DICOM",
+    "Open with DICOM Viewer" : "Åpne med DICOM Viewer"
 },
 "nplurals=2; plural=(n != 1);");

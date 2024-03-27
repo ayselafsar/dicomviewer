@@ -1,5 +1,6 @@
 { "translations": {
     "DICOM Viewer" : "DICOM fremviser",
-    "Value" : "Værdi"
+    "Value" : "Værdi",
+    "Open with DICOM Viewer" : "Åbn med DICOM Fremviser"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
