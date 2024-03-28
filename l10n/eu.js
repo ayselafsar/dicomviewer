@@ -3,7 +3,6 @@ OC.L10N.register(
     {
     "DICOM Viewer" : "DICOM Viewer",
     "Digital Imaging for Medicine" : "Medikuntzarako irudi digitalak",
-    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "DICOM Viewer erabiliz DICOM irudiak bistaratu eta manipulatu daitezke erraz, alboko barra eta ikustailearekin.\n\nBegiratu [README](https://github.com/ayselafsar/dicomviewer) osatuta dauden eginbideen zerrenda eta etorkizuneko proiektuak ikusteko.",
     "DICOM Attributes" : "DICOM atributuak",
     "Search for attributes…" : "Bilatu atributuak...",
     "Attribute" : "Atributua",

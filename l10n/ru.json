@@ -1,7 +1,6 @@
 { "translations": {
     "DICOM Viewer" : "DICOM Viewer",
     "Digital Imaging for Medicine" : "Просмотр медицинских изображений в формате DICOM",
-    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "Приложение DICOM Viewer позволяет просматривать и управлять изображениями в формате DICOM.\n\nВ файле [README](https://github.com/ayselafsar/dicomviewer) описаны все  возможности приложения и планы по его развитию.",
     "DICOM Attributes" : "Атрибуты DICOM",
     "Search for attributes…" : "Искать по атрибутам..",
     "Attribute" : "Атрибут",

@@ -3,7 +3,6 @@ OC.L10N.register(
     {
     "DICOM Viewer" : "Visor DICOM",
     "Digital Imaging for Medicine" : "Imágenes Digitales para Medicina",
-    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "El Visor DICOM permite mostrar y manipular imágenes DICOM con una barra lateral y visor optimizados.\n         \n      Consulta el [README](https://github.com/ayselafsar/dicomviewer) para ver la lista completa de funciones y el plan de desarrollo futuro.",
     "DICOM Attributes" : "Atributos DICOM",
     "Search for attributes…" : "Buscar atributos...",
     "Attribute" : "Atributo",

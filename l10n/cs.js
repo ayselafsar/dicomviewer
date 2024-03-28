@@ -3,7 +3,6 @@ OC.L10N.register(
     {
     "DICOM Viewer" : "Prohlížeč DICOM dat",
     "Digital Imaging for Medicine" : "Digitální zobrazování pro medicínu",
-    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "Prohlížeč DICOM dat umožňuje zobrazit a manipulovat s DICOM obrázky pomocí efektivní postranní lišty a prohlížeče.\n\nÚplný seznam funkcí a plán vývoje je k dispozici v [README](https://github.com/ayselafsar/dicomviewer).",
     "DICOM Attributes" : "DICOM atributy",
     "Search for attributes…" : "Hledat atributy…",
     "Attribute" : "Atribut",

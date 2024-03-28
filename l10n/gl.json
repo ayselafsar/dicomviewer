@@ -1,7 +1,6 @@
 { "translations": {
     "DICOM Viewer" : "Visor DICOM",
     "Digital Imaging for Medicine" : "Imaxes dixitais para a medicina",
-    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "O visor DICOM permite amosar e manipular imaxes DICOM cunha barra lateral e un visor optimizados.\n\nVexa o ficheiro [LÉEME](https://github.com/ayselafsar/dicomviewer) para obter unha lista das características completas e do mapa de desenvolvemento futuro.",
     "DICOM Attributes" : "Atributos DICOM",
     "Search for attributes…" : "Buscar por atributos…",
     "Attribute" : "Atributo",

@@ -1,7 +1,6 @@
 { "translations": {
     "DICOM Viewer" : "DICOM прегледач",
     "Digital Imaging for Medicine" : "Медицинске дигиталне слике",
-    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "DICOM прегледач вам омогућава да приказујете и манипулишете DICOM сликама једноставним бочним панелом и прегледачем.\n\nПогледајте [README](https://github.com/ayselafsar/dicomviewer) за листу свих могућности и планова за будућност.",
     "DICOM Attributes" : "DICOM атрибути",
     "Search for attributes…" : "Тражи атрибуте…",
     "Attribute" : "Атрибут",
