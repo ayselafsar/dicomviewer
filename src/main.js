@@ -1,7 +1,7 @@
 import DICOMView from './views/DICOMView.vue';
-import generateFullUrl from './utils/generateFullUrl';
-import registerFileActions from './utils/registerFileActions';
-import './sidebar';
+import generateFullUrl from './utils/generateFullUrl.js';
+import registerFileActions from './utils/registerFileActions.js';
+import './sidebar.js';
 
 // Add MimeType Icon
 OC.MimeType._mimeTypeIcons['application/dicom'] = `${generateFullUrl(OC.filePath('dicomviewer', 'img', 'app.svg'))}`;

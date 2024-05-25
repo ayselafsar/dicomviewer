@@ -1,10 +1,10 @@
-import { cornerstone, cornerstoneWADOImageLoader } from './cornerstonejs';
-import generateFullUrl from './generateFullUrl';
+import { cornerstone, cornerstoneWADOImageLoader } from './cornerstonejs.js';
+import generateFullUrl from './generateFullUrl.js';
 
 /**
  * Configure cornerstone codecs and web workers
  */
-export default function () {
+export default function() {
     const maxWebWorkers = Math.max(navigator.hardwareConcurrency - 1, 1);
     const config = {
         maxWebWorkers,
