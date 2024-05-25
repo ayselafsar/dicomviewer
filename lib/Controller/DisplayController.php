@@ -121,6 +121,17 @@ class DisplayController extends Controller {
         return $value;
     }
 
+    private function convertToUTF8($d) {
+        if (is_array($d)) {
+            foreach ($d as $k => $v) {
+                $d[$k] = $this->convertToUTF8($v);
+            }
+        } else if (is_string($d)) {
+            return utf8_encode($d);
+        }
+        return $d;
+    }
+
     private function getAllDICOMFilesInFolder($parentPathToRemove, $folderNode, $isOpenNoExtension) {
         $filepaths = array();
         $nodes = $folderNode->getDirectoryListing();
@@ -472,6 +483,7 @@ class DisplayController extends Controller {
         $dicomParentFullPath = $this->dataFolder.'/'.$userId.'/files';
         $downloadUrlPrefix = 'remote.php/dav/files/'.$currentUserId;
 	    $dicomJson = $this->generateDICOMJson($dicomFilePaths, $selectedFileFullPath, $dicomParentFullPath, $currentUserPathToFile, $downloadUrlPrefix, false, false);
+        $dicomJson = $this->convertToUTF8($dicomJson);
         $response = new JSONResponse($dicomJson);
 		return $response;
 	}
@@ -519,6 +531,7 @@ class DisplayController extends Controller {
             $downloadUrlPrefix = $this->getNextcloudBasePath().'/s/'.$shareToken.'/download';
             $dicomJson = $this->generateDICOMJson($dicomFilePaths, $selectedFileFullPath, $dicomParentFullPath, null, $downloadUrlPrefix, true, $singlePublicFileDownload);
 
+            $dicomJson = $this->convertToUTF8($dicomJson);
             $response = new JSONResponse($dicomJson);
             return $response;
         } catch (Exception $exception) {
