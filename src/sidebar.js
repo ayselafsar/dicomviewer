@@ -1,6 +1,6 @@
 import Vue from 'vue';
-import SidebarPreview from './views/SidebarPreview';
-import configureCodecs from './utils/configureCodecs';
+import SidebarPreview from './views/SidebarPreview.vue';
+import configureCodecs from './utils/configureCodecs.js';
 
 Vue.prototype.t = t;
 Vue.prototype.n = n;

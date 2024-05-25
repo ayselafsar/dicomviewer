@@ -1,3 +1,6 @@
 js/*
 acanio-viewer/*
 node_modules/*
+public/*
+src/node_modules/*
+src/public/*

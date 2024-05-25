@@ -1,6 +1,6 @@
-import { dicomParser } from '../cornerstonejs';
-import { dataDictionary } from './dataDictionary';
-import { sopClassUids } from './sopClassUids';
+import { dicomParser } from '../cornerstonejs.js';
+import { dataDictionary } from './dataDictionary.js';
+import { sopClassUids } from './sopClassUids.js';
 
 const maxLength = 128;
 const showPrivateElements = false;
@@ -45,12 +45,7 @@ function getTag(tag) {
     return dataDictionary[tagIndex];
 }
 
-/**
- *
- * @param dataSet
- * @return {Array}
- */
-export default function (dataSet) {
+export default function(dataSet) {
     const attributes = [];
     const properties = [];
 
