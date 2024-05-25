@@ -1,4 +1,4 @@
-const BASE_URL = `${OC.getProtocol()}://${OC.getHost()}`;
+const BASE_URL = `${window.location.protocol}//${window.location.host}`;
 
 export default function(url) {
     return `${BASE_URL}${url}`;
