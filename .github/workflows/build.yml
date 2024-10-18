@@ -20,15 +20,30 @@ jobs:
       matrix:
         php-versions: ['8.2']
         databases: ['oci']
-        server-versions: ['stable28']
+        server-versions: ['stable29']
 
     name: php${{ matrix.php-versions }}-${{ matrix.databases }}-${{ matrix.server-versions }}
 
     services:
       oracle:
-        image: deepdiver/docker-oracle-xe-11g # "wnameless/oracle-xe-11g-r2"
+        image: ghcr.io/gvenzl/oracle-xe:11
+
+        # Provide passwords and other environment variables to container
+        env:
+          ORACLE_RANDOM_PASSWORD: true
+          APP_USER: autotest
+          APP_USER_PASSWORD: owncloud
+
+        # Forward Oracle port
         ports:
-          - "1521:1521"
+          - 1521:1521/tcp
+
+        # Provide healthcheck script options for startup
+        options: >-
+          --health-cmd healthcheck.sh
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 10
 
     steps:
       - name: Use Node 20
