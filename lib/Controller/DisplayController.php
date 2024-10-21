@@ -570,6 +570,9 @@ class DisplayController extends Controller {
             $downloadUrlPrefix = $this->getNextcloudBasePath().'/s/'.$shareToken.'/download';
             $dicomJson = $this->generateDICOMJson($dicomFilePaths, $dicomFileNodes, $selectedFileFullPath, $dicomParentFullPath, null, $downloadUrlPrefix, true, $singlePublicFileDownload);
 
+            // Hide capture tool in viewer when download is hidden in public share link
+            $dicomJson['hideCapture'] = $share->getHideDownload();
+
             $dicomJson = $this->convertToUTF8($dicomJson);
             $response = new JSONResponse($dicomJson);
             return $response;
