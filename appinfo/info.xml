@@ -10,7 +10,7 @@ It renders DICOM data sets in 2D, 3D, and reconstructed representations; allows 
 and serialization of observations; supports internationalization, hotkeys, and many more features.
 
 See [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap.]]></description>
-    <version>2.2.0</version>
+    <version>2.2.1</version>
     <licence>agpl</licence>
     <author mail="aysel.afsar@gmail.com">Aysel Afsar</author>
     <namespace>DICOMViewer</namespace>
