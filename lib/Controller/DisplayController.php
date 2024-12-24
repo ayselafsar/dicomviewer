@@ -507,6 +507,48 @@ class DisplayController extends Controller {
     }
 
 	/**
+	 * @PublicPage
+	 * @NoCSRFRequired
+	 *
+	 * @param string $assetpath
+	 * @return StreamResponse
+	 */
+	public function getDICOMViewerAssetImages(string $assetpath): StreamResponse {
+        $filename = str_replace('viewer/', '', $assetpath);
+	    $fullFilePath = $this->publicViewerAssetsFolderPath . '/images/' . $filename;
+
+        $response = new StreamResponse(fopen($fullFilePath, 'rb'));
+        $response->addHeader('Content-Disposition', 'attachment; filename="' . rawurldecode($filename) . '"');
+        $response->addHeader('Content-Type', $this->mimeTypeDetector->detectPath($fullFilePath));
+		$response->setContentSecurityPolicy($this->getContentSecurityPolicy());
+		$response->addHeader('Cross-Origin-Opener-Policy', 'same-origin');
+		$response->addHeader('Cross-Origin-Embedder-Policy', 'require-corp');
+
+		return $response;
+	}
+
+	/**
+	 * @PublicPage
+	 * @NoCSRFRequired
+	 *
+	 * @param string $assetpath
+	 * @return StreamResponse
+	 */
+	public function getDICOMViewerAssetSubImages(string $assetpath): StreamResponse {
+        $filename = str_replace('viewer/', '', $assetpath);
+        $fullFilePath = $this->publicViewerAssetsFolderPath . '/images/' . $filename;
+
+        $response = new StreamResponse(fopen($fullFilePath, 'rb'));
+        $response->addHeader('Content-Disposition', 'attachment; filename="' . rawurldecode($filename) . '"');
+        $response->addHeader('Content-Type', $this->mimeTypeDetector->detectPath($fullFilePath));
+        $response->setContentSecurityPolicy($this->getContentSecurityPolicy());
+        $response->addHeader('Cross-Origin-Opener-Policy', 'same-origin');
+        $response->addHeader('Cross-Origin-Embedder-Policy', 'require-corp');
+
+        return $response;
+    }
+
+	/**
 	 * @NoAdminRequired
 	 * @NoCSRFRequired
 	 *
