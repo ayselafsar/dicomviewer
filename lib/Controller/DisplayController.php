@@ -66,6 +66,18 @@ class DisplayController extends Controller {
         $this->dataFolder = $this->config->getSystemValue('datadirectory');
 	}
 
+    private function detectMimeType($path) {
+        $mimeType = $this->mimeTypeDetector->detectPath($path);
+        if ($mimeType === 'application/octet-stream') {
+            if (pathinfo($path, PATHINFO_EXTENSION) === 'wasm') {
+                $mimeType = 'application/wasm';
+            } else {
+                $mimeType = mime_content_type($path);
+            }
+        }
+        return $mimeType;
+    }
+
     private function getAppManager(): IAppManager {
         if ($this->appManager !== null) {
             return $this->appManager;
@@ -282,6 +294,7 @@ class DisplayController extends Controller {
             $WindowCenter = $this->cleanDICOMTagValue($dicom->value(0x0028, 0x1050));
             $WindowWidth = $this->cleanDICOMTagValue($dicom->value(0x0028, 0x1051));
             $SeriesDate = $this->cleanDICOMTagValue($dicom->value(0x0008, 0x0021));
+            $NumberOfFrames = $this->cleanDICOMTagValue($dicom->value(0x0028, 0x0008));
 
             if (!$StudyInstanceUID || !$SeriesInstanceUID || !$SOPInstanceUID) {
                 // Skip if any of the required tags are missing
@@ -351,10 +364,20 @@ class DisplayController extends Controller {
                     'WindowCenter' => $WindowCenter ? explode('\\', $WindowCenter)[0] : $WindowCenter,
                     'WindowWidth' => $WindowWidth ? explode('\\', $WindowWidth)[0] : $WindowWidth,
                     'SeriesDate' => $SeriesDate,
+                    'NumberOfFrames' => $NumberOfFrames,
                 ),
                 'url' => 'dicomweb:'.$fileUrl,
             );
-            array_push($dicomJson['studies'][$studyIndex]['series'][$seriesIndex]['instances'], $instance);
+
+            if ($NumberOfFrames > 1) {
+                for ($i = 1; $i <= $NumberOfFrames; $i++) {
+                    $instance['url'] = 'dicomweb:'.$fileUrl.'?frame='.$i;
+                    array_push($dicomJson['studies'][$studyIndex]['series'][$seriesIndex]['instances'], $instance);
+                }
+            } else {
+                array_push($dicomJson['studies'][$studyIndex]['series'][$seriesIndex]['instances'], $instance);
+            }
+
             $dicomJson['studies'][$studyIndex]['NumInstances']++;
             if ($dicomJson['studies'][$studyIndex]['Modalities'] == '' || !in_array($Modality, explode(',', $dicomJson['studies'][$studyIndex]['Modalities']))) {
                 if ($dicomJson['studies'][$studyIndex]['Modalities'] == '') {
@@ -456,7 +479,7 @@ class DisplayController extends Controller {
         $response = new StreamResponse($fpHandle);
 	    $fileMimeType = mime_content_type($fullFilePath);
         $response->addHeader('Content-Disposition', 'attachment; filename="' . rawurldecode($filename) . '"');
-        $response->addHeader('Content-Type', $this->mimeTypeDetector->detectPath($fullFilePath));
+        $response->addHeader('Content-Type', $this->detectMimeType($fullFilePath));
 		$response->setContentSecurityPolicy($this->getContentSecurityPolicy());
 		$response->addHeader('Cross-Origin-Opener-Policy', 'same-origin');
 		$response->addHeader('Cross-Origin-Embedder-Policy', 'require-corp');
@@ -477,7 +500,7 @@ class DisplayController extends Controller {
 
         $response = new StreamResponse(fopen($fullFilePath, 'rb'));
         $response->addHeader('Content-Disposition', 'attachment; filename="' . rawurldecode($filename) . '"');
-        $response->addHeader('Content-Type', $this->mimeTypeDetector->detectPath($fullFilePath));
+        $response->addHeader('Content-Type', $this->detectMimeType($fullFilePath));
 		$response->setContentSecurityPolicy($this->getContentSecurityPolicy());
 		$response->addHeader('Cross-Origin-Opener-Policy', 'same-origin');
 		$response->addHeader('Cross-Origin-Embedder-Policy', 'require-corp');
@@ -498,7 +521,7 @@ class DisplayController extends Controller {
 
         $response = new StreamResponse(fopen($fullFilePath, 'rb'));
         $response->addHeader('Content-Disposition', 'attachment; filename="' . rawurldecode($filename) . '"');
-        $response->addHeader('Content-Type', $this->mimeTypeDetector->detectPath($fullFilePath));
+        $response->addHeader('Content-Type', $this->detectMimeType($fullFilePath));
         $response->setContentSecurityPolicy($this->getContentSecurityPolicy());
         $response->addHeader('Cross-Origin-Opener-Policy', 'same-origin');
         $response->addHeader('Cross-Origin-Embedder-Policy', 'require-corp');
@@ -519,7 +542,7 @@ class DisplayController extends Controller {
 
         $response = new StreamResponse(fopen($fullFilePath, 'rb'));
         $response->addHeader('Content-Disposition', 'attachment; filename="' . rawurldecode($filename) . '"');
-        $response->addHeader('Content-Type', $this->mimeTypeDetector->detectPath($fullFilePath));
+        $response->addHeader('Content-Type', $this->detectMimeType($fullFilePath));
 		$response->setContentSecurityPolicy($this->getContentSecurityPolicy());
 		$response->addHeader('Cross-Origin-Opener-Policy', 'same-origin');
 		$response->addHeader('Cross-Origin-Embedder-Policy', 'require-corp');
@@ -540,7 +563,7 @@ class DisplayController extends Controller {
 
         $response = new StreamResponse(fopen($fullFilePath, 'rb'));
         $response->addHeader('Content-Disposition', 'attachment; filename="' . rawurldecode($filename) . '"');
-        $response->addHeader('Content-Type', $this->mimeTypeDetector->detectPath($fullFilePath));
+        $response->addHeader('Content-Type', $this->detectMimeType($fullFilePath));
         $response->setContentSecurityPolicy($this->getContentSecurityPolicy());
         $response->addHeader('Cross-Origin-Opener-Policy', 'same-origin');
         $response->addHeader('Cross-Origin-Embedder-Policy', 'require-corp');
