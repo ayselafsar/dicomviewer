@@ -42,11 +42,25 @@ On your Nextcloud, simply navigate to Apps > Multimedia > DICOM Viewer, and enab
 
 You can build the source code with the following steps:
 
-1. Clone this repository on `path-to-nextcloud/apps`
+1. Clone this project on `path-to-nextcloud/apps`
 
-2. Change into the directory you have cloned this repository
+```
+git clone https://github.com/ayselafsar/dicomviewer.git
+```
 
-3. Run `npm run build` command to build source code
+2. Navigate to the cloned project's directory
+
+3. Update the submodule for viewer
+
+```
+git submodule update --init --recursive
+```
+
+3. Build the project
+
+```
+npm run build
+```
 
 4. Enable the DICOM Viewer app in Nextcloud
 
