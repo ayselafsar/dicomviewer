@@ -174,6 +174,18 @@ class DisplayController extends Controller {
         return $encryptionEnabled === 'yes';
     }
 
+    private function encodeUrlPathSegments($url) {
+        $segments = explode('/', $url);
+
+        foreach ($segments as $index => $segment) {
+            if ($index > 2 && $segment !== '') {
+                $segments[$index] = rawurlencode($segment);
+            }
+        }
+
+        return implode('/', $segments);
+    }
+
     private function generateDICOMJson($dicomFilePaths, $dicomFileNodes, $selectedFileFullPath, $parentFullPath, $currentUserPathToFile, $downloadUrlPrefix, $isPublic, $singlePublicFileDownload) {
         $dicomJson = array('studies' => array());
 
@@ -271,6 +283,11 @@ class DisplayController extends Controller {
             $WindowWidth = $this->cleanDICOMTagValue($dicom->value(0x0028, 0x1051));
             $SeriesDate = $this->cleanDICOMTagValue($dicom->value(0x0008, 0x0021));
 
+            if (!$StudyInstanceUID || !$SeriesInstanceUID || !$SOPInstanceUID) {
+                // Skip if any of the required tags are missing
+                continue;
+            }
+
             // STUDY
             $studyIndex = $this->arrayFindIndex($dicomJson['studies'], 'StudyInstanceUID', $StudyInstanceUID);
             if ($studyIndex < 0) {
@@ -335,7 +352,7 @@ class DisplayController extends Controller {
                     'WindowWidth' => $WindowWidth ? explode('\\', $WindowWidth)[0] : $WindowWidth,
                     'SeriesDate' => $SeriesDate,
                 ),
-                'url' => 'dicomweb:'.$fileUrl,
+                'url' => 'dicomweb:'.$this->encodeUrlPathSegments($fileUrl),
             );
             array_push($dicomJson['studies'][$studyIndex]['series'][$seriesIndex]['instances'], $instance);
             $dicomJson['studies'][$studyIndex]['NumInstances']++;
