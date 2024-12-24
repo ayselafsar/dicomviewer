@@ -178,7 +178,7 @@ class DisplayController extends Controller {
         $segments = explode('/', $url);
 
         foreach ($segments as $index => $segment) {
-            if ($index > 2 && $segment !== '') {
+            if ($segment !== '') {
                 $segments[$index] = rawurlencode($segment);
             }
         }
@@ -193,17 +193,17 @@ class DisplayController extends Controller {
             $fileUrlPath = '';
             if ($isPublic) {
                 if ($singlePublicFileDownload) {
-                    $urlParamFiles = substr($dicomFilePath, strrpos($dicomFilePath, '/') + 1);
-                    $fileUrlPath = $downloadUrlPrefix.'/'.$urlParamFiles;
+                    $urlParamFiles = $this->encodeUrlPathSegments(substr($dicomFilePath, strrpos($dicomFilePath, '/') + 1));
+                    $fileUrlPath = $this->encodeUrlPathSegments($downloadUrlPrefix.'/'.$urlParamFiles);
                 } else {
-                    $urlParamPath = substr($dicomFilePath, 0, strrpos($dicomFilePath, '/'));
-                    $urlParamFiles = substr($dicomFilePath, strrpos($dicomFilePath, '/') + 1);
+                    $urlParamPath = $this->encodeUrlPathSegments(substr($dicomFilePath, 0, strrpos($dicomFilePath, '/')));
+                    $urlParamFiles = $this->encodeUrlPathSegments(substr($dicomFilePath, strrpos($dicomFilePath, '/') + 1));
                     $fileUrlPath = $downloadUrlPrefix.'?path='.$urlParamPath.'&files='.$urlParamFiles;
                 }
             } else if ($currentUserPathToFile != null) {
-                $fileUrlPath = $downloadUrlPrefix.strstr($dicomFilePath, $currentUserPathToFile);
+                $fileUrlPath = $this->encodeUrlPathSegments($downloadUrlPrefix.strstr($dicomFilePath, $currentUserPathToFile));
             } else {
-                $fileUrlPath = $downloadUrlPrefix.$dicomFilePath;
+                $fileUrlPath = $this->encodeUrlPathSegments($downloadUrlPrefix.$dicomFilePath);
             }
 
             $fileUrl = $this->urlGenerator->getAbsoluteURL($fileUrlPath);
@@ -352,7 +352,7 @@ class DisplayController extends Controller {
                     'WindowWidth' => $WindowWidth ? explode('\\', $WindowWidth)[0] : $WindowWidth,
                     'SeriesDate' => $SeriesDate,
                 ),
-                'url' => 'dicomweb:'.$this->encodeUrlPathSegments($fileUrl),
+                'url' => 'dicomweb:'.$fileUrl,
             );
             array_push($dicomJson['studies'][$studyIndex]['series'][$seriesIndex]['instances'], $instance);
             $dicomJson['studies'][$studyIndex]['NumInstances']++;
