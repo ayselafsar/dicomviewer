@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.3.0] - 2024-12-29
+
+### Added
+- Upgrade Acan.io to 1.1.1 with new features and improvements
+- Add metadata for multi-frame images (#135)
+
+### Fixed
+- Show investigational use dialog once 90 days (Acan.io)
+- Fix mimetype for wasm files (#135)
+- Encode url path segments (#136)
+- Skip DICOM files without required uids (#136)
+- Fix benchmarks public path in viewer (#137)
+
 ## [2.2.1] - 2024-10-21
 
 ### Added

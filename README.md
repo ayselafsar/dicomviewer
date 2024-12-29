@@ -34,6 +34,7 @@ On your Nextcloud, simply navigate to Apps > Multimedia > DICOM Viewer, and enab
 #### Pre-requisites
 
 - [NodeJS 20+](https://nodejs.org)
+- [Yarn](https://yarnpkg.com/lang/en/docs/install/)
 - [Nextcloud Server 28+](https://nextcloud.com/install/#instructions-server)
   * Docker options including docker-compose is [here](https://github.com/nextcloud/docker) and Docker images are [here](https://hub.docker.com/_/nextcloud/)
   * You can easily find VM and other options [here](https://nextcloud.com)
@@ -50,19 +51,25 @@ git clone https://github.com/ayselafsar/dicomviewer.git
 
 2. Navigate to the cloned project's directory
 
-3. Update the submodule for viewer
+3. Update the submodules for viewer
 
 ```
 git submodule update --init --recursive
 ```
 
-3. Build the project
+4. Enable yarn workspaces
+
+```
+yarn config set workspaces-experimental true
+```
+
+5. Build the project
 
 ```
 npm run build
 ```
 
-4. Enable the DICOM Viewer app in Nextcloud
+6. Enable the DICOM Viewer app in Nextcloud
 
 ### Sponsors
 
