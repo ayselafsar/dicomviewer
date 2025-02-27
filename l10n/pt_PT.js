@@ -3,12 +3,12 @@ OC.L10N.register(
     {
     "DICOM Viewer" : "DICOM Viewer",
     "Digital Imaging for Medicine" : "Imagiologia digital para medicina",
+    "Unable to load the DICOM attributes" : "Não foi possível carregar os atributos DICOM",
     "DICOM Attributes" : "Atributos DICOM",
     "Search for attributes…" : "A procurar atributos...",
     "Attribute" : "Atributo",
     "Value" : "Valor",
     "No DICOM attribute found" : "Nenhum atributo DICOM encontrado",
-    "Unable to load the DICOM attributes" : "Não foi possível carregar os atributos DICOM",
     "DICOM" : "DICOM",
     "Open with DICOM Viewer" : "Abrir com DICOM Viewer"
 },

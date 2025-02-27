@@ -3,12 +3,12 @@ OC.L10N.register(
     {
     "DICOM Viewer" : "Prohlížeč DICOM dat",
     "Digital Imaging for Medicine" : "Digitální zobrazování pro medicínu",
+    "Unable to load the DICOM attributes" : "Nedaří se načíst DICOM atributy",
     "DICOM Attributes" : "DICOM atributy",
     "Search for attributes…" : "Hledat atributy…",
     "Attribute" : "Atribut",
     "Value" : "Hodnota",
     "No DICOM attribute found" : "Nenalezen žádný DICOM atribut",
-    "Unable to load the DICOM attributes" : "Nedaří se načíst DICOM atributy",
     "DICOM" : "DICOM",
     "Open with DICOM Viewer" : "Otevřít v prohlížeči DICOM souborů"
 },

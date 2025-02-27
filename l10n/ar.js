@@ -4,12 +4,12 @@ OC.L10N.register(
     "DICOM Viewer" : "عارض صور الأشعة و الصور الطبية DICOM Viewer",
     "Digital Imaging for Medicine" : "التصوير الرقمي الطبي ",
     "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nIt renders DICOM data sets in 2D, 3D, and reconstructed representations; allows for the manipulation, annotation,\nand serialization of observations; supports internationalization, hotkeys, and many more features.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "يسمح عارض صور الأشعة DICOM Viewer بعرض صور الأشعة DICOM ومعالجتها باستخدام شريط جانبي وعارض مبسط. \n\nو هو يقوم بعرض مجموعات بيانات DICOM في تمثيلات ثنائية 2D وثلاثية الأبعاد 3D معاد بناؤها؛ يسمح بتناولها والتعليق التوضيحي عليها، و تتبع تسلسل الملاحظات؛ وهو يدعم تعدد اللغات، و مفاتيح التشغيل السريع، والعديد من الميزات. \nراجع [README] (https://github.com/ayselafsar/dicomviewer) للحصول على قائمة بالميزات الكاملة وخريطة الطريق المستقبلية.",
+    "Unable to load the DICOM attributes" : "تعذّر العثور على أي خصائص لـ DICOM",
     "DICOM Attributes" : "خصائص DICOM",
     "Search for attributes…" : "البحث عن الخصائص ...",
     "Attribute" : "خاصّيّة",
     "Value" : "القيمة",
     "No DICOM attribute found" : "لم يُمكن إيجاد أي خصائص لـ DICOM",
-    "Unable to load the DICOM attributes" : "تعذّر العثور على أي خصائص لـ DICOM",
     "DICOM" : "DICOM",
     "Open with DICOM Viewer" : "فتح بواسطة عارض الـ DICOM"
 },
