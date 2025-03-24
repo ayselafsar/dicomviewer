@@ -37,6 +37,7 @@ class DisplayController extends Controller {
 	public function __construct(IConfig $config,
 	    IRequest $request,
 		IURLGenerator $urlGenerator,
+		LoggerInterface $logger,
 		IMimeTypeDetector $mimeTypeDetector,
 		IRootFolder $rootFolder,
 		IManager $shareManager,
