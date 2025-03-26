@@ -18,7 +18,7 @@ use OCP\AppFramework\Http\JSONResponse;
 use OCP\Files\IMimeTypeDetector;
 use OCP\Files\IRootFolder;
 use OCP\IConfig;
-use OCP\ILogger;
+use Psr\Log\LoggerInterface;
 use OCP\IRequest;
 use OCP\IURLGenerator;
 use OCP\IUserSession;
@@ -37,7 +37,7 @@ class DisplayController extends Controller {
 	public function __construct(IConfig $config,
 	    IRequest $request,
 		IURLGenerator $urlGenerator,
-		ILogger $logger,
+		LoggerInterface $logger,
 		IMimeTypeDetector $mimeTypeDetector,
 		IRootFolder $rootFolder,
 		IManager $shareManager,
