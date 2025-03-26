@@ -10,7 +10,7 @@ It renders DICOM data sets in 2D, 3D, and reconstructed representations; allows 
 and serialization of observations; supports internationalization, hotkeys, and many more features.
 
 See [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap.]]></description>
-    <version>2.3.0</version>
+    <version>2.3.1</version>
     <licence>agpl</licence>
     <author mail="aysel.afsar@gmail.com">Aysel Afsar</author>
     <namespace>DICOMViewer</namespace>
@@ -25,7 +25,7 @@ See [README](https://github.com/ayselafsar/dicomviewer) for a list of full featu
     <screenshot small-thumbnail="https://raw.githubusercontent.com/ayselafsar/dicomviewer/master/screenshots/dump1-small.png">https://raw.githubusercontent.com/ayselafsar/dicomviewer/master/screenshots/dump1.png</screenshot>
     <screenshot small-thumbnail="https://raw.githubusercontent.com/ayselafsar/dicomviewer/master/screenshots/dump2-small.png">https://raw.githubusercontent.com/ayselafsar/dicomviewer/master/screenshots/dump2.png</screenshot>
     <dependencies>
-        <nextcloud min-version="28" max-version="30"/>
+        <nextcloud min-version="28" max-version="31"/>
     </dependencies>
     <repair-steps>
         <install>

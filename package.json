@@ -1,6 +1,6 @@
 {
   "name": "dicomviewer",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "description": "Place this app in **nextcloud/apps/**",
   "scripts": {
     "prebuild": "rm -rf js && npm run build:viewer",
