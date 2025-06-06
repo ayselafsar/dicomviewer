@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "DICOM Viewer" : "DICOM-Viewer",
     "Digital Imaging for Medicine" : "Digitale beeldbewerking voor geneeskunde",
+    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nIt renders DICOM data sets in 2D, 3D, and reconstructed representations; allows for the manipulation, annotation,\nand serialization of observations; supports internationalization, hotkeys, and many more features.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "Met DICOM Viewer kunnen DICOM-afbeeldingen worden weergegeven en gemanipuleerd met een gestroomlijnde zijbalk en viewer.\n\nHet geeft DICOM-datasets weer in 2D-, 3D- en gereconstrueerde representaties; maakt manipulatie, annotatie, mogelijken serialisatie van observaties; ondersteunt internationalisering, sneltoetsen en nog veel meer functies.\n\nZie [README] (https://github.com/ayselafsar/dicomviewer) voor een lijst met volledige functies en toekomstige routekaart.",
     "Unable to load the DICOM attributes" : "Kan DICOM attriburen niet laden",
     "DICOM Attributes" : "DICOM-attributen",
     "Search for attributes…" : "Zoek naar attributen...",
