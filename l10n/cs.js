@@ -10,6 +10,7 @@ OC.L10N.register(
     "Attribute" : "Atribut",
     "Value" : "Hodnota",
     "No DICOM attribute found" : "Nenalezen žádný DICOM atribut",
+    "View" : "Zobrazit",
     "DICOM" : "DICOM",
     "Open with DICOM Viewer" : "Otevřít v prohlížeči DICOM souborů"
 },

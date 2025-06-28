@@ -10,6 +10,7 @@ OC.L10N.register(
     "Attribute" : "Tulajdonság",
     "Value" : "Érték",
     "No DICOM attribute found" : "Nem található DICOM tulajdonság",
+    "View" : "Nézet",
     "DICOM" : "DICOM",
     "Open with DICOM Viewer" : "Megnyitás DICOM megjelenítővel"
 },

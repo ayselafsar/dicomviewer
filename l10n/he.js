@@ -7,6 +7,7 @@ OC.L10N.register(
     "Search for attributes…" : "חיפוש מאפיינים…",
     "Attribute" : "מאפיין",
     "Value" : "ערך",
+    "View" : "צפייה",
     "Open with DICOM Viewer" : "פתיחה עם מציג DICOM"
 },
 "nplurals=3; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: 2;");

@@ -8,6 +8,7 @@
     "Attribute" : "Attributt",
     "Value" : "Verdi",
     "No DICOM attribute found" : "Ingen DICOM-attributt funnet",
+    "View" : "Vis",
     "DICOM" : "DICOM",
     "Open with DICOM Viewer" : "Åpne med DICOM Viewer"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"

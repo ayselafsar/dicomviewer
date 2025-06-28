@@ -10,6 +10,7 @@ OC.L10N.register(
     "Attribute" : "خاسلىقى",
     "Value" : "قىممەت",
     "No DICOM attribute found" : "DICOM خاسلىقى تېپىلمىدى",
+    "View" : "كۆرۈش",
     "DICOM" : "DICOM",
     "Open with DICOM Viewer" : "DICOM كۆرگۈچ بىلەن ئېچىڭ"
 },

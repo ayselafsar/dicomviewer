@@ -8,6 +8,7 @@
     "Attribute" : "Atributo",
     "Value" : "Valor",
     "No DICOM attribute found" : "No se ha encontrado ningún atributo DICOM",
+    "View" : "Vista",
     "DICOM" : "DICOM",
     "Open with DICOM Viewer" : "Abrir con el visor DICOM"
 },"pluralForm" :"nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"

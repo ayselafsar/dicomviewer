@@ -10,6 +10,7 @@ OC.L10N.register(
     "Attribute" : "屬性",
     "Value" : "值",
     "No DICOM attribute found" : "找不到 DICOM 屬性",
+    "View" : "檢視",
     "DICOM" : "DICOM",
     "Open with DICOM Viewer" : "用DICOM檢視器開啟"
 },

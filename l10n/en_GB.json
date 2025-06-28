@@ -8,6 +8,7 @@
     "Attribute" : "Attribute",
     "Value" : "Value",
     "No DICOM attribute found" : "No DICOM attribute found",
+    "View" : "View",
     "DICOM" : "DICOM",
     "Open with DICOM Viewer" : "Open with DICOM Viewer"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"

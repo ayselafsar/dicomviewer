@@ -10,6 +10,7 @@ OC.L10N.register(
     "Attribute" : "Attributt",
     "Value" : "Verdi",
     "No DICOM attribute found" : "Ingen DICOM-attributt funnet",
+    "View" : "Vis",
     "DICOM" : "DICOM",
     "Open with DICOM Viewer" : "Åpne med DICOM Viewer"
 },

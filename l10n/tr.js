@@ -10,6 +10,7 @@ OC.L10N.register(
     "Attribute" : "Öznitelik",
     "Value" : "Değer",
     "No DICOM attribute found" : "Herhangi bir DICOM özniteliği bulunamadı",
+    "View" : "Görüntüle",
     "DICOM" : "DICOM",
     "Open with DICOM Viewer" : "DICOM görüntüleyici ile aç"
 },

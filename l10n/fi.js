@@ -5,6 +5,7 @@ OC.L10N.register(
     "DICOM Attributes" : "DICOM-attribuutit",
     "Attribute" : "Attribuutti",
     "Value" : "Arvo",
+    "View" : "Näkymä",
     "Open with DICOM Viewer" : "Avaa DICOM-katselimella"
 },
 "nplurals=2; plural=(n != 1);");

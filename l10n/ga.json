@@ -8,6 +8,7 @@
     "Attribute" : "Tréith",
     "Value" : "Luach",
     "No DICOM attribute found" : "Níor aimsíodh aon tréith DICOM",
+    "View" : "Amharc",
     "DICOM" : "DICOM",
     "Open with DICOM Viewer" : "Oscail le DICOM Viewer"
 },"pluralForm" :"nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);"

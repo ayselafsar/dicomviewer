@@ -1,4 +1,5 @@
 { "translations": {
-    "Value" : "Väärtus"
+    "Value" : "Väärtus",
+    "View" : "Vaata"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

@@ -10,6 +10,7 @@ OC.L10N.register(
     "Attribute" : "Attribut",
     "Value" : "Värde",
     "No DICOM attribute found" : "Inget DICOM-attribut hittades",
+    "View" : "Visa",
     "DICOM" : "DICOM",
     "Open with DICOM Viewer" : "Öppna med DICOM-visare"
 },

@@ -10,6 +10,7 @@ OC.L10N.register(
     "Attribute" : "Tréith",
     "Value" : "Luach",
     "No DICOM attribute found" : "Níor aimsíodh aon tréith DICOM",
+    "View" : "Amharc",
     "DICOM" : "DICOM",
     "Open with DICOM Viewer" : "Oscail le DICOM Viewer"
 },

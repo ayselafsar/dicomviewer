@@ -9,6 +9,7 @@ OC.L10N.register(
     "Attribute" : "Atributua",
     "Value" : "Balioa",
     "No DICOM attribute found" : "Ez da DICOM atributua aurkitu",
+    "View" : "Ikusi",
     "DICOM" : "DICOM",
     "Open with DICOM Viewer" : "Ireki DICOM Viewer erabiliz"
 },

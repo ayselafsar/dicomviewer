@@ -8,6 +8,7 @@
     "Attribute" : "Attribut",
     "Value" : "Värde",
     "No DICOM attribute found" : "Inget DICOM-attribut hittades",
+    "View" : "Visa",
     "DICOM" : "DICOM",
     "Open with DICOM Viewer" : "Öppna med DICOM-visare"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
