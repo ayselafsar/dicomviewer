@@ -1,5 +1,9 @@
 { "translations": {
+    "DICOM Viewer" : "DICOM-i vaataja",
+    "Digital Imaging for Medicine" : "Digital Imaging for Medicine",
     "Value" : "Väärtus",
-    "View" : "Vaata"
+    "View" : "Vaata",
+    "DICOM" : "DICOM",
+    "Open with DICOM Viewer" : "Ava DICOM-i vaatajaga"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
