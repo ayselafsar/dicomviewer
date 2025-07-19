@@ -8,6 +8,7 @@
     "Attribute" : "خاصّيّة",
     "Value" : "القيمة",
     "No DICOM attribute found" : "لم يُمكن إيجاد أي خصائص لـ DICOM",
+    "View" : "عرض",
     "DICOM" : "DICOM",
     "Open with DICOM Viewer" : "فتح بواسطة عارض الـ DICOM"
 },"pluralForm" :"nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;"

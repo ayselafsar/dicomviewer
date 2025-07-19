@@ -9,6 +9,7 @@ OC.L10N.register(
     "Attribute" : "Atribut",
     "Value" : "Valor",
     "No DICOM attribute found" : "No s'ha trobat cap atribut DICOM",
+    "View" : "Visualització",
     "DICOM" : "DICOM",
     "Open with DICOM Viewer" : "Obre amb el Visualitzador DICOM"
 },

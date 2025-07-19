@@ -10,6 +10,7 @@ OC.L10N.register(
     "Attribute" : "خاصّيّة",
     "Value" : "القيمة",
     "No DICOM attribute found" : "لم يُمكن إيجاد أي خصائص لـ DICOM",
+    "View" : "عرض",
     "DICOM" : "DICOM",
     "Open with DICOM Viewer" : "فتح بواسطة عارض الـ DICOM"
 },

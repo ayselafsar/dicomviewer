@@ -7,6 +7,7 @@
     "Attribute" : "Атрибут",
     "Value" : "Стойност",
     "No DICOM attribute found" : "Няма намерен DICOM атрибут",
+    "View" : "Изглед",
     "DICOM" : "DICOM",
     "Open with DICOM Viewer" : "Отваряне с DICOM Viewer/инструмент за преглед/"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
