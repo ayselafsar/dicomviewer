@@ -1,6 +1,15 @@
 { "translations": {
+    "DICOM Viewer" : "Засіб перегляду DICOM",
+    "Digital Imaging for Medicine" : "Цифрова візуалізація для медицини",
+    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nIt renders DICOM data sets in 2D, 3D, and reconstructed representations; allows for the manipulation, annotation,\nand serialization of observations; supports internationalization, hotkeys, and many more features.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "DICOM Viewer дозволяє відображати та обробляти зображення DICOM за допомогою оптимізованої бічної панелі та переглядача.\n\nВін відображає набори даних DICOM у 2D, 3D та реконструйованих представленнях; дозволяє обробляти, анотувати\nта серіалізувати спостереження; підтримує інтернаціоналізацію, гарячі клавіші та багато інших функцій.\n\nПерелік усіх функцій та план розвитку на майбутнє див. у файлі [README](https://github.com/ayselafsar/dicomviewer).",
+    "Unable to load the DICOM attributes" : "Не вдається завантажити атрибути DICOM",
+    "DICOM Attributes" : "Атрибути DICOM",
     "Search for attributes…" : "Шукати за атрибутами...",
+    "Attribute" : "Атрибут",
     "Value" : "Значення",
-    "View" : "Подання"
+    "No DICOM attribute found" : "Атрибут DICOM не знайдено",
+    "View" : "Подання",
+    "DICOM" : "DICOM",
+    "Open with DICOM Viewer" : "Відкрийте за допомогою DICOM Viewer"
 },"pluralForm" :"nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);"
 }
