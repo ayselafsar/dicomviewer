@@ -1,11 +1,15 @@
 { "translations": {
     "DICOM Viewer" : "Προβολέας DICOM",
     "Digital Imaging for Medicine" : "Ψηφιακή Απεικόνιση για Ιατρική",
+    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nIt renders DICOM data sets in 2D, 3D, and reconstructed representations; allows for the manipulation, annotation,\nand serialization of observations; supports internationalization, hotkeys, and many more features.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "Ο Προβολέας DICOM επιτρέπει την εμφάνιση και τον χειρισμό εικόνων DICOM με απλοποιημένη πλαϊνή γραμμή και προβολέα.\n\nΑποδίδει σύνολα δεδομένων DICOM σε 2D, 3D και ανακατασκευασμένες αναπαραστάσεις· επιτρέπει τον χειρισμό, την σχολιασμό,\nκαι τη σειριοποίηση παρατηρήσεων· υποστηρίζει διεθνοποίηση, συντόμευσεις πληκτρολογίου και πολλά άλλα χαρακτηριστικά.\n\nΔείτε το [README](https://github.com/ayselafsar/dicomviewer) για μια λίστα με όλα τα χαρακτηριστικά και το μελλοντικό πλάνο.",
+    "Unable to load the DICOM attributes" : "Αδυναμία φόρτωσης των χαρακτηριστικών DICOM",
     "DICOM Attributes" : "Χαρακτηριστικά DICOM",
     "Search for attributes…" : "Αναζήτηση για χαρακτηριστικά…",
     "Attribute" : "Γνώρισμα",
     "Value" : "Τιμή",
+    "No DICOM attribute found" : "Δεν βρέθηκε χαρακτηριστικό DICOM",
     "View" : "Προβολή",
+    "DICOM" : "DICOM",
     "Open with DICOM Viewer" : "Άνοιγμα με το πρόγραμμα προβολής αρχείων DICOM"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
