@@ -2,13 +2,24 @@ import { registerFileAction, FileAction, FileType, Permission } from '@nextcloud
 import { translate as t } from '@nextcloud/l10n';
 import { generateUrl } from "@nextcloud/router";
 import AppIcon from './AppIcon.js';
+import isPublicPage from './isPublicPage.js';
+import getPublicShareToken from './getPublicShareToken.js';
 
 function openWithDICOMViewer(node) {
-    const dicomUrl = window.location.protocol + '//' + window.location.host + generateUrl(`/apps/dicomviewer/dicomjson?file=${node.owner}|${node.fileid}|1`);
+    const isPublic = isPublicPage();
+    let dicomUrl;
+
+    if (isPublic) {
+        const shareToken = getPublicShareToken();
+        dicomUrl = window.location.protocol + '//' + window.location.host + generateUrl(`/apps/dicomviewer/publicdicomjson?file=${shareToken}|${node.path}`);
+    } else {
+        dicomUrl = window.location.protocol + '//' + window.location.host + generateUrl(`/apps/dicomviewer/dicomjson?file=${node.owner}|${node.fileid}|1`);
+    }
 
     // Open viewer in a new tab
+    const viewerUrl = generateUrl(`/apps/dicomviewer/ncviewer/viewer/dicomjson?url=${dicomUrl}`);
     const tab = window.open('about:blank');
-    tab.location = generateUrl(`/apps/dicomviewer/ncviewer/viewer/dicomjson?url=${dicomUrl}`);
+    tab.location = viewerUrl;
     tab.focus();
 }
 
