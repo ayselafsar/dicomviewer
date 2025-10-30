@@ -139,7 +139,11 @@ class DisplayController extends Controller {
                 $d[$k] = $this->convertToUTF8($v);
             }
         } else if (is_string($d)) {
-            return utf8_encode($d);
+            // Only convert if not already UTF-8 to avoid double encoding
+            if (mb_detect_encoding($d, 'UTF-8', true) === false) {
+                return mb_convert_encoding($d, 'UTF-8', 'ISO-8859-1');
+            }
+            return $d;
         }
         return $d;
     }
