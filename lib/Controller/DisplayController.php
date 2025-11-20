@@ -633,12 +633,22 @@ class DisplayController extends Controller {
 
             $shareNode = $share->getNode();
             if ($shareNode->getType() == 'dir') {
-                $selectedFileFullPath = $this->dataFolder.$shareNode->get($filepath)->getPath();
+                // Determine which folder to scan - if filepath is provided, use that subfolder
+                $folderToScan = $shareNode;
+                if (!empty($filepath)) {
+                    try {
+                        $folderToScan = $shareNode->get($filepath);
+                    } catch (\Exception $e) {
+                        $folderToScan = $shareNode;
+                    }
+                }
+
+                $selectedFileFullPath = $this->dataFolder.$folderToScan->getPath();
                 $dicomParentFullPath = $this->dataFolder.$shareNode->getPath();
 
-                // Get all DICOM files in the share folder and sub folders
+                // Get all DICOM files in the folder and sub folders
                 $parentPathToRemove = $shareNode->getPath();
-                list($dicomFilePaths, $dicomFileNodes) = $this->getAllDICOMFilesInFolder($parentPathToRemove, $shareNode, false);
+                list($dicomFilePaths, $dicomFileNodes) = $this->getAllDICOMFilesInFolder($parentPathToRemove, $folderToScan, true);
             } else {
                 $selectedFileFullPath = null;
                 $dicomParentFullPath = $this->dataFolder;
@@ -649,8 +659,9 @@ class DisplayController extends Controller {
                 array_push($dicomFileNodes, $shareNode);
             }
 
-            $downloadUrlPrefix = $this->getNextcloudBasePath().'/s/'.$shareToken.'/download';
-            $dicomJson = $this->generateDICOMJson($dicomFilePaths, $dicomFileNodes, $selectedFileFullPath, $dicomParentFullPath, null, $downloadUrlPrefix, true, $singlePublicFileDownload);
+            // Use WebDAV public endpoint for file downloads
+            $downloadUrlPrefix = '/public.php/dav/files/'.$shareToken;
+            $dicomJson = $this->generateDICOMJson($dicomFilePaths, $dicomFileNodes, $selectedFileFullPath, $dicomParentFullPath, null, $downloadUrlPrefix, false, $singlePublicFileDownload);
 
             // Hide capture tool in viewer when download is hidden in public share link
             $dicomJson['hideCapture'] = $share->getHideDownload();
