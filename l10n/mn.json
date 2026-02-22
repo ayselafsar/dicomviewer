@@ -1,4 +1,5 @@
 { "translations": {
-    "Value" : "Үнийн дүн"
+    "Value" : "Үнийн дүн",
+    "View" : "Харах"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
