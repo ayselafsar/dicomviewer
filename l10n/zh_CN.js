@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "DICOM Viewer" : "DICOM查看器",
     "Digital Imaging for Medicine" : "医学数字影像",
+    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nIt renders DICOM data sets in 2D, 3D, and reconstructed representations; allows for the manipulation, annotation,\nand serialization of observations; supports internationalization, hotkeys, and many more features.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "DICOM查看器允许通过简化的侧边栏与查看器显示和操作DICOM图片。\n\n它能够以 2D、3D 及重建视图渲染 DICOM 数据集；允许对观察结果进行操作、注释及序列化；并支持国际化、热键以及更多功能。\n\n了解完整的功能与未来路线图请见 [README](https://github.com/ayselafsar/dicomviewer)。",
     "Unable to load the DICOM attributes" : "无法加载DICOM属性",
     "DICOM Attributes" : "DICOM属性",
     "Search for attributes…" : "搜索属性",
