@@ -4,8 +4,10 @@ import generateFullUrl from './utils/generateFullUrl.js';
 import registerFileActions from './utils/registerFileActions.js';
 import './sidebar.js';
 
-// Add MimeType Icon
-OC.MimeType._mimeTypeIcons['application/dicom'] = `${generateFullUrl(generateUrl('/apps/dicomviewer/img/app.svg'))}`;
+// Add MimeType Icon (OC.MimeType._mimeTypeIcons was removed in Nextcloud 33)
+if (OC.MimeType && OC.MimeType._mimeTypeIcons) {
+    OC.MimeType._mimeTypeIcons['application/dicom'] = `${generateFullUrl(generateUrl('/apps/dicomviewer/img/app.svg'))}`;
+}
 
 OCA.Viewer.registerHandler({
     id: 'dicom',
