@@ -11,6 +11,11 @@ use OC\Files\Filesystem;
 use OCA\DICOMViewer\AppInfo\Application;
 use OCP\App\IAppManager;
 use OCP\AppFramework\Controller;
+use OCP\AppFramework\Http;
+use OCP\AppFramework\Http\Attribute\BruteForceProtection;
+use OCP\AppFramework\Http\Attribute\NoCSRFRequired;
+use OCP\AppFramework\Http\Attribute\PublicPage;
+use OCP\AppFramework\Http\Attribute\UseSession;
 use OCP\AppFramework\Http\EmptyContentSecurityPolicy;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\AppFramework\Http\StreamResponse;
@@ -19,10 +24,12 @@ use OCP\Files\IMimeTypeDetector;
 use OCP\Files\IRootFolder;
 use OCP\Files\NotFoundException;
 use OCP\IConfig;
+use OCP\ISession;
 use Psr\Log\LoggerInterface;
 use OCP\IRequest;
 use OCP\IURLGenerator;
 use OCP\IUserSession;
+use OCP\Share\Exceptions\ShareNotFound;
 use OCP\Share\IManager;
 
 class DisplayController extends Controller {
@@ -42,7 +49,8 @@ class DisplayController extends Controller {
 		IMimeTypeDetector $mimeTypeDetector,
 		IRootFolder $rootFolder,
 		IManager $shareManager,
-		IUserSession $userSession) {
+		IUserSession $userSession,
+		ISession $session) {
 		parent::__construct(Application::APP_ID, $request);
 		$this->config = $config;
 		$this->urlGenerator = $urlGenerator;
@@ -51,6 +59,7 @@ class DisplayController extends Controller {
 		$this->rootFolder = $rootFolder;
 		$this->shareManager = $shareManager;
 		$this->userSession = $userSession;
+		$this->session = $session;
 
         $this->publicViewerFolderPath = null;
         $this->publicViewerAssetsFolderPath = null;
@@ -612,22 +621,52 @@ class DisplayController extends Controller {
 		return $response;
 	}
 
-	/**
-	 * @PublicPage
-     * @NoCSRFRequired
-     *
-     * @return JSONResponse
-     */
-    public function getPublicDICOMJson(): JSONResponse {
+	#[PublicPage]
+	#[NoCSRFRequired]
+	#[UseSession]
+	public function getPublicDICOMJson(): JSONResponse {
         $fileQueryParams = explode('|', $this->getQueryParam('file'));
         $shareToken = $fileQueryParams[0];
-        $filepath = ltrim($fileQueryParams[1], '/');
+        $filepath = ltrim($fileQueryParams[1] ?? '', '/');
 
         try {
             $share = $this->shareManager->getShareByToken($shareToken);
             if ($share == null) {
                 $response = new JSONResponse(array());
                 return $response;
+            }
+
+            // Enforce password authentication for password-protected shares
+            if ($share->getPassword() !== null) {
+                $isAuthenticated = false;
+
+                // Check DAV session key (set by files_sharing ShareController and our PublicDisplayController)
+                $allowedShareIds = $this->session->get('public_link_authenticated');
+                if (is_array($allowedShareIds)
+                    && (in_array($share->getId(), $allowedShareIds, false)
+                        || in_array((string)$share->getId(), $allowedShareIds, false))
+                ) {
+                    $isAuthenticated = true;
+                }
+
+                // Check frontend session key (set by PublicShareController::storeTokenSession as JSON)
+                if (!$isAuthenticated) {
+                    $allowedTokensJSON = $this->session->get('public_link_authenticated_frontend') ?? '[]';
+                    $allowedTokens = json_decode($allowedTokensJSON, true);
+                    if (is_array($allowedTokens)
+                        && isset($allowedTokens[$shareToken])
+                        && $allowedTokens[$shareToken] === $share->getPassword()
+                    ) {
+                        $isAuthenticated = true;
+                    }
+                }
+
+                if (!$isAuthenticated) {
+                    return new JSONResponse([
+                        'requiresPassword' => true,
+                        'shareToken' => $shareToken,
+                    ], Http::STATUS_UNAUTHORIZED);
+                }
             }
 
             $selectedFileFullPath = '';
@@ -679,4 +718,57 @@ class DisplayController extends Controller {
             return $response;
         }
     }
+
+	/**
+	 * JSON endpoint for verifying a share password from the viewer SPA.
+	 * Stores the authenticated state in the session on success, matching
+	 * what files_sharing's ShareController does so that WebDAV file
+	 * downloads also work without an extra prompt.
+	 */
+	#[PublicPage]
+	#[NoCSRFRequired]
+	#[UseSession]
+	#[BruteForceProtection(action: 'dicomViewerSharePassword')]
+	public function verifySharePassword(string $token = '', string $password = ''): JSONResponse {
+		if (empty($token)) {
+			return new JSONResponse(['authenticated' => false, 'message' => 'Missing token'], Http::STATUS_BAD_REQUEST);
+		}
+
+		try {
+			$share = $this->shareManager->getShareByToken($token);
+		} catch (ShareNotFound $e) {
+			return new JSONResponse(['authenticated' => false, 'message' => 'Share not found'], Http::STATUS_NOT_FOUND);
+		}
+
+		if ($share->getPassword() === null) {
+			return new JSONResponse(['authenticated' => true]);
+		}
+
+		if (!$this->shareManager->checkPassword($share, $password)) {
+			$response = new JSONResponse(['authenticated' => false, 'message' => 'Wrong password'], Http::STATUS_UNAUTHORIZED);
+			$response->throttle(['action' => 'dicomViewerSharePassword', 'token' => $token]);
+			return $response;
+		}
+
+		// Store in DAV session key so WebDAV file downloads work
+		$allowedShareIds = $this->session->get('public_link_authenticated');
+		if (!is_array($allowedShareIds)) {
+			$allowedShareIds = [];
+		}
+		if (!in_array($share->getId(), $allowedShareIds, false)) {
+			$this->session->set('public_link_authenticated', array_merge($allowedShareIds, [$share->getId()]));
+		}
+
+		// Store in frontend session key so PublicShareController::isAuthenticated() passes.
+		// Nextcloud stores this as JSON (see PublicShareController::storeTokenSession).
+		$allowedTokensJSON = $this->session->get('public_link_authenticated_frontend') ?? '[]';
+		$allowedTokens = json_decode($allowedTokensJSON, true);
+		if (!is_array($allowedTokens)) {
+			$allowedTokens = [];
+		}
+		$allowedTokens[$token] = $share->getPassword();
+		$this->session->set('public_link_authenticated_frontend', json_encode($allowedTokens));
+
+		return new JSONResponse(['authenticated' => true]);
+	}
 }
