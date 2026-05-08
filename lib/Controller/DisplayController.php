@@ -340,7 +340,7 @@ class DisplayController extends Controller {
                     'instances' => array(),
                 );
                 array_push($dicomJson['studies'][$studyIndex]['series'], $series);
-                $seriesIndex++;
+                $seriesIndex = count($dicomJson['studies'][$studyIndex]['series']) - 1;
             }
 
             // INSTANCE
