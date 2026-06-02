@@ -12,7 +12,6 @@ use OCA\DICOMViewer\AppInfo\Application;
 use OCP\App\IAppManager;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http;
-use OCP\AppFramework\Http\Attribute\BruteForceProtection;
 use OCP\AppFramework\Http\Attribute\NoCSRFRequired;
 use OCP\AppFramework\Http\Attribute\PublicPage;
 use OCP\AppFramework\Http\Attribute\UseSession;
@@ -29,7 +28,6 @@ use Psr\Log\LoggerInterface;
 use OCP\IRequest;
 use OCP\IURLGenerator;
 use OCP\IUserSession;
-use OCP\Share\Exceptions\ShareNotFound;
 use OCP\Share\IManager;
 
 class DisplayController extends Controller {
@@ -750,57 +748,4 @@ class DisplayController extends Controller {
             return $response;
         }
     }
-
-	/**
-	 * JSON endpoint for verifying a share password from the viewer SPA.
-	 * Stores the authenticated state in the session on success, matching
-	 * what files_sharing's ShareController does so that WebDAV file
-	 * downloads also work without an extra prompt.
-	 */
-	#[PublicPage]
-	#[NoCSRFRequired]
-	#[UseSession]
-	#[BruteForceProtection(action: 'dicomViewerSharePassword')]
-	public function verifySharePassword(string $token = '', string $password = ''): JSONResponse {
-		if (empty($token)) {
-			return new JSONResponse(['authenticated' => false, 'message' => 'Missing token'], Http::STATUS_BAD_REQUEST);
-		}
-
-		try {
-			$share = $this->shareManager->getShareByToken($token);
-		} catch (ShareNotFound $e) {
-			return new JSONResponse(['authenticated' => false, 'message' => 'Share not found'], Http::STATUS_NOT_FOUND);
-		}
-
-		if ($share->getPassword() === null) {
-			return new JSONResponse(['authenticated' => true]);
-		}
-
-		if (!$this->shareManager->checkPassword($share, $password)) {
-			$response = new JSONResponse(['authenticated' => false, 'message' => 'Wrong password'], Http::STATUS_UNAUTHORIZED);
-			$response->throttle(['action' => 'dicomViewerSharePassword', 'token' => $token]);
-			return $response;
-		}
-
-		// Store in DAV session key so WebDAV file downloads work
-		$allowedShareIds = $this->session->get('public_link_authenticated');
-		if (!is_array($allowedShareIds)) {
-			$allowedShareIds = [];
-		}
-		if (!in_array($share->getId(), $allowedShareIds, false)) {
-			$this->session->set('public_link_authenticated', array_merge($allowedShareIds, [$share->getId()]));
-		}
-
-		// Store in frontend session key so PublicShareController::isAuthenticated() passes.
-		// Nextcloud stores this as JSON (see PublicShareController::storeTokenSession).
-		$allowedTokensJSON = $this->session->get('public_link_authenticated_frontend') ?? '[]';
-		$allowedTokens = json_decode($allowedTokensJSON, true);
-		if (!is_array($allowedTokens)) {
-			$allowedTokens = [];
-		}
-		$allowedTokens[$token] = $share->getPassword();
-		$this->session->set('public_link_authenticated_frontend', json_encode($allowedTokens));
-
-		return new JSONResponse(['authenticated' => true]);
-	}
 }

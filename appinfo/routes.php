@@ -15,7 +15,6 @@ return ['routes' => [
 	['name' => 'display#getDICOMViewerAssetSubImages', 'url' => '/ncviewer/viewer/assets/images/{assetpath}', 'verb' => 'GET'],
 	['name' => 'display#getDICOMJson', 'url' => '/dicomjson', 'verb' => 'GET'],
 	['name' => 'display#getPublicDICOMJson', 'url' => '/publicdicomjson', 'verb' => 'GET'],
-	['name' => 'display#verifySharePassword', 'url' => '/verifySharePassword', 'verb' => 'POST'],
 
 	// Public share viewer with password-auth support (AuthPublicShareController flow)
 	// Route names must match the PHP class short name (PublicDisplay from PublicDisplayController)
