@@ -7,17 +7,25 @@ import getPublicShareToken from './getPublicShareToken.js';
 
 function openWithDICOMViewer(node) {
     const isPublic = isPublicPage();
-    let dicomUrl;
+    let viewerUrl;
 
     if (isPublic) {
+        // Route through PublicDisplayController so password-protected shares
+        // trigger the Nextcloud auth form when the session has expired.
         const shareToken = getPublicShareToken();
-        dicomUrl = window.location.protocol + '//' + window.location.host + generateUrl(`/apps/dicomviewer/publicdicomjson?file=${shareToken}|${node.path}`);
+        viewerUrl = shareToken
+            ? generateUrl(`/apps/dicomviewer/s/${shareToken}?path=${encodeURIComponent(node.path || '')}`)
+            : null;
     } else {
-        dicomUrl = window.location.protocol + '//' + window.location.host + generateUrl(`/apps/dicomviewer/dicomjson?file=${node.owner}|${node.fileid}|1`);
+        const dicomUrl = window.location.protocol + '//' + window.location.host + generateUrl(`/apps/dicomviewer/dicomjson?file=${node.owner}|${node.fileid}|1`);
+        viewerUrl = generateUrl(`/apps/dicomviewer/ncviewer/viewer/dicomjson?url=${dicomUrl}`);
+    }
+
+    if (!viewerUrl) {
+        return;
     }
 
     // Open viewer in a new tab
-    const viewerUrl = generateUrl(`/apps/dicomviewer/ncviewer/viewer/dicomjson?url=${dicomUrl}`);
     const tab = window.open('about:blank');
     tab.location = viewerUrl;
     tab.focus();
