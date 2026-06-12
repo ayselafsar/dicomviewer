@@ -1,4 +1,4 @@
-import { registerFileAction, FileAction, FileType, Permission } from '@nextcloud/files';
+import { registerFileAction, FileType, Permission } from '@nextcloud/files';
 import { translate as t } from '@nextcloud/l10n';
 import { generateUrl } from "@nextcloud/router";
 import AppIcon from './AppIcon.js';
@@ -23,7 +23,7 @@ function openWithDICOMViewer(node) {
     tab.focus();
 }
 
-const fileAction = new FileAction({
+const fileAction = {
     id: 'dicomviewer',
     order: -10000,
     iconSvgInline() {
@@ -32,18 +32,14 @@ const fileAction = new FileAction({
     displayName() {
         return t('dicomviewer', 'Open with DICOM Viewer');
     },
-    enabled(nodes) {
+    enabled({ nodes }) {
         return nodes.length === 1 && (nodes[0].permissions & Permission.READ) !== 0 && nodes[0].type === FileType.Folder;
     },
-    async execBatch(nodes, view, dir) {
+    async exec({ nodes, view, folder }) {
         openWithDICOMViewer(nodes[0]);
-        return Promise.all([Promise.resolve(true)]);
-    },
-    async exec(node, view, dir) {
-        openWithDICOMViewer(node);
         return true;
     },
-});
+};
 
 export default () => {
     registerFileAction(fileAction);
