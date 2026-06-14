@@ -6,8 +6,10 @@ namespace OCA\DICOMViewer\AppInfo;
 
 use OCA\DICOMViewer\Listeners\CSPListener;
 use OCA\DICOMViewer\Listeners\LoadPublicViewerListener;
+use OCA\DICOMViewer\Listeners\LoadSidebarListener;
 use OCA\DICOMViewer\Listeners\LoadViewerListener;
 
+use OCA\Files\Event\LoadSidebar;
 use OCA\Viewer\Event\LoadViewer;
 
 use OCP\AppFramework\App;
@@ -26,6 +28,7 @@ class Application extends App implements IBootstrap {
 
 	public function register(IRegistrationContext $context): void {
 		$context->registerEventListener(LoadViewer::class, LoadViewerListener::class);
+		$context->registerEventListener(LoadSidebar::class, LoadSidebarListener::class);
 		$context->registerEventListener(BeforeTemplateRenderedEvent::class, LoadPublicViewerListener::class);
 		$context->registerEventListener(AddContentSecurityPolicyEvent::class, CSPListener::class);
 	}

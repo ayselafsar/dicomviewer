@@ -16,4 +16,6 @@ webpackConfig.plugins.push(
 
 webpackConfig.entry.public = path.resolve(path.join('src', 'public.js'));
 
+webpackConfig.entry.sidebar = path.resolve(path.join('src', 'sidebar-init.js'));
+
 module.exports = webpackConfig;

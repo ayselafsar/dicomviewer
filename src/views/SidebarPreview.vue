@@ -49,7 +49,8 @@ export default {
         return {
             error: '',
             loading: true,
-            fileInfo: null,
+            node: null,
+            active: false,
             cachedAllAttributes: [],
             attributes: [],
             attributeSearchText: '',
@@ -58,6 +59,9 @@ export default {
     watch: {
         attributeSearchText() {
             this.debouncedSearch();
+        },
+        active() {
+            this.renderThumbnailElement();
         },
     },
     created() {
@@ -68,8 +72,9 @@ export default {
         this.renderThumbnailElement();
     },
     methods: {
-        async update(fileInfo) {
-            this.fileInfo = fileInfo;
+        async update(node, active = false) {
+            this.node = node;
+            this.active = active;
             this.resetState();
             await this.getAttributes();
         },
@@ -90,11 +95,7 @@ export default {
             try {
                 this.loading = true;
 
-                const fullUrl = [
-                    OC.Files.getClient().getBaseUrl(),
-                    this.fileInfo.get('path'),
-                    this.fileInfo.get('name')
-                ].join('/');
+                const fullUrl = this.node.source;
                 const { dataSetCacheManager } = cornerstoneWADOImageLoader.wadouri;
                 const imageId = `wadouri:${fullUrl}`;
 
@@ -142,10 +143,9 @@ export default {
                 return;
             }
 
-            // TODO: Get rid of this workaround if nextcloud calls a function when tab is activated
+            // Render the thumbnail when the tab is active.
             this.clearRenderThumbnailInterval();
-            const tab = document.getElementById('tab-dicomviewer');
-            if (tab && tab.className.includes('active')) {
+            if (this.active) {
                 cornerstone.enable(this.thumbnailElement);
                 cornerstone.displayImage(this.thumbnailElement, this.image);
             } else {
