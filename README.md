@@ -66,6 +66,7 @@ yarn config set workspaces-experimental true
 5. Build the project
 
 ```
+npm install
 npm run build
 ```
 

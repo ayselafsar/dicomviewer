@@ -2,10 +2,20 @@ import { generateUrl } from '@nextcloud/router';
 import { cornerstone, cornerstoneWADOImageLoader } from './cornerstonejs.js';
 import generateFullUrl from './generateFullUrl.js';
 
+let initialized = false;
+
 /**
  * Configure cornerstone codecs and web workers
  */
 export default function() {
+    cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
+
+    if (initialized) {
+        return;
+    }
+
+    initialized = true;
+
     const maxWebWorkers = Math.max(navigator.hardwareConcurrency - 1, 1);
     const config = {
         maxWebWorkers,
@@ -21,6 +31,5 @@ export default function() {
         },
     };
 
-    cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
     cornerstoneWADOImageLoader.webWorkerManager.initialize(config);
 }
