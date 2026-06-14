@@ -2,6 +2,7 @@
 
 namespace OCA\DICOMViewer\Migration;
 
+use OCP\Files\IMimeTypeLoader;
 use OCP\Migration\IOutput;
 use OCP\Migration\IRepairStep;
 use Psr\Log\LoggerInterface;
@@ -9,9 +10,11 @@ use Psr\Log\LoggerInterface;
 class RegisterMimeType implements IRepairStep {
     protected $logger;
     private $customMimetypeMapping;
+    private IMimeTypeLoader $mimeTypeLoader;
 
-    public function __construct(LoggerInterface $logger) {
+    public function __construct(LoggerInterface $logger, IMimeTypeLoader $mimeTypeLoader) {
         $this->logger = $logger;
+        $this->mimeTypeLoader = $mimeTypeLoader;
 
         // Define the custom mimetype mapping
         $this->customMimetypeMapping = array(
@@ -30,12 +33,10 @@ class RegisterMimeType implements IRepairStep {
 
     private function registerForExistingFiles() {
         $mimetypeMapping = $this->customMimetypeMapping;
-        $mimeTypeLoader = \OC::$server->getMimeTypeLoader();
-
         foreach($mimetypeMapping as $mimetypeKey => $mimetypeValues) {
             foreach($mimetypeValues as $mimetypeValue) {
-                $mimeId = $mimeTypeLoader->getId($mimetypeValue);
-                $mimeTypeLoader->updateFilecache($mimetypeKey, $mimeId);
+                $mimeId = $this->mimeTypeLoader->getId($mimetypeValue);
+                $this->mimeTypeLoader->updateFilecache($mimetypeKey, $mimeId);
             }
         }
     }

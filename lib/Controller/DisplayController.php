@@ -168,7 +168,6 @@ class DisplayController extends Controller {
 
     private function getContentSecurityPolicy() {
         $policy = new EmptyContentSecurityPolicy();
-        $policy->addAllowedChildSrcDomain('http: *');
         $policy->addAllowedFontDomain('data: http: *');
         $policy->addAllowedImageDomain('data: http: *');
         $policy->addAllowedScriptDomain('http: *');
@@ -177,7 +176,6 @@ class DisplayController extends Controller {
         $policy->addAllowedWorkerSrcDomain('http: *');
         $policy->addAllowedFrameDomain('http: *');
         $policy->addAllowedFrameAncestorDomain('http: *');
-        $policy->allowEvalScript(true);
         $policy->allowEvalWasm(true);
         $policy->allowInlineStyle(true);
         $policy->useStrictDynamic(false);
