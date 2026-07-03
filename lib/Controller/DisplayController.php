@@ -11,6 +11,10 @@ use OC\Files\Filesystem;
 use OCA\DICOMViewer\AppInfo\Application;
 use OCP\App\IAppManager;
 use OCP\AppFramework\Controller;
+use OCP\AppFramework\Http;
+use OCP\AppFramework\Http\Attribute\NoCSRFRequired;
+use OCP\AppFramework\Http\Attribute\PublicPage;
+use OCP\AppFramework\Http\Attribute\UseSession;
 use OCP\AppFramework\Http\EmptyContentSecurityPolicy;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\AppFramework\Http\StreamResponse;
@@ -19,6 +23,7 @@ use OCP\Files\IMimeTypeDetector;
 use OCP\Files\IRootFolder;
 use OCP\Files\NotFoundException;
 use OCP\IConfig;
+use OCP\ISession;
 use Psr\Log\LoggerInterface;
 use OCP\IRequest;
 use OCP\IURLGenerator;
@@ -42,7 +47,8 @@ class DisplayController extends Controller {
 		IMimeTypeDetector $mimeTypeDetector,
 		IRootFolder $rootFolder,
 		IManager $shareManager,
-		IUserSession $userSession) {
+		IUserSession $userSession,
+		ISession $session) {
 		parent::__construct(Application::APP_ID, $request);
 		$this->config = $config;
 		$this->urlGenerator = $urlGenerator;
@@ -51,6 +57,7 @@ class DisplayController extends Controller {
 		$this->rootFolder = $rootFolder;
 		$this->shareManager = $shareManager;
 		$this->userSession = $userSession;
+		$this->session = $session;
 
         $this->publicViewerFolderPath = null;
         $this->publicViewerAssetsFolderPath = null;
@@ -149,6 +156,17 @@ class DisplayController extends Controller {
         return $d;
     }
 
+    private function isDicomNode($node, bool $isOpenNoExtension): bool {
+        return $node->getType() === 'file'
+            && ($isOpenNoExtension || $node->getMimetype() === 'application/dicom');
+    }
+
+    private function getPathRelativeToShareRoot($shareNode, $node): string {
+        $parentPathToRemove = rtrim($shareNode->getPath(), '/');
+
+        return implode('', explode($parentPathToRemove, $node->getPath(), 2));
+    }
+
     private function getAllDICOMFilesInFolder($parentPathToRemove, $folderNode, $isOpenNoExtension) {
         $filepaths = array();
         $filenodes = array();
@@ -207,13 +225,15 @@ class DisplayController extends Controller {
         foreach($dicomFilePaths as $index => $dicomFilePath) {
             $fileUrlPath = '';
             if ($isPublic) {
+                $publicDavBase = rtrim($downloadUrlPrefix, '/');
                 if ($singlePublicFileDownload) {
-                    $urlParamFiles = $this->encodeUrlPathSegments(substr($dicomFilePath, strrpos($dicomFilePath, '/') + 1));
-                    $fileUrlPath = $this->encodeUrlPathSegments($downloadUrlPrefix.'/'.$urlParamFiles);
+                    // Single-file shares: public DAV root IS the file (ServerFactory mounts a File node).
+                    // Appending the filename as a path segment yields 404.
+                    $fileUrlPath = $this->encodeUrlPathSegments($publicDavBase.'/');
                 } else {
-                    $urlParamPath = $this->encodeUrlPathSegments(substr($dicomFilePath, 0, strrpos($dicomFilePath, '/')));
-                    $urlParamFiles = $this->encodeUrlPathSegments(substr($dicomFilePath, strrpos($dicomFilePath, '/') + 1));
-                    $fileUrlPath = $downloadUrlPrefix.'?path='.$urlParamPath.'&files='.$urlParamFiles;
+                    // Folder shares: paths are relative to the share root inside the DAV tree.
+                    $relativePath = ltrim($dicomFilePath, '/');
+                    $fileUrlPath = $this->encodeUrlPathSegments($publicDavBase.'/'.$relativePath);
                 }
             } else if ($currentUserPathToFile != null) {
                 $fileUrlPath = $this->encodeUrlPathSegments($downloadUrlPrefix.strstr($dicomFilePath, $currentUserPathToFile));
@@ -610,22 +630,52 @@ class DisplayController extends Controller {
 		return $response;
 	}
 
-	/**
-	 * @PublicPage
-     * @NoCSRFRequired
-     *
-     * @return JSONResponse
-     */
-    public function getPublicDICOMJson(): JSONResponse {
+	#[PublicPage]
+	#[NoCSRFRequired]
+	#[UseSession]
+	public function getPublicDICOMJson(): JSONResponse {
         $fileQueryParams = explode('|', $this->getQueryParam('file'));
         $shareToken = $fileQueryParams[0];
-        $filepath = ltrim($fileQueryParams[1], '/');
+        $filepath = ltrim($fileQueryParams[1] ?? '', '/');
 
         try {
             $share = $this->shareManager->getShareByToken($shareToken);
             if ($share == null) {
                 $response = new JSONResponse(array());
                 return $response;
+            }
+
+            // Enforce password authentication for password-protected shares
+            if ($share->getPassword() !== null) {
+                $isAuthenticated = false;
+
+                // Check DAV session key (set by files_sharing ShareController and our PublicDisplayController)
+                $allowedShareIds = $this->session->get('public_link_authenticated');
+                if (is_array($allowedShareIds)
+                    && (in_array($share->getId(), $allowedShareIds, false)
+                        || in_array((string)$share->getId(), $allowedShareIds, false))
+                ) {
+                    $isAuthenticated = true;
+                }
+
+                // Check frontend session key (set by PublicShareController::storeTokenSession as JSON)
+                if (!$isAuthenticated) {
+                    $allowedTokensJSON = $this->session->get('public_link_authenticated_frontend') ?? '[]';
+                    $allowedTokens = json_decode($allowedTokensJSON, true);
+                    if (is_array($allowedTokens)
+                        && isset($allowedTokens[$shareToken])
+                        && $allowedTokens[$shareToken] === $share->getPassword()
+                    ) {
+                        $isAuthenticated = true;
+                    }
+                }
+
+                if (!$isAuthenticated) {
+                    return new JSONResponse([
+                        'requiresPassword' => true,
+                        'shareToken' => $shareToken,
+                    ], Http::STATUS_UNAUTHORIZED);
+                }
             }
 
             $selectedFileFullPath = '';
@@ -636,22 +686,41 @@ class DisplayController extends Controller {
 
             $shareNode = $share->getNode();
             if ($shareNode->getType() == 'dir') {
-                // Determine which folder to scan - if filepath is provided, use that subfolder
-                $folderToScan = $shareNode;
+                $dicomParentFullPath = $this->dataFolder.$shareNode->getPath();
+                $parentPathToRemove = rtrim($shareNode->getPath(), '/');
+                $scanFolder = true;
+
                 if (!empty($filepath)) {
                     try {
-                        $folderToScan = $shareNode->get($filepath);
+                        $targetNode = $shareNode->get($filepath);
+                        if ($targetNode->getType() === 'dir') {
+                            $selectedFileFullPath = $this->dataFolder.$targetNode->getPath();
+                            list($dicomFilePaths, $dicomFileNodes) = $this->getAllDICOMFilesInFolder(
+                                $parentPathToRemove,
+                                $targetNode,
+                                true
+                            );
+                            $scanFolder = false;
+                        } elseif ($this->isDicomNode($targetNode, true)) {
+                            // Opening a single file inside a shared folder (not the share root).
+                            $selectedFileFullPath = $this->dataFolder.$targetNode->getPath();
+                            $dicomFilePaths = [$this->getPathRelativeToShareRoot($shareNode, $targetNode)];
+                            $dicomFileNodes = [$targetNode];
+                            $scanFolder = false;
+                        }
                     } catch (NotFoundException $e) {
-                        $folderToScan = $shareNode;
+                        // Fall through to scan the share root.
                     }
                 }
 
-                $selectedFileFullPath = $this->dataFolder.$folderToScan->getPath();
-                $dicomParentFullPath = $this->dataFolder.$shareNode->getPath();
-
-                // Get all DICOM files in the folder and sub folders
-                $parentPathToRemove = $shareNode->getPath();
-                list($dicomFilePaths, $dicomFileNodes) = $this->getAllDICOMFilesInFolder($parentPathToRemove, $folderToScan, true);
+                if ($scanFolder) {
+                    $selectedFileFullPath = $this->dataFolder.$shareNode->getPath();
+                    list($dicomFilePaths, $dicomFileNodes) = $this->getAllDICOMFilesInFolder(
+                        $parentPathToRemove,
+                        $shareNode,
+                        true
+                    );
+                }
             } else {
                 $selectedFileFullPath = null;
                 $dicomParentFullPath = $this->dataFolder;
@@ -664,7 +733,7 @@ class DisplayController extends Controller {
 
             // Use WebDAV public endpoint for file downloads (public.php is a direct entry point, not routed via index.php)
             $downloadUrlPrefix = $this->urlGenerator->getWebroot().'/public.php/dav/files/'.$shareToken;
-            $dicomJson = $this->generateDICOMJson($dicomFilePaths, $dicomFileNodes, $selectedFileFullPath, $dicomParentFullPath, null, $downloadUrlPrefix, false, $singlePublicFileDownload);
+            $dicomJson = $this->generateDICOMJson($dicomFilePaths, $dicomFileNodes, $selectedFileFullPath, $dicomParentFullPath, null, $downloadUrlPrefix, true, $singlePublicFileDownload);
 
             // Hide capture tool in viewer when download is hidden in public share link
             $dicomJson['hideCapture'] = $share->getHideDownload();
