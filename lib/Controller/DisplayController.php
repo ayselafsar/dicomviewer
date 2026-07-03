@@ -471,7 +471,7 @@ class DisplayController extends Controller {
 
         // Replace nextcloud base path with the actual path in this environment
         // TODO: Move this to replace __NEXTCLOUD_BASE_PATH__ on app install and htaccess update only
-	    if (str_ends_with($fullFilePath, '.html') || str_ends_with($fullFilePath, '.js')) {
+	    if (str_ends_with($fullFilePath, '.html') || str_ends_with($fullFilePath, '.js') || str_ends_with($fullFilePath, '.css')) {
 	    	$fpHandle = fopen('php://temp/maxmemory:'.$filename.'.customized', 'r+');
 	        fputs($fpHandle, str_replace('__NEXTCLOUD_BASE_PATH__', $this->getNextcloudBasePath(), file_get_contents($fullFilePath)));
 	        rewind($fpHandle);

@@ -3,6 +3,7 @@ import isPublicPage from './utils/isPublicPage.js';
 import isDicom from './utils/isDicom.js'
 import getPublicShareToken from './utils/getPublicShareToken.js';
 import getPublicFileName from './utils/getPublicFileName.js';
+import ensureWebGL from './utils/ensureWebGL.js';
 
 window.addEventListener('DOMContentLoaded', function() {
     if (!isPublicPage() || !isDicom()) {
@@ -21,5 +22,12 @@ window.addEventListener('DOMContentLoaded', function() {
         div.style.marginTop = '10px';
         div.innerHTML = `<a href="${viewerUrl}" id="openDicomFile" class="button" target="_blank"><span class="icon icon-toggle"></span>${' ' + t('dicomviewer', 'View') + ' '}</a>`;
         previewElmt.appendChild(div);
+
+        // Don't open a viewer that can't render: warn if WebGL is blocked.
+        div.querySelector('#openDicomFile').addEventListener('click', (e) => {
+            if (!ensureWebGL()) {
+                e.preventDefault();
+            }
+        });
     }
 });
