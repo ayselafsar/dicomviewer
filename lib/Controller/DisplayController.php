@@ -150,7 +150,12 @@ class DisplayController extends Controller {
     }
 
     private function getAllDICOMFilesInFolder($parentPathToRemove, $folderNode, $isOpenNoExtension) {
-        $filepaths = array();
+        // if folderNode is not a folder but a file, then we use the parent directory of the file
+        if ($folderNode instanceof \OCP\Files\File) {
+            $folderNode = $folderNode->getParent();
+        }
+
+		$filepaths = array();
         $filenodes = array();
         $nodes = $folderNode->getDirectoryListing();
         foreach($nodes as $node) {
