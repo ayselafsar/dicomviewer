@@ -11,19 +11,23 @@ use OC\Files\Filesystem;
 use OCA\DICOMViewer\AppInfo\Application;
 use OCP\App\IAppManager;
 use OCP\AppFramework\Controller;
+use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\EmptyContentSecurityPolicy;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\AppFramework\Http\StreamResponse;
 use OCP\AppFramework\Http\JSONResponse;
+use OCP\AppFramework\PublicShareController;
 use OCP\Files\IMimeTypeDetector;
 use OCP\Files\IRootFolder;
 use OCP\Files\NotFoundException;
 use OCP\IConfig;
 use Psr\Log\LoggerInterface;
 use OCP\IRequest;
+use OCP\ISession;
 use OCP\IURLGenerator;
 use OCP\IUserSession;
 use OCP\Share\IManager;
+use OCP\Share\IShare;
 
 class DisplayController extends Controller {
 
@@ -42,7 +46,8 @@ class DisplayController extends Controller {
 		IMimeTypeDetector $mimeTypeDetector,
 		IRootFolder $rootFolder,
 		IManager $shareManager,
-		IUserSession $userSession) {
+		IUserSession $userSession,
+		ISession $session) {
 		parent::__construct(Application::APP_ID, $request);
 		$this->config = $config;
 		$this->urlGenerator = $urlGenerator;
@@ -51,6 +56,7 @@ class DisplayController extends Controller {
 		$this->rootFolder = $rootFolder;
 		$this->shareManager = $shareManager;
 		$this->userSession = $userSession;
+		$this->session = $session;
 
         $this->publicViewerFolderPath = null;
         $this->publicViewerAssetsFolderPath = null;
@@ -610,6 +616,24 @@ class DisplayController extends Controller {
 		return $response;
 	}
 
+    /**
+     * A password protected link share is only readable once the visitor has entered
+     * the password on the share page, which stores the token in the session.
+     */
+    private function isPublicShareAuthenticated(IShare $share): bool {
+        $passwordHash = $share->getPassword();
+        if ($passwordHash === null || $passwordHash === '') {
+            return true;
+        }
+
+        $allowedTokens = json_decode($this->session->get(PublicShareController::DAV_AUTHENTICATED_FRONTEND) ?? '[]', true);
+        if (!is_array($allowedTokens)) {
+            return false;
+        }
+
+        return ($allowedTokens[$share->getToken()] ?? '') === $passwordHash;
+    }
+
 	/**
 	 * @PublicPage
      * @NoCSRFRequired
@@ -626,6 +650,10 @@ class DisplayController extends Controller {
             if ($share == null) {
                 $response = new JSONResponse(array());
                 return $response;
+            }
+
+            if (!$this->isPublicShareAuthenticated($share)) {
+                return new JSONResponse(array(), Http::STATUS_FORBIDDEN);
             }
 
             $selectedFileFullPath = '';
