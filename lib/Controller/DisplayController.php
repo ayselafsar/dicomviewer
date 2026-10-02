@@ -166,6 +166,37 @@ class DisplayController extends Controller {
         return array($filepaths, $filenodes);
     }
 
+    // A DICOMDIR indexes the content of a medical media instead of holding an image, which
+    // its meta header advertises through the Media Storage Directory Storage SOP class.
+    private function isDICOMDIR($fileNode, $fileFullPath) {
+        $dicomdirSOPClassUID = '1.2.840.10008.1.3.10';
+        $tempFilePath = null;
+
+        try {
+            if ($this->isEncryptionEnabled() || !file_exists($fileFullPath)) {
+                // Nanodicom reads from the filesystem, so decrypted or remote content needs a temp file
+                $tempFilePath = tempnam(sys_get_temp_dir(), 'dicom_'.uniqid());
+                file_put_contents($tempFilePath, $fileNode->getContent());
+                $fileFullPath = $tempFilePath;
+            }
+
+            $dicom = Nanodicom::factory($fileFullPath);
+            if (!$dicom || !$dicom->is_dicom()) {
+                return false;
+            }
+            $dicom->parse();
+
+            return $this->cleanDICOMTagValue($dicom->value(0x0002, 0x0002)) === $dicomdirSOPClassUID;
+        } catch (Exception $e) {
+            $this->logger->error('Failed to parse DICOM file: '.$fileNode->getPath());
+            return false;
+        } finally {
+            if ($tempFilePath !== null) {
+                unlink($tempFilePath);
+            }
+        }
+    }
+
     private function getContentSecurityPolicy() {
         $policy = new EmptyContentSecurityPolicy();
         $policy->addAllowedFontDomain('data: http: *');
@@ -590,6 +621,13 @@ class DisplayController extends Controller {
 	    $userFolder = $this->rootFolder->getUserFolder($userId);
         $file = $userFolder->getById((int)$fileid)[0];
 	    $selectedFileFullPath = $file->getType() == 'dir' ? null : $this->dataFolder.$file->getPath();
+
+        // A DICOMDIR holds no image of its own, so opening one scans its folder for the
+        // files it indexes, which carry no extension on most medical media
+        if ($file->getType() != 'dir' && $this->isDICOMDIR($file, $selectedFileFullPath)) {
+            $selectedFileFullPath = null;
+            $isOpenNoExtension = true;
+        }
 
 	    // Find the file path by current user (e.g. file path in the shared folder)
         $currentUser = $this->userSession->getUser();
