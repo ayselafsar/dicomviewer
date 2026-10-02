@@ -636,17 +636,21 @@ class DisplayController extends Controller {
 
             $shareNode = $share->getNode();
             if ($shareNode->getType() == 'dir') {
-                // Determine which folder to scan - if filepath is provided, use that subfolder
-                $folderToScan = $shareNode;
+                // The viewer is opened either on the share root, on a subfolder or on a single file
+                $selectedNode = $shareNode;
                 if (!empty($filepath)) {
                     try {
-                        $folderToScan = $shareNode->get($filepath);
+                        $selectedNode = $shareNode->get($filepath);
                     } catch (NotFoundException $e) {
-                        $folderToScan = $shareNode;
+                        $selectedNode = $shareNode;
                     }
                 }
 
-                $selectedFileFullPath = $this->dataFolder.$folderToScan->getPath();
+                // Only a folder can be listed, so a selected file is scanned through its parent
+                $isSelectedNodeFolder = $selectedNode->getType() == 'dir';
+                $folderToScan = $isSelectedNodeFolder ? $selectedNode : $selectedNode->getParent();
+
+                $selectedFileFullPath = $isSelectedNodeFolder ? null : $this->dataFolder.$selectedNode->getPath();
                 $dicomParentFullPath = $this->dataFolder.$shareNode->getPath();
 
                 // Get all DICOM files in the folder and sub folders
