@@ -11,19 +11,23 @@ use OC\Files\Filesystem;
 use OCA\DICOMViewer\AppInfo\Application;
 use OCP\App\IAppManager;
 use OCP\AppFramework\Controller;
+use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\EmptyContentSecurityPolicy;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\AppFramework\Http\StreamResponse;
 use OCP\AppFramework\Http\JSONResponse;
+use OCP\AppFramework\PublicShareController;
 use OCP\Files\IMimeTypeDetector;
 use OCP\Files\IRootFolder;
 use OCP\Files\NotFoundException;
 use OCP\IConfig;
 use Psr\Log\LoggerInterface;
 use OCP\IRequest;
+use OCP\ISession;
 use OCP\IURLGenerator;
 use OCP\IUserSession;
 use OCP\Share\IManager;
+use OCP\Share\IShare;
 
 class DisplayController extends Controller {
 
@@ -42,7 +46,8 @@ class DisplayController extends Controller {
 		IMimeTypeDetector $mimeTypeDetector,
 		IRootFolder $rootFolder,
 		IManager $shareManager,
-		IUserSession $userSession) {
+		IUserSession $userSession,
+		ISession $session) {
 		parent::__construct(Application::APP_ID, $request);
 		$this->config = $config;
 		$this->urlGenerator = $urlGenerator;
@@ -51,6 +56,7 @@ class DisplayController extends Controller {
 		$this->rootFolder = $rootFolder;
 		$this->shareManager = $shareManager;
 		$this->userSession = $userSession;
+		$this->session = $session;
 
         $this->publicViewerFolderPath = null;
         $this->publicViewerAssetsFolderPath = null;
@@ -237,15 +243,14 @@ class DisplayController extends Controller {
 
         foreach($dicomFilePaths as $index => $dicomFilePath) {
             $fileUrlPath = '';
-            if ($isPublic) {
-                if ($singlePublicFileDownload) {
-                    $urlParamFiles = $this->encodeUrlPathSegments(substr($dicomFilePath, strrpos($dicomFilePath, '/') + 1));
-                    $fileUrlPath = $this->encodeUrlPathSegments($downloadUrlPrefix.'/'.$urlParamFiles);
-                } else {
-                    $urlParamPath = $this->encodeUrlPathSegments(substr($dicomFilePath, 0, strrpos($dicomFilePath, '/')));
-                    $urlParamFiles = $this->encodeUrlPathSegments(substr($dicomFilePath, strrpos($dicomFilePath, '/') + 1));
-                    $fileUrlPath = $downloadUrlPrefix.'?path='.$urlParamPath.'&files='.$urlParamFiles;
-                }
+            if ($singlePublicFileDownload) {
+                // A share of one file is mounted at the public DAV root.
+                // The internal Nextcloud path is not a valid public address.
+                $fileUrlPath = $this->encodeUrlPathSegments(rtrim($downloadUrlPrefix, '/').'/');
+            } else if ($isPublic) {
+                $urlParamPath = $this->encodeUrlPathSegments(substr($dicomFilePath, 0, strrpos($dicomFilePath, '/')));
+                $urlParamFiles = $this->encodeUrlPathSegments(substr($dicomFilePath, strrpos($dicomFilePath, '/') + 1));
+                $fileUrlPath = $downloadUrlPrefix.'?path='.$urlParamPath.'&files='.$urlParamFiles;
             } else if ($currentUserPathToFile != null) {
                 $fileUrlPath = $this->encodeUrlPathSegments($downloadUrlPrefix.strstr($dicomFilePath, $currentUserPathToFile));
             } else {
@@ -648,9 +653,30 @@ class DisplayController extends Controller {
 		return $response;
 	}
 
+    /**
+     * A password-protected link is readable after the visitor enters the password
+     * on the Nextcloud share page. That page stores the token in the session.
+     */
+    private function isPublicShareAuthenticated(IShare $share): bool {
+        $passwordHash = $share->getPassword();
+        if ($passwordHash === null || $passwordHash === '') {
+            return true;
+        }
+
+        $allowedTokens = json_decode($this->session->get(PublicShareController::DAV_AUTHENTICATED_FRONTEND) ?? '[]', true);
+        if (is_array($allowedTokens) && ($allowedTokens[$share->getToken()] ?? '') === $passwordHash) {
+            return true;
+        }
+
+        // The public WebDAV endpoint records the share id in the same session.
+        $allowedShareIds = $this->session->get('public_link_authenticated');
+        return is_array($allowedShareIds) && in_array($share->getId(), $allowedShareIds, false);
+    }
+
 	/**
 	 * @PublicPage
      * @NoCSRFRequired
+     * @UseSession
      *
      * @return JSONResponse
      */
@@ -664,6 +690,10 @@ class DisplayController extends Controller {
             if ($share == null) {
                 $response = new JSONResponse(array());
                 return $response;
+            }
+
+            if (!$this->isPublicShareAuthenticated($share)) {
+                return new JSONResponse(array(), Http::STATUS_FORBIDDEN);
             }
 
             $selectedFileFullPath = '';
