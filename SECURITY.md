@@ -22,7 +22,7 @@ release whenever possible.
 Do not report suspected vulnerabilities in a public GitHub issue, discussion,
 pull request, or other public channel.
 
-Email reports to [contact@acanio.com](mailto:contact@acanio.com) with the subject:
+Email reports to [security@acanio.com](mailto:security@acanio.com) with the subject:
 
 `[SECURITY] DICOM Viewer vulnerability`
 
