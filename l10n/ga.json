@@ -10,6 +10,7 @@
     "No DICOM attribute found" : "Níor aimsíodh aon tréith DICOM",
     "View" : "Amharc",
     "DICOM" : "DICOM",
+    "DICOM Viewer requires WebGL, which is either disabled or blocked. Either allow WebGL for this site, or try using a different browser." : "Teastaíonn WebGL ó DICOM Viewer, ach tá sé díchumasaithe nó blocáilte. Ceadaigh WebGL don suíomh seo, nó bain triail as brabhsálaí eile.",
     "Open with DICOM Viewer" : "Oscail le DICOM Viewer"
 },"pluralForm" :"nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);"
 }

@@ -12,6 +12,7 @@ OC.L10N.register(
     "No DICOM attribute found" : "找不到 DICOM 屬性",
     "View" : "檢視",
     "DICOM" : "DICOM",
+    "DICOM Viewer requires WebGL, which is either disabled or blocked. Either allow WebGL for this site, or try using a different browser." : "DICOM 檢視器需要 WebGL，但目前 WebGL 已被停用或封鎖。請為此網站啟用 WebGL，或嘗試使用其他瀏覽器。",
     "Open with DICOM Viewer" : "用DICOM檢視器開啟"
 },
 "nplurals=1; plural=0;");

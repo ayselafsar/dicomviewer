@@ -10,6 +10,7 @@
     "No DICOM attribute found" : "Ühtegi DICOM-i atribuuti ei leidu",
     "View" : "Vaata",
     "DICOM" : "DICOM",
+    "DICOM Viewer requires WebGL, which is either disabled or blocked. Either allow WebGL for this site, or try using a different browser." : "DICOM-i vaataja vajab WebGL-i kasutamise võimalust, mis antud juhul on kas üldiselt keelatud või saidikohaselt blokeeritud. Palun luba WebGL-i kasutamine siin saidis või kasuta muud veebibrauserit.",
     "Open with DICOM Viewer" : "Ava DICOM-i vaatajaga"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

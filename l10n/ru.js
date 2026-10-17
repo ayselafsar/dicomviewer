@@ -12,6 +12,7 @@ OC.L10N.register(
     "No DICOM attribute found" : "Атрибут DICOM не найден",
     "View" : "Режим просмотра",
     "DICOM" : "DICOM",
+    "DICOM Viewer requires WebGL, which is either disabled or blocked. Either allow WebGL for this site, or try using a different browser." : "Для работы «Просмотра DICOM» нужен WebGL, но он отключён или заблокирован. Разрешите WebGL для этого сайта или откройте его в другом браузере.",
     "Open with DICOM Viewer" : "Открыть в «Просмотре DICOM»"
 },
 "nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);");

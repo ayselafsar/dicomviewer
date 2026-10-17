@@ -12,6 +12,7 @@ OC.L10N.register(
     "No DICOM attribute found" : "Inget DICOM-attribut hittades",
     "View" : "Visa",
     "DICOM" : "DICOM",
+    "DICOM Viewer requires WebGL, which is either disabled or blocked. Either allow WebGL for this site, or try using a different browser." : "DICOM Viewer kräver WebGL, som är avaktiverat eller blockerat. Tillåt WebGL för den här webbplatsen eller prova en annan webbläsare.",
     "Open with DICOM Viewer" : "Öppna med DICOM-visare"
 },
 "nplurals=2; plural=(n != 1);");
