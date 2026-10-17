@@ -335,6 +335,8 @@ class DisplayController extends Controller {
             $WindowWidth = $this->cleanDICOMTagValue($dicom->value(0x0028, 0x1051));
             $SeriesDate = $this->cleanDICOMTagValue($dicom->value(0x0008, 0x0021));
             $NumberOfFrames = $this->cleanDICOMTagValue($dicom->value(0x0028, 0x0008));
+            $MIMETypeOfEncapsulatedDocument = $this->cleanDICOMTagValue($dicom->value(0x0042, 0x0012));
+            $EncapsulatedDocument = $dicom->value(0x0042, 0x0011);
 
             if (!$StudyInstanceUID || !$SeriesInstanceUID || !$SOPInstanceUID) {
                 // Skip if any of the required tags are missing
@@ -408,6 +410,13 @@ class DisplayController extends Controller {
                 ),
                 'url' => 'dicomweb:'.$fileUrl,
             );
+
+            if ($EncapsulatedDocument !== false) {
+                $instance['metadata']['MIMETypeOfEncapsulatedDocument'] = $MIMETypeOfEncapsulatedDocument ?: 'application/pdf';
+                $instance['metadata']['EncapsulatedDocument'] = array(
+                    'InlineBinary' => base64_encode($EncapsulatedDocument),
+                );
+            }
 
             if ($NumberOfFrames > 1) {
                 for ($i = 1; $i <= $NumberOfFrames; $i++) {
