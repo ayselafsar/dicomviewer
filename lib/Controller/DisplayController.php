@@ -243,15 +243,14 @@ class DisplayController extends Controller {
 
         foreach($dicomFilePaths as $index => $dicomFilePath) {
             $fileUrlPath = '';
-            if ($isPublic) {
-                if ($singlePublicFileDownload) {
-                    $urlParamFiles = $this->encodeUrlPathSegments(substr($dicomFilePath, strrpos($dicomFilePath, '/') + 1));
-                    $fileUrlPath = $this->encodeUrlPathSegments($downloadUrlPrefix.'/'.$urlParamFiles);
-                } else {
-                    $urlParamPath = $this->encodeUrlPathSegments(substr($dicomFilePath, 0, strrpos($dicomFilePath, '/')));
-                    $urlParamFiles = $this->encodeUrlPathSegments(substr($dicomFilePath, strrpos($dicomFilePath, '/') + 1));
-                    $fileUrlPath = $downloadUrlPrefix.'?path='.$urlParamPath.'&files='.$urlParamFiles;
-                }
+            if ($singlePublicFileDownload) {
+                // A share of one file is mounted at the public DAV root.
+                // The internal Nextcloud path is not a valid public address.
+                $fileUrlPath = $this->encodeUrlPathSegments(rtrim($downloadUrlPrefix, '/').'/');
+            } else if ($isPublic) {
+                $urlParamPath = $this->encodeUrlPathSegments(substr($dicomFilePath, 0, strrpos($dicomFilePath, '/')));
+                $urlParamFiles = $this->encodeUrlPathSegments(substr($dicomFilePath, strrpos($dicomFilePath, '/') + 1));
+                $fileUrlPath = $downloadUrlPrefix.'?path='.$urlParamPath.'&files='.$urlParamFiles;
             } else if ($currentUserPathToFile != null) {
                 $fileUrlPath = $this->encodeUrlPathSegments($downloadUrlPrefix.strstr($dicomFilePath, $currentUserPathToFile));
             } else {
@@ -655,8 +654,8 @@ class DisplayController extends Controller {
 	}
 
     /**
-     * A password protected link share is only readable once the visitor has entered
-     * the password on the share page, which stores the token in the session.
+     * A password-protected link is readable after the visitor enters the password
+     * on the Nextcloud share page. That page stores the token in the session.
      */
     private function isPublicShareAuthenticated(IShare $share): bool {
         $passwordHash = $share->getPassword();
@@ -665,16 +664,19 @@ class DisplayController extends Controller {
         }
 
         $allowedTokens = json_decode($this->session->get(PublicShareController::DAV_AUTHENTICATED_FRONTEND) ?? '[]', true);
-        if (!is_array($allowedTokens)) {
-            return false;
+        if (is_array($allowedTokens) && ($allowedTokens[$share->getToken()] ?? '') === $passwordHash) {
+            return true;
         }
 
-        return ($allowedTokens[$share->getToken()] ?? '') === $passwordHash;
+        // The public WebDAV endpoint records the share id in the same session.
+        $allowedShareIds = $this->session->get('public_link_authenticated');
+        return is_array($allowedShareIds) && in_array($share->getId(), $allowedShareIds, false);
     }
 
 	/**
 	 * @PublicPage
      * @NoCSRFRequired
+     * @UseSession
      *
      * @return JSONResponse
      */
