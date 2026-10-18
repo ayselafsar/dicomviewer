@@ -12,6 +12,7 @@ OC.L10N.register(
     "No DICOM attribute found" : "Kein DICOM-Attribut gefunden",
     "View" : "Ansehen",
     "DICOM" : "DICOM",
+    "DICOM Viewer requires WebGL, which is either disabled or blocked. Either allow WebGL for this site, or try using a different browser." : "DICOM Viewer erfordert WebGL, das entweder deaktiviert oder blockiert ist. Entweder WebGL für diese Seite erlauben oder versuchen, einen anderen Browser zu verwenden.",
     "Open with DICOM Viewer" : "Mit DICOM Viewer öffnen"
 },
 "nplurals=2; plural=(n != 1);");
