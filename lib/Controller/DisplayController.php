@@ -397,7 +397,7 @@ class DisplayController extends Controller {
                     'ImageOrientationPatient' => $ImageOrientationPatient ? array_map('trim', explode('\\', $ImageOrientationPatient)) : $ImageOrientationPatient,
                     'ImagePositionPatient' => $ImagePositionPatient ? array_map('trim', explode('\\', $ImagePositionPatient)) : $ImagePositionPatient,
                     'FrameOfReferenceUID' => $FrameOfReferenceUID,
-                    'ImageType' => $ImageType ? array_map('trim', explode('\\', $ImageType)) : $ImageType,
+                    'ImageType' => $ImageType ? array_map('trim', explode('\\', $ImageType)) : null,
                     'Modality' => $Modality,
                     'SOPInstanceUID' => $SOPInstanceUID,
                     'SeriesInstanceUID' => $SeriesInstanceUID,
