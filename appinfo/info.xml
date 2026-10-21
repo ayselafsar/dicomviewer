@@ -31,5 +31,8 @@ See [README](https://github.com/ayselafsar/dicomviewer) for a list of full featu
         <install>
             <step>OCA\DICOMViewer\Migration\RegisterMimeType</step>
         </install>
+        <post-upgrade>
+            <step>OCA\DICOMViewer\Migration\RegisterMimeType</step>
+        </post-upgrade>
     </repair-steps>
 </info>
