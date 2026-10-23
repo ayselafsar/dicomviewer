@@ -6,11 +6,17 @@
 import { generateUrl } from '@nextcloud/router'
 import isPublicPage from '../utils/isPublicPage.js';
 import getPublicShareToken from '../utils/getPublicShareToken.js';
+import ensureWebGL from '../utils/ensureWebGL.js';
 
 export default {
     name: 'DICOMView',
 
     async mounted() {
+        if (!ensureWebGL()) {
+            this.$parent.close();
+            return;
+        }
+
         let dicomUrl;
 
         const file = this.fileList.find((file) => file.fileid === this.fileid);

@@ -4,8 +4,13 @@ import { generateUrl } from "@nextcloud/router";
 import AppIcon from './AppIcon.js';
 import isPublicPage from './isPublicPage.js';
 import getPublicShareToken from './getPublicShareToken.js';
+import ensureWebGL from './ensureWebGL.js';
 
 function openWithDICOMViewer(node) {
+    if (!ensureWebGL()) {
+        return;
+    }
+
     const isPublic = isPublicPage();
     let dicomUrl;
 
