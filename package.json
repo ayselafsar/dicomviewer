@@ -50,5 +50,13 @@
     "cli-progress": "^3.12.0",
     "copy-webpack-plugin": "^14.0.0",
     "terser-webpack-plugin": "^5.6.1"
+  },
+  "overrides": {
+    "@nextcloud/vue": {
+      "@nextcloud/l10n": "3.1.0"
+    },
+    "@nextcloud/dialogs": {
+      "@nextcloud/l10n": "3.1.0"
+    }
   }
 }
