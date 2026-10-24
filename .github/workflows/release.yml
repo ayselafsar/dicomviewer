@@ -23,7 +23,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'
+          php-version: '8.3'
           extensions: mbstring, intl, sqlite3
           ini-values: post_max_size=256M, max_execution_time=180
           coverage: xdebug
@@ -48,7 +48,7 @@ jobs:
           sudo apt install make openssl -y
           echo "###### installing nextcloud"
           mkdir ~/html
-          git clone https://github.com/nextcloud/server.git --recursive --depth 1 -b stable34 ~/html/nextcloud
+          git clone https://github.com/nextcloud/server.git --recursive --depth 1 -b stable35 ~/html/nextcloud
           cp -r $GITHUB_WORKSPACE ~/html/nextcloud/apps/${APP_ID}
           php ~/html/nextcloud/occ maintenance:install --database "sqlite" --admin-user "admin" --admin-pass "password"
           echo "###### make"
