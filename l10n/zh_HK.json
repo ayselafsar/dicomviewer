@@ -10,6 +10,7 @@
     "No DICOM attribute found" : "未找到 DICOM 屬性",
     "View" : "檢視",
     "DICOM" : "DICOM",
+    "DICOM Viewer requires WebGL, which is either disabled or blocked. Either allow WebGL for this site, or try using a different browser." : "DICOM 檢視器需要使用 WebGL，但 WebGL 目前已停用或遭封鎖。請允許此網站使用 WebGL，或嘗試使用其他瀏覽器。",
     "Open with DICOM Viewer" : "用DICOM檢視器開啟"
 },"pluralForm" :"nplurals=1; plural=0;"
 }
