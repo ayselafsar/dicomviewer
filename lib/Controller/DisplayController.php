@@ -140,6 +140,12 @@ class DisplayController extends Controller {
         return $value;
     }
 
+    // A UID of "0" is a present value. PHP treats that string as falsy, and Nanodicom
+    // returns false when the tag is absent, so only a non-empty string counts as present.
+    private function isEmptyDICOMUid($value): bool {
+        return !is_string($value) || $value === '';
+    }
+
     private function convertToUTF8($d) {
         if (is_array($d)) {
             foreach ($d as $k => $v) {
@@ -337,7 +343,7 @@ class DisplayController extends Controller {
             $MIMETypeOfEncapsulatedDocument = $this->cleanDICOMTagValue($dicom->value(0x0042, 0x0012));
             $EncapsulatedDocument = $dicom->value(0x0042, 0x0011);
 
-            if (!$StudyInstanceUID || !$SeriesInstanceUID || !$SOPInstanceUID) {
+            if ($this->isEmptyDICOMUid($StudyInstanceUID) || $this->isEmptyDICOMUid($SeriesInstanceUID) || $this->isEmptyDICOMUid($SOPInstanceUID)) {
                 // Skip if any of the required tags are missing
                 continue;
             }
