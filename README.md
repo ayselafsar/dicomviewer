@@ -28,6 +28,12 @@ For more information, see the blog post [Nextcloud in Digital Imaging](https://n
 
 On your Nextcloud, simply navigate to Apps > Multimedia > DICOM Viewer, and enable it.
 
+### Security
+
+Please report suspected vulnerabilities privately by following our
+[security policy](SECURITY.md). Do not disclose security issues in public
+GitHub issues.
+
 
 ### Development
 
