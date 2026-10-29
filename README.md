@@ -39,8 +39,8 @@ GitHub issues.
 
 #### Pre-requisites
 
-- [NodeJS 20+](https://nodejs.org)
-- [Yarn](https://yarnpkg.com/lang/en/docs/install/)
+- [Node.js 24 LTS](https://nodejs.org)
+- [pnpm](https://pnpm.io/) enabled through Corepack
 - [Nextcloud Server 28+](https://nextcloud.com/install/#instructions-server)
   * Docker options including docker-compose is [here](https://github.com/nextcloud/docker) and Docker images are [here](https://hub.docker.com/_/nextcloud/)
   * You can easily find VM and other options [here](https://nextcloud.com)
@@ -63,16 +63,16 @@ git clone https://github.com/ayselafsar/dicomviewer.git
 git submodule update --init --recursive
 ```
 
-4. Enable yarn workspaces
+4. Enable pnpm through Corepack
 
 ```
-yarn config set workspaces-experimental true
+corepack enable pnpm
 ```
 
 5. Build the project
 
 ```
-npm install
+npm ci
 npm run build
 ```
 

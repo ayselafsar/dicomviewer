@@ -9,6 +9,7 @@ on:
 
 env:
   APP_NAME: dicomviewer
+  COREPACK_ENABLE_DOWNLOAD_PROMPT: '0'
 
 jobs:
   build:
@@ -24,10 +25,13 @@ jobs:
     name: php${{ matrix.php-versions }}-${{ matrix.server-versions }}
 
     steps:
-      - name: Use Node 20
+      - name: Use Node 24
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
+
+      - name: Enable pnpm through Corepack
+        run: corepack enable pnpm
 
       - name: Checkout server
         uses: actions/checkout@v4

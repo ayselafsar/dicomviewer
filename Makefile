@@ -6,7 +6,7 @@ appstore_sign_dir=/tmp/sign
 cert_dir=$(HOME)/.nextcloud/certificates
 
 build:
-	npm install
+	npm ci
 	npm run build
 
 appstore: build
