@@ -5,6 +5,15 @@ const path = require('path');
 // Keep "acanio-viewer" dist in the js folder
 webpackConfig.output.clean = false;
 
+// vue-loader 15's prettify option is not valid for the Vue 3 compiler.
+webpackConfig.module.rules = webpackConfig.module.rules.map((rule) => {
+    if (rule.loader !== 'vue-loader') {
+        return rule;
+    }
+    const { options, ...rest } = rule;
+    return rest;
+});
+
 webpackConfig.plugins.push(
     new webpackCopyPlugin({
         patterns: [

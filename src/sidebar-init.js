@@ -1,15 +1,11 @@
-import Vue from 'vue';
+import { createApp } from 'vue';
 import { FileType, getSidebar } from '@nextcloud/files';
-import { translate as t } from '@nextcloud/l10n';
+import { translate as t, translatePlural as n } from '@nextcloud/l10n';
 import SidebarPreview from './views/SidebarPreview.vue';
 import configureCodecs from './utils/configureCodecs.js';
 import AppIcon from './utils/AppIcon.js';
 
-Vue.prototype.t = t;
-Vue.prototype.n = n;
-
 const TAG_NAME = 'dicomviewer-files-sidebar-tab';
-const SidebarPreviewView = Vue.extend(SidebarPreview);
 
 configureCodecs();
 
@@ -19,20 +15,27 @@ class DicomviewerFilesSidebarTab extends HTMLElement {
         super();
         this._node = null;
         this._active = false;
+        this.vueApp = null;
         this.vueInstance = null;
     }
 
     connectedCallback() {
-        if (!this.vueInstance) {
-            this.vueInstance = new SidebarPreviewView();
-            this.appendChild(this.vueInstance.$mount().$el);
+        if (!this.vueApp) {
+            const container = document.createElement('div');
+            this.appendChild(container);
+            const app = createApp(SidebarPreview);
+            app.config.globalProperties.t = t;
+            app.config.globalProperties.n = n;
+            this.vueApp = app;
+            this.vueInstance = app.mount(container);
         }
         this.syncProps();
     }
 
     disconnectedCallback() {
-        if (this.vueInstance) {
-            this.vueInstance.$destroy();
+        if (this.vueApp) {
+            this.vueApp.unmount();
+            this.vueApp = null;
             this.vueInstance = null;
         }
     }
