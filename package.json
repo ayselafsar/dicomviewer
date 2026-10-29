@@ -4,7 +4,7 @@
   "description": "Place this app in **nextcloud/apps/**",
   "scripts": {
     "prebuild": "rm -rf js && npm run build:viewer",
-    "build:viewer": "cd acanio-viewer && yarn install && yarn build:nextcloud",
+    "build:viewer": "cd acanio-viewer && pnpm install --frozen-lockfile && pnpm build:nextcloud",
     "build": "webpack --node-env production --progress",
     "dev": "webpack --node-env development --progress",
     "watch": "webpack --node-env development --progress --watch",

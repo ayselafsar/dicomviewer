@@ -13,12 +13,16 @@ jobs:
     environment: release
     env:
       APP_ID: dicomviewer
+      COREPACK_ENABLE_DOWNLOAD_PROMPT: '0'
     runs-on: ubuntu-latest
     steps:
       - name: Use Node 24
         uses: actions/setup-node@v4
         with:
           node-version: 24
+
+      - name: Enable pnpm through Corepack
+        run: corepack enable pnpm
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
