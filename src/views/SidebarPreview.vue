@@ -138,7 +138,7 @@ export default {
                 const imageLoadObject = loadImageFromPromise(Promise.resolve(dataSet), imageId);
                 return await imageLoadObject.promise;
             } catch (error) {
-                console.warn('No image loaded');
+                console.warn('No DICOM image loaded', error);
                 return null;
             }
         },

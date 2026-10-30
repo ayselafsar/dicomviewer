@@ -1,4 +1,4 @@
-import { generateUrl } from '@nextcloud/router';
+import { generateFilePath } from '@nextcloud/router';
 import { cornerstone, cornerstoneWADOImageLoader } from './cornerstonejs.js';
 import generateFullUrl from './generateFullUrl.js';
 
@@ -20,12 +20,12 @@ export default function() {
     const config = {
         maxWebWorkers,
         startWebWorkersOnDemand: true,
-        webWorkerPath: `${generateFullUrl(generateUrl('/apps/dicomviewer/js/public/cornerstoneWADOImageLoaderWebWorker.js'))}`,
+        webWorkerPath: generateFullUrl(generateFilePath('dicomviewer', 'js', 'public/cornerstoneWADOImageLoaderWebWorker.js')),
         taskConfiguration: {
             decodeTask: {
                 loadCodecsOnStartup: true,
                 initializeCodecsOnStartup: false,
-                codecsPath: `${generateFullUrl(generateUrl('/apps/dicomviewer/js/public/cornerstoneWADOImageLoaderCodecs.js'))}`,
+                codecsPath: generateFullUrl(generateFilePath('dicomviewer', 'js', 'public/cornerstoneWADOImageLoaderCodecs.js')),
                 usePDFJS: false
             },
         },
