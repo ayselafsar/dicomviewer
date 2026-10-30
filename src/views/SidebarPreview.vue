@@ -15,19 +15,23 @@
 						:placeholder="t('dicomviewer', 'Search for attributes…')">
 				</div>
 				<table :style="{ width: '100%', tableLayout: 'fixed' }">
-					<tr>
-						<th>{{ t('dicomviewer', 'Attribute') }}</th>
-						<th>{{ t('dicomviewer', 'Value') }}</th>
-					</tr>
-					<tr v-for="attribute in attributes"
-						:key="attribute.tagName"
-						:style="{ whiteSpace: 'normal', wordBreak: 'break-word', fontSize: 'smaller' }">
-						<td :style="{ padding: '5px 0 5px 0' }">
-							<p>{{ attribute.tagName }}</p>
-							<p>{{ attribute.tagValue }}</p>
-						</td>
-						<td :style="{ padding: '5px 0 5px 0' }" v-html="attribute.text" />
-					</tr>
+					<thead>
+						<tr>
+							<th>{{ t('dicomviewer', 'Attribute') }}</th>
+							<th>{{ t('dicomviewer', 'Value') }}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="attribute in attributes"
+							:key="attribute.tagName"
+							:style="{ whiteSpace: 'normal', wordBreak: 'break-word', fontSize: 'smaller' }">
+							<td :style="{ padding: '5px 0 5px 0' }">
+								<p>{{ attribute.tagName }}</p>
+								<p>{{ attribute.tagValue }}</p>
+							</td>
+							<td :style="{ padding: '5px 0 5px 0' }" v-html="attribute.text" />
+						</tr>
+					</tbody>
 				</table>
 			</div>
 			<div v-if="attributes.length === 0 && !loading"
