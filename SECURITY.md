@@ -6,13 +6,13 @@ an opportunity to investigate and address them before public disclosure.
 
 ## Supported Versions
 
-The latest maintained release is currently Nextcloud DICOM Viewer 2.3.4.
+The latest maintained release is currently Nextcloud DICOM Viewer 2.4.0.
 Older versions are not actively supported. Security fixes are evaluated on a
 case-by-case basis and are not guaranteed for every reported issue.
 
 | Version | Supported |
 | --- | --- |
-| 2.3.4 | Yes |
+| 2.4.0 | Yes |
 | 2.3.3 and older | No |
 
 Before reporting an issue, please verify that it is reproducible with the latest

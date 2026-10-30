@@ -4,6 +4,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.4.0] - 2026-10-30
+
+### Added
+- #162 Security reporting (#182)
+- #175 Support for Nextcloud 35 (#184)
+- Scan the containing folder when a DICOMDIR is opened (#173)
+
+### Changed
+- feat(viewer): Upgrade acanio-viewer to 1.3.1
+- chore(dependencies): upgrade dependencies (#188)
+- feat(viewer): Upgrade acanio-viewer to 1.3.0 (#189)
+- #162 Update supported version in Security
+
+### Fixed
+- fix(sidebar): resolve decoder asset URLs from the registered app path
+- #185 DICOM study is skipped when StudyInstanceUID is "0" due to PHP falsy check (#186)
+- #167 Not opening some dicoms (#180)
+- #170 PDFs cannot be viewed or downloaded in viewer (#181)
+- #160 Fix password-protected and single-file public DICOM shares (#183)
+- Fix: font 404 error/warn when WebGL is unavailable (#166)
+- fix: upgrade cipher-base to 1.0.7 (#179)
+- Require password session before returning public dicom metadata (#178)
+- #147 Fix opening a DICOM file from a public folder share (#172)
+
 ## [2.3.3] - 2026-06-14
 
 ### Fixed
