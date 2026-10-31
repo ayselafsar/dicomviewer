@@ -1,5 +1,16 @@
 { "translations": {
+    "DICOM Viewer" : "DICOM Viewer",
+    "Digital Imaging for Medicine" : "Imagistică digitală pentru medicină",
+    "DICOM Viewer allows to display and manipulate DICOM images with a streamlined sidebar and viewer.\n\nIt renders DICOM data sets in 2D, 3D, and reconstructed representations; allows for the manipulation, annotation,\nand serialization of observations; supports internationalization, hotkeys, and many more features.\n\nSee [README](https://github.com/ayselafsar/dicomviewer) for a list of full features and future roadmap." : "DICOM Viewer permite afișarea și manipularea imaginilor DICOM, cu o bară laterală și un vizualizator simplificate.\n\nRedă seturile de date DICOM în reprezentări 2D, 3D și reconstruite; permite manipularea, adnotarea\nși serializarea observațiilor; acceptă internaționalizarea, scurtături de tastatură și multe alte funcții.\n\nConsultă [README](https://github.com/ayselafsar/dicomviewer) pentru o listă completă a funcțiilor și foaia de parcurs viitoare.",
+    "Unable to load the DICOM attributes" : "Nu s-au putut încărca atributele DICOM",
+    "DICOM Attributes" : "Atribute DICOM",
+    "Search for attributes…" : "Caută atribute…",
+    "Attribute" : "Atribut",
     "Value" : "Valoare",
-    "View" : "Vizualizare"
+    "No DICOM attribute found" : "Nu a fost găsit niciun atribut DICOM",
+    "View" : "Vizualizare",
+    "DICOM" : "DICOM",
+    "DICOM Viewer requires WebGL, which is either disabled or blocked. Either allow WebGL for this site, or try using a different browser." : "DICOM Viewer necesită WebGL, care este fie dezactivat, fie blocat. Permite WebGL pentru acest site sau încearcă un alt browser.",
+    "Open with DICOM Viewer" : "Deschide cu DICOM Viewer"
 },"pluralForm" :"nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));"
 }
