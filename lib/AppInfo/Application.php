@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace OCA\DICOMViewer\AppInfo;
 
 use OCA\DICOMViewer\Listeners\CSPListener;
+use OCA\DICOMViewer\Listeners\ExtensionlessDicomMimeListener;
 use OCA\DICOMViewer\Listeners\LoadPublicViewerListener;
 use OCA\DICOMViewer\Listeners\LoadSidebarListener;
 use OCA\DICOMViewer\Listeners\LoadViewerListener;
@@ -17,6 +18,8 @@ use OCP\AppFramework\Bootstrap\IBootContext;
 use OCP\AppFramework\Bootstrap\IBootstrap;
 use OCP\AppFramework\Bootstrap\IRegistrationContext;
 use OCP\AppFramework\Http\Events\BeforeTemplateRenderedEvent;
+use OCP\Files\Cache\CacheEntryInsertedEvent;
+use OCP\Files\Cache\CacheEntryUpdatedEvent;
 use OCP\Security\CSP\AddContentSecurityPolicyEvent;
 
 class Application extends App implements IBootstrap {
@@ -31,6 +34,8 @@ class Application extends App implements IBootstrap {
 		$context->registerEventListener(LoadSidebar::class, LoadSidebarListener::class);
 		$context->registerEventListener(BeforeTemplateRenderedEvent::class, LoadPublicViewerListener::class);
 		$context->registerEventListener(AddContentSecurityPolicyEvent::class, CSPListener::class);
+		$context->registerEventListener(CacheEntryInsertedEvent::class, ExtensionlessDicomMimeListener::class);
+		$context->registerEventListener(CacheEntryUpdatedEvent::class, ExtensionlessDicomMimeListener::class);
 	}
 
 	public function boot(IBootContext $context): void {
