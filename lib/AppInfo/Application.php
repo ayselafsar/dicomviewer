@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace OCA\DICOMViewer\AppInfo;
 
+use OCA\DICOMViewer\Listeners\BeforeZipCreatedListener;
 use OCA\DICOMViewer\Listeners\CSPListener;
 use OCA\DICOMViewer\Listeners\LoadPublicViewerListener;
 use OCA\DICOMViewer\Listeners\LoadSidebarListener;
@@ -17,6 +18,7 @@ use OCP\AppFramework\Bootstrap\IBootContext;
 use OCP\AppFramework\Bootstrap\IBootstrap;
 use OCP\AppFramework\Bootstrap\IRegistrationContext;
 use OCP\AppFramework\Http\Events\BeforeTemplateRenderedEvent;
+use OCP\Files\Events\BeforeZipCreatedEvent;
 use OCP\Security\CSP\AddContentSecurityPolicyEvent;
 
 class Application extends App implements IBootstrap {
@@ -31,6 +33,7 @@ class Application extends App implements IBootstrap {
 		$context->registerEventListener(LoadSidebar::class, LoadSidebarListener::class);
 		$context->registerEventListener(BeforeTemplateRenderedEvent::class, LoadPublicViewerListener::class);
 		$context->registerEventListener(AddContentSecurityPolicyEvent::class, CSPListener::class);
+		$context->registerEventListener(BeforeZipCreatedEvent::class, BeforeZipCreatedListener::class);
 	}
 
 	public function boot(IBootContext $context): void {
