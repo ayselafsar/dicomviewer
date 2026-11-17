@@ -9,6 +9,7 @@ use OCA\DICOMViewer\Listeners\CSPListener;
 use OCA\DICOMViewer\Listeners\LoadPublicViewerListener;
 use OCA\DICOMViewer\Listeners\LoadSidebarListener;
 use OCA\DICOMViewer\Listeners\LoadViewerListener;
+use OCA\DICOMViewer\Middleware\MimeIconMiddleware;
 
 use OCA\Files\Event\LoadSidebar;
 use OCA\Viewer\Event\LoadViewer;
@@ -34,6 +35,7 @@ class Application extends App implements IBootstrap {
 		$context->registerEventListener(BeforeTemplateRenderedEvent::class, LoadPublicViewerListener::class);
 		$context->registerEventListener(AddContentSecurityPolicyEvent::class, CSPListener::class);
 		$context->registerEventListener(BeforeZipCreatedEvent::class, BeforeZipCreatedListener::class);
+		$context->registerMiddleware(MimeIconMiddleware::class, true);
 	}
 
 	public function boot(IBootContext $context): void {
