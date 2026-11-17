@@ -17,9 +17,12 @@ use OCP\AppFramework\Http\TemplateResponse;
 use OCP\AppFramework\Http\StreamResponse;
 use OCP\AppFramework\Http\JSONResponse;
 use OCP\AppFramework\PublicShareController;
+use OC\Files\Storage\Wrapper\Wrapper;
 use OCP\Files\IMimeTypeDetector;
 use OCP\Files\IRootFolder;
+use OCP\Files\Node;
 use OCP\Files\NotFoundException;
+use OCP\Files\Storage\ISharedStorage;
 use OCP\IConfig;
 use Psr\Log\LoggerInterface;
 use OCP\IRequest;
@@ -653,7 +656,8 @@ class DisplayController extends Controller {
         $currentUser = $this->userSession->getUser();
         $currentUserId = $currentUser->getUID();
         $currentUserFolder = $this->rootFolder->getUserFolder($currentUserId);
-        $currentUserPathToFile = implode('', explode($currentUserFolder->getPath(), $currentUserFolder->getById((int)$fileid)[0]->getParent()->getPath(), 2));
+        $currentUserNode = $currentUserFolder->getById((int)$fileid)[0];
+        $currentUserPathToFile = implode('', explode($currentUserFolder->getPath(), $currentUserNode->getParent()->getPath(), 2));
 
 	    // Get all DICOM files in the folder and sub folders
 	    $parentPathToRemove = '/'.$userId.'/files';
@@ -663,10 +667,38 @@ class DisplayController extends Controller {
         $dicomParentFullPath = $this->dataFolder.'/'.$userId.'/files';
         $downloadUrlPrefix = 'remote.php/dav/files/'.$currentUserId;
 	    $dicomJson = $this->generateDICOMJson($dicomFilePaths, $dicomFileNodes, $selectedFileFullPath, $dicomParentFullPath, $currentUserPathToFile, $downloadUrlPrefix, false, false);
+        // Guests and other recipients open this endpoint, not the public-link one
+        $dicomJson['hideCapture'] = $this->isDownloadHidden($currentUserNode);
         $dicomJson = $this->convertToUTF8($dicomJson);
         $response = new JSONResponse($dicomJson);
 		return $response;
 	}
+
+    /**
+     * A recipient, including a guest, sees the file through a share mount.
+     * Hide JPG/PNG capture when that share does not allow download.
+     * The owner's own copy is not a share mount, so capture stays available.
+     */
+    private function isDownloadHidden(Node $node): bool {
+        $storage = $node->getStorage();
+        if (!$storage->instanceOfStorage(ISharedStorage::class)) {
+            return false;
+        }
+
+        if ($storage instanceof Wrapper) {
+            $sharedStorage = $storage->getInstanceOfStorage(ISharedStorage::class);
+            if ($sharedStorage instanceof ISharedStorage) {
+                $storage = $sharedStorage;
+            }
+        }
+
+        if (!$storage instanceof ISharedStorage) {
+            return false;
+        }
+
+        $share = $storage->getShare();
+        return $share->getHideDownload() || !$share->canDownload();
+    }
 
     /**
      * A password-protected link is readable after the visitor enters the password
