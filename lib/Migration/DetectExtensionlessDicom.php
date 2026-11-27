@@ -4,22 +4,22 @@ declare(strict_types=1);
 
 namespace OCA\DICOMViewer\Migration;
 
-use OCA\DICOMViewer\Service\DicomPreamble;
-use OCP\Files\File;
-use OCP\Files\IRootFolder;
-use OCP\IUserManager;
+use OCA\DICOMViewer\BackgroundJob\DetectExtensionlessDicomJob;
+use OCA\DICOMViewer\Service\ExtensionlessDicomScanner;
+use OCP\BackgroundJob\IJobList;
 use OCP\Migration\IOutput;
 use OCP\Migration\IRepairStep;
 
 /**
  * Files imported before the cache listener existed keep the generic binary
- * type. Re-check those so an existing DICOMDIR disc opens in the viewer.
+ * type. The check itself reads file headers, so it runs from cron instead of
+ * inside app:enable. On a large instance, including SMB external storage,
+ * doing it here blocks Nextcloud until every binary file has been opened.
  */
 class DetectExtensionlessDicom implements IRepairStep {
 	public function __construct(
-		private IRootFolder $rootFolder,
-		private IUserManager $userManager,
-		private DicomPreamble $dicomPreamble,
+		private IJobList $jobList,
+		private ExtensionlessDicomScanner $scanner,
 	) {
 	}
 
@@ -28,54 +28,15 @@ class DetectExtensionlessDicom implements IRepairStep {
 	}
 
 	public function run(IOutput $output): void {
-		$updated = 0;
-		$this->userManager->callForAllUsers(function ($user) use ($output, &$updated) {
-			try {
-				$folder = $this->rootFolder->getUserFolder($user->getUID());
-			} catch (\Throwable $e) {
-				$output->warning('Skipping ' . $user->getUID() . ': ' . $e->getMessage());
-				return;
-			}
-
-			foreach ($folder->searchByMime('application/octet-stream') as $node) {
-				if (!$node instanceof File) {
-					continue;
-				}
-				if ($node->getSize() >= 0 && $node->getSize() < DicomPreamble::HEADER_LENGTH) {
-					continue;
-				}
-				if (!$this->nodeHasDicomMarker($node)) {
-					continue;
-				}
-
-				$node->getStorage()->getCache()->update($node->getId(), [
-					'mimetype' => 'application/dicom',
-				]);
-				$updated++;
-			}
-		});
-
-		$output->info('Marked ' . $updated . ' extensionless DICOM file(s) as application/dicom.');
-	}
-
-	private function nodeHasDicomMarker(File $node): bool {
-		try {
-			$handle = $node->fopen('r');
-		} catch (\Throwable $e) {
-			return false;
-		}
-		if ($handle === false) {
-			return false;
+		if (!$this->jobList->has(DetectExtensionlessDicomJob::class, null)) {
+			$this->jobList->add(DetectExtensionlessDicomJob::class);
 		}
 
-		try {
-			$header = fread($handle, DicomPreamble::HEADER_LENGTH);
-		} catch (\Throwable $e) {
-			return false;
-		} finally {
-			fclose($handle);
+		if ($this->scanner->isDone()) {
+			$output->info('Queued a cron check for extensionless DICOM files added since the last run.');
+			return;
 		}
 
-		return is_string($header) && $this->dicomPreamble->matches($header);
+		$output->info('Queued extensionless DICOM detection for the Nextcloud cron job.');
 	}
 }
