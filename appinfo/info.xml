@@ -32,9 +32,9 @@ See [README](https://github.com/ayselafsar/dicomviewer) for a list of full featu
             <step>OCA\DICOMViewer\Migration\RegisterMimeType</step>
             <step>OCA\DICOMViewer\Migration\DetectExtensionlessDicom</step>
         </install>
-        <post-upgrade>
+        <post-migration>
             <step>OCA\DICOMViewer\Migration\RegisterMimeType</step>
             <step>OCA\DICOMViewer\Migration\DetectExtensionlessDicom</step>
-        </post-upgrade>
+        </post-migration>
     </repair-steps>
 </info>
